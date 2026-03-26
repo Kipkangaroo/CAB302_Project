@@ -1,9 +1,12 @@
-# CAB302_Project
+# CAB302_Project  
+Group: LockedIn
 
-Team member names and git username
-Akhilesh Prasad - 
-Brandon Findlay - BrandonFindlay
-Kasper Hendriks - Kipkangaroo
-Mimi Nguyen - mimikkyyu
-Sherab Zangmo - sherab-zangmo
-Tusar Paudel - ptusar
+  
+| Name            | Git Username   |
+|-----------------|----------------|
+| Akhilesh Prasad |                |
+| Brandon Findlay | BrandonFindlay |
+| Kasper Hendriks | Kipkangaroo    |
+| Mimi Nguyen     | mimikkyyu      |
+| Sherab Zangmo   | sherab-zangmo  |
+| Tusar Paudel    | ptusar         |
