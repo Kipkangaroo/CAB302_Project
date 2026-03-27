@@ -9,14 +9,18 @@ This aligns with the theme "Living, Learning, Working with AI" by treating AI as
 ---
 
 ## Features
-- User registration and login
-- Create and manage workout plans
-- Add exercises to workouts
-- Track completed workouts
-- View workout history and progress
-- AI-generated workout suggestions (mocked/rule-based)
-- User can edit or reject AI suggestions
-- Basic feedback based on workout activity
+Functional Requirements:
+1.	Users can register and log into the system 
+2.	Users can create, edit, and delete workout plans 
+3.	Users can add exercises to a workout 
+4.	Users can log completed workouts 
+5.	Users can view workout history and progress 
+6.	The system can generate AI-based workout suggestions (mocked or rule-based) 
+7.	Users can edit or reject AI-generated suggestions 
+8.	The system provides feedback based on user activity (e.g., missed workouts) 
+Non-Functional Requirements:
+9.	The system must store data locally (file or database) 
+10.	The system must function without AI (AI is optional enhancement)
 
 ---
 
