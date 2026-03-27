@@ -42,7 +42,7 @@ The system is designed to function even without AI.
   
 | Name            | Git Username   |
 |-----------------|----------------|
-| Akhilesh Prasad |                |
+| Akhilesh Prasad | Ak-Pras        |
 | Brandon Findlay | BrandonFindlay |
 | Kasper Hendriks | Kipkangaroo    |
 | Mimi Nguyen     | mimikkyyu      |
