@@ -8,7 +8,7 @@ This aligns with the theme "Living, Learning, Working with AI" by treating AI as
 
 ---
 
-## Features
+## Project Requirements
 Functional Requirements:
 1.	Users can register and log into the system 
 2.	Users can create, edit, and delete workout plans 
@@ -23,7 +23,26 @@ Non-Functional Requirements:
 10.	The system must function without AI (AI is optional enhancement)
 
 ---
+## Users
 
+Users must be minimum 18 years of age. Users may use the workout planner and calorie tracker independently or in conjunction.
+The application must accomodate users with all levels of fitness experience.
+
+---
+## Project Features
+- Tracking exercise
+- Training Schedules
+- Calories Burned
+- Nutrition Tracking
+- Ai Integration
+- Workout progression
+
+## Extension Project Features
+- Social integration
+- AI Chatbot
+- Wearable integration (watches, etc)
+
+---
 ## AI Integration
 AI features are implemented as:
 - Mocked or rule-based suggestions
