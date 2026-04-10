@@ -4,7 +4,7 @@ Group: LockedIn
   
 | Name            | Git Username   |
 |-----------------|----------------|
-| Akhilesh Prasad |                |
+| Akhilesh Prasad | Ak-Pras        |
 | Brandon Findlay | BrandonFindlay |
 | Kasper Hendriks | Kipkangaroo    |
 | Mimi Nguyen     | mimikkyyu      |
