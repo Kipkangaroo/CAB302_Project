@@ -22,10 +22,14 @@
 
     <HBox spacing="10">
         <Button text="Add Food" onAction="#handleAddFood"          />
-        <Button text="Reset" onAction="#handleReset"             />
+        <Button text="Reset" onAction="#handleReset"               />
     </HBox>
 
-    <Label fx:id="totalLabel" text="Total: 0 kcal" style="-fx-font-size: 16px;" />
+    <Label fx:id="totalLabel" text="Total: 0 kcal" style="-fx-font-size: 16px;"       />
+    <Label fx:id="proteinTotalLabel" text="Protein: 0 g" style="-fx-font-size: 16px;" />
+    <Label fx:id="carbsTotalLabel" text="Carbs: 0 g" style="-fx-font-size: 16px;"     />
+    <Label fx:id="fatsTotalLabel" text="Fats: 0 g" style="-fx-font-size: 16px;"       />
+
 
     <ListView fx:id="foodList" prefHeight="300"                   />
 
