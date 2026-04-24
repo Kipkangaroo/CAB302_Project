@@ -19,8 +19,8 @@ public class MainController {
     @FXML
     public Button btnProfile;
 
-    private static final String ACTIVE   = "-fx-text-fill: #378ADD; -fx-font-size: 13px;";
-    private static final String INACTIVE = "-fx-text-fill: #7A9AB5; -fx-font-size: 13px;";
+    private static final String ACTIVE   = "-fx-scale-x: 0.95; -fx-scale-y: 0.95; -fx-opacity: 0.8;";
+    private static final String INACTIVE = "-fx-scale-x: 1; -fx-scale-y: 1; -fx-opacity: 1;";
 
     @FXML
     public void initialize() {
