@@ -17,7 +17,7 @@
     </center>
     <bottom>
         <!-- layout for bottom nav-->
-        <HBox alignment="CENTER" spacing="100">
+        <HBox alignment="CENTER" spacing="100" styleClass="nav-bar">
             <Button fx:id="btnWorkout" onAction="#showWorkoutPage"
                     styleClass="nav-btn"
                     HBox.hgrow="ALWAYS" maxWidth="42">
