@@ -10,9 +10,14 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
+    private double height;
+    private double weight;
     private String email;
     private String fitnessGoal;
     private String passwordHash;
+
+    public User() {
+    }
 
     public User(String firstName, String lastName, String email, LocalDate dateOfBirth, String password, String fitnessGoal) {
         this.firstName = firstName;
@@ -90,5 +95,21 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }
