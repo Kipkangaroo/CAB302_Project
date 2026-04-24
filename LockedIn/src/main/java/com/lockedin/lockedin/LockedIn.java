@@ -13,6 +13,7 @@ public class LockedIn extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(LockedIn.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 410, 650);
         stage.setTitle("LockedIN");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
