@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CAB302_Project.iml" filepath="$PROJECT_DIR$/.idea/CAB302_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LockedIn/LockedIn.iml" filepath="$PROJECT_DIR$/LockedIn/LockedIn.iml" />
     </modules>
   </component>
 </project>

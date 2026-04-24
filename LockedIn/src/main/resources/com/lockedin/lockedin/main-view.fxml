@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 
 <BorderPane
-        xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.MainController"
+        xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.controller.MainController"
         stylesheets="@style/style.css">
     <center>
         <!-- main "container" for the page - this changes to the different pages according to button presses -->
@@ -20,29 +20,27 @@
         <HBox alignment="CENTER" spacing="100" styleClass="nav-bar">
             <Button fx:id="btnWorkout" onAction="#showWorkoutPage"
                     styleClass="nav-btn"
-                    HBox.hgrow="ALWAYS" maxWidth="42">
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
                 <graphic>
-                    <ImageView fitWidth="42" fitHeight="42" smooth="true" preserveRatio="true" styleClass="nav-icon">
-                        <image>
-                            <Image url="@graphics/workout-icon.png"/>
-                        </image>
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
+                        <Image url="@graphics/workout-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button fx:id="btnDiet" onAction="#showDietPage"
                     styleClass="nav-btn"
-                    HBox.hgrow="ALWAYS" maxWidth="42">
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
                 <graphic>
-                    <ImageView fitWidth="42" fitHeight="42" smooth="true" preserveRatio="true" styleClass="nav-icon">
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
                         <Image url="@graphics/diet-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button fx:id="btnProfile" onAction="#showProfilePage"
                     styleClass="nav-btn"
-                    HBox.hgrow="ALWAYS" maxWidth="42">
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
                 <graphic>
-                    <ImageView fitWidth="42" fitHeight="42" smooth="true" preserveRatio="true" styleClass="nav-icon">
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
                         <Image url="@graphics/profile-icon.png"/>
                     </ImageView>
                 </graphic>

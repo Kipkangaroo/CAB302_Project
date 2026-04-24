@@ -6,6 +6,6 @@
 <!-- FXML file to manage workout-page layout - I've initialized it as GridPane - feel free to change it -->
 
 <GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.lockedin.lockedin.pages.WorkoutController">
+          fx:controller="com.lockedin.lockedin.controller.WorkoutController">
     <Label text="Workout page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 </GridPane>

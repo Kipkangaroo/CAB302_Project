@@ -1,4 +1,4 @@
-package com.lockedin.lockedin;
+package com.lockedin.lockedin.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainController {
+    public static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout-view.fxml";
+    public static final String DIET_VIEW = "/com/lockedin/lockedin/pages/diet-view.fxml";
+    public static final String PROFILE_VIEW = "/com/lockedin/lockedin/pages/profile-view.fxml";
+
     @FXML
     public StackPane pageContainer;
     @FXML
@@ -33,19 +37,19 @@ public class MainController {
     //handlers to switch between views/pages (on nav bar)
     @FXML
     private void showWorkoutPage() {
-        loadPage("pages/workout-view.fxml");
+        loadPage(WORKOUT_VIEW);
         setActive(btnWorkout);
     }
 
     @FXML
     private void showDietPage() {
-        loadPage("pages/diet-view.fxml");
+        loadPage(DIET_VIEW);
         setActive(btnDiet);
     }
 
     @FXML
     private void showProfilePage() {
-        loadPage("pages/profile-view.fxml");
+        loadPage(PROFILE_VIEW);
         setActive(btnProfile);
     }
 
@@ -55,6 +59,8 @@ public class MainController {
             Pane appPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
             pageContainer.getChildren().setAll(appPage);
         } catch (IOException e) {
+            //to be impelmented
+            ;
         }
     }
 

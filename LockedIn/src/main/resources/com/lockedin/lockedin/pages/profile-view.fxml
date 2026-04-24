@@ -6,6 +6,6 @@
 <!-- FXML file to manage profile-page layout - I've initialized it as GridPane - feel free to change it -->
 
 <GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.lockedin.lockedin.pages.DietController">
+          fx:controller="com.lockedin.lockedin.controller.DietController">
     <Label text="Profile Page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 </GridPane>
