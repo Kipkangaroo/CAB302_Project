@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import org.controlsfx.control.SearchableComboBox;
@@ -18,7 +20,6 @@ import org.controlsfx.control.SearchableComboBox;
 public class ExerciseViewController {
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private Integer selectedExerciseId;
-
     @FXML
     private ScrollPane exerciseDetails;
     @FXML
@@ -31,6 +32,10 @@ public class ExerciseViewController {
     private Label primaryMuscle;
     @FXML
     private Label instructions;
+    @FXML
+    private ImageView formImage1;
+    @FXML
+    private ImageView formImage2;
 
     @FXML
     public void initialize() {
@@ -45,17 +50,14 @@ public class ExerciseViewController {
         //set exercises to the search box
         exerciseSearch.setItems(exercises);
         exerciseSearch.setVisibleRowCount(4);
-
         exerciseDetails.visibleProperty().bind(exerciseSearch.valueProperty().isNotNull());
         exerciseDetails.managedProperty().bind(exerciseDetails.visibleProperty());
+        instructions.setWrapText(true);
         
         //when an exercise is selected, set the details to the exercise
         exerciseSearch.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedExerciseId = newValue.getId();
-                exerciseName.setText(newValue.getName());
-                primaryMuscle.setText(newValue.getPrimaryMuscle());
-                instructions.setText(newValue.getInstruction());
+                updateExerciseDetails(newValue);
             } else {
                 selectedExerciseId = null;
             }
@@ -74,5 +76,14 @@ public class ExerciseViewController {
 
     public Integer getSelectedExerciseId() {
         return selectedExerciseId;
+    }
+
+    private void updateExerciseDetails(Exercise exercise) {
+        selectedExerciseId = exercise.getId();
+        exerciseName.setText(exercise.getName());
+        primaryMuscle.setText(exercise.getPrimaryMuscle());
+        instructions.setText(exercise.getInstruction() == null ? "" : exercise.getInstruction().replace("\\n", "\n"));
+        formImage1.setImage(new Image(exercise.getExerciseImageUrl(0)));
+        formImage2.setImage(new Image(exercise.getExerciseImageUrl(1)));
     }
 }
