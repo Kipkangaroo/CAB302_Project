@@ -6,6 +6,7 @@ public class Exercise {
     private String instruction;
     private String category;
     private String primaryMuscle;
+    private static final String baseImageUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
 
     public Exercise(int id, String name, String instruction, String category, String primaryMuscle) {
         this.id = id;
@@ -53,5 +54,10 @@ public class Exercise {
 
     public void setPrimaryMuscle(String primaryMuscle) {
         this.primaryMuscle = primaryMuscle;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

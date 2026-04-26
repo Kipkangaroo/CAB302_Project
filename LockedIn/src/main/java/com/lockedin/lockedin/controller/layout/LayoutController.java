@@ -26,7 +26,6 @@ public class LayoutController {
     private static final String ACTIVE = "-fx-scale-x: 0.95; -fx-scale-y: 0.95; "
             + "-fx-opacity: 0.8; -fx-border-color: transparent transparent #378ADD transparent;"
             + "-fx-border-width: 0 0 2 0;";
-
     @FXML
     public void initialize() {
         showWorkoutPage();

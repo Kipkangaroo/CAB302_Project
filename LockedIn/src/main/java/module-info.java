@@ -3,6 +3,7 @@ module com.lockedin.lockedin {
     requires javafx.fxml;
     requires org.xerial.sqlitejdbc;
     requires java.sql;
+    requires org.controlsfx.controls;
     exports com.lockedin.lockedin.app;
     opens com.lockedin.lockedin.controller.auth to javafx.fxml;
     opens com.lockedin.lockedin.controller.layout to javafx.fxml;

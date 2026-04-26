@@ -181,18 +181,23 @@ public class DBExercisesDAO {
         }
     }
 
-    public ObservableList<String> getAllExerciseNames() {
-        String sql = "SELECT name FROM exercises ORDER BY name";
-        ObservableList<String> exerciseNames = FXCollections.observableArrayList();
-
+    public ObservableList<Exercise> getAllExercises() {
+        String sql = "SELECT id, name, instruction, category, primary_muscle FROM exercises ORDER BY name";
+        ObservableList<Exercise> exercises = FXCollections.observableArrayList();
         try (Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(sql)) {
+             ResultSet rs = statement.executeQuery(sql)) {
             while (rs.next()) {
-                exerciseNames.add(rs.getString("name"));
+                exercises.add(new Exercise(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("instruction"),
+                        rs.getString("category"),
+                        rs.getString("primary_muscle")
+                ));
             }
-            return exerciseNames;
+            return exercises;
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to get exercise names", e);
+            throw new RuntimeException("Failed to get exercises", e);
         }
     }
 
