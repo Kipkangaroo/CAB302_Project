@@ -1,12 +1,13 @@
 package com.lockedin.lockedin.pages;
 
+import com.lockedin.lockedin.logic.DietLogic;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class DietController {
-    //Add code to control aspects within the Diet page
+    // Add code to control aspects within the Diet page
 
     @FXML private TextField foodField;
     @FXML private TextField caloriesField;
@@ -17,33 +18,42 @@ public class DietController {
     @FXML private ListView<String> foodList;
     @FXML private Label totalLabel;
 
-    private int totalCalories = 0;
-    private int totalProtein = 0;
-    private int totalCarbs = 0;
-    private int totalFats = 0;
+    private double totalCalories = 0;
+    private double totalProtein = 0;
+    private double totalCarbs = 0;
+    private double totalFats = 0;
 
     @FXML private Label proteinTotalLabel;
     @FXML private Label carbsTotalLabel;
     @FXML private Label fatsTotalLabel;
 
+    // Logic class for TDD
+
+    private DietLogic logic = new DietLogic();
+
     @FXML
     private void handleAddFood() {
         String food = foodField.getText();
         String caloriesText = caloriesField.getText();
+        String proteinText = proteinField.getText();
+        String carbsText = carbsField.getText();
+        String fatsText = fatsField.getText();
 
-        if (food.isEmpty() || caloriesText.isEmpty()) {
+        if (food.isEmpty() || !logic.isValidNumber(caloriesText) || !logic.isValidNumber(proteinText) ||
+            !logic.isValidNumber(carbsText) || !logic.isValidNumber(fatsText))
+        {
             return;
         }
 
-        int calories = Integer.parseInt(caloriesText);
-        int protein = Integer.parseInt(proteinField.getText());
-        int carbs = Integer.parseInt(carbsField.getText());
-        int fats = Integer.parseInt(fatsField.getText());
+        double calories = Double.parseDouble(caloriesText);
+        double protein = Double.parseDouble(proteinText);
+        double carbs = Double.parseDouble(carbsText);
+        double fats = Double.parseDouble(fatsText);
 
-        totalCalories += calories;
-        totalProtein += protein;
-        totalCarbs += carbs;
-        totalFats += fats;
+        totalCalories = logic.add(totalCalories, calories);
+        totalProtein = logic.add(totalProtein, protein);
+        totalCarbs = logic.add(totalCarbs, carbs);
+        totalFats = logic.add(totalFats, fats);
 
         proteinTotalLabel.setText("Protein: " + totalProtein + " g");
         carbsTotalLabel.setText("Carbs: " + totalCarbs + " g");
@@ -53,7 +63,7 @@ public class DietController {
         foodList.getItems().add(
                 food + " - " + calories + " kcal | P: " + protein + "g C: " + carbs + "g F: " + fats + "g");
 
-        // clear fields afte adding
+        // clear fields after adding
         foodField.clear();
         caloriesField.clear();
         proteinField.clear();

@@ -16,9 +16,9 @@
 
     <TextField fx:id="foodField" promptText="Food Name"            />
     <TextField fx:id="caloriesField" promptText="Calories"         />
-    <TextField fx:id="proteinField" promptText="Protein (g)"       />
-    <TextField fx:id="carbsField" promptText="Carbs (g)"           />
-    <TextField fx:id="fatsField" promptText="Fats (g)"             />
+    <TextField fx:id="proteinField" promptText="Protein"       />
+    <TextField fx:id="carbsField" promptText="Carbs"           />
+    <TextField fx:id="fatsField" promptText="Fats"             />
 
     <HBox spacing="10">
         <Button text="Add Food" onAction="#handleAddFood"          />
