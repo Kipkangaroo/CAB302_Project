@@ -19,13 +19,16 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, LocalDate dateOfBirth, String password, String fitnessGoal) {
+    public User(int id, String firstName, String lastName, String email, LocalDate dateOfBirth, double height, double weight, String password, String fitnessGoal) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        this.height = height;  
+        this.weight = weight;
         this.email = email;
-        this.passwordHash = getHash(password);
         this.fitnessGoal = fitnessGoal;
+        this.passwordHash = getHash(password);
     }
 
     public static String getHash(String password) {
