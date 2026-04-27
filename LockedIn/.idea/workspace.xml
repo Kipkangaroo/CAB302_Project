@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06bd106c-bd74-497e-b79a-107a53a175b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/LockedIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/LogInController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/DietController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/WorkoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/login-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/main-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/diet-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/profile-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/workout-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/style/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/LockedIn.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/LogInController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/MainController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/login-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/main-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/DietController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/ProfileController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/WorkoutController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/diet-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/profile-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/workout-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/style/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-    </list>
+    <list default="true" id="06bd106c-bd74-497e-b79a-107a53a175b1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,20 +20,20 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ptusar"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ptusar&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Kipkangaroo/CAB302_Project.git",
-    "accountId": "5d7d4a7f-6cec-4ddd-90b4-4276bb45fa61"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Kipkangaroo/CAB302_Project.git&quot;,
+    &quot;accountId&quot;: &quot;5d7d4a7f-6cec-4ddd-90b4-4276bb45fa61&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -94,13 +56,25 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Kasper",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tusar/Desktop/LockedIn"
+    "last_opened_file_path": "C:/Users/Kipka/Desktop/Everything Uni/Current Units/CAB302/Project Git/CAB302_Project/LockedIn/src/main/resources/com/lockedin/lockedin/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\resources\com\lockedin\lockedin\images" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -145,7 +119,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776601028855</updated>
+      <workItem from="1777267677005" duration="651000" />
+      <workItem from="1777268345827" duration="2787000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

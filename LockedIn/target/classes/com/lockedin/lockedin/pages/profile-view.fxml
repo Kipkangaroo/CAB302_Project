@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<!-- FXML file to manage profile-page layout - I've initialized it as GridPane - feel free to change it -->
+<VBox alignment="TOP_CENTER" prefHeight="509.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lockedin.lockedin.pages.DietController">
+    <Label text="Profile" />
 
-<GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.lockedin.lockedin.pages.DietController">
-    <Label text="Profile Page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-</GridPane>
+    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" preserveRatio="true">
+        <image>
+            <Image url="@../images/profileplaceholder.png" />
+        </image>
+    </ImageView>
+
+    <VBox style="-fx-border-color: black;      -fx-border-width: 2;      -fx-border-style: solid;      -fx-border-radius: 5px;      -fx-padding: 10;      -fx-min-height: 200">
+        <VBox.margin>
+            <Insets bottom="10" left="20" right="20" top="10" />
+        </VBox.margin>
+        <Label text="Age:" />
+        <Label text="Height:" />
+        <Label text="Weight:" />
+        <Label text="Fitness Goal:" />
+
+    </VBox>
+
+
+
+
+</VBox>
