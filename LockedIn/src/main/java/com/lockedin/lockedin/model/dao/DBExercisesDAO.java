@@ -11,10 +11,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DBExercisesDAO {
+    private static final String EXERCISES_DB_FILE = "exercises.db";
     private final Connection connection;
 
     public DBExercisesDAO() {
-        this.connection = SqliteConnection.getInstance();
+        this.connection = SqliteConnection.getInstance(EXERCISES_DB_FILE);
         createExercisesTable();
         seedExercises();
     }
