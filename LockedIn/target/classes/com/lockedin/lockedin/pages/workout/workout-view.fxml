@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<!-- FXML file to manage workout-page layout - I've initialized it as GridPane - feel free to change it -->
+
+<?import javafx.scene.control.Button?>
+<GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.lockedin.lockedin.controller.workout.WorkoutController">
+    <Label text="Workout page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Button fx:id="viewExercisesButton" text="View Exercises" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#handleExercises"/>
+</GridPane>

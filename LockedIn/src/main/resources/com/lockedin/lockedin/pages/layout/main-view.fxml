@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.controller.layout.LayoutController"
+        stylesheets="@../../style/style.css">
+    <center>
+        <!-- main "container" for the page - this changes to the different pages according to button presses -->
+        <StackPane fx:id="pageContainer"/>
+    </center>
+    <bottom>
+        <!-- layout for bottom nav-->
+        <HBox alignment="CENTER" spacing="100" styleClass="nav-bar">
+            <Button fx:id="btnWorkout" onAction="#showWorkoutPage"
+                    styleClass="nav-btn"
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
+                <graphic>
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
+                        <Image url="@../../graphics/workout-icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="btnDiet" onAction="#showDietPage"
+                    styleClass="nav-btn"
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
+                <graphic>
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
+                        <Image url="@../../graphics/diet-icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="btnProfile" onAction="#showProfilePage"
+                    styleClass="nav-btn"
+                    HBox.hgrow="ALWAYS" minWidth="42" maxWidth="42">
+                <graphic>
+                    <ImageView fitWidth="42" fitHeight="42" preserveRatio="true" styleClass="nav-icon">
+                        <Image url="@../../graphics/profile-icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane>
