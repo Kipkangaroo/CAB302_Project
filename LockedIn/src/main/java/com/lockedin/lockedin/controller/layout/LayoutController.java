@@ -2,6 +2,8 @@ package com.lockedin.lockedin.controller.layout;
 
 import java.io.IOException;
 import java.util.Objects;
+import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.controller.auth.LogInController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -9,10 +11,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class LayoutController {
+    private User user;
     public static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     public static final String DIET_VIEW = "/com/lockedin/lockedin/pages/diet/diet-view.fxml";
     public static final String PROFILE_VIEW = "/com/lockedin/lockedin/pages/profile/profile-view.fxml";
-
     @FXML
     public StackPane pageContainer;
     @FXML
@@ -28,6 +30,7 @@ public class LayoutController {
             + "-fx-border-width: 0 0 2 0;";
     @FXML
     public void initialize() {
+        user = LogInController.getLoggedInUser();    
         showWorkoutPage();
     }
 
