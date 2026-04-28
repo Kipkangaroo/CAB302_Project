@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Unit test class for DietLogic (tests validation + arithmetic methods)
 public class DietLogicTest {
     private DietLogic logic;
 
