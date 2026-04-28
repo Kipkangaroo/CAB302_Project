@@ -2,6 +2,7 @@ package com.lockedin.lockedin.controller.auth;
 
 import java.io.IOException;
 import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.session.CurrentUser;
 import com.lockedin.lockedin.model.entity.User;
 import java.util.Optional;
 import javafx.fxml.FXML;
@@ -55,6 +56,7 @@ public class LogInController {
         Optional<User> user = userDAO.getUserByEmail(email);
         boolean authenticated = user.isPresent() && userDAO.authenticate(email, password);
         if (authenticated) {
+            CurrentUser.set(user.get());
             loggedInUser = user.get();
             try {
                 successfulLogin();

@@ -2,6 +2,7 @@ package com.lockedin.lockedin.app;
 
 import com.lockedin.lockedin.model.dao.DBExercisesDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +12,9 @@ import javafx.stage.Stage;
 public class LockedIn extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        //creating a new db
         new DBExercisesDAO();
         new UserDAO();
+        new WorkoutRoutineDAO();
         FXMLLoader fxmlLoader = new FXMLLoader(
                 LockedIn.class.getResource("/com/lockedin/lockedin/pages/auth/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 410, 650);
