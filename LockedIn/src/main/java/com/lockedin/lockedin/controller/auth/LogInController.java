@@ -2,6 +2,7 @@ package com.lockedin.lockedin.controller.auth;
 
 import java.io.IOException;
 import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.session.CurrentUser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,8 +49,10 @@ public class LogInController {
     }
 
     private void authenticate(String email, String password) {
-        boolean authenticated = new UserDAO().authenticate(email, password);
+        UserDAO dao = new UserDAO();
+        boolean authenticated = dao.authenticate(email, password);
         if (authenticated) {
+            dao.getUserByEmail(email).ifPresent(CurrentUser::set);
             try {
                 successfulLogin();
             } catch (IOException exception) {

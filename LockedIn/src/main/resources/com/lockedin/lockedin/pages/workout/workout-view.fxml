@@ -1,13 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<!-- FXML file to manage workout-page layout - I've initialized it as GridPane - feel free to change it -->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.lockedin.lockedin.controller.workout.WorkoutController"
+      fillWidth="true"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
 
-<?import javafx.scene.control.Button?>
-<GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.lockedin.lockedin.controller.workout.WorkoutController">
-    <Label text="Workout page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <Button fx:id="viewExercisesButton" text="View Exercises" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#handleExercises"/>
-</GridPane>
+    <!-- ── Gradient header ── -->
+    <VBox styleClass="workout-header" fillWidth="true">
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="My Workouts"
+                   textFill="white"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold;"
+                   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="&#x23F1;" styleClass="header-btn"
+                    onAction="#handleHistory" style="-fx-font-size: 16px;"/>
+            <Button text="+" styleClass="header-btn"
+                    onAction="#handleCreateWorkout"
+                    style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Label fx:id="workoutCountLabel" textFill="white"
+               style="-fx-font-size: 13px; -fx-opacity: 0.82;">
+            <VBox.margin><Insets top="4"/></VBox.margin>
+        </Label>
+    </VBox>
+
+    <!-- ── Scrollable content ── -->
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="workout-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="workout-page-bg" spacing="10" fillWidth="true">
+
+            <!-- AI Workout Generator card -->
+            <HBox styleClass="ai-card" spacing="14" alignment="CENTER_LEFT"
+                  onMouseClicked="#handleAiGenerator">
+                <VBox styleClass="ai-card-icon-bg" alignment="CENTER">
+                    <Label text="&#x2728;" style="-fx-font-size: 20px;"/>
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="AI Workout Generator" textFill="white"
+                           style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Let AI create a personalized workout plan based on your goals"
+                           textFill="white" wrapText="true"
+                           style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>
+                    <Button text="&#x2728; Powered by AI" styleClass="ai-powered-pill"
+                            onAction="#handleAiGenerator"
+                            style="-fx-cursor: hand;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Dynamic workout cards injected by WorkoutController -->
+            <VBox fx:id="workoutsContainer" spacing="10" fillWidth="true"/>
+        </VBox>
+    </ScrollPane>
+
+    <!-- ── Bottom create button ── -->
+    <HBox style="-fx-padding: 10 16 14 16;">
+        <Button text="+ Create Workout" styleClass="primary-btn"
+                onAction="#handleCreateWorkout"
+                maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                style="-fx-padding: 14 0 14 0;"/>
+    </HBox>
+</VBox>
