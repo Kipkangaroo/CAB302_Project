@@ -1,6 +1,7 @@
 package com.lockedin.lockedin.controller.diet;
 
 import com.lockedin.lockedin.logic.DietLogic;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -93,5 +94,8 @@ public class DietController {
         proteinField.clear();
         carbsField.clear();
         fatsField.clear();
+    }
+
+    public void handleReset(ActionEvent actionEvent) {
     }
 }
