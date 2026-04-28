@@ -12,3 +12,8 @@
 .nav-btn:pressed {
     -fx-background-color: transparent;
 }
+
+.nav-bar {
+    -fx-background-color: #bcc6d4;
+}
+
