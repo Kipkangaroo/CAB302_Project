@@ -22,6 +22,8 @@ public class WorkoutDetailController {
 
     private static final String WORKOUT_VIEW =
             "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private static final String START_WORKOUT_VIEW =
+            "/com/lockedin/lockedin/pages/workout/start-workout-view.fxml";
 
     private static int currentRoutineId = -1;
 
@@ -205,10 +207,22 @@ public class WorkoutDetailController {
 
     @FXML
     public void handleStartWorkout() {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setHeaderText("Coming Soon");
-        a.setContentText("Live workout tracking will be available in a future update.");
-        a.showAndWait();
+        if (currentRoutine == null || currentRoutine.exercises.isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setHeaderText(null);
+            a.setContentText("Add at least one exercise before starting this workout.");
+            a.showAndWait();
+            return;
+        }
+
+        try {
+            StartWorkoutController.setCurrentRoutineId(currentRoutineId);
+            Pane page = FXMLLoader.load(getClass().getResource(START_WORKOUT_VIEW));
+            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
+            if (pc != null) pc.getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to start workout", e);
+        }
     }
 
     @FXML

@@ -19,6 +19,8 @@ public class WorkoutController {
             "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
     private static final String DETAIL_VIEW =
             "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+    private static final String HISTORY_VIEW =
+            "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
 
     @FXML private Label workoutCountLabel;
     @FXML private VBox  workoutsContainer;
@@ -130,10 +132,12 @@ public class WorkoutController {
 
     @FXML
     public void handleHistory() {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setHeaderText("Coming Soon");
-        a.setContentText("Workout history will be available in a future update.");
-        a.showAndWait();
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(HISTORY_VIEW));
+            stackPane().getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open workout history", e);
+        }
     }
 
     @FXML
