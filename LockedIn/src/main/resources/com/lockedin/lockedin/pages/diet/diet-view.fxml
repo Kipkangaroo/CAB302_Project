@@ -33,6 +33,10 @@
                 <Label text="Goals" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 0 0 0 40;"  />
             </HBox>
 
+            <Label fx:id="inputErrorLabel"
+                   style="-fx-text-fill: #c0392b; -fx-font-size: 13px;"
+                   visible="false" managed="false" />
+
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <ProgressBar fx:id="caloriesProgressBar" prefWidth="250" minHeight="25" styleClass="diet-progress-bar" />
                 <Label fx:id="caloriesProgressLabel" style="-fx-font-size: 14px;" />

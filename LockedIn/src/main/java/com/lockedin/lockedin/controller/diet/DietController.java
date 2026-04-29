@@ -46,6 +46,7 @@ public class DietController {
     @FXML private Label proteinProgressLabel;
     @FXML private Label carbsProgressLabel;
     @FXML private Label fatsProgressLabel;
+    @FXML private Label inputErrorLabel;
 
     // -----------------------------
     // ACCUMULATED TOTALS
@@ -70,18 +71,44 @@ public class DietController {
 
     @FXML
     private void handleAddFood() {
-        String name = foodField.getText();
-        int calories = Integer.parseInt(caloriesField.getText());
-        int protein = Integer.parseInt(proteinField.getText());
-        int carbs = Integer.parseInt(carbsField.getText());
-        int fats = Integer.parseInt(fatsField.getText());
-        Food food = new Food(0,currentUserID, name, calories, protein, carbs, fats);
+        inputErrorLabel.setVisible(false);
+        inputErrorLabel.setManaged(false);
+
+        String name = foodField.getText().trim();
+        if (name.isEmpty()) {
+            showInputError("Food name cannot be empty.");
+            return;
+        }
+
+        int calories, protein, carbs, fats;
+        try {
+            calories = Integer.parseInt(caloriesField.getText().trim());
+            protein  = Integer.parseInt(proteinField.getText().trim());
+            carbs    = Integer.parseInt(carbsField.getText().trim());
+            fats     = Integer.parseInt(fatsField.getText().trim());
+        } catch (NumberFormatException e) {
+            showInputError("Calories, protein, carbs, and fats must be whole numbers.");
+            return;
+        }
+
+        if (calories < 0 || protein < 0 || carbs < 0 || fats < 0) {
+            showInputError("Nutritional values cannot be negative.");
+            return;
+        }
+
+        Food food = new Food(0, currentUserID, name, calories, protein, carbs, fats);
         foodDAO.addFood(food);
         updateTotals();
         refreshTotalsLabels();
         updateProgressBars();
         foodList.getItems().add(food);
         clearInputs();
+    }
+
+    private void showInputError(String message) {
+        inputErrorLabel.setText(message);
+        inputErrorLabel.setVisible(true);
+        inputErrorLabel.setManaged(true);
     }
 
     @FXML
@@ -136,5 +163,7 @@ public class DietController {
         proteinField.clear();
         carbsField.clear();
         fatsField.clear();
+        inputErrorLabel.setVisible(false);
+        inputErrorLabel.setManaged(false);
     }
 }
