@@ -1,5 +1,6 @@
 package com.lockedin.lockedin.controller.diet;
 
+import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
 import com.lockedin.lockedin.model.session.CurrentUser;
@@ -15,6 +16,7 @@ import java.util.List;
 
 // JavaFX controller: handles user input, updates totals, and manages Diet page UI
 public class DietController {
+    private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
     //TEMPORARY VALUES
@@ -80,19 +82,25 @@ public class DietController {
             return;
         }
 
-        int calories, protein, carbs, fats;
-        try {
-            calories = Integer.parseInt(caloriesField.getText().trim());
-            protein  = Integer.parseInt(proteinField.getText().trim());
-            carbs    = Integer.parseInt(carbsField.getText().trim());
-            fats     = Integer.parseInt(fatsField.getText().trim());
-        } catch (NumberFormatException e) {
-            showInputError("Calories, protein, carbs, and fats must be whole numbers.");
+        String caloriesText = caloriesField.getText().trim();
+        String proteinText  = proteinField.getText().trim();
+        String carbsText    = carbsField.getText().trim();
+        String fatsText     = fatsField.getText().trim();
+
+        if (!dietLogic.isValidNumber(caloriesText) || !dietLogic.isValidNumber(proteinText)
+                || !dietLogic.isValidNumber(carbsText) || !dietLogic.isValidNumber(fatsText)) {
+            showInputError("Calories, protein, carbs, and fats must be non-negative numbers.");
             return;
         }
 
-        if (calories < 0 || protein < 0 || carbs < 0 || fats < 0) {
-            showInputError("Nutritional values cannot be negative.");
+        int calories, protein, carbs, fats;
+        try {
+            calories = Integer.parseInt(caloriesText);
+            protein  = Integer.parseInt(proteinText);
+            carbs    = Integer.parseInt(carbsText);
+            fats     = Integer.parseInt(fatsText);
+        } catch (NumberFormatException e) {
+            showInputError("Calories, protein, carbs, and fats must be whole numbers.");
             return;
         }
 
@@ -151,7 +159,8 @@ public class DietController {
     }
 
     private double clamp(double value) {
-        if (Double.isNaN(value) || Double.isInfinite(value)) {
+        if (Double.isNaN(value
+        ) || Double.isInfinite(value)) {
             return 0;
         }
         return Math.max(0, Math.min(1, value));

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="509.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lockedin.lockedin.pages.DietController">
+<VBox alignment="TOP_CENTER" prefHeight="509.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController">
 
     <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" preserveRatio="true">
         <image>
