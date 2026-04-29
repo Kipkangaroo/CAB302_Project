@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,46 @@ public class WorkoutRoutineDAO {
             this.name = name;
             this.notes = notes != null ? notes : "";
             this.exercises = exercises;
+        }
+    }
+
+    public static class CompletedSetData {
+        public final int exerciseId;
+        public final String exerciseName;
+        public final int setNumber;
+        public final int targetReps;
+        public final int completedReps;
+        public final int restSeconds;
+
+        public CompletedSetData(int exerciseId, String exerciseName, int setNumber,
+                                int targetReps, int completedReps, int restSeconds) {
+            this.exerciseId = exerciseId;
+            this.exerciseName = exerciseName;
+            this.setNumber = setNumber;
+            this.targetReps = targetReps;
+            this.completedReps = completedReps;
+            this.restSeconds = restSeconds;
+        }
+    }
+
+    public static class CompletedWorkoutData {
+        public final int id;
+        public final int routineId;
+        public final String routineName;
+        public final String completedAt;
+        public final int totalExercises;
+        public final int totalSets;
+        public final List<CompletedSetData> sets;
+
+        public CompletedWorkoutData(int id, int routineId, String routineName, String completedAt,
+                                    int totalExercises, int totalSets, List<CompletedSetData> sets) {
+            this.id = id;
+            this.routineId = routineId;
+            this.routineName = routineName;
+            this.completedAt = completedAt;
+            this.totalExercises = totalExercises;
+            this.totalSets = totalSets;
+            this.sets = sets;
         }
     }
 
@@ -61,6 +102,29 @@ public class WorkoutRoutineDAO {
                     sets INTEGER NOT NULL,
                     reps INTEGER NOT NULL,
                     rest_seconds INTEGER NOT NULL DEFAULT 60
+                )
+            """);
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS completed_workouts (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    routine_id INTEGER NOT NULL,
+                    routine_name TEXT NOT NULL,
+                    completed_at TEXT NOT NULL,
+                    total_exercises INTEGER NOT NULL,
+                    total_sets INTEGER NOT NULL
+                )
+            """);
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS completed_workout_sets (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    completed_workout_id INTEGER NOT NULL,
+                    exercise_id INTEGER NOT NULL,
+                    exercise_name TEXT NOT NULL,
+                    set_number INTEGER NOT NULL,
+                    target_reps INTEGER NOT NULL,
+                    completed_reps INTEGER NOT NULL,
+                    rest_seconds INTEGER NOT NULL
                 )
             """);
         } catch (SQLException e) {
@@ -237,5 +301,110 @@ public class WorkoutRoutineDAO {
         } catch (SQLException e) {
             System.err.println("Error deleting routine: " + e.getMessage());
         }
+    }
+
+    public int saveCompletedWorkout(int userId, RoutineData routine, List<CompletedSetData> completedSets) {
+        String sql = """
+            INSERT INTO completed_workouts
+                (user_id, routine_id, routine_name, completed_at, total_exercises, total_sets)
+            VALUES (?,?,?,?,?,?)
+        """;
+        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, routine.id);
+            ps.setString(3, routine.name);
+            ps.setString(4, LocalDateTime.now().toString());
+            ps.setInt(5, routine.exercises.size());
+            ps.setInt(6, completedSets.size());
+            ps.executeUpdate();
+
+            try (ResultSet keys = ps.getGeneratedKeys()) {
+                if (keys.next()) {
+                    int completedWorkoutId = keys.getInt(1);
+                    insertCompletedSets(completedWorkoutId, completedSets);
+                    return completedWorkoutId;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error saving completed workout: " + e.getMessage());
+        }
+        return -1;
+    }
+
+    public List<CompletedWorkoutData> getCompletedWorkoutsByUser(int userId) {
+        List<CompletedWorkoutData> workouts = new ArrayList<>();
+        String sql = """
+            SELECT id, routine_id, routine_name, completed_at, total_exercises, total_sets
+            FROM completed_workouts
+            WHERE user_id=?
+            ORDER BY completed_at DESC
+        """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int completedWorkoutId = rs.getInt("id");
+                    workouts.add(new CompletedWorkoutData(
+                            completedWorkoutId,
+                            rs.getInt("routine_id"),
+                            rs.getString("routine_name"),
+                            rs.getString("completed_at"),
+                            rs.getInt("total_exercises"),
+                            rs.getInt("total_sets"),
+                            getCompletedSetsForWorkout(completedWorkoutId)));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading completed workouts: " + e.getMessage());
+        }
+        return workouts;
+    }
+
+    private void insertCompletedSets(int completedWorkoutId, List<CompletedSetData> completedSets)
+            throws SQLException {
+        String sql = """
+            INSERT INTO completed_workout_sets
+                (completed_workout_id, exercise_id, exercise_name, set_number,
+                 target_reps, completed_reps, rest_seconds)
+            VALUES (?,?,?,?,?,?,?)
+        """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            for (CompletedSetData set : completedSets) {
+                ps.setInt(1, completedWorkoutId);
+                ps.setInt(2, set.exerciseId);
+                ps.setString(3, set.exerciseName);
+                ps.setInt(4, set.setNumber);
+                ps.setInt(5, set.targetReps);
+                ps.setInt(6, set.completedReps);
+                ps.setInt(7, set.restSeconds);
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        }
+    }
+
+    private List<CompletedSetData> getCompletedSetsForWorkout(int completedWorkoutId) throws SQLException {
+        List<CompletedSetData> sets = new ArrayList<>();
+        String sql = """
+            SELECT exercise_id, exercise_name, set_number, target_reps, completed_reps, rest_seconds
+            FROM completed_workout_sets
+            WHERE completed_workout_id=?
+            ORDER BY id ASC
+        """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, completedWorkoutId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    sets.add(new CompletedSetData(
+                            rs.getInt("exercise_id"),
+                            rs.getString("exercise_name"),
+                            rs.getInt("set_number"),
+                            rs.getInt("target_reps"),
+                            rs.getInt("completed_reps"),
+                            rs.getInt("rest_seconds")));
+                }
+            }
+        }
+        return sets;
     }
 }

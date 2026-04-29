@@ -1,7 +1,9 @@
 com\lockedin\lockedin\controller\workout\ExerciseViewController.class
 com\lockedin\lockedin\model\entity\ExerciseSet.class
+com\lockedin\lockedin\controller\workout\WorkoutHistoryController.class
 com\lockedin\lockedin\model\entity\User.class
 com\lockedin\lockedin\controller\auth\LogInController.class
+com\lockedin\lockedin\controller\workout\WorkoutHistoryController$ExerciseTotals.class
 com\lockedin\lockedin\controller\workout\WorkoutController.class
 com\lockedin\lockedin\model\entity\WorkoutExerciseEntry.class
 module-info.class
@@ -12,12 +14,17 @@ com\lockedin\lockedin\model\dao\UserDAO.class
 com\lockedin\lockedin\model\entity\WorkoutRoutine.class
 com\lockedin\lockedin\model\dao\WorkoutRoutineDAO.class
 com\lockedin\lockedin\model\entity\Exercise.class
+com\lockedin\lockedin\model\dao\WorkoutRoutineDAO$CompletedSetData.class
 com\lockedin\lockedin\model\session\CurrentUser.class
+com\lockedin\lockedin\model\dao\WorkoutRoutineDAO$CompletedWorkoutData.class
 com\lockedin\lockedin\model\dao\WorkoutRoutineDAO$RoutineData.class
+com\lockedin\lockedin\controller\auth\Authentication.class
 com\lockedin\lockedin\model\db\SqliteConnection.class
+com\lockedin\lockedin\controller\auth\SignUpController.class
 com\lockedin\lockedin\controller\diet\DietController.class
 com\lockedin\lockedin\controller\profile\ProfileController.class
 com\lockedin\lockedin\app\LockedIn.class
 com\lockedin\lockedin\controller\workout\CreateWorkoutController$ExerciseEntryCell.class
 com\lockedin\lockedin\logic\DietLogic.class
+com\lockedin\lockedin\controller\workout\StartWorkoutController.class
 com\lockedin\lockedin\controller\layout\LayoutController.class
