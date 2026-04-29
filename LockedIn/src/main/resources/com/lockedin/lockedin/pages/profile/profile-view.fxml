@@ -11,7 +11,7 @@
 
     <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" preserveRatio="true">
         <image>
-            <Image url="@../images/profileplaceholder.png" />
+            <Image url="@../../images/profileplaceholder.png" />
         </image>
       <VBox.margin>
          <Insets top="10.0" />
