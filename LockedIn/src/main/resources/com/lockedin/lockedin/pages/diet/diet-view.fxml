@@ -12,7 +12,7 @@
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
       style="-fx-padding: 20;">
 
-    <Label text="Calorie Tracker" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <Label text="Nutrition Tracker" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
     <TextField fx:id="foodField" promptText="Food Name"            />
     <TextField fx:id="caloriesField" promptText="Calories"         />
@@ -23,6 +23,7 @@
     <HBox spacing="10">
         <Button text="Add Food" onAction="#handleAddFood"          />
         <Button text="Reset" onAction="#handleReset"               />
+        <Button text="Remove Food" onAction="#handleRemoveFood"           />
     </HBox>
 
     <Label fx:id="totalLabel" text="Total: 0 kcal" style="-fx-font-size: 16px;"       />
