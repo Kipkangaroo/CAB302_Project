@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.logic.DietLogicTest" time="0.055" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.logic.DietLogicTest" time="0.024" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AU"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\mimin\AppData\Local\Temp\surefire4134693749473982170 2026-04-30T04-56-43_734-jvmRun1 surefire-20260430045644963_1tmp surefire_0-20260430045644963_2tmp"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\mimin\AppData\Local\Temp\surefire6264667288702268712 2026-04-30T05-54-42_807-jvmRun1 surefire-20260430055443055_1tmp surefire_0-20260430055443055_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -52,7 +52,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Windows\system32;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\mimin\.local\bin;C:\Users\mimin\AppData\Local\Microsoft\WindowsApps;C:\Users\mimin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mimin\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.3\bin;C:\Users\mimin\AppData\Local\GitHubDesktop\bin;;."/>
+    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\mimin\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mimin\bin;C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Windows\system32;C:\Program Files\Microsoft SQL Server\170\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Users\mimin\.local\bin;C:\Users\mimin\AppData\Local\Microsoft\WindowsApps;C:\Users\mimin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mimin\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.3\bin;C:\Users\mimin\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Amazon.com Inc."/>
@@ -60,11 +60,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testIsValidNumber_invalidNegative" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.022"/>
-  <testcase name="testAdd_PositiveNumbers" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
-  <testcase name="testIsValidNumber_EmptyOrNull" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.002"/>
-  <testcase name="testIsValidNumber_invalidNonNumeric" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
-  <testcase name="testAdd_ZeroValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
-  <testcase name="testIsValidNumber_valid" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
-  <testcase name="testAdd_MixedValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
+  <testcase name="testIsValidNumber_invalidNegative" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testAdd_PositiveNumbers" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testIsValidNumber_EmptyOrNull" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testIsValidNumber_invalidNonNumeric" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testAdd_ZeroValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testIsValidNumber_valid" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+  <testcase name="testAdd_MixedValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
 </testsuite>
