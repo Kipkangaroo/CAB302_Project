@@ -1,11 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<!-- FXML file to manage profile-page layout - I've initialized it as GridPane - feel free to change it -->
+<VBox alignment="TOP_CENTER" prefHeight="509.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lockedin.lockedin.pages.DietController">
 
-<GridPane hgap="12" vgap="8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.lockedin.lockedin.controller.profile.ProfileController">
-    <Label text="Profile Page" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-</GridPane>
+    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" preserveRatio="true">
+        <image>
+            <Image url="@../images/profileplaceholder.png" />
+        </image>
+      <VBox.margin>
+         <Insets top="10.0" />
+      </VBox.margin>
+    </ImageView>
+   <Label style="-fx-font-weight: bold;" text="Name: Fergus">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+
+    <VBox minHeight="96.0" prefHeight="119.0" prefWidth="262.0" style="-fx-border-color: black;      -fx-border-width: 2;      -fx-border-style: solid;      -fx-border-radius: 5px;">
+        <VBox.margin>
+            <Insets bottom="10" left="20" right="20" top="10" />
+        </VBox.margin>
+        <Label text="Age: 23">
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding></Label>
+        <Label text="Height:">
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding></Label>
+        <Label text="Weight:">
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding></Label>
+        <Label text="Fitness Goal:">
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding></Label>
+      <padding>
+         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+      </padding>
+
+    </VBox>
+   <VBox alignment="TOP_CENTER" layoutX="30.0" layoutY="205.0" minHeight="96.0" prefHeight="119.0" prefWidth="262.0" style="-fx-border-color: black;      -fx-border-width: 2;      -fx-border-style: solid;      -fx-border-radius: 5px;">
+      <children>
+         <Label text="Tracking Streak">
+            <padding>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+         </Label>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <children>
+               <VBox alignment="CENTER" minWidth="30.0">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Mon">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="117.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Tue">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="132.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Wed">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="148.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Thu">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="132.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Fri">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="148.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Sat">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="132.0" layoutY="20.0" minWidth="30.0">
+                  <children>
+                     <Circle fill="#2cda86" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Label text="Sun">
+                        <padding>
+                           <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                        </padding>
+                     </Label>
+                  </children>
+                  <padding>
+                     <Insets top="3.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </VBox>
+            </children>
+            <padding>
+               <Insets top="10.0" />
+            </padding>
+         </HBox>
+      </children>
+      <padding>
+         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+      </padding>
+      <VBox.margin>
+         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+      </VBox.margin>
+   </VBox>
+
+
+
+
+</VBox>
