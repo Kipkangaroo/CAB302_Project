@@ -1,6 +1,5 @@
 package com.lockedin.lockedin.controller.diet;
 
-import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
 import com.lockedin.lockedin.model.session.CurrentUser;
@@ -8,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 
 import java.util.Date;
@@ -17,6 +17,19 @@ import java.util.List;
 public class DietController {
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
+    //TEMPORARY VALUES
+    private final double targetCalories = 2000;
+    private final double targetProtein = 100;
+    private final double targetCarbs = 100;
+    private final double targetFats = 100;
+    @FXML
+    private ProgressBar caloriesProgressBar;
+    @FXML
+    private ProgressBar proteinProgressBar;
+    @FXML
+    private ProgressBar fatProgressBar;
+    @FXML
+    private ProgressBar carbsProgressBar;
 
     // -----------------------------
     // UI ELEMENT REFERENCES (FXML)
@@ -28,11 +41,11 @@ public class DietController {
     @FXML private TextField fatsField;
 
     @FXML private ListView<Food> foodList;
-    @FXML private Label totalLabel;
 
-    @FXML private Label proteinTotalLabel;
-    @FXML private Label carbsTotalLabel;
-    @FXML private Label fatsTotalLabel;
+    @FXML private Label caloriesProgressLabel;
+    @FXML private Label proteinProgressLabel;
+    @FXML private Label carbsProgressLabel;
+    @FXML private Label fatsProgressLabel;
 
     // -----------------------------
     // ACCUMULATED TOTALS
@@ -52,6 +65,7 @@ public class DietController {
         foodList.getItems().setAll(todaysFoods);
         updateTotals();
         refreshTotalsLabels();
+        updateProgressBars();
     }
 
     @FXML
@@ -65,6 +79,7 @@ public class DietController {
         foodDAO.addFood(food);
         updateTotals();
         refreshTotalsLabels();
+        updateProgressBars();
         foodList.getItems().add(food);
         clearInputs();
     }
@@ -73,7 +88,6 @@ public class DietController {
     private void handleReset(ActionEvent actionEvent) {
         clearInputs();
     }
-
 
     @FXML
     private void handleRemoveFood(ActionEvent actionEvent) {
@@ -85,6 +99,7 @@ public class DietController {
         foodList.getItems().remove(selectedFood);
         updateTotals();
         refreshTotalsLabels();
+        updateProgressBars();
     }
 
     private void updateTotals() {
@@ -95,10 +110,24 @@ public class DietController {
     }
 
     private void refreshTotalsLabels() {
-        totalLabel.setText(String.format("Total: %.0f kcal", totalCalories));
-        proteinTotalLabel.setText(String.format("Protein: %.0f g", totalProtein));
-        carbsTotalLabel.setText(String.format("Carbs: %.0f g", totalCarbs));
-        fatsTotalLabel.setText(String.format("Fats: %.0f g", totalFats));
+        caloriesProgressLabel.setText(String.format("%.0f/%.0fkcal", totalCalories, targetCalories));
+        proteinProgressLabel.setText(String.format("%.0f/%.0fg protein", totalProtein, targetProtein));
+        carbsProgressLabel.setText(String.format("%.0f/%.0fg carbs", totalCarbs, targetCarbs));
+        fatsProgressLabel.setText(String.format("%.0f/%.0fg fats", totalFats, targetFats));
+    }
+
+    private void updateProgressBars() {
+        caloriesProgressBar.setProgress(clamp(totalCalories / targetCalories));
+        proteinProgressBar.setProgress(clamp(totalProtein / targetProtein));
+        carbsProgressBar.setProgress(clamp(totalCarbs / targetCarbs));
+        fatProgressBar.setProgress(clamp(totalFats / targetFats));
+    }
+
+    private double clamp(double value) {
+        if (Double.isNaN(value) || Double.isInfinite(value)) {
+            return 0;
+        }
+        return Math.max(0, Math.min(1, value));
     }
 
     private void clearInputs() {
@@ -108,5 +137,4 @@ public class DietController {
         carbsField.clear();
         fatsField.clear();
     }
-
 }

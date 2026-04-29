@@ -9,6 +9,21 @@
 .nav-btn:pressed { -fx-background-color: transparent; }
 .nav-bar { -fx-background-color: #bcc6d4; }
 
+/* ===== Diet Page ===== */
+.diet-progress-bar {
+    -fx-accent: #43A047;
+}
+.diet-progress-bar > .track {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 8;
+}
+.diet-progress-bar > .bar {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
+    -fx-background-radius: 8;
+    -fx-background-insets: 0;
+    -fx-padding: 8;
+}
+
 /* ===== Workout Page – Gradient Header ===== */
 .workout-header {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #1565C0, #43A047);

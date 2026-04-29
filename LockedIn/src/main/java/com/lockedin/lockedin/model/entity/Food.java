@@ -77,6 +77,6 @@ public class Food {
 
     @Override
     public String toString() {
-        return String.format("%s - %d kcal", name, calories);
+        return String.format("%s - %dkcal | %dg protein | %dg carbs | %dg fats", name, calories, protein, carbs, fats);
     }
 }
