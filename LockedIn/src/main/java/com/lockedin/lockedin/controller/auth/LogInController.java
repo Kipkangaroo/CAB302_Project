@@ -1,18 +1,13 @@
 package com.lockedin.lockedin.controller.auth;
 
 import java.io.IOException;
-import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
 import com.lockedin.lockedin.model.entity.User;
 import java.util.Optional;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class LogInController {
     private static final String MAIN_VIEW = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
@@ -27,68 +22,40 @@ public class LogInController {
     @FXML
     protected void handleLogIn() throws IOException {
         String email = emailField.getText().trim();
-        if (!validateEmail(email)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid email");
-            alert.setContentText("Please enter a valid email format.");
-            alert.showAndWait();
+        if (!Authentication.isValidEmail(email)) {
+            Authentication.showError("Invalid email", "Please enter a valid email format.");
             return;
         }
         if (passwordField.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid password");
-            alert.setContentText("Password field is empty!");
-            alert.showAndWait();
+            Authentication.showError("Invalid password", "Password field is empty!");
             return;
         }
-        authenticate(email, passwordField.getText().trim());
-    }
-
-    private void successfulLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
-        Scene scene = new Scene(loader.load(), 410, 650);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    private void authenticate(String email, String password) {
-        UserDAO userDAO = new UserDAO();
-        Optional<User> user = userDAO.getUserByEmail(email);
-        boolean authenticated = user.isPresent() && userDAO.authenticate(email, password);
-        if (authenticated) {
+        Optional<User> user = Authentication.authenticate(email, passwordField.getText().trim());
+        if (user.isPresent()) {
             CurrentUser.set(user.get());
             loggedInUser = user.get();
-            try {
-                successfulLogin();
-            } catch (IOException exception) {
-                throw new RuntimeException("Failed to open main view after login", exception);
-            }
+            successfulLogin();
         } else {
             loggedInUser = null;
             failedLogin();
         }
     }
 
+    @FXML
+    private void handleSignup() throws IOException {
+        Authentication.switchScene(loginBtn, "/com/lockedin/lockedin/pages/auth/signup-view.fxml");
+    }
+
+    private void successfulLogin() throws IOException {
+        Authentication.switchScene(loginBtn, MAIN_VIEW);
+    }
+
     public static User getLoggedInUser() {
         return loggedInUser;
     }
-    private boolean validateEmail(String email) {
-        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
-    }
 
     private void failedLogin() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Invalid email or password");
-        alert.setContentText("Please enter a valid email and password.");
-        alert.showAndWait();
-    }
-    @FXML
-    private void handleSignup() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/lockedin/lockedin/pages/auth/signup-view.fxml"));
-        Scene scene = new Scene(loader.load(), 410, 650);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
+        Authentication.showError("Invalid email or password", "Please enter a valid email and password.");
     }
 
 }
