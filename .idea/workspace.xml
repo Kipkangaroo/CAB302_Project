@@ -4,34 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Update files">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CAB302_Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/LockedIn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/LockedIn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/test-classes/META-INF/jpms.args" beforeDir="false" />
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Simplified auth codes on sign in/sign up controllers">
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,11 +120,20 @@
       <option name="project" value="LOCAL" />
       <updated>1777369891667</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Simplified auth codes on sign in/sign up controllers">
+      <option name="closed" value="true" />
+      <created>1777435890800</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777435890800</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update files" />
+    <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified auth codes on sign in/sign up controllers" />
   </component>
 </project>
