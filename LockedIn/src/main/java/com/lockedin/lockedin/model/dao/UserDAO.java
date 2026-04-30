@@ -19,6 +19,11 @@ public class UserDAO {
         createUsersTable();
     }
 
+    public UserDAO(Connection connection) {
+        this.connection = connection;
+        createUsersTable();
+    }
+
     private void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

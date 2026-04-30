@@ -82,6 +82,12 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    public WorkoutRoutineDAO(Connection connection) {
+        this.connection = connection;
+        createTables();
+        migrate();
+    }
+
     private void createTables() {
         try (Statement stmt = connection.createStatement()) {
             stmt.execute("""
