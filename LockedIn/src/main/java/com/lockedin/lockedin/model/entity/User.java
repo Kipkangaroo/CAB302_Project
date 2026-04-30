@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class User {
     private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
@@ -120,6 +121,10 @@ public class User {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public int getAge() {
+        return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
     public double getTDEE() {
