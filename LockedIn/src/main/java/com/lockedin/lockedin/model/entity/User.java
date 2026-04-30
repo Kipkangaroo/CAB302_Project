@@ -117,4 +117,76 @@ public class User {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    public double getTDEE() {
+        //Mifflin-St Jeor BMR formula
+        int age = LocalDate.now().getYear() - dateOfBirth.getYear();
+        double BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+        double TDEE = BMR * 1.2;
+        return TDEE;
+    }
+
+    public double getTargetCalories() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return getTDEE() - 500;
+            case "Build Muscle":
+                return getTDEE() + 500;
+            case "Maintain Fitness":
+                return getTDEE();
+            default:
+                return getTDEE();
+        }
+    }
+
+    public double getTargetProtein() {
+        return (getTargetCalories() * getProteinRatio()) / 4.0;
+    }
+
+    public double getTargetCarbs() {
+        return (getTargetCalories() * getCarbsRatio()) / 4.0;
+    }
+
+    public double getTargetFats() {
+        return (getTargetCalories() * getFatsRatio()) / 9.0;
+    }
+
+    private double getProteinRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.35;
+            case "Build Muscle":
+                return 0.30;
+            case "Maintain Fitness":
+                return 0.25;
+            default:
+                return 0.25;
+        }
+    }
+
+    private double getCarbsRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.35;
+            case "Build Muscle":
+                return 0.50;
+            case "Maintain Fitness":
+                return 0.45;
+            default:
+                return 0.45;
+        }
+    }
+
+    private double getFatsRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.30;
+            case "Build Muscle":
+                return 0.20;
+            case "Maintain Fitness":
+                return 0.30;
+            default:
+                return 0.30;
+        }
+    }
 }
