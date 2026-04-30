@@ -92,10 +92,6 @@ public class User {
         return dateOfBirth;
     }
 
-    public int getAge() {
-        return LocalDate.now().getYear() - dateOfBirth.getYear();
-    }
-
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
