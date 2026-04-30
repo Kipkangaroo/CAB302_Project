@@ -17,7 +17,7 @@ public class LockedIn extends Application {
         new WorkoutRoutineDAO();
         FXMLLoader fxmlLoader = new FXMLLoader(
                 LockedIn.class.getResource("/com/lockedin/lockedin/pages/auth/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 410, 650);
+        Scene scene = new Scene(fxmlLoader.load(), 410, 700);
         stage.setTitle("LockedIN");
         stage.setResizable(false);
         stage.setScene(scene);
