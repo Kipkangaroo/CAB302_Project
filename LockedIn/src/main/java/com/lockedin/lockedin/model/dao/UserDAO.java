@@ -19,12 +19,6 @@ public class UserDAO {
         createUsersTable();
     }
 
-    /** For testing: accepts an existing (e.g. in-memory) connection. */
-    public UserDAO(Connection connection) {
-        this.connection = connection;
-        createUsersTable();
-    }
-
     private void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

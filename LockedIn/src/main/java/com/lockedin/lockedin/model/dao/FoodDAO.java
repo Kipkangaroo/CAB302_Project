@@ -20,12 +20,6 @@ public class FoodDAO {
         createFoodTable();
     }
 
-    /** For testing: accepts an existing (e.g. in-memory) connection. */
-    public FoodDAO(Connection connection) {
-        this.connection = connection;
-        createFoodTable();
-    }
-
     private void createFoodTable() {
         String sql = "CREATE TABLE IF NOT EXISTS foods (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
