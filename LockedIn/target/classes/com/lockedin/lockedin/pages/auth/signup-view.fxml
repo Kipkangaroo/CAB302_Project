@@ -8,18 +8,12 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-
-<<<<<<< HEAD
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.ScrollPane?>
+
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.lockedin.lockedin.controller.auth.SignUpController">
     <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
-=======
-<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lockedin.lockedin.controller.auth.SignUpController">
-    <content>
->>>>>>> 1e51bbe2d0d11cb6c22733fd9326c0ae8e4566da
         <VBox alignment="TOP_CENTER" spacing="12.0"
               prefWidth="400.0" prefHeight="700.0" style="-fx-padding: 30;">
             <Button fx:id="backBtn" text="Back" onAction="#handleBackButton" />
@@ -44,10 +38,5 @@
             <ComboBox fx:id="fitnessGoalCombo" promptText="Select your fitness goal" maxWidth="Infinity" />
             <Button fx:id="signupBtn" text="Sign Up" onAction="#handleSignup" />
         </VBox>
-<<<<<<< HEAD
     </ScrollPane>
 </StackPane>
-=======
-    </content>
-</ScrollPane>
->>>>>>> 1e51bbe2d0d11cb6c22733fd9326c0ae8e4566da
