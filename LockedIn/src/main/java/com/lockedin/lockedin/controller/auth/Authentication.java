@@ -34,7 +34,7 @@ public class Authentication {
 
     public static void switchScene(Button sourceButton, String fxmlPath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Authentication.class.getResource(fxmlPath));
-        Scene scene = new Scene(loader.load(), 410, 650);
+        Scene scene = new Scene(loader.load(), 410, 700);
         Stage stage = (Stage) sourceButton.getScene().getWindow();
         stage.setScene(scene);
     }
