@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Add DOB, height, weight and goal fields to signup form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/app/LockedIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/app/LockedIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
