@@ -10,6 +10,83 @@
 .nav-bar { -fx-background-color: #bcc6d4; }
 
 /* ===== Diet Page ===== */
+.diet-header {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #1565C0, #43A047);
+    -fx-padding: 20 16 16 16;
+}
+
+.diet-header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.diet-header-subtitle {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-opacity: 0.84;
+}
+
+.diet-scroll {
+    -fx-background-color: #F0F2F5;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+.diet-scroll > .viewport {
+    -fx-background-color: #F0F2F5;
+}
+.diet-scroll .scroll-bar:vertical,
+.diet-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.diet-page-bg {
+    -fx-background-color: #F0F2F5;
+    -fx-padding: 12 12 12 12;
+}
+
+.diet-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 10, 0, 0, 2);
+    -fx-padding: 14;
+}
+
+.diet-section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.diet-input {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.2;
+    -fx-padding: 10 12 10 12;
+}
+
+.diet-secondary-btn {
+    -fx-background-color: #E9EEF5;
+    -fx-background-radius: 20;
+    -fx-text-fill: #1F3C5C;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8 14 8 14;
+}
+.diet-secondary-btn:hover {
+    -fx-background-color: #DDE6F2;
+}
+
+.diet-error-label {
+    -fx-text-fill: #c0392b;
+    -fx-font-size: 13px;
+}
+
+.diet-progress-label {
+    -fx-font-size: 14px;
+}
+
 .diet-progress-bar {
     -fx-accent: #43A047;
 }
@@ -22,6 +99,15 @@
     -fx-background-radius: 8;
     -fx-background-insets: 0;
     -fx-padding: 8;
+}
+
+.diet-food-list {
+    -fx-background-radius: 10;
+    -fx-border-color: #D8DEE8;
+    -fx-border-radius: 10;
+}
+.diet-food-list .list-cell {
+    -fx-padding: 10 12 10 12;
 }
 
 /* ===== Workout Page – Gradient Header ===== */
@@ -263,3 +349,71 @@
     -fx-border-radius: 8;
     -fx-padding: 14 16 14 16;
 }
+
+/* ===== Profile Page ===== */
+.profile-header {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #1565C0, #43A047);
+    -fx-padding: 20 16 16 16;
+}
+
+.profile-header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.profile-header-subtitle {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-opacity: 0.84;
+}
+
+.profile-scroll {
+    -fx-background-color: #F0F2F5;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+.profile-scroll > .viewport {
+    -fx-background-color: #F0F2F5;
+}
+.profile-scroll .scroll-bar:vertical,
+.profile-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.profile-page-bg {
+    -fx-background-color: #F0F2F5;
+    -fx-padding: 12 12 12 12;
+}
+
+.profile-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 10, 0, 0, 2);
+    -fx-padding: 14;
+}
+
+.profile-name-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.profile-section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.profile-detail-label {
+    -fx-font-size: 14px;
+}
+
+.profile-day-label {
+    -fx-font-size: 12px;
+}
+
+.profile-card .circle {
+    -fx-stroke: #1E2A38;
+    -fx-stroke-width: 1;
+}
+
+
