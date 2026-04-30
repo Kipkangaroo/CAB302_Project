@@ -123,6 +123,8 @@ public class User {
         this.weight = weight;
     }
 
+    // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet
+    // this year; simple year subtraction overstates age before the birthday.
     public int getAge() {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
