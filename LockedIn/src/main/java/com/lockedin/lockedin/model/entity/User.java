@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a user profile, including personal details,
@@ -129,6 +130,12 @@ public class User {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet
+    // this year; simple year subtraction overstates age before the birthday.
+    public int getAge() {
+        return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
     public double getTDEE() {
