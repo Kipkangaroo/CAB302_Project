@@ -3,6 +3,7 @@ com\lockedin\lockedin\model\entity\ExerciseSet.class
 com\lockedin\lockedin\controller\workout\WorkoutHistoryController.class
 com\lockedin\lockedin\model\entity\User.class
 com\lockedin\lockedin\controller\auth\LogInController.class
+com\lockedin\lockedin\model\entity\Food.class
 com\lockedin\lockedin\controller\workout\WorkoutHistoryController$ExerciseTotals.class
 com\lockedin\lockedin\controller\workout\WorkoutController.class
 com\lockedin\lockedin\model\entity\WorkoutExerciseEntry.class
@@ -10,6 +11,7 @@ module-info.class
 com\lockedin\lockedin\controller\workout\WorkoutDetailController.class
 com\lockedin\lockedin\controller\workout\CreateWorkoutController.class
 com\lockedin\lockedin\model\dao\DBExercisesDAO.class
+com\lockedin\lockedin\model\dao\FoodDAO.class
 com\lockedin\lockedin\model\dao\UserDAO.class
 com\lockedin\lockedin\model\entity\WorkoutRoutine.class
 com\lockedin\lockedin\model\dao\WorkoutRoutineDAO.class

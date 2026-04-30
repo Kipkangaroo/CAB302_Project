@@ -7,30 +7,55 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<VBox spacing="12" alignment="TOP_LEFT" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.lockedin.lockedin.controller.diet.DietController"
-      style="-fx-padding: 20;">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.lockedin.lockedin.controller.diet.DietController">
 
-    <Label text="Calorie Tracker" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
 
-    <TextField fx:id="foodField" promptText="Food Name"            />
-    <TextField fx:id="caloriesField" promptText="Calories"         />
-    <TextField fx:id="proteinField" promptText="Protein"       />
-    <TextField fx:id="carbsField" promptText="Carbs"           />
-    <TextField fx:id="fatsField" promptText="Fats"             />
+        <VBox spacing="12" alignment="TOP_LEFT" style="-fx-padding: 20;">
 
-    <HBox spacing="10">
-        <Button text="Add Food" onAction="#handleAddFood"          />
-        <Button text="Reset" onAction="#handleReset"               />
-    </HBox>
+            <Label text="Nutrition Tracker" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-    <Label fx:id="totalLabel" text="Total: 0 kcal" style="-fx-font-size: 16px;"       />
-    <Label fx:id="proteinTotalLabel" text="Protein: 0 g" style="-fx-font-size: 16px;" />
-    <Label fx:id="carbsTotalLabel" text="Carbs: 0 g" style="-fx-font-size: 16px;"     />
-    <Label fx:id="fatsTotalLabel" text="Fats: 0 g" style="-fx-font-size: 16px;"       />
+            <TextField fx:id="foodField" promptText="Food Name"            />
+            <TextField fx:id="caloriesField" promptText="Calories"         />
+            <TextField fx:id="proteinField" promptText="Protein"       />
+            <TextField fx:id="carbsField" promptText="Carbs"           />
+            <TextField fx:id="fatsField" promptText="Fats"             />
 
+            <HBox spacing="10">
+                <Button text="Add Food" onAction="#handleAddFood"          />
+                <Button text="Reset" onAction="#handleReset"               />
+                <Button text="Remove Food" onAction="#handleRemoveFood" />
+                <Label text="Goals" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 0 0 0 40;"  />
+            </HBox>
 
-    <ListView fx:id="foodList" prefHeight="300"                   />
+            <Label fx:id="inputErrorLabel"
+                   style="-fx-text-fill: #c0392b; -fx-font-size: 13px;"
+                   visible="false" managed="false" />
 
-</VBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="caloriesProgressBar" prefWidth="250" minHeight="25" styleClass="diet-progress-bar" />
+                <Label fx:id="caloriesProgressLabel" style="-fx-font-size: 14px;" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="proteinProgressBar" prefWidth="250" minHeight="25" styleClass="diet-progress-bar" />
+                <Label fx:id="proteinProgressLabel" style="-fx-font-size: 14px;" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="carbsProgressBar" prefWidth="250" minHeight="25" styleClass="diet-progress-bar" />
+                <Label fx:id="carbsProgressLabel" style="-fx-font-size: 14px;" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="fatProgressBar" prefWidth="250" minHeight="25" styleClass="diet-progress-bar" />
+                <Label fx:id="fatsProgressLabel" style="-fx-font-size: 14px;" />
+            </HBox>
+
+            <ListView fx:id="foodList" prefHeight="300"                   />
+
+        </VBox>
+    </ScrollPane>
+</StackPane>
