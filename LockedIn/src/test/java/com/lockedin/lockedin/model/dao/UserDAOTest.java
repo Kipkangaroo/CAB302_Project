@@ -12,6 +12,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDAOTest {
+    private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private UserDAO userDAO;
 
     private User makeUser(String email) {
@@ -22,7 +23,7 @@ public class UserDAOTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        Connection conn = DriverManager.getConnection("jdbc:sqlite::memory:");
+        Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         userDAO = new UserDAO(conn);
     }
 

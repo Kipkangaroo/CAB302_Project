@@ -12,13 +12,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FoodDAOTest {
+    private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private FoodDAO foodDAO;
     private static final int USER_ID = 1;
     private Date today;
 
     @BeforeEach
     void setUp() throws Exception {
-        Connection conn = DriverManager.getConnection("jdbc:sqlite::memory:");
+        Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         foodDAO = new FoodDAO(conn);
         today = new Date();
     }

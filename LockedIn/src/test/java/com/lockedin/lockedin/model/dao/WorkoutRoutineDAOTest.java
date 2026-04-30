@@ -12,13 +12,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class WorkoutRoutineDAOTest {
-    private WorkoutRoutineDAO dao;
+    private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private static final int USER_ID = 1;
+    private WorkoutRoutineDAO workoutDAO;
 
     @BeforeEach
     void setUp() throws Exception {
-        Connection conn = DriverManager.getConnection("jdbc:sqlite::memory:");
-        dao = new WorkoutRoutineDAO(conn);
+        Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
+        workoutDAO = new WorkoutRoutineDAO(conn);
     }
 
     private List<WorkoutExerciseEntry> twoExercises() {
@@ -30,29 +31,29 @@ public class WorkoutRoutineDAOTest {
 
     @Test
     void saveRoutine_returnsPositiveId() {
-        int id = dao.saveRoutine(USER_ID, "Push Day", "notes", new ArrayList<>());
+        int id = workoutDAO.saveRoutine(USER_ID, "Push Day", "notes", new ArrayList<>());
         assertTrue(id > 0);
     }
 
     @Test
     void getRoutinesByUser_returnsSavedRoutine() {
-        dao.saveRoutine(USER_ID, "Leg Day", null, new ArrayList<>());
-        List<WorkoutRoutineDAO.RoutineData> routines = dao.getRoutinesByUser(USER_ID);
+        workoutDAO.saveRoutine(USER_ID, "Leg Day", null, new ArrayList<>());
+        List<WorkoutRoutineDAO.RoutineData> routines = workoutDAO.getRoutinesByUser(USER_ID);
         assertEquals(1, routines.size());
         assertEquals("Leg Day", routines.get(0).name);
     }
 
     @Test
     void getRoutinesByUser_returnsEmpty_forDifferentUser() {
-        dao.saveRoutine(USER_ID, "Push Day", null, new ArrayList<>());
-        List<WorkoutRoutineDAO.RoutineData> routines = dao.getRoutinesByUser(99);
+        workoutDAO.saveRoutine(USER_ID, "Push Day", null, new ArrayList<>());
+        List<WorkoutRoutineDAO.RoutineData> routines = workoutDAO.getRoutinesByUser(99);
         assertTrue(routines.isEmpty());
     }
 
     @Test
     void getRoutineById_returnsRoutine() {
-        int id = dao.saveRoutine(USER_ID, "Pull Day", "back + biceps", new ArrayList<>());
-        WorkoutRoutineDAO.RoutineData routine = dao.getRoutineById(id);
+        int id = workoutDAO.saveRoutine(USER_ID, "Pull Day", "back + biceps", new ArrayList<>());
+        WorkoutRoutineDAO.RoutineData routine = workoutDAO.getRoutineById(id);
         assertNotNull(routine);
         assertEquals("Pull Day", routine.name);
         assertEquals("back + biceps", routine.notes);
@@ -60,49 +61,49 @@ public class WorkoutRoutineDAOTest {
 
     @Test
     void getRoutineById_returnsNull_whenNotFound() {
-        assertNull(dao.getRoutineById(999));
+        assertNull(workoutDAO.getRoutineById(999));
     }
 
     @Test
     void deleteRoutine_removesRoutine() {
-        int id = dao.saveRoutine(USER_ID, "Temp", null, new ArrayList<>());
-        dao.deleteRoutine(id);
-        assertNull(dao.getRoutineById(id));
+        int id = workoutDAO.saveRoutine(USER_ID, "Temp", null, new ArrayList<>());
+        workoutDAO.deleteRoutine(id);
+        assertNull(workoutDAO.getRoutineById(id));
     }
 
     @Test
     void saveRoutine_storesExercises() {
-        int id = dao.saveRoutine(USER_ID, "Full Body", null, twoExercises());
-        WorkoutRoutineDAO.RoutineData routine = dao.getRoutineById(id);
+        int id = workoutDAO.saveRoutine(USER_ID, "Full Body", null, twoExercises());
+        WorkoutRoutineDAO.RoutineData routine = workoutDAO.getRoutineById(id);
         assertEquals(2, routine.exercises.size());
     }
 
     @Test
     void addExerciseToRoutine_addsExercise() {
-        int id = dao.saveRoutine(USER_ID, "Push Day", null, new ArrayList<>());
-        dao.addExerciseToRoutine(id, 3, "Overhead Press", 3, 12, 60);
-        WorkoutRoutineDAO.RoutineData routine = dao.getRoutineById(id);
+        int id = workoutDAO.saveRoutine(USER_ID, "Push Day", null, new ArrayList<>());
+        workoutDAO.addExerciseToRoutine(id, 3, "Overhead Press", 3, 12, 60);
+        WorkoutRoutineDAO.RoutineData routine = workoutDAO.getRoutineById(id);
         assertEquals(1, routine.exercises.size());
         assertEquals("Overhead Press", routine.exercises.get(0).getExerciseName());
     }
 
     @Test
     void removeExerciseFromRoutine_removesExercise() {
-        int id = dao.saveRoutine(USER_ID, "Push Day", null, twoExercises());
-        WorkoutRoutineDAO.RoutineData before = dao.getRoutineById(id);
+        int id = workoutDAO.saveRoutine(USER_ID, "Push Day", null, twoExercises());
+        WorkoutRoutineDAO.RoutineData before = workoutDAO.getRoutineById(id);
         int entryId = before.exercises.get(0).getId();
-        dao.removeExerciseFromRoutine(entryId);
-        WorkoutRoutineDAO.RoutineData after = dao.getRoutineById(id);
+        workoutDAO.removeExerciseFromRoutine(entryId);
+        WorkoutRoutineDAO.RoutineData after = workoutDAO.getRoutineById(id);
         assertEquals(1, after.exercises.size());
     }
 
     @Test
     void updateExercise_updatesValues() {
-        int id = dao.saveRoutine(USER_ID, "Push Day", null, twoExercises());
-        WorkoutRoutineDAO.RoutineData before = dao.getRoutineById(id);
+        int id = workoutDAO.saveRoutine(USER_ID, "Push Day", null, twoExercises());
+        WorkoutRoutineDAO.RoutineData before = workoutDAO.getRoutineById(id);
         int entryId = before.exercises.get(0).getId();
-        dao.updateExercise(entryId, 5, 6, 90);
-        WorkoutRoutineDAO.RoutineData after = dao.getRoutineById(id);
+        workoutDAO.updateExercise(entryId, 5, 6, 90);
+        WorkoutRoutineDAO.RoutineData after = workoutDAO.getRoutineById(id);
         WorkoutExerciseEntry updated = after.exercises.stream()
                 .filter(e -> e.getId() == entryId).findFirst().orElseThrow();
         assertEquals(5, updated.getSets());
