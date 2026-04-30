@@ -20,7 +20,6 @@ public class FoodDAO {
         createFoodTable();
     }
 
-    /** For testing: accepts an existing (e.g. in-memory) connection. */
     public FoodDAO(Connection connection) {
         this.connection = connection;
         createFoodTable();
@@ -122,4 +121,3 @@ public class FoodDAO {
         return food;
     }
 }
-

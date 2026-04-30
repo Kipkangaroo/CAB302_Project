@@ -82,7 +82,6 @@ public class WorkoutRoutineDAO {
         }
     }
 
-    /** For testing: accepts an existing (e.g. in-memory) connection. */
     public WorkoutRoutineDAO(Connection connection) {
         this.connection = connection;
         createTables();

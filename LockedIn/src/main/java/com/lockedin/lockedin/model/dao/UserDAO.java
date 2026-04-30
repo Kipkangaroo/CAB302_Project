@@ -19,7 +19,6 @@ public class UserDAO {
         createUsersTable();
     }
 
-    /** For testing: accepts an existing (e.g. in-memory) connection. */
     public UserDAO(Connection connection) {
         this.connection = connection;
         createUsersTable();
@@ -40,8 +39,8 @@ public class UserDAO {
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
-        } catch (SQLException exception) {
-            throw new RuntimeException("Failed to create users table", exception);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to create users table", e);
         }
     }
 
@@ -69,8 +68,8 @@ public class UserDAO {
                 }
             }
             return true;
-        } catch (SQLException exception) {
-            throw new RuntimeException("Failed to create user", exception);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to create user", e);
         }
     }
 
@@ -84,8 +83,8 @@ public class UserDAO {
                 }
                 return Optional.empty();
             }
-        } catch (SQLException exception) {
-            throw new RuntimeException("Failed to fetch user by id", exception);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch user by id", e);
         }
     }
 
@@ -99,8 +98,8 @@ public class UserDAO {
                 }
                 return Optional.empty();
             }
-        } catch (SQLException exception) {
-            throw new RuntimeException("Failed to fetch user by email", exception);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch user by email", e);
         }
     }
 
@@ -118,7 +117,7 @@ public class UserDAO {
         user.setId(resultSet.getInt("id"));
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
-        user.setDateOfBirth(parseDate(resultSet.getString("date_of_birth")));
+        user.setDateOfBirth(LocalDate.parse(resultSet.getString("date_of_birth")));
         user.setHeight(resultSet.getDouble("height"));
         user.setWeight(resultSet.getDouble("weight"));
         user.setEmail(resultSet.getString("email"));
@@ -127,7 +126,4 @@ public class UserDAO {
         return user;
     }
 
-    private LocalDate parseDate(String dateText) {
-        return LocalDate.parse(dateText);
-    }
 }
