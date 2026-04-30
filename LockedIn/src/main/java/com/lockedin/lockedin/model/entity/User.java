@@ -5,6 +5,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
+/**
+ * Represents a user profile, including personal details,
+ * authentication data, and fitness goal calculations.
+ * Provides helper methods for computing TDEE and macro targets.
+ */
 public class User {
     private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
     private static final double CALORIES_PER_GRAM_CARBS = 4.0;

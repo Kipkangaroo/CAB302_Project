@@ -12,6 +12,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Utility class providing authentication-related helpers such as
+ * email/password validation, user login verification, and scene switching.
+ */
+
 public class Authentication {
     private Authentication() {
     }
@@ -39,6 +44,11 @@ public class Authentication {
         stage.setScene(scene);
     }
 
+    /**
+     * Attempts to authenticate a user by email and password.
+     *
+     * @return Optional<User> if authentication succeeds, otherwise empty.
+     */
     public static Optional<User> authenticate(String email, String password) {
         UserDAO userDAO = new UserDAO();
         Optional<User> user = userDAO.getUserByEmail(email);

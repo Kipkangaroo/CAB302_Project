@@ -9,7 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
-
+/**
+ * Data Access Object for user accounts.
+ * Handles creation of the users table and provides a connection
+ * for saving and retrieving user profile and authentication data.
+ */
 public class UserDAO {
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;

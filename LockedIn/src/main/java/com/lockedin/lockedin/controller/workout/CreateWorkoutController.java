@@ -17,6 +17,11 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 
+/**
+ * Controller for creating a new workout routine.
+ * Handles exercise selection, validation, list management,
+ * and saving the final routine to the database.
+ */
 public class CreateWorkoutController {
 
     private static final String WORKOUT_VIEW =
@@ -35,6 +40,12 @@ public class CreateWorkoutController {
             FXCollections.observableArrayList();
     private WorkoutRoutineDAO routineDAO;
 
+    /**
+     * Initializes the form:
+     * - Loads exercises from DB
+     * - Sets default values
+     * - Configures the exercise list cell factory
+     */
     @FXML
     public void initialize() {
         routineDAO = new WorkoutRoutineDAO();

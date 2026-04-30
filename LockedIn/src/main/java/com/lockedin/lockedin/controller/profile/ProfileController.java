@@ -5,6 +5,10 @@ import com.lockedin.lockedin.model.session.CurrentUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * Controller for the Profile page.
+ * Displays the currently logged-in user's personal information.
+ */
 public class ProfileController {
     private User user;
     @FXML

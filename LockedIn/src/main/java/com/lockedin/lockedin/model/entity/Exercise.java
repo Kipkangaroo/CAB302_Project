@@ -1,5 +1,10 @@
 package com.lockedin.lockedin.model.entity;
 
+/**
+ * Represents an exercise definition loaded from the exercise database.
+ * Stores metadata such as name, instructions, category, primary muscle,
+ * and an image ID used to construct URLs for form demonstration images.
+ */
 public class Exercise {
     private int id;
     private String name;

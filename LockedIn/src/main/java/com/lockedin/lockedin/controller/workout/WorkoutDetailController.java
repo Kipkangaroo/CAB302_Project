@@ -17,7 +17,11 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Controller for the Workout Detail page.
+ * Displays all exercises in a selected routine and allows editing,
+ * deleting, and adding exercises, as well as starting the workout.
+ */
 public class WorkoutDetailController {
 
     private static final String WORKOUT_VIEW =

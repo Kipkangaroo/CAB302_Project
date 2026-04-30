@@ -10,7 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Data Access Object for storing and retrieving food entries.
+ * Handles table creation and provides a connection to the food database.
+ */
 public class FoodDAO {
     private static final String FOOD_DB_FILE = "food.db";
     private final Connection connection;

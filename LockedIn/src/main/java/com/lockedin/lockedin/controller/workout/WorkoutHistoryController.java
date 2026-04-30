@@ -20,7 +20,11 @@ import java.time.format.DateTimeParseException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Controller for the Workout History page.
+ * Displays all completed workouts for the current user,
+ * grouped with exercise summaries and completion timestamps.
+ */
 public class WorkoutHistoryController {
     private static final String WORKOUT_VIEW =
             "/com/lockedin/lockedin/pages/workout/workout-view.fxml";

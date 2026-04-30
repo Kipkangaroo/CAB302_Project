@@ -5,6 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a workout routine template or session.
+ * Stores routine metadata (name, duration, intensity, notes)
+ * and tracks exercises along with their performed sets.
+ *
+ * The exerciseTracking map links each Exercise to a list of ExerciseSet
+ * objects, allowing routines to store multiple sets per exercise.
+ */
+
 public class WorkoutRoutine {
     private int id;
     private String name;

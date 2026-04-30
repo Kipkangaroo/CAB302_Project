@@ -8,6 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Singleton-style SQLite connection manager.
+ * Ensures each database file is opened once and reused across DAOs.
+ */
 public class SqliteConnection {
     private static Connection instance = null;
     private static final Path DB_DIRECTORY = Paths.get("LockedIn", "data").toAbsolutePath();

@@ -4,6 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the Authentication utility class.
+ * Verifies email and password validation rules using
+ * representative valid and invalid input cases.
+ */
+
 public class AuthenticationTest {
 
     // ---- isValidEmail ----

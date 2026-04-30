@@ -12,6 +12,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
+/**
+ * Controller responsible for handling user registration.
+ * Validates input fields, creates a new User entity, and stores it via UserDAO.
+ */
 public class SignUpController {
     @FXML
     private Button backBtn;
@@ -36,6 +40,9 @@ public class SignUpController {
     @FXML
     private ComboBox<String> fitnessGoalCombo;
 
+    /**
+     * Initializes the sign-up form by populating the fitness goal dropdown.
+     */
     @FXML
     private void initialize() {
         fitnessGoalCombo.setItems(FXCollections.observableArrayList(
@@ -43,6 +50,8 @@ public class SignUpController {
                 "Build Muscle",
                 "Maintain Fitness"
         ));
+        // Trigger signup when pressing Enter
+        signupBtn.setDefaultButton(true);
     }
 
     @FXML

@@ -1,5 +1,11 @@
 package com.lockedin.lockedin.model.entity;
 
+/**
+ * Represents a single exercise entry inside a workout routine.
+ * Stores the exercise reference (ID + name) along with sets, reps,
+ * and rest time. Used both when building routines and when loading
+ * them from the database.
+ */
 public class WorkoutExerciseEntry {
     private final int id;
     private final int exerciseId;

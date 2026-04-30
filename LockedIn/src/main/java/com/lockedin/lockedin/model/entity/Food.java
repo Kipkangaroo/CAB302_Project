@@ -1,7 +1,11 @@
 package com.lockedin.lockedin.model.entity;
 
 import java.util.Date;
-
+/**
+ * Represents a single food entry logged by a user.
+ * Stores nutritional information (calories and macros),
+ * the user who logged it, and the date of consumption.
+ */
 public class Food {
     private int id;
     private int userID;

@@ -11,15 +11,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DBExercisesDAO {
+
+    /** SQLite database file containing all exercise definitions. */
     private static final String EXERCISES_DB_FILE = "exercises.db";
+
+    /** Shared database connection for all exercise operations. */
     private final Connection connection;
 
+    /**
+     * Initializes the DAO by connecting to the exercises database,
+     * creating the table if needed, and seeding default exercises.
+     */
     public DBExercisesDAO() {
         this.connection = SqliteConnection.getInstance(EXERCISES_DB_FILE);
         createExercisesTable();
         seedExercises();
     }
 
+    /**
+     * Creates the exercises table if it does not already exist.
+     * Stores exercise metadata such as name, instructions, category,
+     * primary muscle, and image URL.
+     */
     private void createExercisesTable() {
         String sql = "CREATE TABLE IF NOT EXISTS exercises (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

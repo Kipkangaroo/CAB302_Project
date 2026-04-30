@@ -11,7 +11,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Represents a full workout routine, including its metadata and
+ * the list of exercises that belong to it.
+ */
 public class WorkoutRoutineDAO {
 
     public static class RoutineData {
@@ -27,7 +30,10 @@ public class WorkoutRoutineDAO {
             this.exercises = exercises;
         }
     }
-
+    /**
+     * Represents a single completed set during a workout session.
+     * Used for saving workout history and generating summaries.
+     */
     public static class CompletedSetData {
         public final int exerciseId;
         public final String exerciseName;

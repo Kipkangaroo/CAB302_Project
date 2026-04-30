@@ -10,8 +10,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Controller for the main application layout.
+ * Handles navigation between Workout, Diet, and Profile pages,
+ * and updates the active navigation button styling.
+ */
 public class LayoutController {
+
+    /** The currently logged-in user, retrieved after login */
     private User user;
+
     public static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     public static final String DIET_VIEW = "/com/lockedin/lockedin/pages/diet/diet-view.fxml";
     public static final String PROFILE_VIEW = "/com/lockedin/lockedin/pages/profile/profile-view.fxml";

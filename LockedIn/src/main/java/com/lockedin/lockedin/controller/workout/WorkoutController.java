@@ -12,7 +12,11 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Controller for the main Workout page.
+ * Displays all workout routines created by the user,
+ * and provides navigation to create, view, or delete routines.
+ */
 public class WorkoutController {
 
     private static final String CREATE_VIEW =
@@ -55,7 +59,10 @@ public class WorkoutController {
             }
         }
     }
-
+    /**
+     * Builds a UI card representing a single workout routine.
+     * Includes name, notes, exercise count, and edit/delete actions.
+     */
     private VBox buildWorkoutCard(WorkoutRoutineDAO.RoutineData routine) {
         // ── Name + subtitle ──
         Label nameLabel = new Label(routine.name);

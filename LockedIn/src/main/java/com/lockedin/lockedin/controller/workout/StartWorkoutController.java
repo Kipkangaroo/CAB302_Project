@@ -17,7 +17,11 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Controller responsible for running a workout routine.
+ * Handles set progression, tracking completed sets, updating UI,
+ * and saving workout results when finished.
+ */
 public class StartWorkoutController {
     private static final String WORKOUT_DETAIL_VIEW =
             "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
@@ -64,7 +68,12 @@ public class StartWorkoutController {
         workoutNameLabel.setText(routine.name);
         showCurrentSet();
     }
-
+    /**
+     * Handles completion of a set:
+     * - Validates reps input
+     * - Records the completed set
+     * - Moves to the next set or finishes the workout
+     */
     @FXML
     public void handleCompleteSet() {
         WorkoutExerciseEntry exercise = currentExercise();

@@ -10,7 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit tests for FoodDAO using an in‑memory SQLite database.
+ * Verifies CRUD operations and daily nutritional totals.
+ */
 public class FoodDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private FoodDAO foodDAO;

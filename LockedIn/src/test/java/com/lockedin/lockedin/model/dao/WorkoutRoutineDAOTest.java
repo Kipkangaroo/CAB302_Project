@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit tests for WorkoutRoutineDAO using an isolated in‑memory SQLite database.
+ * Verifies routine creation, retrieval, deletion, and exercise‑level operations.
+ */
 public class WorkoutRoutineDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private static final int USER_ID = 1;

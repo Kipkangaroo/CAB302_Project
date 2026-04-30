@@ -11,6 +11,10 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for UserDAO using an isolated in‑memory SQLite database.
+ * Verifies user creation, retrieval, authentication, and field persistence.
+ */
 public class UserDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private UserDAO userDAO;

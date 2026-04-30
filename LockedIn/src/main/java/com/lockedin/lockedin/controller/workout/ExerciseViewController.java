@@ -16,7 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import org.controlsfx.control.SearchableComboBox;
-
+/**
+ * Controller for the Exercise Details view.
+ * Allows users to search for an exercise and displays its
+ * name, primary muscle, instructions, and form images.
+ */
 public class ExerciseViewController {
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private Integer selectedExerciseId;
@@ -37,6 +41,12 @@ public class ExerciseViewController {
     @FXML
     private ImageView formImage2;
 
+    /**
+     * Initializes the exercise search view:
+     * - Loads exercises from the database
+     * - Configures visibility of the details pane
+     * - Adds listener to update details when an exercise is selected
+     */
     @FXML
     public void initialize() {
         ObservableList<Exercise> exercises;
