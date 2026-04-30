@@ -1,7 +1,5 @@
 package com.lockedin.lockedin.controller.profile;
 
-import java.time.LocalDate;
-
 import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 import javafx.fxml.FXML;
@@ -22,8 +20,7 @@ public class ProfileController {
     @FXML
     private void initialize() {
         user = CurrentUser.get();
-        int age = LocalDate.now().getYear() - user.getDateOfBirth().getYear();
-        ageLabel.setText("Age: " + age);
+        ageLabel.setText("Age: " + user.getAge());
         heightLabel.setText("Height: " + user.getHeight() + " cm");
         weightLabel.setText("Weight: " + user.getWeight() + " kg");
         fitnessGoalLabel.setText("Fitness Goal: " + user.getFitnessGoal());

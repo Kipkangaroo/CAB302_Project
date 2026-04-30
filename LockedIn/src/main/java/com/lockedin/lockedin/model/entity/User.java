@@ -86,6 +86,10 @@ public class User {
         return dateOfBirth;
     }
 
+    public int getAge() {
+        return LocalDate.now().getYear() - dateOfBirth.getYear();
+    }
+
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -124,8 +128,7 @@ public class User {
 
     public double getTDEE() {
         //Mifflin-St Jeor BMR formula
-        int age = LocalDate.now().getYear() - dateOfBirth.getYear();
-        double BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+        double BMR = 10 * weight + 6.25 * height - 5 * getAge() + 5;
         double TDEE = BMR * 1.2;
         return TDEE;
     }
