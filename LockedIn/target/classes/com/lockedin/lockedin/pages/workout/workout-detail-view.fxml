@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.lockedin.lockedin.controller.workout.WorkoutDetailController"
+      fillWidth="true"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
+
+    <!-- ── Gradient header ── -->
+    <VBox styleClass="workout-header" fillWidth="true">
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Button fx:id="backButton" text="&#x2190;" styleClass="header-btn"
+                    onAction="#handleBack" style="-fx-font-size: 16px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="&#x270F;" styleClass="header-btn"
+                    onAction="#handleEditWorkoutName"
+                    style="-fx-font-size: 15px;"/>
+        </HBox>
+        <Label fx:id="workoutNameLabel" textFill="white"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;">
+            <VBox.margin><Insets top="8"/></VBox.margin>
+        </Label>
+        <Label fx:id="workoutNotesLabel" textFill="white"
+               style="-fx-font-size: 13px; -fx-opacity: 0.82;" wrapText="true">
+            <VBox.margin><Insets top="2"/></VBox.margin>
+        </Label>
+    </VBox>
+
+    <!-- ── Scrollable exercise list ── -->
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="workout-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="workout-page-bg" spacing="10" fillWidth="true">
+
+            <!-- Exercise cards injected by WorkoutDetailController -->
+            <VBox fx:id="exercisesContainer" spacing="10" fillWidth="true"/>
+
+            <!-- Add Exercise dashed button -->
+            <Button text="+ Add Exercise" styleClass="add-exercise-dashed"
+                    maxWidth="Infinity" onAction="#handleAddExercise"/>
+        </VBox>
+    </ScrollPane>
+
+    <!-- ── Start Workout button ── -->
+    <HBox style="-fx-padding: 10 16 14 16;">
+        <Button text="&#x25B6;  Start Workout" styleClass="primary-btn"
+                onAction="#handleStartWorkout"
+                maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                style="-fx-padding: 14 0 14 0;"/>
+    </HBox>
+</VBox>

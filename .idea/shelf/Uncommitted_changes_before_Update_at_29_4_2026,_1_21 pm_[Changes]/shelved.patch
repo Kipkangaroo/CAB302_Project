@@ -1,0 +1,624 @@
+Index: LockedIn/.idea/encodings.xml
+===================================================================
+diff --git a/LockedIn/.idea/encodings.xml b/LockedIn/.idea/encodings.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/encodings.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding">
+-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/jarRepositories.xml
+===================================================================
+diff --git a/LockedIn/.idea/jarRepositories.xml b/LockedIn/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/jarRepositories.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/misc.xml
+===================================================================
+diff --git a/LockedIn/.idea/misc.xml b/LockedIn/.idea/misc.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/misc.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,14 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="MavenProjectsManager">
+-    <option name="originalFiles">
+-      <list>
+-        <option value="$PROJECT_DIR$/pom.xml" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="corretto-21" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/out" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM__Changes_.xml
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM__Changes_.xml b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM__Changes_.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM__Changes_.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]" date="1777339352665" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 4/28/2026 11:21 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM__Changes_.xml
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM__Changes_.xml b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM__Changes_.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM__Changes_.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]" date="1777339379485" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 4/28/2026 11:22 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,46 +0,0 @@
+-Index: ../.idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/LockedIn/pom.xml\" />\r\n        <option value=\"$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_24\" project-jdk-name=\"24\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/misc.xml b/../.idea/misc.xml
+---- a/../.idea/misc.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/misc.xml	(date 1777339379465)
+-@@ -1,15 +1,5 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ExternalStorageConfigurationManager" enabled="true" />
+--  <component name="MavenProjectsManager">
+--    <option name="originalFiles">
+--      <list>
+--        <option value="$PROJECT_DIR$/LockedIn/pom.xml" />
+--        <option value="$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml" />
+--      </list>
+--    </option>
+--  </component>
+--  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="24" project-jdk-type="JavaSDK">
+--    <output url="file://$PROJECT_DIR$/out" />
+--  </component>
+-+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
+- </project>
+-\ No newline at end of file
+-Index: ../.idea/modules.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/CAB302_Project.iml\" filepath=\"$PROJECT_DIR$/.idea/CAB302_Project.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/LockedIn/LockedIn.iml\" filepath=\"$PROJECT_DIR$/LockedIn/LockedIn.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/modules.xml b/../.idea/modules.xml
+---- a/../.idea/modules.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/modules.xml	(date 1777339379479)
+-@@ -2,7 +2,6 @@
+- <project version="4">
+-   <component name="ProjectModuleManager">
+-     <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/CAB302_Project.iml" filepath="$PROJECT_DIR$/.idea/CAB302_Project.iml" />
+-       <module fileurl="file://$PROJECT_DIR$/LockedIn/LockedIn.iml" filepath="$PROJECT_DIR$/LockedIn/LockedIn.iml" />
+-     </modules>
+-   </component>
+Index: LockedIn/.idea/vcs.xml
+===================================================================
+diff --git a/LockedIn/.idea/vcs.xml b/LockedIn/.idea/vcs.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/vcs.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/.idea/jarRepositories.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/compiler.xml
+===================================================================
+diff --git a/LockedIn/.idea/compiler.xml b/LockedIn/.idea/compiler.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/compiler.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,13 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <annotationProcessing>
+-      <profile name="Maven default annotation processors profile" enabled="true">
+-        <sourceOutputDir name="target/generated-sources/annotations" />
+-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+-        <outputRelativeToContentRoot value="true" />
+-        <module name="LockedIn" />
+-      </profile>
+-    </annotationProcessing>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/LockedIn/LockedIn.iml" filepath="$PROJECT_DIR$/LockedIn/LockedIn.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_22_AM_[Changes]/shelved.patch	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,46 +0,0 @@
+-Index: ../.idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/LockedIn/pom.xml\" />\r\n        <option value=\"$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_24\" project-jdk-name=\"24\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/misc.xml b/../.idea/misc.xml
+---- a/../.idea/misc.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/misc.xml	(date 1777339352634)
+-@@ -1,15 +1,5 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ExternalStorageConfigurationManager" enabled="true" />
+--  <component name="MavenProjectsManager">
+--    <option name="originalFiles">
+--      <list>
+--        <option value="$PROJECT_DIR$/LockedIn/pom.xml" />
+--        <option value="$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml" />
+--      </list>
+--    </option>
+--  </component>
+--  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="24" project-jdk-type="JavaSDK">
+--    <output url="file://$PROJECT_DIR$/out" />
+--  </component>
+-+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
+- </project>
+-\ No newline at end of file
+-Index: ../.idea/modules.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/CAB302_Project.iml\" filepath=\"$PROJECT_DIR$/.idea/CAB302_Project.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/LockedIn/LockedIn.iml\" filepath=\"$PROJECT_DIR$/LockedIn/LockedIn.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/modules.xml b/../.idea/modules.xml
+---- a/../.idea/modules.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/modules.xml	(date 1777339352650)
+-@@ -2,7 +2,6 @@
+- <project version="4">
+-   <component name="ProjectModuleManager">
+-     <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/CAB302_Project.iml" filepath="$PROJECT_DIR$/.idea/CAB302_Project.iml" />
+-       <module fileurl="file://$PROJECT_DIR$/LockedIn/LockedIn.iml" filepath="$PROJECT_DIR$/LockedIn/LockedIn.iml" />
+-     </modules>
+-   </component>
+Index: LockedIn/.idea/workspace.xml
+===================================================================
+diff --git a/LockedIn/.idea/workspace.xml b/LockedIn/.idea/workspace.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/workspace.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,167 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AutoImportSettings">
+-    <option name="autoReloadType" value="SELECTIVE" />
+-  </component>
+-  <component name="ChangeListManager">
+-    <list default="true" id="06bd106c-bd74-497e-b79a-107a53a175b1" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/LockedIn.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/LogInController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/MainController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/DietController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/ProfileController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lockedin/lockedin/pages/WorkoutController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/login-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/main-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/diet-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/profile-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages/workout-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/style/style.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/LockedIn.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/LogInController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/MainController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/login-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/main-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/DietController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/ProfileController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/WorkoutController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/diet-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/profile-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/pages/workout-view.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/com/lockedin/lockedin/style/style.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="JavaFXApplication" />
+-        <option value="FxmlFile" />
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="GitHubPullRequestSearchHistory">{
+-  &quot;lastFilter&quot;: {
+-    &quot;state&quot;: &quot;OPEN&quot;,
+-    &quot;assignee&quot;: &quot;ptusar&quot;
+-  }
+-}</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/Kipkangaroo/CAB302_Project.git&quot;,
+-    &quot;accountId&quot;: &quot;5d7d4a7f-6cec-4ddd-90b4-4276bb45fa61&quot;
+-  }
+-}</component>
+-  <component name="MavenImportPreferences">
+-    <option name="generalSettings">
+-      <MavenGeneralSettings>
+-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+-      </MavenGeneralSettings>
+-    </option>
+-  </component>
+-  <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 7
+-}</component>
+-  <component name="ProjectId" id="3CZlZXlM8cpH3Z8fuPsfFzzWjPj" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/tusar/Desktop/LockedIn&quot;
+-  }
+-}</component>
+-  <component name="RecentsManager">
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin" />
+-    </key>
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin" />
+-      <recent name="$PROJECT_DIR$/src/main/resources/com/lockedin/lockedin/pages" />
+-    </key>
+-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+-      <recent name="com.lockedin.lockedin.pages" />
+-    </key>
+-  </component>
+-  <component name="RunManager" selected="JUnit.DietLogicTest">
+-    <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.LockedIn" />
+-      <module name="LockedIn" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="com.lockedin.lockedin.pages.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="DietLogicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="LockedIn" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="com.lockedin.lockedin.logic.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="com.lockedin.lockedin.logic" />
+-      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.logic.DietLogicTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="JUnit.DietLogicTest" />
+-        <item itemvalue="Application.LockedIn" />
+-      </list>
+-    </recent_temporary>
+-  </component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+-      </set>
+-    </attachedChunks>
+-  </component>
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="06bd106c-bd74-497e-b79a-107a53a175b1" name="Changes" comment="" />
+-      <created>1776601028855</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1776601028855</updated>
+-    </task>
+-    <servers />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/CAB302_Project.iml
+===================================================================
+diff --git a/.idea/CAB302_Project.iml b/.idea/CAB302_Project.iml
+deleted file mode 100644
+--- a/.idea/CAB302_Project.iml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4">
+-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+-    <exclude-output />
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: .idea/compiler.xml
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+deleted file mode 100644
+--- a/.idea/compiler.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,19 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <annotationProcessing>
+-      <profile name="Maven default annotation processors profile" enabled="true">
+-        <sourceOutputDir name="target/generated-sources/annotations" />
+-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+-        <outputRelativeToContentRoot value="true" />
+-        <module name="LockedIn" />
+-        <module name="tryingSpringBoot" />
+-      </profile>
+-    </annotationProcessing>
+-  </component>
+-  <component name="JavacSettings">
+-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+-      <module name="tryingSpringBoot" options="-parameters" />
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
+-</project>
+\ No newline at end of file
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_21_AM_[Changes]/shelved.patch	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,46 +0,0 @@
+-Index: ../.idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/LockedIn/pom.xml\" />\r\n        <option value=\"$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_24\" project-jdk-name=\"24\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/misc.xml b/../.idea/misc.xml
+---- a/../.idea/misc.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/misc.xml	(date 1777338075538)
+-@@ -1,15 +1,5 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ExternalStorageConfigurationManager" enabled="true" />
+--  <component name="MavenProjectsManager">
+--    <option name="originalFiles">
+--      <list>
+--        <option value="$PROJECT_DIR$/LockedIn/pom.xml" />
+--        <option value="$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/pom.xml" />
+--      </list>
+--    </option>
+--  </component>
+--  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="24" project-jdk-type="JavaSDK">
+--    <output url="file://$PROJECT_DIR$/out" />
+--  </component>
+-+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
+- </project>
+-\ No newline at end of file
+-Index: ../.idea/modules.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/CAB302_Project.iml\" filepath=\"$PROJECT_DIR$/.idea/CAB302_Project.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/LockedIn/LockedIn.iml\" filepath=\"$PROJECT_DIR$/LockedIn/LockedIn.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/../.idea/modules.xml b/../.idea/modules.xml
+---- a/../.idea/modules.xml	(revision d0972d212aaba99c4eb29973df1ebea6daf5b1c1)
+-+++ b/../.idea/modules.xml	(date 1777338075477)
+-@@ -2,7 +2,6 @@
+- <project version="4">
+-   <component name="ProjectModuleManager">
+-     <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/CAB302_Project.iml" filepath="$PROJECT_DIR$/.idea/CAB302_Project.iml" />
+-       <module fileurl="file://$PROJECT_DIR$/LockedIn/LockedIn.iml" filepath="$PROJECT_DIR$/LockedIn/LockedIn.iml" />
+-     </modules>
+-   </component>
+Index: .idea/encodings.xml
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+deleted file mode 100644
+--- a/.idea/encodings.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding">
+-    <file url="file://$PROJECT_DIR$/LockedIn/src/main/java" charset="UTF-8" />
+-    <file url="file://$PROJECT_DIR$/LockedIn/src/main/resources" charset="UTF-8" />
+-    <file url="file://$PROJECT_DIR$/Resources/tusar-research/r&amp;d - week 5 checkpoint/springBoot/src/main/java" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,10 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Ignored default folder with query files
+-/queries/
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+Index: LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM__Changes_.xml
+===================================================================
+diff --git a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM__Changes_.xml b/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM__Changes_.xml
+deleted file mode 100644
+--- a/LockedIn/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM__Changes_.xml	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
++++ /dev/null	(revision 734eb052aca437c5648c35f255ce07f945b3017d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]" date="1777339424572" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_28_2026_11_23_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 4/28/2026 11:23 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
