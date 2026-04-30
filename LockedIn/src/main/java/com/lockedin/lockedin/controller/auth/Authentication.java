@@ -46,6 +46,14 @@ public class Authentication {
         return authenticated ? user : Optional.empty();
     }
 
+    // Overload that accepts an injected UserDAO, enabling unit tests to supply
+    // an in-memory database instead of the production SQLite file.
+    public static Optional<User> authenticate(String email, String password, UserDAO userDAO) {
+        Optional<User> user = userDAO.getUserByEmail(email);
+        boolean authenticated = user.isPresent() && userDAO.authenticate(email, password);
+        return authenticated ? user : Optional.empty();
+    }
+
     private static void showAlert(Alert.AlertType type, String header, String content) {
         Alert alert = new Alert(type);
         alert.setHeaderText(header);
