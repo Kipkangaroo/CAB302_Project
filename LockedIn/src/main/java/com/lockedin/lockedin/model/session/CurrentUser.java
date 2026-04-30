@@ -11,4 +11,9 @@ public class CurrentUser {
     public static User get() { return user; }
     public static int getId() { return user.getId(); }
     public static void clear() { user = null; }
+
+    public static User getUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+    }
 }

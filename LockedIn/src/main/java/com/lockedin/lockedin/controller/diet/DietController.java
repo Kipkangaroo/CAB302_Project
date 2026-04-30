@@ -3,6 +3,7 @@ package com.lockedin.lockedin.controller.diet;
 import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
+import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,11 +20,10 @@ public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
-    //TEMPORARY VALUES
-    private final double targetCalories = 2000;
-    private final double targetProtein = 100;
-    private final double targetCarbs = 100;
-    private final double targetFats = 100;
+    private double targetCalories;
+    private double targetProtein;
+    private double targetCarbs;
+    private double targetFats;
     @FXML
     private ProgressBar caloriesProgressBar;
     @FXML
@@ -64,6 +64,11 @@ public class DietController {
     // -----------------------------
     @FXML
     private void initialize() {
+        User currentUser = CurrentUser.get();
+        targetCalories = currentUser.getTargetCalories();
+        targetProtein = currentUser.getTargetProtein();
+        targetCarbs = currentUser.getTargetCarbs();
+        targetFats = currentUser.getTargetFats();
         List<Food> todaysFoods = foodDAO.getFoodsByDate(new Date(), currentUserID);
         foodList.getItems().setAll(todaysFoods);
         updateTotals();

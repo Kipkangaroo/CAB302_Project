@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 public class User {
+    private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
+    private static final double CALORIES_PER_GRAM_CARBS = 4.0;
+    private static final double CALORIES_PER_GRAM_FATS = 9.0;
+
     private int id;
     private String firstName;
     private String lastName;
@@ -116,5 +120,77 @@ public class User {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public double getTDEE() {
+        //Mifflin-St Jeor BMR formula
+        int age = LocalDate.now().getYear() - dateOfBirth.getYear();
+        double BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+        double TDEE = BMR * 1.2;
+        return TDEE;
+    }
+
+    public double getTargetCalories() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return getTDEE() - 500;
+            case "Build Muscle":
+                return getTDEE() + 500;
+            case "Maintain Fitness":
+                return getTDEE();
+            default:
+                return getTDEE();
+        }
+    }
+
+    public double getTargetProtein() {
+        return (getTargetCalories() * getProteinRatio()) / CALORIES_PER_GRAM_PROTEIN;
+    }
+
+    public double getTargetCarbs() {
+        return (getTargetCalories() * getCarbsRatio()) / CALORIES_PER_GRAM_CARBS;
+    }
+
+    public double getTargetFats() {
+        return (getTargetCalories() * getFatsRatio()) / CALORIES_PER_GRAM_FATS;
+    }
+
+    private double getProteinRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.35;
+            case "Build Muscle":
+                return 0.30;
+            case "Maintain Fitness":
+                return 0.25;
+            default:
+                return 0.25;
+        }
+    }
+
+    private double getCarbsRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.35;
+            case "Build Muscle":
+                return 0.50;
+            case "Maintain Fitness":
+                return 0.45;
+            default:
+                return 0.45;
+        }
+    }
+
+    private double getFatsRatio() {
+        switch (this.fitnessGoal) {
+            case "Lose Weight":
+                return 0.30;
+            case "Build Muscle":
+                return 0.20;
+            case "Maintain Fitness":
+                return 0.30;
+            default:
+                return 0.30;
+        }
     }
 }
