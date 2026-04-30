@@ -17,7 +17,7 @@
          <Insets top="10.0" />
       </VBox.margin>
     </ImageView>
-   <Label style="-fx-font-weight: bold;" text="Name: Fergus">
+   <Label fx:id="nameLabel" style="-fx-font-weight: bold;" text="">
       <font>
          <Font size="16.0" />
       </font>
@@ -27,19 +27,19 @@
         <VBox.margin>
             <Insets bottom="10" left="20" right="20" top="10" />
         </VBox.margin>
-        <Label text="Age: 23">
+        <Label fx:id="ageLabel" text="">
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding></Label>
-        <Label text="Height:">
+        <Label fx:id="heightLabel" text="">
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding></Label>
-        <Label text="Weight:">
+        <Label fx:id="weightLabel" text="">
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding></Label>
-        <Label text="Fitness Goal:">
+        <Label fx:id="fitnessGoalLabel" text="">
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding></Label>

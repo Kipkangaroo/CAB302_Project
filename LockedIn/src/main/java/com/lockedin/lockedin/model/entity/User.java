@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 public class User {
+    private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
+    private static final double CALORIES_PER_GRAM_CARBS = 4.0;
+    private static final double CALORIES_PER_GRAM_FATS = 9.0;
+
     private int id;
     private String firstName;
     private String lastName;
@@ -140,15 +144,15 @@ public class User {
     }
 
     public double getTargetProtein() {
-        return (getTargetCalories() * getProteinRatio()) / 4.0;
+        return (getTargetCalories() * getProteinRatio()) / CALORIES_PER_GRAM_PROTEIN;
     }
 
     public double getTargetCarbs() {
-        return (getTargetCalories() * getCarbsRatio()) / 4.0;
+        return (getTargetCalories() * getCarbsRatio()) / CALORIES_PER_GRAM_CARBS;
     }
 
     public double getTargetFats() {
-        return (getTargetCalories() * getFatsRatio()) / 9.0;
+        return (getTargetCalories() * getFatsRatio()) / CALORIES_PER_GRAM_FATS;
     }
 
     private double getProteinRatio() {

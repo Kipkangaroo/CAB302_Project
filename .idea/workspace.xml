@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Simplified auth codes on sign in/sign up controllers">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page">
       <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,12 +130,21 @@
       <option name="project" value="LOCAL" />
       <updated>1777435890800</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page">
+      <option name="closed" value="true" />
+      <created>1777551689246</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777551689246</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update files" />
     <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplified auth codes on sign in/sign up controllers" />
+    <MESSAGE value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
   </component>
 </project>

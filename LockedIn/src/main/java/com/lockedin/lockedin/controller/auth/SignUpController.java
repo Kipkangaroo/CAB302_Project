@@ -50,11 +50,7 @@ public class SignUpController {
 
     @FXML
     private void handleBackButton() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/lockedin/lockedin/pages/auth/login-view.fxml"));
-        Scene scene = new Scene(loader.load(), 410, 650);
-        Stage stage = (Stage) backBtn.getScene().getWindow();
-        stage.setScene(scene);
+        switchScene("/com/lockedin/lockedin/pages/auth/login-view.fxml");
     }
 
     @FXML
@@ -105,6 +101,24 @@ public class SignUpController {
             alert.setHeaderText("Signup successful");
             alert.setContentText("You can now log in to your account.");
             alert.showAndWait();
-        } 
+            try {
+                switchScene("/com/lockedin/lockedin/pages/auth/login-view.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Signup failed");
+            alert.setContentText("Please try again.");
+            alert.showAndWait();
+        }
     }
+    private void switchScene(String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(fxmlPath));
+        Scene scene = new Scene(loader.load(), 410, 650);
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.setScene(scene);
+    }
+    
 }   
