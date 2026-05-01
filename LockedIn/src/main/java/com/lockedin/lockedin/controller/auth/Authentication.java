@@ -7,6 +7,7 @@ import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.entity.User;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -38,9 +39,13 @@ public class Authentication {
     }
 
     public static void switchScene(Button sourceButton, String fxmlPath) throws IOException {
+        switchScene((Node) sourceButton, fxmlPath);
+    }
+
+    public static void switchScene(Node source, String fxmlPath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Authentication.class.getResource(fxmlPath));
         Scene scene = new Scene(loader.load(), 410, 650);
-        Stage stage = (Stage) sourceButton.getScene().getWindow();
+        Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(scene);
     }
 

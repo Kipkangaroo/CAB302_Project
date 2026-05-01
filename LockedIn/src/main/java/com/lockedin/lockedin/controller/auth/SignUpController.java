@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Controller responsible for handling user registration.
@@ -18,7 +20,7 @@ import javafx.scene.control.PasswordField;
  */
 public class SignUpController {
     @FXML
-    private Button backBtn;
+    private ImageView logoImageView;
     @FXML
     private TextField firstNameField;
     @FXML
@@ -55,8 +57,8 @@ public class SignUpController {
     }
 
     @FXML
-    private void handleBackButton() throws IOException {
-        Authentication.switchScene(backBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+    private void handleBackButton(MouseEvent event) throws IOException {
+        Authentication.switchScene(logoImageView, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
     }
 
     @FXML
@@ -114,7 +116,7 @@ public class SignUpController {
         if (new UserDAO().createUser(new User(0, firstName, lastName, email, dobPicker.getValue(), height, weight, password, fitnessGoal))) {
             Authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
-                Authentication.switchScene(backBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+                Authentication.switchScene(signupBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
