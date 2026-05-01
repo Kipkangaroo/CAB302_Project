@@ -1,6 +1,0 @@
-com\lockedin\lockedin\model\dao\FoodDAOTest.class
-com\lockedin\lockedin\controller\auth\AuthenticationTest.class
-com\lockedin\lockedin\logic\DietLogicTest.class
-com\lockedin\lockedin\controller\diet\DietControllerInputTest.class
-com\lockedin\lockedin\model\dao\WorkoutRoutineDAOTest.class
-com\lockedin\lockedin\model\dao\UserDAOTest.class
