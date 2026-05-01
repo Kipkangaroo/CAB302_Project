@@ -64,7 +64,7 @@
             </VBox>
             <VBox styleClass="profile-card"
                   spacing="8">
-                <Label text="Tracking Streak"
+                <Label text="Calorie Tracking Streak"
                        styleClass="profile-section-title" />
                 <HBox alignment="CENTER"
                       spacing="6">

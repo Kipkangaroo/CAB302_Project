@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Mass code reformat (following google-java-format) + import optimisation">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Week 9 Video/Video Script.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Week 9 Video/Video Script.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +57,8 @@
   "keyToString": {
     "Application.LockedIn.executor": "Run",
     "Maven.LockedIn [clean].executor": "Run",
+    "Maven.LockedIn [compile].executor": "Run",
+    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
