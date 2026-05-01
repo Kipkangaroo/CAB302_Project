@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a workout routine template or session.
- * Stores routine metadata (name, duration, intensity, notes)
- * and tracks exercises along with their performed sets.
+ * Represents a workout routine template or session. Stores routine metadata (name, duration,
+ * intensity, notes) and tracks exercises along with their performed sets.
  *
- * The exerciseTracking map links each Exercise to a list of ExerciseSet
- * objects, allowing routines to store multiple sets per exercise.
+ * <p>The exerciseTracking map links each Exercise to a list of ExerciseSet objects, allowing
+ * routines to store multiple sets per exercise.
  */
-
 public class WorkoutRoutine {
     private int id;
     private String name;
@@ -26,7 +24,12 @@ public class WorkoutRoutine {
         this.exerciseTracking = new HashMap<>();
     }
 
-    public WorkoutRoutine(int id, String name, String duration, String intensity, String notes,
+    public WorkoutRoutine(
+            int id,
+            String name,
+            String duration,
+            String intensity,
+            String notes,
             Map<Exercise, ArrayList<ExerciseSet>> exerciseTracking) {
         this.id = id;
         this.name = name;

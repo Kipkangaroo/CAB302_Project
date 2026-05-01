@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
       fillWidth="true"
@@ -17,10 +10,10 @@
       maxHeight="Infinity">
 
     <VBox styleClass="diet-header" fillWidth="true">
-        <Label text="Nutrition Tracker" styleClass="diet-header-title" />
+        <Label text="Nutrition Tracker" styleClass="diet-header-title"/>
         <Label text="Track your meals and stay aligned with your goals" styleClass="diet-header-subtitle">
             <VBox.margin>
-                <Insets top="4" />
+                <Insets top="4"/>
             </VBox.margin>
         </Label>
     </VBox>
@@ -28,52 +21,57 @@
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="diet-scroll" hbarPolicy="NEVER">
         <VBox styleClass="diet-page-bg" spacing="12" fillWidth="true">
             <VBox styleClass="diet-card" spacing="10">
-                <Label text="Add Food" styleClass="diet-section-title" />
-                <TextField fx:id="foodField" promptText="Food Name" styleClass="diet-input" />
-                <TextField fx:id="caloriesField" promptText="Calories" styleClass="diet-input" />
-                <TextField fx:id="proteinField" promptText="Protein" styleClass="diet-input" />
-                <TextField fx:id="carbsField" promptText="Carbs" styleClass="diet-input" />
-                <TextField fx:id="fatsField" promptText="Fats" styleClass="diet-input" />
+                <Label text="Add Food" styleClass="diet-section-title"/>
+                <TextField fx:id="foodField" promptText="Food Name" styleClass="diet-input"/>
+                <TextField fx:id="caloriesField" promptText="Calories" styleClass="diet-input"/>
+                <TextField fx:id="proteinField" promptText="Protein" styleClass="diet-input"/>
+                <TextField fx:id="carbsField" promptText="Carbs" styleClass="diet-input"/>
+                <TextField fx:id="fatsField" promptText="Fats" styleClass="diet-input"/>
 
                 <HBox spacing="10">
-                    <Button text="Add Food" onAction="#handleAddFood" styleClass="primary-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Button text="Reset" onAction="#handleReset" styleClass="diet-secondary-btn" />
-                    <Button text="Remove Food" onAction="#handleRemoveFood" styleClass="diet-secondary-btn" />
+                    <Button text="Add Food" onAction="#handleAddFood" styleClass="primary-btn" HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button text="Reset" onAction="#handleReset" styleClass="diet-secondary-btn"/>
+                    <Button text="Remove Food" onAction="#handleRemoveFood" styleClass="diet-secondary-btn"/>
                 </HBox>
 
                 <Label fx:id="inputErrorLabel"
                        styleClass="diet-error-label"
-                       visible="false" managed="false" />
+                       visible="false" managed="false"/>
             </VBox>
 
             <VBox styleClass="diet-card" spacing="10">
-                <Label text="Goals" styleClass="diet-section-title" />
+                <Label text="Goals" styleClass="diet-section-title"/>
 
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <ProgressBar fx:id="caloriesProgressBar" minHeight="25" styleClass="diet-progress-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Label fx:id="caloriesProgressLabel" styleClass="diet-progress-label" />
+                    <ProgressBar fx:id="caloriesProgressBar" minHeight="25" styleClass="diet-progress-bar"
+                                 HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="caloriesProgressLabel" styleClass="diet-progress-label"/>
                 </HBox>
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <ProgressBar fx:id="proteinProgressBar" minHeight="25" styleClass="diet-progress-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Label fx:id="proteinProgressLabel" styleClass="diet-progress-label" />
+                    <ProgressBar fx:id="proteinProgressBar" minHeight="25" styleClass="diet-progress-bar"
+                                 HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="proteinProgressLabel" styleClass="diet-progress-label"/>
                 </HBox>
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <ProgressBar fx:id="carbsProgressBar" minHeight="25" styleClass="diet-progress-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Label fx:id="carbsProgressLabel" styleClass="diet-progress-label" />
+                    <ProgressBar fx:id="carbsProgressBar" minHeight="25" styleClass="diet-progress-bar"
+                                 HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="carbsProgressLabel" styleClass="diet-progress-label"/>
                 </HBox>
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <ProgressBar fx:id="fatProgressBar" minHeight="25" styleClass="diet-progress-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Label fx:id="fatsProgressLabel" styleClass="diet-progress-label" />
+                    <ProgressBar fx:id="fatProgressBar" minHeight="25" styleClass="diet-progress-bar"
+                                 HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="fatsProgressLabel" styleClass="diet-progress-label"/>
                 </HBox>
             </VBox>
 
             <VBox styleClass="diet-card">
                 <Label text="Today's Foods" styleClass="diet-section-title">
                     <VBox.margin>
-                        <Insets bottom="8" />
+                        <Insets bottom="8"/>
                     </VBox.margin>
                 </Label>
-                <ListView fx:id="foodList" prefHeight="300" styleClass="diet-food-list" />
+                <ListView fx:id="foodList" prefHeight="300" styleClass="diet-food-list"/>
             </VBox>
         </VBox>
     </ScrollPane>

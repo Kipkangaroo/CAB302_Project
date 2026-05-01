@@ -7,10 +7,21 @@ public class CurrentUser {
 
     private CurrentUser() {}
 
-    public static void set(User u) { user = u; }
-    public static User get() { return user; }
-    public static int getId() { return user.getId(); }
-    public static void clear() { user = null; }
+    public static void set(User u) {
+        user = u;
+    }
+
+    public static User get() {
+        return user;
+    }
+
+    public static int getId() {
+        return user.getId();
+    }
+
+    public static void clear() {
+        user = null;
+    }
 
     public static User getUser() {
         // TODO Auto-generated method stub

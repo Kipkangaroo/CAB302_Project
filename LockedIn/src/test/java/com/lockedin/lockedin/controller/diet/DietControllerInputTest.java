@@ -1,10 +1,11 @@
 package com.lockedin.lockedin.controller.diet;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.lockedin.lockedin.logic.DietLogic;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 // Tests the input validation logic exercised by DietController's add-food flow
 public class DietControllerInputTest {

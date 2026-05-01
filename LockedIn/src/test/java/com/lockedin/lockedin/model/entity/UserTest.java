@@ -1,16 +1,24 @@
 package com.lockedin.lockedin.model.entity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class UserTest {
 
     private User makeUserWithDob(LocalDate dob) {
-        return new User(0, "Test", "User", "test@test.com",
-                dob, 170.0, 70.0, "Password1!", "Maintain Fitness");
+        return new User(
+                0,
+                "Test",
+                "User",
+                "test@test.com",
+                dob,
+                170.0,
+                70.0,
+                "Password1!",
+                "Maintain Fitness");
     }
 
     // Birthday tomorrow: person has NOT yet reached their next birthday this year

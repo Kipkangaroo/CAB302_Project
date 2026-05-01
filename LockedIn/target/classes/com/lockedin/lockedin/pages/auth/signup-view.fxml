@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.lockedin.lockedin.controller.auth.SignUpController"
             stylesheets="@../../style/style.css"
@@ -25,7 +18,7 @@
                        pickOnBounds="true" style="-fx-cursor: hand;"
                        onMouseClicked="#handleBackButton">
                 <image>
-                    <Image url="@../../images/back_arrow.png" />
+                    <Image url="@../../images/back_arrow.png"/>
                 </image>
             </ImageView>
         </HBox>

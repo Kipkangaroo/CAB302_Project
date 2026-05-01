@@ -2,20 +2,24 @@ package com.lockedin.lockedin.controller.workout;
 
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.util.List;
+
 /**
- * Controller for the main Workout page.
- * Displays all workout routines created by the user,
- * and provides navigation to create, view, or delete routines.
+ * Controller for the main Workout page. Displays all workout routines created by the user, and
+ * provides navigation to create, view, or delete routines.
  */
 public class WorkoutController {
 
@@ -27,7 +31,7 @@ public class WorkoutController {
             "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
 
     @FXML private Label workoutCountLabel;
-    @FXML private VBox  workoutsContainer;
+    @FXML private VBox workoutsContainer;
 
     private WorkoutRoutineDAO routineDAO;
 
@@ -43,8 +47,7 @@ public class WorkoutController {
 
         int n = routines.size();
         workoutCountLabel.setText(
-                n == 0 ? "No workouts yet" :
-                n == 1 ? "1 workout ready" : n + " workouts ready");
+                n == 0 ? "No workouts yet" : n == 1 ? "1 workout ready" : n + " workouts ready");
 
         workoutsContainer.getChildren().clear();
 
@@ -59,9 +62,10 @@ public class WorkoutController {
             }
         }
     }
+
     /**
-     * Builds a UI card representing a single workout routine.
-     * Includes name, notes, exercise count, and edit/delete actions.
+     * Builds a UI card representing a single workout routine. Includes name, notes, exercise count,
+     * and edit/delete actions.
      */
     private VBox buildWorkoutCard(WorkoutRoutineDAO.RoutineData routine) {
         // ── Name + subtitle ──
@@ -79,7 +83,7 @@ public class WorkoutController {
         HBox.setHgrow(textCol, Priority.ALWAYS);
 
         // ── Edit / Delete icon buttons ──
-        Button editBtn   = new Button("\u270F");
+        Button editBtn = new Button("\u270F");
         Button deleteBtn = new Button("\uD83D\uDDD1");
         editBtn.getStyleClass().add("icon-btn");
         deleteBtn.getStyleClass().add("icon-btn");
@@ -100,19 +104,30 @@ public class WorkoutController {
 
         // ── Click actions ──
         card.setOnMouseClicked(e -> openDetail(routine.id));
-        editBtn.setOnAction(e -> { e.consume(); openDetail(routine.id); });
-        deleteBtn.setOnAction(e -> {
-            e.consume();
-            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                    "Delete \"" + routine.name + "\"?", ButtonType.YES, ButtonType.NO);
-            confirm.setHeaderText(null);
-            confirm.showAndWait().ifPresent(bt -> {
-                if (bt == ButtonType.YES) {
-                    routineDAO.deleteRoutine(routine.id);
-                    loadWorkouts();
-                }
-            });
-        });
+        editBtn.setOnAction(
+                e -> {
+                    e.consume();
+                    openDetail(routine.id);
+                });
+        deleteBtn.setOnAction(
+                e -> {
+                    e.consume();
+                    Alert confirm =
+                            new Alert(
+                                    Alert.AlertType.CONFIRMATION,
+                                    "Delete \"" + routine.name + "\"?",
+                                    ButtonType.YES,
+                                    ButtonType.NO);
+                    confirm.setHeaderText(null);
+                    confirm.showAndWait()
+                            .ifPresent(
+                                    bt -> {
+                                        if (bt == ButtonType.YES) {
+                                            routineDAO.deleteRoutine(routine.id);
+                                            loadWorkouts();
+                                        }
+                                    });
+                });
 
         return card;
     }

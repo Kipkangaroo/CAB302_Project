@@ -5,6 +5,7 @@ import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
 import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -24,14 +25,10 @@ public class DietController {
     private double targetProtein;
     private double targetCarbs;
     private double targetFats;
-    @FXML
-    private ProgressBar caloriesProgressBar;
-    @FXML
-    private ProgressBar proteinProgressBar;
-    @FXML
-    private ProgressBar fatProgressBar;
-    @FXML
-    private ProgressBar carbsProgressBar;
+    @FXML private ProgressBar caloriesProgressBar;
+    @FXML private ProgressBar proteinProgressBar;
+    @FXML private ProgressBar fatProgressBar;
+    @FXML private ProgressBar carbsProgressBar;
 
     // -----------------------------
     // UI ELEMENT REFERENCES (FXML)
@@ -88,12 +85,14 @@ public class DietController {
         }
 
         String caloriesText = caloriesField.getText().trim();
-        String proteinText  = proteinField.getText().trim();
-        String carbsText    = carbsField.getText().trim();
-        String fatsText     = fatsField.getText().trim();
+        String proteinText = proteinField.getText().trim();
+        String carbsText = carbsField.getText().trim();
+        String fatsText = fatsField.getText().trim();
 
-        if (!dietLogic.isValidNumber(caloriesText) || !dietLogic.isValidNumber(proteinText)
-                || !dietLogic.isValidNumber(carbsText) || !dietLogic.isValidNumber(fatsText)) {
+        if (!dietLogic.isValidNumber(caloriesText)
+                || !dietLogic.isValidNumber(proteinText)
+                || !dietLogic.isValidNumber(carbsText)
+                || !dietLogic.isValidNumber(fatsText)) {
             showInputError("Calories, protein, carbs, and fats must be non-negative numbers.");
             return;
         }
@@ -101,9 +100,9 @@ public class DietController {
         int calories, protein, carbs, fats;
         try {
             calories = Integer.parseInt(caloriesText);
-            protein  = Integer.parseInt(proteinText);
-            carbs    = Integer.parseInt(carbsText);
-            fats     = Integer.parseInt(fatsText);
+            protein = Integer.parseInt(proteinText);
+            carbs = Integer.parseInt(carbsText);
+            fats = Integer.parseInt(fatsText);
         } catch (NumberFormatException e) {
             showInputError("Calories, protein, carbs, and fats must be whole numbers.");
             return;
@@ -150,8 +149,10 @@ public class DietController {
     }
 
     private void refreshTotalsLabels() {
-        caloriesProgressLabel.setText(String.format("%.0f/%.0fkcal", totalCalories, targetCalories));
-        proteinProgressLabel.setText(String.format("%.0f/%.0fg protein", totalProtein, targetProtein));
+        caloriesProgressLabel.setText(
+                String.format("%.0f/%.0fkcal", totalCalories, targetCalories));
+        proteinProgressLabel.setText(
+                String.format("%.0f/%.0fg protein", totalProtein, targetProtein));
         carbsProgressLabel.setText(String.format("%.0f/%.0fg carbs", totalCarbs, targetCarbs));
         fatsProgressLabel.setText(String.format("%.0f/%.0fg fats", totalFats, targetFats));
     }
@@ -164,8 +165,7 @@ public class DietController {
     }
 
     private double clamp(double value) {
-        if (Double.isNaN(value
-        ) || Double.isInfinite(value)) {
+        if (Double.isNaN(value) || Double.isInfinite(value)) {
             return 0;
         }
         return Math.max(0, Math.min(1, value));

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.workout.StartWorkoutController"
@@ -24,7 +23,9 @@
         </HBox>
         <ProgressBar fx:id="workoutProgressBar" maxWidth="Infinity" progress="0"
                      styleClass="workout-progress-bar">
-            <VBox.margin><Insets top="12"/></VBox.margin>
+            <VBox.margin>
+                <Insets top="12"/>
+            </VBox.margin>
         </ProgressBar>
     </VBox>
 
@@ -48,17 +49,20 @@
                     <VBox styleClass="workout-stat-box stat-blue" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
                         <Label text="&#x25CE;" style="-fx-font-size: 20px; -fx-text-fill: #1f6fff;"/>
                         <Label text="Sets" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="setsLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #103e9f;"/>
+                        <Label fx:id="setsLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #103e9f;"/>
                     </VBox>
                     <VBox styleClass="workout-stat-box stat-green" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
                         <Label text="&#x25CE;" style="-fx-font-size: 20px; -fx-text-fill: #0bbd62;"/>
                         <Label text="Reps" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="repsLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #087f42;"/>
+                        <Label fx:id="repsLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #087f42;"/>
                     </VBox>
                     <VBox styleClass="workout-stat-box stat-orange" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
                         <Label text="&#x23F1;" style="-fx-font-size: 20px; -fx-text-fill: #ff5b22;"/>
                         <Label text="Rest" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="restLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #8f3108;"/>
+                        <Label fx:id="restLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #8f3108;"/>
                     </VBox>
                 </HBox>
 

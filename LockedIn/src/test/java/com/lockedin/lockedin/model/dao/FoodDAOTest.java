@@ -1,6 +1,10 @@
 package com.lockedin.lockedin.model.dao;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.lockedin.lockedin.model.entity.Food;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +13,9 @@ import java.sql.DriverManager;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 /**
- * Unit tests for FoodDAO using an in‑memory SQLite database.
- * Verifies CRUD operations and daily nutritional totals.
+ * Unit tests for FoodDAO using an in‑memory SQLite database. Verifies CRUD operations and daily
+ * nutritional totals.
  */
 public class FoodDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";

@@ -1,7 +1,11 @@
 package com.lockedin.lockedin.controller.auth;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.entity.User;
+
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -9,14 +13,10 @@ import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Unit tests for the Authentication utility class.
- * Verifies email and password validation rules using
- * representative valid and invalid input cases.
+ * Unit tests for the Authentication utility class. Verifies email and password validation rules
+ * using representative valid and invalid input cases.
  */
-
 public class AuthenticationTest {
 
     // ---- isValidEmail ----
@@ -83,8 +83,16 @@ public class AuthenticationTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
 
     private User makeUser(String email) {
-        return new User(0, "Jane", "Doe", email,
-                LocalDate.of(2000, 1, 1), 170.0, 65.0, "Password1!", "Maintain Fitness");
+        return new User(
+                0,
+                "Jane",
+                "Doe",
+                email,
+                LocalDate.of(2000, 1, 1),
+                170.0,
+                65.0,
+                "Password1!",
+                "Maintain Fitness");
     }
 
     @Test
@@ -103,7 +111,8 @@ public class AuthenticationTest {
         UserDAO userDAO = new UserDAO(conn);
         userDAO.createUser(makeUser("jane2@test.com"));
 
-        Optional<User> result = Authentication.authenticate("jane2@test.com", "WrongPass1!", userDAO);
+        Optional<User> result =
+                Authentication.authenticate("jane2@test.com", "WrongPass1!", userDAO);
         assertTrue(result.isEmpty());
     }
 
@@ -112,7 +121,8 @@ public class AuthenticationTest {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         UserDAO userDAO = new UserDAO(conn);
 
-        Optional<User> result = Authentication.authenticate("nobody@test.com", "Password1!", userDAO);
+        Optional<User> result =
+                Authentication.authenticate("nobody@test.com", "Password1!", userDAO);
         assertTrue(result.isEmpty());
     }
 }

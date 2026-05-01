@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.*?>
 <VBox alignment="TOP_CENTER" spacing="8.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.auth.LogInController"
       stylesheets="@../../style/style.css"
@@ -18,34 +11,34 @@
       style="-fx-padding: 20 30 20 30; -fx-background-color: #F0F2F5;">
     <ImageView preserveRatio="true" fitHeight="100">
         <image>
-            <Image url="@../../images/logo.png" />
+            <Image url="@../../images/logo.png"/>
         </image>
     </ImageView>
     <Label text="Train hard. Stay focused. Unlock your best self."
-           styleClass="auth-form-tagline" />
+           styleClass="auth-form-tagline"/>
 
     <HBox alignment="CENTER" maxWidth="Infinity">
         <VBox alignment="TOP_LEFT" spacing="8.0" prefWidth="260.0" maxWidth="260.0">
-            <Label text="Email" styleClass="profile-detail-label" />
+            <Label text="Email" styleClass="profile-detail-label"/>
             <TextField fx:id="emailField" promptText="Enter your email" styleClass="diet-input"
-                       maxWidth="Infinity" />
-            <Label text="Password" styleClass="profile-detail-label" />
+                       maxWidth="Infinity"/>
+            <Label text="Password" styleClass="profile-detail-label"/>
             <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="diet-input"
-                           maxWidth="Infinity" />
+                           maxWidth="Infinity"/>
             <Button fx:id="loginBtn" text="Log In" onAction="#handleLogIn" styleClass="primary-btn"
-                    maxWidth="Infinity" />
+                    maxWidth="Infinity"/>
         </VBox>
     </HBox>
 
-    <Region VBox.vgrow="ALWAYS" />
+    <Region VBox.vgrow="ALWAYS"/>
     <ImageView preserveRatio="true" fitHeight="210">
         <image>
-            <Image url="@../../images/app_features.png" />
+            <Image url="@../../images/app_features.png"/>
         </image>
     </ImageView>
 
     <HBox alignment="CENTER" spacing="4.0">
-        <Label text="Don't have an account?" styleClass="profile-detail-label" />
-        <Hyperlink text="Signup!" onAction="#handleSignup" />
+        <Label text="Don't have an account?" styleClass="profile-detail-label"/>
+        <Hyperlink text="Signup!" onAction="#handleSignup"/>
     </HBox>
 </VBox>

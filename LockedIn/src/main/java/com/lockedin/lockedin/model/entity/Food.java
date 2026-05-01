@@ -1,10 +1,10 @@
 package com.lockedin.lockedin.model.entity;
 
 import java.util.Date;
+
 /**
- * Represents a single food entry logged by a user.
- * Stores nutritional information (calories and macros),
- * the user who logged it, and the date of consumption.
+ * Represents a single food entry logged by a user. Stores nutritional information (calories and
+ * macros), the user who logged it, and the date of consumption.
  */
 public class Food {
     private int id;
@@ -30,57 +30,75 @@ public class Food {
         this.carbs = carbs;
         this.fats = fats;
     }
+
     public String getName() {
         return name;
     }
+
     public int getCalories() {
         return calories;
     }
+
     public int getProtein() {
         return protein;
     }
+
     public int getCarbs() {
         return carbs;
     }
+
     public int getFats() {
         return fats;
     }
+
     public Date getDate() {
         return date;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setCalories(int calories) {
         this.calories = calories;
     }
+
     public void setProtein(int protein) {
         this.protein = protein;
     }
+
     public void setCarbs(int carbs) {
         this.carbs = carbs;
     }
+
     public void setFats(int fats) {
         this.fats = fats;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
     public int getUserID() {
         return userID;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return String.format("%s - %dkcal | %dg protein | %dg carbs | %dg fats", name, calories, protein, carbs, fats);
+        return String.format(
+                "%s - %dkcal | %dg protein | %dg carbs | %dg fats",
+                name, calories, protein, carbs, fats);
     }
 }

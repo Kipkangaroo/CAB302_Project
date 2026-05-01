@@ -3,13 +3,10 @@ package com.lockedin.lockedin.controller.workout;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -17,10 +14,10 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * Controller responsible for running a workout routine.
- * Handles set progression, tracking completed sets, updating UI,
- * and saving workout results when finished.
+ * Controller responsible for running a workout routine. Handles set progression, tracking completed
+ * sets, updating UI, and saving workout results when finished.
  */
 public class StartWorkoutController {
     private static final String WORKOUT_DETAIL_VIEW =
@@ -68,11 +65,10 @@ public class StartWorkoutController {
         workoutNameLabel.setText(routine.name);
         showCurrentSet();
     }
+
     /**
-     * Handles completion of a set:
-     * - Validates reps input
-     * - Records the completed set
-     * - Moves to the next set or finishes the workout
+     * Handles completion of a set: - Validates reps input - Records the completed set - Moves to
+     * the next set or finishes the workout
      */
     @FXML
     public void handleCompleteSet() {
@@ -89,13 +85,14 @@ public class StartWorkoutController {
             return;
         }
 
-        completedSets.add(new WorkoutRoutineDAO.CompletedSetData(
-                exercise.getExerciseId(),
-                exercise.getExerciseName(),
-                setIndex + 1,
-                exercise.getReps(),
-                completedReps,
-                exercise.getRestSeconds()));
+        completedSets.add(
+                new WorkoutRoutineDAO.CompletedSetData(
+                        exercise.getExerciseId(),
+                        exercise.getExerciseName(),
+                        setIndex + 1,
+                        exercise.getReps(),
+                        completedReps,
+                        exercise.getRestSeconds()));
 
         if (isLastSet()) {
             finishWorkout();
@@ -111,11 +108,13 @@ public class StartWorkoutController {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setHeaderText("Leave workout?");
         confirm.setContentText("Progress from this workout will not be saved.");
-        confirm.showAndWait().ifPresent(buttonType -> {
-            if (buttonType == javafx.scene.control.ButtonType.OK) {
-                navigateBack();
-            }
-        });
+        confirm.showAndWait()
+                .ifPresent(
+                        buttonType -> {
+                            if (buttonType == javafx.scene.control.ButtonType.OK) {
+                                navigateBack();
+                            }
+                        });
     }
 
     private void showCurrentSet() {
@@ -131,7 +130,8 @@ public class StartWorkoutController {
         completedRepsField.setText("");
         completedRepsField.setPromptText("Target: " + exercise.getReps() + " reps");
 
-        progressTextLabel.setText("Exercise " + (exerciseIndex + 1) + " of " + routine.exercises.size());
+        progressTextLabel.setText(
+                "Exercise " + (exerciseIndex + 1) + " of " + routine.exercises.size());
         workoutProgressBar.setProgress(totalSets == 0 ? 0 : (double) completed / totalSets);
         completeSetButton.setText(isLastSet() ? "\u2713  Finish Workout" : "\u2713  Complete Set");
 
@@ -173,7 +173,8 @@ public class StartWorkoutController {
 
     private void finishWorkout() {
         workoutProgressBar.setProgress(1);
-        int historyId = routineDAO.saveCompletedWorkout(CurrentUser.getId(), routine, completedSets);
+        int historyId =
+                routineDAO.saveCompletedWorkout(CurrentUser.getId(), routine, completedSets);
         if (historyId < 0) {
             showError("Workout completed, but it could not be saved to history.");
             return;

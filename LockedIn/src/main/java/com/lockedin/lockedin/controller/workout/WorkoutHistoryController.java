@@ -2,16 +2,13 @@ package com.lockedin.lockedin.controller.workout;
 
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -20,9 +17,9 @@ import java.time.format.DateTimeParseException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
- * Controller for the Workout History page.
- * Displays all completed workouts for the current user,
+ * Controller for the Workout History page. Displays all completed workouts for the current user,
  * grouped with exercise summaries and completion timestamps.
  */
 public class WorkoutHistoryController {
@@ -48,9 +45,12 @@ public class WorkoutHistoryController {
                 routineDAO.getCompletedWorkoutsByUser(CurrentUser.getId());
 
         historyContainer.getChildren().clear();
-        historyCountLabel.setText(workouts.isEmpty()
-                ? "No completed workouts yet"
-                : workouts.size() + " completed workout" + (workouts.size() == 1 ? "" : "s"));
+        historyCountLabel.setText(
+                workouts.isEmpty()
+                        ? "No completed workouts yet"
+                        : workouts.size()
+                                + " completed workout"
+                                + (workouts.size() == 1 ? "" : "s"));
 
         if (workouts.isEmpty()) {
             Label empty = new Label("Complete a workout to see it here.");
@@ -76,7 +76,8 @@ public class WorkoutHistoryController {
         VBox titleColumn = new VBox(3, nameLabel, dateLabel);
         HBox.setHgrow(titleColumn, Priority.ALWAYS);
 
-        Label summaryBadge = new Label(workout.totalExercises + " exercises  -  " + workout.totalSets + " sets");
+        Label summaryBadge =
+                new Label(workout.totalExercises + " exercises  -  " + workout.totalSets + " sets");
         summaryBadge.getStyleClass().add("exercise-badge");
 
         HBox topRow = new HBox(8, titleColumn, summaryBadge);
@@ -84,8 +85,11 @@ public class WorkoutHistoryController {
 
         VBox exerciseSummary = new VBox(6);
         Map<String, ExerciseTotals> totals = summarizeExercises(workout.sets);
-        totals.forEach((exerciseName, total) -> exerciseSummary.getChildren().add(
-                buildExerciseSummaryRow(exerciseName, total)));
+        totals.forEach(
+                (exerciseName, total) ->
+                        exerciseSummary
+                                .getChildren()
+                                .add(buildExerciseSummaryRow(exerciseName, total)));
 
         VBox card = new VBox(12, topRow, exerciseSummary);
         card.getStyleClass().add("workout-card");
@@ -94,11 +98,19 @@ public class WorkoutHistoryController {
 
     private HBox buildExerciseSummaryRow(String exerciseName, ExerciseTotals total) {
         Label exerciseLabel = new Label(exerciseName);
-        exerciseLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #263241;");
+        exerciseLabel.setStyle(
+                "-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #263241;");
         exerciseLabel.setWrapText(true);
         HBox.setHgrow(exerciseLabel, Priority.ALWAYS);
 
-        Label detailLabel = new Label(total.sets + " sets  -  " + total.completedReps + "/" + total.targetReps + " reps");
+        Label detailLabel =
+                new Label(
+                        total.sets
+                                + " sets  -  "
+                                + total.completedReps
+                                + "/"
+                                + total.targetReps
+                                + " reps");
         detailLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #1565C0; -fx-font-weight: bold;");
 
         HBox row = new HBox(8, exerciseLabel, detailLabel);
@@ -106,10 +118,12 @@ public class WorkoutHistoryController {
         return row;
     }
 
-    private Map<String, ExerciseTotals> summarizeExercises(List<WorkoutRoutineDAO.CompletedSetData> sets) {
+    private Map<String, ExerciseTotals> summarizeExercises(
+            List<WorkoutRoutineDAO.CompletedSetData> sets) {
         Map<String, ExerciseTotals> totals = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedSetData set : sets) {
-            ExerciseTotals total = totals.computeIfAbsent(set.exerciseName, ignored -> new ExerciseTotals());
+            ExerciseTotals total =
+                    totals.computeIfAbsent(set.exerciseName, ignored -> new ExerciseTotals());
             total.sets++;
             total.targetReps += set.targetReps;
             total.completedReps += set.completedReps;

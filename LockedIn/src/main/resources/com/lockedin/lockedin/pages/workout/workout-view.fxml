@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.workout.WorkoutController"
@@ -26,7 +25,9 @@
         </HBox>
         <Label fx:id="workoutCountLabel" textFill="white"
                style="-fx-font-size: 13px; -fx-opacity: 0.82;">
-            <VBox.margin><Insets top="4"/></VBox.margin>
+            <VBox.margin>
+                <Insets top="4"/>
+            </VBox.margin>
         </Label>
     </VBox>
 
