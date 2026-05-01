@@ -66,6 +66,43 @@
     -fx-padding: 10 12 10 12;
 }
 
+/* DatePicker / ComboBox – same look as .diet-input (auth & other forms) */
+.combo-box-base.diet-input {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.2;
+}
+.combo-box-base.diet-input > .list-cell {
+    -fx-padding: 8 12 8 12;
+}
+
+.date-picker.diet-input {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.2;
+}
+.date-picker.diet-input > .text-field {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-padding: 10 12 10 12;
+}
+.date-picker.diet-input > .arrow-button {
+    -fx-background-color: #E9EEF5;
+    -fx-background-radius: 0 10 10 0;
+}
+
+/* Login tagline – matches app secondary text (e.g. diet buttons) */
+.auth-form-tagline {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F3C5C;
+}
+
 .diet-secondary-btn {
     -fx-background-color: #E9EEF5;
     -fx-background-radius: 20;

@@ -13,22 +13,27 @@
 
 <VBox alignment="TOP_CENTER" spacing="8.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.auth.LogInController"
-      prefWidth="400.0" prefHeight="650.0" style="-fx-padding: 20 30 20 30;">
+      stylesheets="@../../style/style.css"
+      prefWidth="400.0" prefHeight="650.0"
+      style="-fx-padding: 20 30 20 30; -fx-background-color: #F0F2F5;">
     <ImageView preserveRatio="true" fitHeight="130">
         <image>
             <Image url="@../../images/logo.png" />
         </image>
     </ImageView>
     <Label text="Train hard. Stay focused. Unlock your best self."
-           style="-fx-font-size: 14; -fx-text-fill: black; -fx-font-weight: bold;" />
+           styleClass="auth-form-tagline" />
 
     <HBox alignment="CENTER" maxWidth="Infinity">
         <VBox alignment="TOP_LEFT" spacing="8.0" prefWidth="260.0" maxWidth="260.0">
-            <Label text="Email" />
-            <TextField fx:id="emailField" promptText="Enter your email" maxWidth="Infinity" />
-            <Label text="Password" />
-            <PasswordField fx:id="passwordField" promptText="Enter your password" maxWidth="Infinity" />
-            <Button fx:id="loginBtn" text="Log In" onAction="#handleLogIn" maxWidth="Infinity" />
+            <Label text="Email" styleClass="profile-detail-label" />
+            <TextField fx:id="emailField" promptText="Enter your email" styleClass="diet-input"
+                       maxWidth="Infinity" />
+            <Label text="Password" styleClass="profile-detail-label" />
+            <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="diet-input"
+                           maxWidth="Infinity" />
+            <Button fx:id="loginBtn" text="Log In" onAction="#handleLogIn" styleClass="primary-btn"
+                    maxWidth="Infinity" />
         </VBox>
     </HBox>
 
@@ -40,7 +45,7 @@
     </ImageView>
 
     <HBox alignment="CENTER" spacing="4.0">
-        <Label text="Don't have an account?" />
+        <Label text="Don't have an account?" styleClass="profile-detail-label" />
         <Hyperlink text="Signup!" onAction="#handleSignup" />
     </HBox>
 </VBox>
