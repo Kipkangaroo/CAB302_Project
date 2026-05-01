@@ -4,9 +4,11 @@ import com.lockedin.lockedin.model.dao.DBExercisesDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class LockedIn extends Application {
@@ -19,6 +21,9 @@ public class LockedIn extends Application {
                 LockedIn.class.getResource("/com/lockedin/lockedin/pages/auth/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 410, 650);
         stage.setTitle("LockedIN");
+        stage.getIcons().add(new Image(Objects.requireNonNull(
+                LockedIn.class.getResource("/com/lockedin/lockedin/images/logo.png"),
+                "logo.png missing from classpath").toExternalForm()));
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

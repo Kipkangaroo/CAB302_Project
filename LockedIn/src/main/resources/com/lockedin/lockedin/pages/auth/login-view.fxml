@@ -16,7 +16,7 @@
       stylesheets="@../../style/style.css"
       prefWidth="400.0" prefHeight="650.0"
       style="-fx-padding: 20 30 20 30; -fx-background-color: #F0F2F5;">
-    <ImageView preserveRatio="true" fitHeight="130">
+    <ImageView preserveRatio="true" fitHeight="100">
         <image>
             <Image url="@../../images/logo.png" />
         </image>
