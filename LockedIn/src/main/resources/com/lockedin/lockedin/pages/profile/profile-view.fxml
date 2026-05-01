@@ -31,7 +31,7 @@
             <VBox styleClass="profile-card" alignment="CENTER" spacing="8">
                 <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/profileplaceholder.png" />
+                        <Image url="@../../images/profileimage.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="nameLabel" styleClass="profile-name-label" text="" />
