@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,28 +10,39 @@
       fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
-
-    <VBox styleClass="workout-header" fillWidth="true">
-        <HBox alignment="CENTER_LEFT" spacing="8">
-            <Button fx:id="backButton" text="&#x2190;" styleClass="header-btn"
-                    onAction="#handleBack" style="-fx-font-size: 16px;"/>
+    <VBox styleClass="workout-header"
+          fillWidth="true">
+        <HBox alignment="CENTER_LEFT"
+              spacing="8">
+            <Button fx:id="backButton"
+                    text="←"
+                    styleClass="header-btn"
+                    onAction="#handleBack"
+                    style="-fx-font-size: 16px;" />
             <Label text="Workout History"
                    textFill="white"
                    style="-fx-font-size: 22px; -fx-font-weight: bold;"
-                   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                   HBox.hgrow="ALWAYS"
+                   maxWidth="Infinity" />
         </HBox>
-        <Label fx:id="historyCountLabel" textFill="white"
+        <Label fx:id="historyCountLabel"
+               textFill="white"
                style="-fx-font-size: 13px; -fx-opacity: 0.82;">
             <VBox.margin>
-                <Insets top="4"/>
+                <Insets top="4" />
             </VBox.margin>
         </Label>
     </VBox>
-
-    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" hbarPolicy="NEVER"
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                hbarPolicy="NEVER"
                 styleClass="workout-scroll">
-        <VBox styleClass="workout-page-bg" spacing="10" fillWidth="true">
-            <VBox fx:id="historyContainer" spacing="10" fillWidth="true"/>
+        <VBox styleClass="workout-page-bg"
+              spacing="10"
+              fillWidth="true">
+            <VBox fx:id="historyContainer"
+                  spacing="10"
+                  fillWidth="true" />
         </VBox>
     </ScrollPane>
 </VBox>
