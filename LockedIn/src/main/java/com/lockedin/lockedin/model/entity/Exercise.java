@@ -1,9 +1,9 @@
 package com.lockedin.lockedin.model.entity;
 
 /**
- * Represents an exercise definition loaded from the exercise database.
- * Stores metadata such as name, instructions, category, primary muscle,
- * and an image ID used to construct URLs for form demonstration images.
+ * Represents an exercise definition loaded from the exercise database. Stores metadata such as
+ * name, instructions, category, primary muscle, and an image ID used to construct URLs for form
+ * demonstration images.
  */
 public class Exercise {
     private int id;
@@ -12,9 +12,16 @@ public class Exercise {
     private String category;
     private String primaryMuscle;
     private String exerciseImageId;
-    private static final String baseImageUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
+    private static final String baseImageUrl =
+            "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
 
-    public Exercise(int id, String name, String instruction, String category, String primaryMuscle, String exerciseImageId) {
+    public Exercise(
+            int id,
+            String name,
+            String instruction,
+            String category,
+            String primaryMuscle,
+            String exerciseImageId) {
         this.id = id;
         this.name = name;
         this.instruction = instruction;

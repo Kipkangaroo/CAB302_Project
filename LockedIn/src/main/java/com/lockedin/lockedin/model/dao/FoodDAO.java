@@ -2,17 +2,14 @@ package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
 import com.lockedin.lockedin.model.entity.Food;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * Data Access Object for storing and retrieving food entries.
- * Handles table creation and provides a connection to the food database.
+ * Data Access Object for storing and retrieving food entries. Handles table creation and provides a
+ * connection to the food database.
  */
 public class FoodDAO {
     private static final String FOOD_DB_FILE = "food.db";
@@ -29,16 +26,17 @@ public class FoodDAO {
     }
 
     private void createFoodTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS foods (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "user_id INTEGER NOT NULL, " +
-                "name TEXT NOT NULL, " +
-                "calories INT NOT NULL, " +
-                "protein INT NOT NULL, " +
-                "carbs INT NOT NULL, " +
-                "fats INT NOT NULL, " +
-                "date TEXT NOT NULL" +
-                ")";
+        String sql =
+                "CREATE TABLE IF NOT EXISTS foods ("
+                        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + "user_id INTEGER NOT NULL, "
+                        + "name TEXT NOT NULL, "
+                        + "calories INT NOT NULL, "
+                        + "protein INT NOT NULL, "
+                        + "carbs INT NOT NULL, "
+                        + "fats INT NOT NULL, "
+                        + "date TEXT NOT NULL"
+                        + ")";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
@@ -48,8 +46,11 @@ public class FoodDAO {
     }
 
     public void addFood(Food food) {
-        String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        String sql =
+                "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
+                        + " ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement =
+                connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, food.getUserID());
             statement.setString(2, food.getName());
             statement.setInt(3, food.getCalories());
@@ -69,7 +70,9 @@ public class FoodDAO {
     }
 
     public List<Food> getFoodsByDate(java.util.Date targetDate, int userID) {
-        String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE date = ? AND user_id = ? ORDER BY name";
+        String sql =
+                "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
+                        + " date = ? AND user_id = ? ORDER BY name";
         List<Food> foods = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, new Date(targetDate.getTime()).toString());
@@ -96,7 +99,10 @@ public class FoodDAO {
     }
 
     public int getDailyTotalByAttribute(java.util.Date targetDate, String attribute, int userID) {
-        String sql = "SELECT COALESCE(SUM(" + attribute + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
+        String sql =
+                "SELECT COALESCE(SUM("
+                        + attribute
+                        + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, new Date(targetDate.getTime()).toString());
             statement.setInt(2, userID);

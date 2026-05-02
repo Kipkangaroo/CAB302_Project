@@ -9,8 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Singleton-style SQLite connection manager.
- * Ensures each database file is opened once and reused across DAOs.
+ * Singleton-style SQLite connection manager. Ensures each database file is opened once and reused
+ * across DAOs.
  */
 public class SqliteConnection {
     private static Connection instance = null;
@@ -25,7 +25,8 @@ public class SqliteConnection {
             instance = DriverManager.getConnection(url);
             activeDbPath = dbPath;
         } catch (SQLException | IOException exception) {
-            throw new RuntimeException("Failed to connect to SQLite database at " + dbPath, exception);
+            throw new RuntimeException(
+                    "Failed to connect to SQLite database at " + dbPath, exception);
         }
     }
 

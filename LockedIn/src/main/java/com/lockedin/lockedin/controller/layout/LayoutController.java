@@ -1,44 +1,44 @@
 package com.lockedin.lockedin.controller.layout;
 
-import java.io.IOException;
-import java.util.Objects;
-import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.controller.auth.LogInController;
+import com.lockedin.lockedin.model.entity.User;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
+import java.util.Objects;
+
 /**
- * Controller for the main application layout.
- * Handles navigation between Workout, Diet, and Profile pages,
- * and updates the active navigation button styling.
+ * Controller for the main application layout. Handles navigation between Workout, Diet, and Profile
+ * pages, and updates the active navigation button styling.
  */
 public class LayoutController {
 
     /** The currently logged-in user, retrieved after login */
     private User user;
 
-    public static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    public static final String WORKOUT_VIEW =
+            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     public static final String DIET_VIEW = "/com/lockedin/lockedin/pages/diet/diet-view.fxml";
-    public static final String PROFILE_VIEW = "/com/lockedin/lockedin/pages/profile/profile-view.fxml";
-    @FXML
-    public StackPane pageContainer;
-    @FXML
-    public Button btnWorkout;
-    @FXML
-    public Button btnDiet;
-    @FXML
-    public Button btnProfile;
+    public static final String PROFILE_VIEW =
+            "/com/lockedin/lockedin/pages/profile/profile-view.fxml";
+    @FXML public StackPane pageContainer;
+    @FXML public Button btnWorkout;
+    @FXML public Button btnDiet;
+    @FXML public Button btnProfile;
 
     private static final String INACTIVE = "-fx-scale-x: 1; -fx-scale-y: 1; -fx-opacity: 1;";
-    private static final String ACTIVE = "-fx-scale-x: 0.95; -fx-scale-y: 0.95; "
-            + "-fx-opacity: 0.8; -fx-border-color: transparent transparent #378ADD transparent;"
-            + "-fx-border-width: 0 0 2 0;";
+    private static final String ACTIVE =
+            "-fx-scale-x: 0.95; -fx-scale-y: 0.95; -fx-opacity: 0.8; -fx-border-color: transparent"
+                    + " transparent #378ADD transparent;-fx-border-width: 0 0 2 0;";
+
     @FXML
     public void initialize() {
-        user = LogInController.getLoggedInUser();    
+        user = LogInController.getLoggedInUser();
         showWorkoutPage();
     }
 

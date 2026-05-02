@@ -1,8 +1,5 @@
 package com.lockedin.lockedin.controller.auth;
 
-import java.io.IOException;
-import java.util.Optional;
-
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.entity.User;
 
@@ -13,21 +10,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-/**
- * Utility class providing authentication-related helpers such as
- * email/password validation, user login verification, and scene switching.
- */
+import java.io.IOException;
+import java.util.Optional;
 
+/**
+ * Utility class providing authentication-related helpers such as email/password validation, user
+ * login verification, and scene switching.
+ */
 public class Authentication {
-    private Authentication() {
-    }
+    private Authentication() {}
 
     public static boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 
     public static boolean isValidPassword(String password) {
-        return password.length() >= 8 && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$");
+        return password.length() >= 8
+                && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$");
     }
 
     public static void showError(String header, String content) {
@@ -75,5 +74,4 @@ public class Authentication {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

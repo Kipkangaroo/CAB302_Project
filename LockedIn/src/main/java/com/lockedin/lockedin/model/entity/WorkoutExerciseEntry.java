@@ -1,9 +1,8 @@
 package com.lockedin.lockedin.model.entity;
 
 /**
- * Represents a single exercise entry inside a workout routine.
- * Stores the exercise reference (ID + name) along with sets, reps,
- * and rest time. Used both when building routines and when loading
+ * Represents a single exercise entry inside a workout routine. Stores the exercise reference (ID +
+ * name) along with sets, reps, and rest time. Used both when building routines and when loading
  * them from the database.
  */
 public class WorkoutExerciseEntry {
@@ -20,8 +19,8 @@ public class WorkoutExerciseEntry {
     }
 
     /** Used when loading an existing entry from DB. */
-    public WorkoutExerciseEntry(int id, int exerciseId, String exerciseName,
-                                int sets, int reps, int restSeconds) {
+    public WorkoutExerciseEntry(
+            int id, int exerciseId, String exerciseName, int sets, int reps, int restSeconds) {
         this.id = id;
         this.exerciseId = exerciseId;
         this.exerciseName = exerciseName;
@@ -30,12 +29,29 @@ public class WorkoutExerciseEntry {
         this.restSeconds = restSeconds;
     }
 
-    public int getId() { return id; }
-    public int getExerciseId() { return exerciseId; }
-    public String getExerciseName() { return exerciseName; }
-    public int getSets() { return sets; }
-    public int getReps() { return reps; }
-    public int getRestSeconds() { return restSeconds; }
+    public int getId() {
+        return id;
+    }
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public int getRestSeconds() {
+        return restSeconds;
+    }
 
     @Override
     public String toString() {

@@ -1,93 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.workout.StartWorkoutController"
       fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
-
-    <VBox styleClass="workout-header" fillWidth="true">
-        <HBox alignment="CENTER_LEFT" spacing="10">
-            <Button fx:id="backButton" text="&#x2190;" styleClass="header-btn"
-                    onAction="#handleBack" style="-fx-font-size: 16px;"/>
-            <VBox HBox.hgrow="ALWAYS" spacing="2">
-                <Label fx:id="workoutNameLabel" textFill="white"
-                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-                <Label fx:id="progressTextLabel" textFill="white"
-                       style="-fx-font-size: 12px; -fx-opacity: 0.9;"/>
+    <VBox styleClass="workout-header"
+          fillWidth="true">
+        <HBox alignment="CENTER_LEFT"
+              spacing="10">
+            <Button fx:id="backButton"
+                    text="←"
+                    styleClass="header-btn"
+                    onAction="#handleBack"
+                    style="-fx-font-size: 16px;" />
+            <VBox HBox.hgrow="ALWAYS"
+                  spacing="2">
+                <Label fx:id="workoutNameLabel"
+                       textFill="white"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                <Label fx:id="progressTextLabel"
+                       textFill="white"
+                       style="-fx-font-size: 12px; -fx-opacity: 0.9;" />
             </VBox>
         </HBox>
-        <ProgressBar fx:id="workoutProgressBar" maxWidth="Infinity" progress="0"
+        <ProgressBar fx:id="workoutProgressBar"
+                     maxWidth="Infinity"
+                     progress="0"
                      styleClass="workout-progress-bar">
-            <VBox.margin><Insets top="12"/></VBox.margin>
+            <VBox.margin>
+                <Insets top="12" />
+            </VBox.margin>
         </ProgressBar>
     </VBox>
-
-    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" hbarPolicy="NEVER"
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                hbarPolicy="NEVER"
                 styleClass="workout-scroll">
-        <VBox styleClass="workout-page-bg" spacing="14" fillWidth="true">
-            <StackPane styleClass="exercise-visualization" minHeight="260">
-                <VBox alignment="CENTER" spacing="8">
-                    <Label text="&#x1F4AA;" style="-fx-font-size: 72px;"/>
+        <VBox styleClass="workout-page-bg"
+              spacing="14"
+              fillWidth="true">
+            <StackPane styleClass="exercise-visualization"
+                       minHeight="260">
+                <VBox alignment="CENTER"
+                      spacing="8">
+                    <Label text="💪"
+                           style="-fx-font-size: 72px;" />
                     <Label text="Exercise Visualization"
-                           style="-fx-text-fill: #0f2942; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+                           style="-fx-text-fill: #0f2942; -fx-font-size: 13px; -fx-font-weight: bold;" />
                 </VBox>
             </StackPane>
-
-            <VBox styleClass="active-workout-card" spacing="14" fillWidth="true">
+            <VBox styleClass="active-workout-card"
+                  spacing="14"
+                  fillWidth="true">
                 <Label fx:id="exerciseNameLabel"
                        style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #061424;"
-                       wrapText="true"/>
-
-                <HBox spacing="12" alignment="CENTER" fillHeight="true">
-                    <VBox styleClass="workout-stat-box stat-blue" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="&#x25CE;" style="-fx-font-size: 20px; -fx-text-fill: #1f6fff;"/>
-                        <Label text="Sets" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="setsLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #103e9f;"/>
+                       wrapText="true" />
+                <HBox spacing="12"
+                      alignment="CENTER"
+                      fillHeight="true">
+                    <VBox styleClass="workout-stat-box stat-blue"
+                          alignment="CENTER"
+                          spacing="4"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="◎"
+                               style="-fx-font-size: 20px; -fx-text-fill: #1f6fff;" />
+                        <Label text="Sets"
+                               style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
+                        <Label fx:id="setsLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #103e9f;" />
                     </VBox>
-                    <VBox styleClass="workout-stat-box stat-green" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="&#x25CE;" style="-fx-font-size: 20px; -fx-text-fill: #0bbd62;"/>
-                        <Label text="Reps" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="repsLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #087f42;"/>
+                    <VBox styleClass="workout-stat-box stat-green"
+                          alignment="CENTER"
+                          spacing="4"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="◎"
+                               style="-fx-font-size: 20px; -fx-text-fill: #0bbd62;" />
+                        <Label text="Reps"
+                               style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
+                        <Label fx:id="repsLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #087f42;" />
                     </VBox>
-                    <VBox styleClass="workout-stat-box stat-orange" alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="&#x23F1;" style="-fx-font-size: 20px; -fx-text-fill: #ff5b22;"/>
-                        <Label text="Rest" style="-fx-font-size: 11px; -fx-text-fill: #31445c;"/>
-                        <Label fx:id="restLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #8f3108;"/>
+                    <VBox styleClass="workout-stat-box stat-orange"
+                          alignment="CENTER"
+                          spacing="4"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="⏱"
+                               style="-fx-font-size: 20px; -fx-text-fill: #ff5b22;" />
+                        <Label text="Rest"
+                               style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
+                        <Label fx:id="restLabel"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #8f3108;" />
                     </VBox>
                 </HBox>
-
-                <VBox styleClass="set-target-panel" spacing="6">
+                <VBox styleClass="set-target-panel"
+                      spacing="6">
                     <Label fx:id="setLabel"
-                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                    <Label fx:id="targetLabel" textFill="white"
-                           style="-fx-font-size: 12px; -fx-opacity: 0.92;"/>
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                    <Label fx:id="targetLabel"
+                           textFill="white"
+                           style="-fx-font-size: 12px; -fx-opacity: 0.92;" />
                 </VBox>
-
                 <VBox spacing="8">
                     <Label text="Reps Completed"
-                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #263241;"/>
-                    <TextField fx:id="completedRepsField" promptText="Target reps"
-                               styleClass="reps-input"/>
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #263241;" />
+                    <TextField fx:id="completedRepsField"
+                               promptText="Target reps"
+                               styleClass="reps-input" />
                 </VBox>
-
-                <Button fx:id="completeSetButton" text="&#x2713;  Complete Set"
+                <Button fx:id="completeSetButton"
+                        text="✓  Complete Set"
                         onAction="#handleCompleteSet"
                         maxWidth="Infinity"
-                        styleClass="complete-set-btn"/>
-
-                <HBox fx:id="upNextBox" alignment="CENTER_LEFT" spacing="10" styleClass="up-next-box">
-                    <VBox HBox.hgrow="ALWAYS" spacing="2">
-                        <Label text="Up Next" style="-fx-font-size: 11px; -fx-text-fill: #4f6172;"/>
+                        styleClass="complete-set-btn" />
+                <HBox fx:id="upNextBox"
+                      alignment="CENTER_LEFT"
+                      spacing="10"
+                      styleClass="up-next-box">
+                    <VBox HBox.hgrow="ALWAYS"
+                          spacing="2">
+                        <Label text="Up Next"
+                               style="-fx-font-size: 11px; -fx-text-fill: #4f6172;" />
                         <Label fx:id="upNextLabel"
-                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #061424;"/>
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #061424;" />
                     </VBox>
-                    <Label text="&#x203A;" style="-fx-font-size: 28px; -fx-text-fill: #1f7fff;"/>
+                    <Label text="›"
+                           style="-fx-font-size: 28px; -fx-text-fill: #1f7fff;" />
                 </HBox>
             </VBox>
         </VBox>

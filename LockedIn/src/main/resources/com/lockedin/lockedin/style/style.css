@@ -5,9 +5,18 @@
     -fx-border-color: transparent;
     -fx-padding: 8 0 8 0;
 }
-.nav-btn:hover  { -fx-background-color: transparent; }
-.nav-btn:pressed { -fx-background-color: transparent; }
-.nav-bar { -fx-background-color: #bcc6d4; }
+
+.nav-btn:hover {
+    -fx-background-color: transparent;
+}
+
+.nav-btn:pressed {
+    -fx-background-color: transparent;
+}
+
+.nav-bar {
+    -fx-background-color: #bcc6d4;
+}
 
 /* ===== Diet Page ===== */
 .diet-header {
@@ -32,9 +41,11 @@
     -fx-border-color: transparent;
     -fx-padding: 0;
 }
-.diet-scroll > .viewport {
+
+.diet-scroll>.viewport {
     -fx-background-color: #F0F2F5;
 }
+
 .diet-scroll .scroll-bar:vertical,
 .diet-scroll .scroll-bar:horizontal {
     -fx-background-color: transparent;
@@ -48,7 +59,7 @@
 .diet-card {
     -fx-background-color: white;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 10, 0, 0, 2);
     -fx-padding: 14;
 }
 
@@ -74,7 +85,8 @@
     -fx-border-radius: 10;
     -fx-border-width: 1.2;
 }
-.combo-box-base.diet-input > .list-cell {
+
+.combo-box-base.diet-input>.list-cell {
     -fx-padding: 8 12 8 12;
 }
 
@@ -85,13 +97,15 @@
     -fx-border-radius: 10;
     -fx-border-width: 1.2;
 }
-.date-picker.diet-input > .text-field {
+
+.date-picker.diet-input>.text-field {
     -fx-background-color: white;
     -fx-background-insets: 0;
     -fx-border-width: 0;
     -fx-padding: 10 12 10 12;
 }
-.date-picker.diet-input > .arrow-button {
+
+.date-picker.diet-input>.arrow-button {
     -fx-background-color: #E9EEF5;
     -fx-background-radius: 0 10 10 0;
 }
@@ -111,6 +125,7 @@
     -fx-cursor: hand;
     -fx-padding: 8 14 8 14;
 }
+
 .diet-secondary-btn:hover {
     -fx-background-color: #DDE6F2;
 }
@@ -127,11 +142,13 @@
 .diet-progress-bar {
     -fx-accent: #43A047;
 }
-.diet-progress-bar > .track {
+
+.diet-progress-bar>.track {
     -fx-background-color: #E0E0E0;
     -fx-background-radius: 8;
 }
-.diet-progress-bar > .bar {
+
+.diet-progress-bar>.bar {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
     -fx-background-radius: 8;
     -fx-background-insets: 0;
@@ -143,6 +160,7 @@
     -fx-border-color: #D8DEE8;
     -fx-border-radius: 10;
 }
+
 .diet-food-list .list-cell {
     -fx-padding: 10 12 10 12;
 }
@@ -165,9 +183,11 @@
     -fx-border-color: transparent;
     -fx-padding: 0;
 }
-.workout-scroll > .viewport {
+
+.workout-scroll>.viewport {
     -fx-background-color: #F0F2F5;
 }
+
 .workout-scroll .scroll-bar:vertical,
 .workout-scroll .scroll-bar:horizontal {
     -fx-background-color: transparent;
@@ -177,7 +197,7 @@
 .workout-card {
     -fx-background-color: white;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 10, 0, 0, 2);
     -fx-padding: 14;
     -fx-cursor: hand;
 }
@@ -211,7 +231,7 @@
 }
 
 .ai-card-icon-bg {
-    -fx-background-color: rgba(255,255,255,0.20);
+    -fx-background-color: rgba(255, 255, 255, 0.20);
     -fx-background-radius: 22;
     -fx-min-width: 44px;
     -fx-max-width: 44px;
@@ -221,7 +241,7 @@
 }
 
 .ai-powered-pill {
-    -fx-background-color: rgba(255,255,255,0.25);
+    -fx-background-color: rgba(255, 255, 255, 0.25);
     -fx-background-radius: 12;
     -fx-text-fill: white;
     -fx-font-size: 11px;
@@ -238,13 +258,14 @@
     -fx-font-size: 15px;
     -fx-cursor: hand;
 }
+
 .primary-btn:hover {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #0d47a1, #2e7d32);
 }
 
 /* ===== Header Buttons (History / Plus) ===== */
 .header-btn {
-    -fx-background-color: rgba(255,255,255,0.20);
+    -fx-background-color: rgba(255, 255, 255, 0.20);
     -fx-background-radius: 20;
     -fx-text-fill: white;
     -fx-font-size: 15px;
@@ -253,8 +274,9 @@
     -fx-padding: 6 12 6 12;
     -fx-border-color: transparent;
 }
+
 .header-btn:hover {
-    -fx-background-color: rgba(255,255,255,0.35);
+    -fx-background-color: rgba(255, 255, 255, 0.35);
 }
 
 /* ===== Small transparent icon buttons on cards ===== */
@@ -266,6 +288,7 @@
     -fx-background-insets: 0;
     -fx-font-size: 14px;
 }
+
 .icon-btn:hover {
     -fx-background-color: #f0f0f0;
     -fx-background-radius: 6;
@@ -299,20 +322,23 @@
     -fx-cursor: hand;
     -fx-padding: 12 0 12 0;
 }
+
 .add-exercise-dashed:hover {
     -fx-background-color: #E3F2FD;
 }
 
 /* ===== Active Workout ===== */
 .workout-progress-bar {
-    -fx-accent: rgba(255,255,255,0.55);
+    -fx-accent: rgba(255, 255, 255, 0.55);
 }
-.workout-progress-bar > .track {
-    -fx-background-color: rgba(255,255,255,0.25);
+
+.workout-progress-bar>.track {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
     -fx-background-radius: 4;
 }
-.workout-progress-bar > .bar {
-    -fx-background-color: rgba(255,255,255,0.65);
+
+.workout-progress-bar>.bar {
+    -fx-background-color: rgba(255, 255, 255, 0.65);
     -fx-background-radius: 4;
     -fx-background-insets: 0;
 }
@@ -328,7 +354,7 @@
 .active-workout-card {
     -fx-background-color: white;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 12, 0, 0, 3);
     -fx-padding: 20;
 }
 
@@ -339,14 +365,17 @@
     -fx-padding: 10;
     -fx-min-height: 94px;
 }
+
 .stat-blue {
     -fx-background-color: #F1F7FF;
     -fx-border-color: #B8D5FF;
 }
+
 .stat-green {
     -fx-background-color: #F0FFF6;
     -fx-border-color: #B9EACD;
 }
+
 .stat-orange {
     -fx-background-color: #FFF7F0;
     -fx-border-color: #FFD0B8;
@@ -410,9 +439,11 @@
     -fx-border-color: transparent;
     -fx-padding: 0;
 }
-.profile-scroll > .viewport {
+
+.profile-scroll>.viewport {
     -fx-background-color: #F0F2F5;
 }
+
 .profile-scroll .scroll-bar:vertical,
 .profile-scroll .scroll-bar:horizontal {
     -fx-background-color: transparent;
@@ -426,7 +457,7 @@
 .profile-card {
     -fx-background-color: white;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 10, 0, 0, 2);
     -fx-padding: 14;
 }
 
@@ -452,5 +483,3 @@
     -fx-stroke: #1E2A38;
     -fx-stroke-width: 1;
 }
-
-

@@ -5,6 +5,7 @@ import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.Exercise;
 import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,15 +13,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+
 import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 
 /**
- * Controller for creating a new workout routine.
- * Handles exercise selection, validation, list management,
- * and saving the final routine to the database.
+ * Controller for creating a new workout routine. Handles exercise selection, validation, list
+ * management, and saving the final routine to the database.
  */
 public class CreateWorkoutController {
 
@@ -41,10 +45,8 @@ public class CreateWorkoutController {
     private WorkoutRoutineDAO routineDAO;
 
     /**
-     * Initializes the form:
-     * - Loads exercises from DB
-     * - Sets default values
-     * - Configures the exercise list cell factory
+     * Initializes the form: - Loads exercises from DB - Sets default values - Configures the
+     * exercise list cell factory
      */
     @FXML
     public void initialize() {
@@ -65,14 +67,18 @@ public class CreateWorkoutController {
     @FXML
     public void handleAddExercise() {
         Exercise selected = exerciseCombo.getValue();
-        if (selected == null) { showError("Please select an exercise."); return; }
+        if (selected == null) {
+            showError("Please select an exercise.");
+            return;
+        }
         try {
             int sets = Integer.parseInt(setsField.getText().trim());
             int reps = Integer.parseInt(repsField.getText().trim());
             int rest = Integer.parseInt(restField.getText().trim());
             if (sets <= 0 || reps <= 0 || rest < 0) throw new NumberFormatException();
-            entries.add(new WorkoutExerciseEntry(
-                    0, selected.getId(), selected.getName(), sets, reps, rest));
+            entries.add(
+                    new WorkoutExerciseEntry(
+                            0, selected.getId(), selected.getName(), sets, reps, rest));
         } catch (NumberFormatException e) {
             showError("Sets and reps must be positive numbers; rest \u2265 0.");
         }
@@ -81,15 +87,23 @@ public class CreateWorkoutController {
     @FXML
     public void handleSave() {
         String name = workoutNameField.getText().trim();
-        if (name.isEmpty()) { showError("Please enter a workout name."); return; }
-        if (entries.isEmpty()) { showError("Please add at least one exercise."); return; }
-        routineDAO.saveRoutine(CurrentUser.getId(), name,
-                workoutNotesField.getText().trim(), entries);
+        if (name.isEmpty()) {
+            showError("Please enter a workout name.");
+            return;
+        }
+        if (entries.isEmpty()) {
+            showError("Please add at least one exercise.");
+            return;
+        }
+        routineDAO.saveRoutine(
+                CurrentUser.getId(), name, workoutNotesField.getText().trim(), entries);
         navigateBack();
     }
 
     @FXML
-    public void handleBack() { navigateBack(); }
+    public void handleBack() {
+        navigateBack();
+    }
 
     private void navigateBack() {
         try {
@@ -111,7 +125,7 @@ public class CreateWorkoutController {
     // ── Custom cell ──────────────────────────────────────────────────────────
 
     private class ExerciseEntryCell extends ListCell<WorkoutExerciseEntry> {
-        private final HBox  content;
+        private final HBox content;
         private final Label label;
         private final Button removeBtn;
 
@@ -132,7 +146,10 @@ public class CreateWorkoutController {
         @Override
         protected void updateItem(WorkoutExerciseEntry item, boolean empty) {
             super.updateItem(item, empty);
-            if (empty || item == null) { setGraphic(null); return; }
+            if (empty || item == null) {
+                setGraphic(null);
+                return;
+            }
             label.setText(item.toString());
             removeBtn.setOnAction(e -> entries.remove(item));
             setGraphic(content);

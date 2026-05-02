@@ -1,6 +1,9 @@
 package com.lockedin.lockedin.model.dao;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +12,9 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 /**
- * Unit tests for WorkoutRoutineDAO using an isolated in‑memory SQLite database.
- * Verifies routine creation, retrieval, deletion, and exercise‑level operations.
+ * Unit tests for WorkoutRoutineDAO using an isolated in‑memory SQLite database. Verifies routine
+ * creation, retrieval, deletion, and exercise‑level operations.
  */
 public class WorkoutRoutineDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
@@ -28,8 +30,7 @@ public class WorkoutRoutineDAOTest {
     private List<WorkoutExerciseEntry> twoExercises() {
         return List.of(
                 new WorkoutExerciseEntry(1, "Squat", 3, 10),
-                new WorkoutExerciseEntry(2, "Bench Press", 4, 8)
-        );
+                new WorkoutExerciseEntry(2, "Bench Press", 4, 8));
     }
 
     @Test
@@ -107,8 +108,11 @@ public class WorkoutRoutineDAOTest {
         int entryId = before.exercises.get(0).getId();
         workoutDAO.updateExercise(entryId, 5, 6, 90);
         WorkoutRoutineDAO.RoutineData after = workoutDAO.getRoutineById(id);
-        WorkoutExerciseEntry updated = after.exercises.stream()
-                .filter(e -> e.getId() == entryId).findFirst().orElseThrow();
+        WorkoutExerciseEntry updated =
+                after.exercises.stream()
+                        .filter(e -> e.getId() == entryId)
+                        .findFirst()
+                        .orElseThrow();
         assertEquals(5, updated.getSets());
         assertEquals(6, updated.getReps());
         assertEquals(90, updated.getRestSeconds());

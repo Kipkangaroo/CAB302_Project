@@ -7,9 +7,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 /**
- * Represents a user profile, including personal details,
- * authentication data, and fitness goal calculations.
- * Provides helper methods for computing TDEE and macro targets.
+ * Represents a user profile, including personal details, authentication data, and fitness goal
+ * calculations. Provides helper methods for computing TDEE and macro targets.
  */
 public class User {
     private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
@@ -26,11 +25,18 @@ public class User {
     private String fitnessGoal;
     private String passwordHash;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(int id, String firstName, String lastName, String email, LocalDate dateOfBirth, double height, double weight,
-            String password, String fitnessGoal) {
+    public User(
+            int id,
+            String firstName,
+            String lastName,
+            String email,
+            LocalDate dateOfBirth,
+            double height,
+            double weight,
+            String password,
+            String fitnessGoal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -135,7 +141,7 @@ public class User {
     }
 
     public double getTDEE() {
-        //Mifflin-St Jeor BMR formula
+        // Mifflin-St Jeor BMR formula
         double BMR = 10 * weight + 6.25 * height - 5 * getAge() + 5;
         double TDEE = BMR * 1.2;
         return TDEE;

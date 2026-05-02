@@ -1,6 +1,9 @@
 package com.lockedin.lockedin.model.dao;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.lockedin.lockedin.model.entity.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,20 +12,25 @@ import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Unit tests for UserDAO using an isolated in‑memory SQLite database.
- * Verifies user creation, retrieval, authentication, and field persistence.
+ * Unit tests for UserDAO using an isolated in‑memory SQLite database. Verifies user creation,
+ * retrieval, authentication, and field persistence.
  */
 public class UserDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private UserDAO userDAO;
 
     private User makeUser(String email) {
-        return new User(0, "Jane", "Doe", email,
-                LocalDate.of(2000, 1, 1), 170.0, 65.0,
-                "Password1!", "Build Muscle");
+        return new User(
+                0,
+                "Jane",
+                "Doe",
+                email,
+                LocalDate.of(2000, 1, 1),
+                170.0,
+                65.0,
+                "Password1!",
+                "Build Muscle");
     }
 
     @BeforeEach

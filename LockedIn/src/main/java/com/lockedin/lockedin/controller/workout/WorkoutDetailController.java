@@ -4,6 +4,7 @@ import com.lockedin.lockedin.model.dao.DBExercisesDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.Exercise;
 import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,16 +12,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+
 import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.util.List;
+
 /**
- * Controller for the Workout Detail page.
- * Displays all exercises in a selected routine and allows editing,
- * deleting, and adding exercises, as well as starting the workout.
+ * Controller for the Workout Detail page. Displays all exercises in a selected routine and allows
+ * editing, deleting, and adding exercises, as well as starting the workout.
  */
 public class WorkoutDetailController {
 
@@ -31,27 +31,32 @@ public class WorkoutDetailController {
 
     private static int currentRoutineId = -1;
 
-    public static void setCurrentRoutineId(int id) { currentRoutineId = id; }
+    public static void setCurrentRoutineId(int id) {
+        currentRoutineId = id;
+    }
 
     @FXML private Button backButton;
-    @FXML private Label  workoutNameLabel;
-    @FXML private Label  workoutNotesLabel;
-    @FXML private VBox   exercisesContainer;
+    @FXML private Label workoutNameLabel;
+    @FXML private Label workoutNotesLabel;
+    @FXML private VBox exercisesContainer;
 
     private WorkoutRoutineDAO routineDAO;
-    private DBExercisesDAO    exercisesDAO;
+    private DBExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData currentRoutine;
 
     @FXML
     public void initialize() {
-        routineDAO   = new WorkoutRoutineDAO();
+        routineDAO = new WorkoutRoutineDAO();
         exercisesDAO = new DBExercisesDAO();
         loadRoutine();
     }
 
     private void loadRoutine() {
         currentRoutine = routineDAO.getRoutineById(currentRoutineId);
-        if (currentRoutine == null) { navigateBack(); return; }
+        if (currentRoutine == null) {
+            navigateBack();
+            return;
+        }
 
         workoutNameLabel.setText(currentRoutine.name);
         workoutNotesLabel.setText(currentRoutine.notes);
@@ -86,9 +91,15 @@ public class WorkoutDetailController {
         nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #1a1a1a;");
         nameLabel.setWrapText(true);
 
-        Label detailLabel = new Label(
-                "\u2299  " + entry.getSets() + " \u00D7 " + entry.getReps()
-                + "    \u23F1  " + entry.getRestSeconds() + "s");
+        Label detailLabel =
+                new Label(
+                        "\u2299  "
+                                + entry.getSets()
+                                + " \u00D7 "
+                                + entry.getReps()
+                                + "    \u23F1  "
+                                + entry.getRestSeconds()
+                                + "s");
         detailLabel.setStyle("-fx-text-fill: #1565C0; -fx-font-size: 12px;");
 
         VBox textCol = new VBox(4, nameLabel, detailLabel);
@@ -104,10 +115,11 @@ public class WorkoutDetailController {
         Button delBtn = new Button("\u2715");
         delBtn.getStyleClass().add("icon-btn");
         delBtn.setStyle("-fx-text-fill: #e53935;");
-        delBtn.setOnAction(e -> {
-            routineDAO.removeExerciseFromRoutine(entry.getId());
-            loadRoutine();
-        });
+        delBtn.setOnAction(
+                e -> {
+                    routineDAO.removeExerciseFromRoutine(entry.getId());
+                    loadRoutine();
+                });
 
         HBox card = new HBox(12, numCircle, textCol, editBtn, delBtn);
         card.getStyleClass().add("workout-card");
@@ -132,24 +144,27 @@ public class WorkoutDetailController {
         grid.setHgap(12);
         grid.setVgap(10);
         grid.setPadding(new Insets(14));
-        grid.addRow(0, new Label("Sets:"),    setsField);
-        grid.addRow(1, new Label("Reps:"),    repsField);
+        grid.addRow(0, new Label("Sets:"), setsField);
+        grid.addRow(1, new Label("Reps:"), repsField);
         grid.addRow(2, new Label("Rest (s):"), restField);
 
         dialog.getDialogPane().setContent(grid);
 
-        dialog.showAndWait().ifPresent(bt -> {
-            if (bt != ButtonType.OK) return;
-            try {
-                int sets = Integer.parseInt(setsField.getText().trim());
-                int reps = Integer.parseInt(repsField.getText().trim());
-                int rest = Integer.parseInt(restField.getText().trim());
-                if (sets > 0 && reps > 0 && rest >= 0) {
-                    routineDAO.updateExercise(entry.getId(), sets, reps, rest);
-                    loadRoutine();
-                }
-            } catch (NumberFormatException ignored) {}
-        });
+        dialog.showAndWait()
+                .ifPresent(
+                        bt -> {
+                            if (bt != ButtonType.OK) return;
+                            try {
+                                int sets = Integer.parseInt(setsField.getText().trim());
+                                int reps = Integer.parseInt(repsField.getText().trim());
+                                int rest = Integer.parseInt(restField.getText().trim());
+                                if (sets > 0 && reps > 0 && rest >= 0) {
+                                    routineDAO.updateExercise(entry.getId(), sets, reps, rest);
+                                    loadRoutine();
+                                }
+                            } catch (NumberFormatException ignored) {
+                            }
+                        });
     }
 
     // ── Add exercise dialog ──────────────────────────────────────────────────
@@ -176,27 +191,35 @@ public class WorkoutDetailController {
         grid.add(combo, 1, 0);
         GridPane.setHgrow(combo, Priority.ALWAYS);
         combo.setMinWidth(280);
-        grid.addRow(1, new Label("Sets:"),    setsField);
-        grid.addRow(2, new Label("Reps:"),    repsField);
+        grid.addRow(1, new Label("Sets:"), setsField);
+        grid.addRow(2, new Label("Reps:"), repsField);
         grid.addRow(3, new Label("Rest (s):"), restField);
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().setMinWidth(380);
 
-        dialog.showAndWait().ifPresent(bt -> {
-            if (bt != ButtonType.OK) return;
-            Exercise sel = combo.getValue();
-            if (sel == null) return;
-            try {
-                int sets = Integer.parseInt(setsField.getText().trim());
-                int reps = Integer.parseInt(repsField.getText().trim());
-                int rest = Integer.parseInt(restField.getText().trim());
-                if (sets > 0 && reps > 0 && rest >= 0) {
-                    routineDAO.addExerciseToRoutine(currentRoutineId,
-                            sel.getId(), sel.getName(), sets, reps, rest);
-                    loadRoutine();
-                }
-            } catch (NumberFormatException ignored) {}
-        });
+        dialog.showAndWait()
+                .ifPresent(
+                        bt -> {
+                            if (bt != ButtonType.OK) return;
+                            Exercise sel = combo.getValue();
+                            if (sel == null) return;
+                            try {
+                                int sets = Integer.parseInt(setsField.getText().trim());
+                                int reps = Integer.parseInt(repsField.getText().trim());
+                                int rest = Integer.parseInt(restField.getText().trim());
+                                if (sets > 0 && reps > 0 && rest >= 0) {
+                                    routineDAO.addExerciseToRoutine(
+                                            currentRoutineId,
+                                            sel.getId(),
+                                            sel.getName(),
+                                            sets,
+                                            reps,
+                                            rest);
+                                    loadRoutine();
+                                }
+                            } catch (NumberFormatException ignored) {
+                            }
+                        });
     }
 
     // ── Edit workout name/notes dialog ───────────────────────────────────────
@@ -230,7 +253,9 @@ public class WorkoutDetailController {
     }
 
     @FXML
-    public void handleBack() { navigateBack(); }
+    public void handleBack() {
+        navigateBack();
+    }
 
     private void navigateBack() {
         try {
