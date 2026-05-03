@@ -252,6 +252,21 @@ public class WorkoutRoutineDAO {
         return routines;
     }
 
+    public int getTotalWorkoutsByUser(int userId) {
+        int totalWorkouts = 0;
+        String sql = "SELECT COUNT(*) FROM completed_workouts WHERE user_id=?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                totalWorkouts = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading total workouts: " + e.getMessage());
+        }
+        return totalWorkouts;
+    }
+
     public RoutineData getRoutineById(int routineId) {
         String sql = "SELECT id, name, notes FROM workout_routines WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
