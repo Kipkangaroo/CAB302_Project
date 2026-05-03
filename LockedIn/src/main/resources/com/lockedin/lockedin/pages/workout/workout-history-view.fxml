@@ -40,6 +40,8 @@
         <VBox styleClass="workout-page-bg"
               spacing="10"
               fillWidth="true">
+            <VBox fx:id="chartContainer" spacing="20">
+            </VBox>
             <VBox fx:id="historyContainer"
                   spacing="10"
                   fillWidth="true" />
