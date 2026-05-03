@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Updating Meeting Minutes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/LockedIn/data/exercises.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/LockedIn/data/food.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/LockedIn/data/users.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/test-classes/META-INF/jpms.args" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Meeting Minutes.docx" beforeDir="false" />
-    </list>
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Deleting second copy of Food, User and Exercise databases" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +21,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -216,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777801104976</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Deleting second copy of Food, User and Exercise databases">
+      <option name="closed" value="true" />
+      <created>1777809965898</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1777809965898</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,7 +242,8 @@
     <MESSAGE value="Updated the profile image placeholder to an animated face" />
     <MESSAGE value="Mass code reformat (following google-java-format) + import optimisation" />
     <MESSAGE value="Updating Meeting Minutes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating Meeting Minutes" />
+    <MESSAGE value="Deleting second copy of Food, User and Exercise databases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting second copy of Food, User and Exercise databases" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
