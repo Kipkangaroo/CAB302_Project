@@ -1,27 +1,27 @@
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\app\LockedIn.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\Authentication.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\LogInController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\SignUpController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\diet\DietController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\layout\LayoutController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\profile\ProfileController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\CreateWorkoutController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\ExerciseViewController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\StartWorkoutController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutDetailController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutHistoryController.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\logic\DietLogic.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\DBExercisesDAO.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\FoodDAO.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\UserDAO.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\WorkoutRoutineDAO.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\db\SqliteConnection.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\Exercise.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\ExerciseSet.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\Food.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\User.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\WorkoutExerciseEntry.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\WorkoutRoutine.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\session\CurrentUser.java
-C:\Users\Kipka\OneDrive\Desktop\CAB302\CAB302_Project\LockedIn\src\main\java\module-info.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\app\LockedIn.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\Authentication.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\LogInController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\auth\SignUpController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\diet\DietController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\layout\LayoutController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\profile\ProfileController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\CreateWorkoutController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\ExerciseViewController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\StartWorkoutController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutDetailController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\controller\workout\WorkoutHistoryController.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\logic\DietLogic.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\DBExercisesDAO.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\FoodDAO.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\UserDAO.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\dao\WorkoutRoutineDAO.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\db\SqliteConnection.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\Exercise.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\ExerciseSet.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\Food.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\User.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\WorkoutExerciseEntry.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\entity\WorkoutRoutine.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\com\lockedin\lockedin\model\session\CurrentUser.java
+C:\Users\Kipka\Desktop\Everything Uni\Current Units\CAB302\Project Git\CAB302_Project\LockedIn\src\main\java\module-info.java
