@@ -1,19 +1,25 @@
 package com.lockedin.lockedin.controller.workout;
 
+import com.lockedin.lockedin.model.dao.DBExercisesDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
+import com.lockedin.lockedin.model.entity.Exercise;
 import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controller responsible for running a workout routine. Handles set progression, tracking completed
@@ -43,9 +49,12 @@ public class StartWorkoutController {
     @FXML private Button completeSetButton;
     @FXML private HBox upNextBox;
     @FXML private Label upNextLabel;
+    @FXML private ImageView exerciseImageView;
 
     private WorkoutRoutineDAO routineDAO;
+    private DBExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData routine;
+    private final Map<Integer, Exercise> exerciseCache = new HashMap<>();
     private final List<WorkoutRoutineDAO.CompletedSetData> completedSets = new ArrayList<>();
     private int exerciseIndex;
     private int setIndex;
@@ -54,6 +63,7 @@ public class StartWorkoutController {
     @FXML
     public void initialize() {
         routineDAO = new WorkoutRoutineDAO();
+        exercisesDAO = new DBExercisesDAO();
         routine = routineDAO.getRoutineById(currentRoutineId);
         if (routine == null || routine.exercises.isEmpty()) {
             showError("This workout has no exercises to start.");
@@ -129,6 +139,7 @@ public class StartWorkoutController {
         targetLabel.setText("Target: " + exercise.getReps() + " reps");
         completedRepsField.setText("");
         completedRepsField.setPromptText("Target: " + exercise.getReps() + " reps");
+        updateExerciseImage(exercise);
 
         progressTextLabel.setText(
                 "Exercise " + (exerciseIndex + 1) + " of " + routine.exercises.size());
@@ -139,6 +150,19 @@ public class StartWorkoutController {
         upNextLabel.setText(upNext);
         upNextBox.setVisible(upNext != null);
         upNextBox.setManaged(upNext != null);
+    }
+
+    private void updateExerciseImage(WorkoutExerciseEntry entry) {
+        Exercise exercise =
+                exerciseCache.computeIfAbsent(
+                        entry.getExerciseId(), exerciseId -> exercisesDAO.getExerciseById(exerciseId));
+        if (exercise == null
+                || exercise.getExerciseImageId() == null
+                || exercise.getExerciseImageId().isBlank()) {
+            exerciseImageView.setImage(null);
+            return;
+        }
+        exerciseImageView.setImage(new Image(exercise.getExerciseImageUrl(0), true));
     }
 
     private WorkoutExerciseEntry currentExercise() {
