@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -45,13 +46,11 @@
               fillWidth="true">
             <StackPane styleClass="exercise-visualization"
                        minHeight="260">
-                <VBox alignment="CENTER"
-                      spacing="8">
-                    <Label text="💪"
-                           style="-fx-font-size: 72px;" />
-                    <Label text="Exercise Visualization"
-                           style="-fx-text-fill: #0f2942; -fx-font-size: 13px; -fx-font-weight: bold;" />
-                </VBox>
+                <ImageView fx:id="exerciseImageView"
+                           fitHeight="246"
+                           fitWidth="370"
+                           preserveRatio="true"
+                           smooth="true" />
             </StackPane>
             <VBox styleClass="active-workout-card"
                   spacing="14"
@@ -66,7 +65,7 @@
                           alignment="CENTER"
                           spacing="4"
                           HBox.hgrow="ALWAYS">
-                        <Label text="◎"
+                        <Label text="&#9678;"
                                style="-fx-font-size: 20px; -fx-text-fill: #1f6fff;" />
                         <Label text="Sets"
                                style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
@@ -77,7 +76,7 @@
                           alignment="CENTER"
                           spacing="4"
                           HBox.hgrow="ALWAYS">
-                        <Label text="◎"
+                        <Label text="&#9678;"
                                style="-fx-font-size: 20px; -fx-text-fill: #0bbd62;" />
                         <Label text="Reps"
                                style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
@@ -88,7 +87,7 @@
                           alignment="CENTER"
                           spacing="4"
                           HBox.hgrow="ALWAYS">
-                        <Label text="⏱"
+                        <Label text="&#9201;"
                                style="-fx-font-size: 20px; -fx-text-fill: #ff5b22;" />
                         <Label text="Rest"
                                style="-fx-font-size: 11px; -fx-text-fill: #31445c;" />
@@ -127,7 +126,7 @@
                         <Label fx:id="upNextLabel"
                                style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #061424;" />
                     </VBox>
-                    <Label text="›"
+                    <Label text="&#8250;"
                            style="-fx-font-size: 28px; -fx-text-fill: #1f7fff;" />
                 </HBox>
             </VBox>
