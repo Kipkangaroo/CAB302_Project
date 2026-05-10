@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
+import java.io.File;
 
 import java.util.Date;
 import java.util.List;
@@ -139,6 +143,23 @@ public class DietController {
         updateTotals();
         refreshTotalsLabels();
         updateProgressBars();
+    }
+
+    @FXML
+    private void handleAiLogoClick() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose your meal photo");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp"));
+        File picturesDir = new File(System.getProperty("user.home"), "Desktop");
+        if (picturesDir.exists()) {
+            fileChooser.setInitialDirectory(picturesDir);
+        }
+        Window window = foodList.getScene().getWindow(); // any node from this scene works
+        File selectedFile = fileChooser.showOpenDialog(window);
+        if (selectedFile != null) {
+            System.out.println("Selected: " + selectedFile.getAbsolutePath());
+        }
     }
 
     private void updateTotals() {
