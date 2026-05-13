@@ -7,6 +7,7 @@ import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import com.lockedin.lockedin.service.AiModelService;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -164,11 +165,20 @@ public class DietController {
         Window window = foodList.getScene().getWindow(); // any node from this scene works
         File selectedFile = fileChooser.showOpenDialog(window);
         if (selectedFile != null) {
-            Food food = apiHandler.sendImageWithPrompt(Path.of(selectedFile.getAbsolutePath()));
-            if (food != null) {
-                foodList.getItems().add(food);
-                updateGUI();
-            }
+            Path imagePath = Path.of(selectedFile.getAbsolutePath());
+            Task<Food> task = apiHandler.createAnalyzeImageTask(imagePath);
+            task.setOnSucceeded(e -> {
+                Food food = task.getValue();
+                if (food != null) {
+                    foodDAO.addFood(food);
+                    foodList.getItems().add(food);
+                    updateGUI();
+                }
+            });
+            task.setOnFailed(e -> task.getException().printStackTrace());
+            Thread worker = new Thread(task, "ai-food-image");
+            worker.setDaemon(true);
+            worker.start();
         }
     }
 

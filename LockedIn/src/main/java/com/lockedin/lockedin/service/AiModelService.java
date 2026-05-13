@@ -3,20 +3,19 @@ package com.lockedin.lockedin.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import javafx.concurrent.Task;
 
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
@@ -25,7 +24,9 @@ public class AiModelService {
     private final int userID;
     private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
     private volatile String apiKey;
-    private static final String MODEL   = "meta/llama-4-maverick-17b-128e-instruct";
+    private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
+    private static final String FOOD_IMAGE_PROMPT_DIR = "/com/lockedin/lockedin/service/food_image_prompt.txt";
+    private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
     private final HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
     private final FoodDAO foodDAO = new FoodDAO();
@@ -35,50 +36,24 @@ public class AiModelService {
     }
 
     private String getApiKey() throws IOException {
-        String cached = apiKey;
-        if (cached != null) {
-            return cached;
+        Properties props = new Properties();
+        try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
+            if (input == null) {
+                throw new IOException("Missing resource file: config.file");
+            }
+            props.load(input);
         }
-        synchronized (this) {
-            if (apiKey != null) {
-                return apiKey;
-            }
-            Properties props = new Properties();
-            String configPath = System.getProperty("config.file");
-            if (configPath != null && !configPath.isBlank()) {
-                try (InputStream input = new FileInputStream(configPath)) {
-                    props.load(input);
-                }
-            } else {
-                try (InputStream input = AiModelService.class.getResourceAsStream("config.file")) {
-                    if (input == null) {
-                        throw new IOException(
-                                "Missing API config: set -Dconfig.file=/path/to/config.file "
-                                        + "or place config.file under src/main/resources/"
-                                        + "com/lockedin/lockedin/service/");
-                    }
-                    props.load(input);
-                }
-            }
-            String key = props.getProperty("nvidia.api.key");
-            if (key == null || key.isBlank()) {
-                throw new IOException("nvidia.api.key not set in config");
-            }
-            apiKey = key.trim();
-            return apiKey;
-        }
+        return props.getProperty("nvidia.api.key").trim();
     }
 
-    public Food sendImageWithPrompt(Path imagePath) {
+    public Food analyzeImageWithPrompt(Path imagePath) {
         try {
             String key = getApiKey();
             List<Map<String, Object>> content = List.of(
                     Map.of("type", "image_url", "image_url", Map.of("url", buildDataUri(imagePath))),
-                    Map.of("type", "text", "text", this.readFoodImagePrompt())
-            );
+                    Map.of("type", "text", "text", this.readFoodImagePrompt()));
             String output = postAndParse(key, buildBody(
-                    List.of(Map.of("role", "user", "content", content))
-            ));
+                    List.of(Map.of("role", "user", "content", content))));
             if (output != null) {
                 JsonObject jsonOutput = gson.fromJson(output, JsonObject.class);
                 Food food = new Food();
@@ -89,7 +64,6 @@ public class AiModelService {
                 food.setCarbs(jsonOutput.get("carb").getAsInt());
                 food.setFats(jsonOutput.get("fat").getAsInt());
                 food.setCalories(jsonOutput.get("calories").getAsInt());
-                foodDAO.addFood(food);
                 return food;
             }
         } catch (Exception e) {
@@ -99,16 +73,32 @@ public class AiModelService {
         return null;
     }
 
+    public Food sendImageWithPrompt(Path imagePath) {
+        Food food = analyzeImageWithPrompt(imagePath);
+        if (food != null) {
+            foodDAO.addFood(food);
+        }
+        return food;
+    }
+
+    public Task<Food> createAnalyzeImageTask(Path imagePath) {
+        return new Task<>() {
+            @Override
+            protected Food call() {
+                return analyzeImageWithPrompt(imagePath);
+            }
+        };
+    }
+
     private Map<String, Object> buildBody(List<Map<String, Object>> messages) {
         return Map.of(
-                "model",             MODEL,
-                "messages",          messages,
-                "max_tokens",        512,
-                "temperature",       1.00,
-                "top_p",             1.00,
+                "model", MODEL,
+                "messages", messages,
+                "max_tokens", 512,
+                "temperature", 1.00,
+                "top_p", 1.00,
                 "frequency_penalty", 0.00,
-                "presence_penalty",  0.00
-        );
+                "presence_penalty", 0.00);
     }
 
     private HttpRequest buildRequest(String key, Map<String, Object> body) {
@@ -124,8 +114,7 @@ public class AiModelService {
     private String postAndParse(String key, Map<String, Object> body) {
         try {
             HttpResponse<String> response = client.send(
-                    buildRequest(key, body), HttpResponse.BodyHandlers.ofString()
-            );
+                    buildRequest(key, body), HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
                 System.err.println("API error " + response.statusCode() + ": " + response.body());
                 return null;
@@ -145,17 +134,17 @@ public class AiModelService {
         byte[] bytes = Files.readAllBytes(imagePath);
         String base64 = Base64.getEncoder().encodeToString(bytes);
         String mediaType = imagePath.getFileName().toString().toLowerCase().endsWith(".png")
-                ? "image/png" : "image/jpeg";
+                ? "image/png"
+                : "image/jpeg";
         return "data:" + mediaType + ";base64," + base64;
     }
 
     private String readFoodImagePrompt() throws IOException {
-        try (InputStream in = AiModelService.class.getResourceAsStream("food_image_prompt.txt")) {
-            if (in == null) {
-                throw new IOException(
-                        "food_image_prompt.txt missing from classpath (expected next to AiModelService in resources)");
+        try (InputStream input = getClass().getResourceAsStream(FOOD_IMAGE_PROMPT_DIR)) {
+            if (input == null) {
+                throw new IOException("Missing resource file: " + FOOD_IMAGE_PROMPT_DIR);
             }
-            return new String(in.readAllBytes(), StandardCharsets.UTF_8);
+            return new String(input.readAllBytes());
         }
     }
 }
