@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javafx.concurrent.Task;
+import java.time.LocalDate;
 
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.Food;
@@ -23,7 +24,6 @@ import com.lockedin.lockedin.model.entity.Food;
 public class AiModelService {
     private final int userID;
     private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private volatile String apiKey;
     private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
     private static final String FOOD_IMAGE_PROMPT_DIR = "/com/lockedin/lockedin/service/food_image_prompt.txt";
     private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
@@ -46,7 +46,7 @@ public class AiModelService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
-    public Food analyzeImageWithPrompt(Path imagePath) {
+    public Food analyzeImageWithPrompt(Path imagePath, LocalDate date) {
         try {
             String key = getApiKey();
             List<Map<String, Object>> content = List.of(
@@ -64,6 +64,7 @@ public class AiModelService {
                 food.setCarbs(jsonOutput.get("carb").getAsInt());
                 food.setFats(jsonOutput.get("fat").getAsInt());
                 food.setCalories(jsonOutput.get("calories").getAsInt());
+                food.setDate(date);
                 return food;
             }
         } catch (Exception e) {
@@ -73,19 +74,19 @@ public class AiModelService {
         return null;
     }
 
-    public Food sendImageWithPrompt(Path imagePath) {
-        Food food = analyzeImageWithPrompt(imagePath);
+    public Food sendImageWithPrompt(Path imagePath, LocalDate date) {
+        Food food = analyzeImageWithPrompt(imagePath, date);
         if (food != null) {
-            foodDAO.addFood(food);
+            foodDAO.addFood(food, date);
         }
         return food;
     }
 
-    public Task<Food> createAnalyzeImageTask(Path imagePath) {
+    public Task<Food> createAnalyzeImageTask(Path imagePath, LocalDate date) {
         return new Task<>() {
             @Override
             protected Food call() {
-                return analyzeImageWithPrompt(imagePath);
+                return analyzeImageWithPrompt(imagePath, date);
             }
         };
     }

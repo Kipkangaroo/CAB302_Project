@@ -7,54 +7,68 @@ import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import com.lockedin.lockedin.service.AiModelService;
+import javafx.beans.value.ChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import java.io.File;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 // JavaFX controller: handles user input, updates totals, and manages Diet page UI
 public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
+    public DatePicker foodDatePicker;
     AiModelService apiHandler;
     private double targetCalories;
     private double targetProtein;
     private double targetCarbs;
     private double targetFats;
-    @FXML private ProgressBar caloriesProgressBar;
-    @FXML private ProgressBar proteinProgressBar;
-    @FXML private ProgressBar fatProgressBar;
-    @FXML private ProgressBar carbsProgressBar;
+    @FXML
+    private ProgressBar caloriesProgressBar;
+    @FXML
+    private ProgressBar proteinProgressBar;
+    @FXML
+    private ProgressBar fatProgressBar;
+    @FXML
+    private ProgressBar carbsProgressBar;
 
     // -----------------------------
     // UI ELEMENT REFERENCES (FXML)
     // -----------------------------
-    @FXML private TextField foodField;
-    @FXML private TextField caloriesField;
-    @FXML private TextField proteinField;
-    @FXML private TextField carbsField;
-    @FXML private TextField fatsField;
+    @FXML
+    private TextField foodField;
+    @FXML
+    private TextField caloriesField;
+    @FXML
+    private TextField proteinField;
+    @FXML
+    private TextField carbsField;
+    @FXML
+    private TextField fatsField;
 
-    @FXML private ListView<Food> foodList;
+    @FXML
+    private ListView<Food> foodList;
 
-    @FXML private Label caloriesProgressLabel;
-    @FXML private Label proteinProgressLabel;
-    @FXML private Label carbsProgressLabel;
-    @FXML private Label fatsProgressLabel;
-    @FXML private Label inputErrorLabel;
+    @FXML
+    private Label caloriesProgressLabel;
+    @FXML
+    private Label proteinProgressLabel;
+    @FXML
+    private Label carbsProgressLabel;
+    @FXML
+    private Label fatsProgressLabel;
+    @FXML
+    private Label inputErrorLabel;
 
     // -----------------------------
     // ACCUMULATED TOTALS
@@ -70,17 +84,16 @@ public class DietController {
     // -----------------------------
     @FXML
     private void initialize() throws IOException {
+        foodDatePicker.setValue(LocalDate.now());
+        foodDatePicker.valueProperty().addListener(onDateSelected());
         this.apiHandler = new AiModelService(currentUserID);
         User currentUser = CurrentUser.get();
         targetCalories = currentUser.getTargetCalories();
         targetProtein = currentUser.getTargetProtein();
         targetCarbs = currentUser.getTargetCarbs();
         targetFats = currentUser.getTargetFats();
-        List<Food> todaysFoods = foodDAO.getFoodsByDate(new Date(), currentUserID);
-        foodList.getItems().setAll(todaysFoods);
-        updateTotals();
-        refreshTotalsLabels();
-        updateProgressBars();
+        setFoodsOnList(LocalDate.now());
+        updateGUI(foodDatePicker.getValue());
     }
 
     @FXML
@@ -118,14 +131,28 @@ public class DietController {
             return;
         }
         Food food = new Food(0, currentUserID, name, calories, protein, carbs, fats);
-        foodDAO.addFood(food);
-        updateGUI();
+        foodDAO.addFood(food, foodDatePicker.getValue());
+        updateGUI(foodDatePicker.getValue());
         foodList.getItems().add(food);
         clearInputs();
     }
 
-    private void updateGUI() {
-        updateTotals();
+    private void setFoodsOnList(LocalDate date) {
+        List<Food> currentFood = foodDAO.getFoodsByDate(date, currentUserID);
+        foodList.getItems().setAll(currentFood);
+        updateGUI(date);
+    }
+
+    private ChangeListener<LocalDate> onDateSelected() {
+        return (obs, oldDate, newDate) -> {
+            if (newDate != null) {
+                setFoodsOnList(newDate);
+            }
+        };
+    }
+
+    private void updateGUI(LocalDate date) {
+        updateTotals(date);
         refreshTotalsLabels();
         updateProgressBars();
     }
@@ -149,7 +176,7 @@ public class DietController {
         }
         foodDAO.removeFood(selectedFood.getId());
         foodList.getItems().remove(selectedFood);
-        updateGUI();
+        updateGUI(foodDatePicker.getValue());
     }
 
     @FXML
@@ -166,13 +193,15 @@ public class DietController {
         File selectedFile = fileChooser.showOpenDialog(window);
         if (selectedFile != null) {
             Path imagePath = Path.of(selectedFile.getAbsolutePath());
-            Task<Food> task = apiHandler.createAnalyzeImageTask(imagePath);
+            Task<Food> task = apiHandler.createAnalyzeImageTask(imagePath, foodDatePicker.getValue());
             task.setOnSucceeded(e -> {
                 Food food = task.getValue();
                 if (food != null) {
-                    foodDAO.addFood(food);
-                    foodList.getItems().add(food);
-                    updateGUI();
+                    foodDAO.addFood(food, food.getDate());
+                    if (Objects.equals(foodDatePicker.getValue(), food.getDate())) {
+                        foodList.getItems().add(food);
+                    }
+                    updateGUI(foodDatePicker.getValue());
                 }
             });
             task.setOnFailed(e -> task.getException().printStackTrace());
@@ -182,11 +211,11 @@ public class DietController {
         }
     }
 
-    private void updateTotals() {
-        totalCalories = foodDAO.getDailyTotalByAttribute(new Date(), "calories", currentUserID);
-        totalProtein = foodDAO.getDailyTotalByAttribute(new Date(), "protein", currentUserID);
-        totalCarbs = foodDAO.getDailyTotalByAttribute(new Date(), "carbs", currentUserID);
-        totalFats = foodDAO.getDailyTotalByAttribute(new Date(), "fats", currentUserID);
+    private void updateTotals(LocalDate date) {
+        totalCalories = foodDAO.getDailyTotalByAttribute(date, "calories", currentUserID);
+        totalProtein = foodDAO.getDailyTotalByAttribute(date, "protein", currentUserID);
+        totalCarbs = foodDAO.getDailyTotalByAttribute(date, "carbs", currentUserID);
+        totalFats = foodDAO.getDailyTotalByAttribute(date, "fats", currentUserID);
     }
 
     private void refreshTotalsLabels() {

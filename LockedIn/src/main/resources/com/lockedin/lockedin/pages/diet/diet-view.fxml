@@ -53,6 +53,11 @@
         <VBox styleClass="diet-page-bg"
               spacing="12"
               fillWidth="true">
+            <HBox alignment="CENTER">
+                <DatePicker fx:id="foodDatePicker"
+                            promptText="Select a date"
+                            prefWidth="200" />
+            </HBox>
             <VBox styleClass="diet-card"
                   spacing="10">
                 <Label text="Add Food"
