@@ -15,7 +15,6 @@ import java.io.IOException;
  */
 public class ProfileController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
-
     private User user;
     @FXML private Button logoutBtn;
     @FXML private Label nameLabel;
