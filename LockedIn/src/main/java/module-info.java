@@ -3,7 +3,9 @@ module com.lockedin.lockedin {
     requires javafx.fxml;
     requires org.xerial.sqlitejdbc;
     requires java.sql;
+    requires java.net.http;
     requires org.controlsfx.controls;
+    requires com.google.gson;
 
     exports com.lockedin.lockedin.app;
 

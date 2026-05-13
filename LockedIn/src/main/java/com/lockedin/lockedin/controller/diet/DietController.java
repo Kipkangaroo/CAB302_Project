@@ -6,6 +6,7 @@ import com.lockedin.lockedin.model.entity.Food;
 import com.lockedin.lockedin.model.entity.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
+import com.lockedin.lockedin.service.AiModelService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,6 +18,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import java.io.File;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +28,7 @@ public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
+    AiModelService apiHandler;
     private double targetCalories;
     private double targetProtein;
     private double targetCarbs;
@@ -64,7 +68,8 @@ public class DietController {
     // ADD FOOD BUTTON HANDLER
     // -----------------------------
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
+        this.apiHandler = new AiModelService(currentUserID);
         User currentUser = CurrentUser.get();
         targetCalories = currentUser.getTargetCalories();
         targetProtein = currentUser.getTargetProtein();
@@ -111,14 +116,17 @@ public class DietController {
             showInputError("Calories, protein, carbs, and fats must be whole numbers.");
             return;
         }
-
         Food food = new Food(0, currentUserID, name, calories, protein, carbs, fats);
         foodDAO.addFood(food);
+        updateGUI();
+        foodList.getItems().add(food);
+        clearInputs();
+    }
+
+    private void updateGUI() {
         updateTotals();
         refreshTotalsLabels();
         updateProgressBars();
-        foodList.getItems().add(food);
-        clearInputs();
     }
 
     private void showInputError(String message) {
@@ -140,9 +148,7 @@ public class DietController {
         }
         foodDAO.removeFood(selectedFood.getId());
         foodList.getItems().remove(selectedFood);
-        updateTotals();
-        refreshTotalsLabels();
-        updateProgressBars();
+        updateGUI();
     }
 
     @FXML
@@ -150,7 +156,7 @@ public class DietController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose your meal photo");
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp"));
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File picturesDir = new File(System.getProperty("user.home"), "Desktop");
         if (picturesDir.exists()) {
             fileChooser.setInitialDirectory(picturesDir);
@@ -158,7 +164,11 @@ public class DietController {
         Window window = foodList.getScene().getWindow(); // any node from this scene works
         File selectedFile = fileChooser.showOpenDialog(window);
         if (selectedFile != null) {
-            System.out.println("Selected: " + selectedFile.getAbsolutePath());
+            Food food = apiHandler.sendImageWithPrompt(Path.of(selectedFile.getAbsolutePath()));
+            if (food != null) {
+                foodList.getItems().add(food);
+                updateGUI();
+            }
         }
     }
 
