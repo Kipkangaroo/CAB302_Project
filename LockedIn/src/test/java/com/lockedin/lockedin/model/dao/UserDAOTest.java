@@ -13,7 +13,8 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Unit tests for UserDAO using an isolated in‑memory SQLite database. Verifies user creation,
+ * Unit tests for UserDAO using an isolated in‑memory SQLite database. Verifies
+ * user creation,
  * retrieval, authentication, and field persistence.
  */
 public class UserDAOTest {

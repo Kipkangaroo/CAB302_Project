@@ -4,145 +4,84 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.shape.*?>
 <VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.lockedin.lockedin.controller.profile.ProfileController"
-      fillWidth="true"
-      maxWidth="Infinity"
-      maxHeight="Infinity">
-    <VBox styleClass="profile-header"
-          fillWidth="true">
-        <Label text="My Profile"
-               styleClass="profile-header-title" />
-        <Label text="Your personal details and weekly streak"
-               styleClass="profile-header-subtitle">
-            <VBox.margin>
-                <Insets top="4" />
-            </VBox.margin>
-        </Label>
-    </VBox>
-    <ScrollPane VBox.vgrow="ALWAYS"
-                fitToWidth="true"
-                styleClass="profile-scroll"
-                hbarPolicy="NEVER">
-        <VBox styleClass="profile-page-bg"
-              spacing="12"
-              fillWidth="true">
-            <VBox styleClass="profile-card"
-                  alignment="CENTER"
-                  spacing="8">
-                <ImageView fx:id="imageView"
-                           fitHeight="150"
-                           fitWidth="200"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@../../images/profileimage.png" />
-                    </image>
-                </ImageView>
-                <Label fx:id="nameLabel"
-                       styleClass="profile-name-label"
-                       text="" />
-            </VBox>
-            <VBox styleClass="profile-card"
-                  spacing="8">
-                <Label text="Personal Information"
-                       styleClass="profile-section-title" />
-                <Label fx:id="ageLabel"
-                       text=""
-                       styleClass="profile-detail-label" />
-                <Label fx:id="heightLabel"
-                       text=""
-                       styleClass="profile-detail-label" />
-                <Label fx:id="weightLabel"
-                       text=""
-                       styleClass="profile-detail-label" />
-                <Label fx:id="fitnessGoalLabel"
-                       text=""
-                       styleClass="profile-detail-label"
-                       wrapText="true" />
-            </VBox>
-            <VBox styleClass="profile-card"
-                  spacing="8">
-                <Label text="Calorie Tracking Streak"
-                       styleClass="profile-section-title" />
-                <HBox alignment="CENTER"
-                      spacing="6">
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Mon"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Tue"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Wed"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Thu"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Fri"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Sat"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                    <VBox alignment="CENTER"
-                          minWidth="30">
-                        <Circle fill="#2cda86"
-                                radius="10"
-                                stroke="BLACK"
-                                strokeType="INSIDE" />
-                        <Label text="Sun"
-                               styleClass="profile-day-label" />
-                    </VBox>
-                </HBox>
-            </VBox>
-        </VBox>
-    </ScrollPane>
-    <HBox style="-fx-padding: 10 16 14 16;">
-        <Button fx:id="logoutBtn"
-                mnemonicParsing="false"
-                onAction="#handleLogout"
-                text="Log Out"
-                styleClass="primary-btn"
-                HBox.hgrow="ALWAYS"
-                maxWidth="Infinity"
-                style="-fx-padding: 14 0 14 0;" />
-    </HBox>
+       xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController" fillWidth="true" maxWidth="Infinity" maxHeight="Infinity">
+       <VBox styleClass="profile-header" fillWidth="true">
+              <Label text="My Profile" styleClass="profile-header-title" />
+              <Label text="Your personal details and weekly streak" styleClass="profile-header-subtitle">
+                     <VBox.margin>
+                            <Insets top="4" />
+                     </VBox.margin>
+              </Label>
+       </VBox>
+       <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="profile-scroll" hbarPolicy="NEVER">
+              <VBox styleClass="profile-page-bg" spacing="12" fillWidth="true">
+                     <StackPane maxWidth="Infinity" styleClass="profile-card-avatar-shell">
+                            <VBox styleClass="profile-card" alignment="CENTER" spacing="8" maxWidth="Infinity">
+                                   <StackPane styleClass="profile-avatar-stack" maxWidth="200" maxHeight="150">
+                                          <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true">
+                                                 <image>
+                                                        <Image url="@../../images/profileimage.png" />
+                                                 </image>
+                                          </ImageView>
+                                   </StackPane>
+                                   <TextField fx:id="firstNameField" styleClass="profile-name-label" alignment="CENTER" editable="false"/>
+                            </VBox>
+                            <StackPane alignment="TOP_RIGHT" pickOnBounds="false" styleClass="profile-edit-icon-wrap">
+                                   <Group styleClass="profile-edit-icon" style="-fx-cursor: hand;" scaleX="0.9" scaleY="0.9" onMouseClicked="#handleEditName">
+                                          <StackPane.margin>
+                                                 <Insets top="6" right="6" />
+                                          </StackPane.margin>
+                                          <SVGPath content="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" fill="#555555" />
+                                          <SVGPath content="M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#555555" />
+                                   </Group>
+                            </StackPane>
+                     </StackPane>
+                     <VBox styleClass="profile-card" spacing="8">
+                            <Label text="Personal Information" styleClass="profile-section-title" />
+                            <Label fx:id="ageLabel" text="" styleClass="profile-detail-label" />
+                            <Label fx:id="heightLabel" text="" styleClass="profile-detail-label" />
+                            <Label fx:id="weightLabel" text="" styleClass="profile-detail-label" />
+                            <Label fx:id="fitnessGoalLabel" text="" styleClass="profile-detail-label" wrapText="true" />
+                     </VBox>
+                     <VBox styleClass="profile-card" spacing="8">
+                            <Label text="Calorie Tracking Streak" styleClass="profile-section-title" />
+                            <HBox alignment="CENTER" spacing="6">
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Mon" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Tue" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Wed" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Thu" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Fri" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Sat" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fill="#2cda86" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label text="Sun" styleClass="profile-day-label" />
+                                   </VBox>
+                            </HBox>
+                     </VBox>
+              </VBox>
+       </ScrollPane>
+       <HBox style="-fx-padding: 10 16 14 16;">
+              <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogout" text="Log Out" styleClass="primary-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-padding: 14 0 14 0;" />
+       </HBox>
 </VBox>

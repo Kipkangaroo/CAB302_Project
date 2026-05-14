@@ -174,9 +174,24 @@ public class DietController {
         if (selectedFood == null) {
             return;
         }
-        foodDAO.removeFood(selectedFood.getId());
-        foodList.getItems().remove(selectedFood);
-        updateGUI(foodDatePicker.getValue());
+        Alert confirm =
+                new Alert(
+                        Alert.AlertType.CONFIRMATION,
+                        "Remove \"" + selectedFood.getName() + "\" from this day?",
+                        ButtonType.YES,
+                        ButtonType.NO);
+        confirm.setTitle("Remove food");
+        confirm.setHeaderText(null);
+        confirm.initOwner(foodList.getScene().getWindow());
+        confirm.showAndWait()
+                .ifPresent(
+                        bt -> {
+                            if (bt == ButtonType.YES) {
+                                foodDAO.removeFood(selectedFood.getId());
+                                foodList.getItems().remove(selectedFood);
+                                updateGUI(foodDatePicker.getValue());
+                            }
+                        });
     }
 
     @FXML

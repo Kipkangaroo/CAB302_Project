@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Data Access Object for user accounts. Handles creation of the users table and provides a
+ * Data Access Object for user accounts. Handles creation of the users table and
+ * provides a
  * connection for saving and retrieving user profile and authentication data.
  */
 public class UserDAO {
@@ -26,18 +27,17 @@ public class UserDAO {
     }
 
     private void createUsersTable() {
-        String sql =
-                "CREATE TABLE IF NOT EXISTS users ("
-                        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                        + "first_name TEXT NOT NULL, "
-                        + "last_name TEXT NOT NULL, "
-                        + "date_of_birth TEXT NOT NULL, "
-                        + "height REAL NOT NULL, "
-                        + "weight REAL NOT NULL, "
-                        + "email TEXT NOT NULL UNIQUE, "
-                        + "fitness_goal TEXT, "
-                        + "password_hash TEXT NOT NULL"
-                        + ")";
+        String sql = "CREATE TABLE IF NOT EXISTS users ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "first_name TEXT NOT NULL, "
+                + "last_name TEXT NOT NULL, "
+                + "date_of_birth TEXT NOT NULL, "
+                + "height REAL NOT NULL, "
+                + "weight REAL NOT NULL, "
+                + "email TEXT NOT NULL UNIQUE, "
+                + "fitness_goal TEXT, "
+                + "password_hash TEXT NOT NULL"
+                + ")";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
@@ -47,12 +47,10 @@ public class UserDAO {
     }
 
     public boolean createUser(User user) {
-        String sql =
-                "INSERT INTO users(first_name, last_name, date_of_birth, height, weight, email,"
-                        + " fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users(first_name, last_name, date_of_birth, height, weight, email,"
+                + " fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement =
-                connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getDateOfBirth().toString());
