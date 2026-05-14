@@ -406,17 +406,38 @@ public class WorkoutRoutineDAO {
         return -1;
     }
 
+    /**
+     * All completed workouts for a user, newest first.
+     */
     public List<CompletedWorkoutData> getCompletedWorkoutsByUser(int userId) {
+        return getCompletedWorkoutsByUser(userId, null);
+    }
+
+    /**
+     * Completed workouts for a user on a specific calendar day ({@code completed_at} is matched by
+     * SQLite {@code date(completed_at)}), newest first within that day.
+     */
+    public List<CompletedWorkoutData> getCompletedWorkoutsByUser(int userId, LocalDate onDate) {
         List<CompletedWorkoutData> workouts = new ArrayList<>();
         String sql =
-                """
-                    SELECT id, routine_id, routine_name, completed_at, total_exercises, total_sets
-                    FROM completed_workouts
-                    WHERE user_id=?
-                    ORDER BY completed_at DESC
-                """;
+                onDate == null
+                        ? """
+                            SELECT id, routine_id, routine_name, completed_at, total_exercises, total_sets
+                            FROM completed_workouts
+                            WHERE user_id=?
+                            ORDER BY completed_at DESC
+                            """
+                        : """
+                            SELECT id, routine_id, routine_name, completed_at, total_exercises, total_sets
+                            FROM completed_workouts
+                            WHERE user_id=? AND date(completed_at)=?
+                            ORDER BY completed_at DESC
+                            """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
+            if (onDate != null) {
+                ps.setString(2, onDate.toString());
+            }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     int completedWorkoutId = rs.getInt("id");
@@ -435,6 +456,16 @@ public class WorkoutRoutineDAO {
             System.err.println("Error loading completed workouts: " + e.getMessage());
         }
         return workouts;
+    }
+
+    public boolean[] getWeeklyWorkoutTracking(int userID) {
+        boolean[] streakDays = new boolean[7];
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = LocalDate.now().minusDays(i);
+            List<CompletedWorkoutData> workouts = getCompletedWorkoutsByUser(userID, date);
+            streakDays[i] = workouts.size() > 0;
+        }
+        return streakDays;
     }
 
     private void insertCompletedSets(int completedWorkoutId, List<CompletedSetData> completedSets)

@@ -1,0 +1,22 @@
+Analyze the image and determine whether it contains food and/or drink.
+
+If the image does not contain food or drink, return exactly:
+NONE
+
+If the image contains food or drink, estimate the main item's nutrition values.
+
+Return only valid JSON with exactly these attributes:
+{
+  "name": "short food or drink name (up to 10 characters)",
+  "calories": integer total calories
+  "protein": integer grams of protein,
+  "carb": integer grams of carbohydrates,
+  "fat": integer grams of fat
+}
+
+Rules:
+- Do not include explanations, markdown, or extra text.
+- Use integers only for calories, protein, carb, and fat.
+- If there are multiple items, estimate the total macros for the visible serving.
+- If uncertain, make a reasonable estimate based on the visible portion.
+- Each gram of protein has 4 calories, each gram of carbs has 4 calories and each gram of fat has 9 calories

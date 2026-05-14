@@ -14,7 +14,8 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Unit tests for the Authentication utility class. Verifies email and password validation rules
+ * Unit tests for the Authentication utility class. Verifies email and password
+ * validation rules
  * using representative valid and invalid input cases.
  */
 public class AuthenticationTest {
@@ -91,8 +92,10 @@ public class AuthenticationTest {
                 LocalDate.of(2000, 1, 1),
                 170.0,
                 65.0,
-                "Password1!",
-                "Maintain Fitness");
+                "Male",
+                "Sedentary (little/no exercise)",
+                "Maintain Fitness",
+                "Password1!");
     }
 
     @Test
@@ -111,8 +114,7 @@ public class AuthenticationTest {
         UserDAO userDAO = new UserDAO(conn);
         userDAO.createUser(makeUser("jane2@test.com"));
 
-        Optional<User> result =
-                Authentication.authenticate("jane2@test.com", "WrongPass1!", userDAO);
+        Optional<User> result = Authentication.authenticate("jane2@test.com", "WrongPass1!", userDAO);
         assertTrue(result.isEmpty());
     }
 
@@ -121,8 +123,7 @@ public class AuthenticationTest {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         UserDAO userDAO = new UserDAO(conn);
 
-        Optional<User> result =
-                Authentication.authenticate("nobody@test.com", "Password1!", userDAO);
+        Optional<User> result = Authentication.authenticate("nobody@test.com", "Password1!", userDAO);
         assertTrue(result.isEmpty());
     }
 }

@@ -4,11 +4,13 @@ import com.lockedin.lockedin.model.db.SqliteConnection;
 import com.lockedin.lockedin.model.entity.Food;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Data Access Object for storing and retrieving food entries. Handles table creation and provides a
+ * Data Access Object for storing and retrieving food entries. Handles table
+ * creation and provides a
  * connection to the food database.
  */
 public class FoodDAO {
@@ -26,17 +28,16 @@ public class FoodDAO {
     }
 
     private void createFoodTable() {
-        String sql =
-                "CREATE TABLE IF NOT EXISTS foods ("
-                        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                        + "user_id INTEGER NOT NULL, "
-                        + "name TEXT NOT NULL, "
-                        + "calories INT NOT NULL, "
-                        + "protein INT NOT NULL, "
-                        + "carbs INT NOT NULL, "
-                        + "fats INT NOT NULL, "
-                        + "date TEXT NOT NULL"
-                        + ")";
+        String sql = "CREATE TABLE IF NOT EXISTS foods ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "user_id INTEGER NOT NULL, "
+                + "name TEXT NOT NULL, "
+                + "calories INT NOT NULL, "
+                + "protein INT NOT NULL, "
+                + "carbs INT NOT NULL, "
+                + "fats INT NOT NULL, "
+                + "date TEXT NOT NULL"
+                + ")";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
@@ -45,19 +46,17 @@ public class FoodDAO {
         }
     }
 
-    public void addFood(Food food) {
-        String sql =
-                "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
-                        + " ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement =
-                connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    public void addFood(Food food, LocalDate date) {
+        String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
+                + " ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, food.getUserID());
             statement.setString(2, food.getName());
             statement.setInt(3, food.getCalories());
             statement.setInt(4, food.getProtein());
             statement.setInt(5, food.getCarbs());
             statement.setInt(6, food.getFats());
-            statement.setString(7, new Date(food.getDate().getTime()).toString());
+            statement.setString(7, date.toString());
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -69,13 +68,12 @@ public class FoodDAO {
         }
     }
 
-    public List<Food> getFoodsByDate(java.util.Date targetDate, int userID) {
-        String sql =
-                "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
-                        + " date = ? AND user_id = ? ORDER BY name";
+    public List<Food> getFoodsByDate(LocalDate targetDate, int userID) {
+        String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
+                + " date = ? AND user_id = ? ORDER BY name";
         List<Food> foods = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, new Date(targetDate.getTime()).toString());
+            statement.setString(1, targetDate.toString());
             statement.setInt(2, userID);
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
@@ -98,13 +96,22 @@ public class FoodDAO {
         }
     }
 
-    public int getDailyTotalByAttribute(java.util.Date targetDate, String attribute, int userID) {
-        String sql =
-                "SELECT COALESCE(SUM("
-                        + attribute
-                        + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
+    public boolean[] getWeeklyCalorieTracking(int userID) {
+        boolean[] streakDays = new boolean[7];
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = LocalDate.now().minusDays(i);
+            List<Food> foods = getFoodsByDate(date, userID);
+            streakDays[i] = !foods.isEmpty();
+        }
+        return streakDays;
+    }
+
+    public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userID) {
+        String sql = "SELECT COALESCE(SUM("
+                + attribute
+                + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, new Date(targetDate.getTime()).toString());
+            statement.setString(1, targetDate.toString());
             statement.setInt(2, userID);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
@@ -126,7 +133,7 @@ public class FoodDAO {
         food.setProtein(rs.getInt("protein"));
         food.setCarbs(rs.getInt("carbs"));
         food.setFats(rs.getInt("fats"));
-        food.setDate(Date.valueOf(rs.getString("date")));
+        food.setDate(LocalDate.parse(rs.getString("date")));
         return food;
     }
 }

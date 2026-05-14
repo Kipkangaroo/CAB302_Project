@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Data Access Object for user accounts. Handles creation of the users table and provides a
+ * Data Access Object for user accounts. Handles creation of the users table and
+ * provides a
  * connection for saving and retrieving user profile and authentication data.
  */
 public class UserDAO {
@@ -26,18 +27,19 @@ public class UserDAO {
     }
 
     private void createUsersTable() {
-        String sql =
-                "CREATE TABLE IF NOT EXISTS users ("
-                        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                        + "first_name TEXT NOT NULL, "
-                        + "last_name TEXT NOT NULL, "
-                        + "date_of_birth TEXT NOT NULL, "
-                        + "height REAL NOT NULL, "
-                        + "weight REAL NOT NULL, "
-                        + "email TEXT NOT NULL UNIQUE, "
-                        + "fitness_goal TEXT, "
-                        + "password_hash TEXT NOT NULL"
-                        + ")";
+        String sql = "CREATE TABLE IF NOT EXISTS users ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "first_name TEXT NOT NULL, "
+                + "last_name TEXT NOT NULL, "
+                + "email TEXT NOT NULL UNIQUE, "
+                + "date_of_birth TEXT NOT NULL, "
+                + "height REAL NOT NULL, "
+                + "weight REAL NOT NULL, "
+                + "sex TEXT, "
+                + "activity_level TEXT, "
+                + "fitness_goal TEXT, "
+                + "password_hash TEXT NOT NULL"
+                + ")";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
@@ -47,25 +49,22 @@ public class UserDAO {
     }
 
     public boolean createUser(User user) {
-        String sql =
-                "INSERT INTO users(first_name, last_name, date_of_birth, height, weight, email,"
-                        + " fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (PreparedStatement preparedStatement =
-                connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        String sql = "INSERT INTO users(first_name, last_name, email, date_of_birth, height, weight, sex, activity_level, fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getDateOfBirth().toString());
-            preparedStatement.setDouble(4, user.getHeight());
-            preparedStatement.setDouble(5, user.getWeight());
-            preparedStatement.setString(6, user.getEmail());
-            preparedStatement.setString(7, user.getFitnessGoal());
-            preparedStatement.setString(8, user.getPasswordHash());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getDateOfBirth().toString());
+            preparedStatement.setDouble(5, user.getHeight());
+            preparedStatement.setDouble(6, user.getWeight());
+            preparedStatement.setString(7, user.getSex());
+            preparedStatement.setString(8, user.getActivityLevel());
+            preparedStatement.setString(9, user.getFitnessGoal());
+            preparedStatement.setString(10, user.getPasswordHash());
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted == 0) {
                 return false;
             }
-
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     user.setId(generatedKeys.getInt(1));
@@ -89,6 +88,17 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch user by id", e);
+        }
+    }
+
+    public boolean updateFirstName(int id, String firstName) {
+        String sql = "UPDATE users SET first_name = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update first name", e);
         }
     }
 
@@ -121,10 +131,12 @@ public class UserDAO {
         user.setId(resultSet.getInt("id"));
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
+        user.setEmail(resultSet.getString("email"));
         user.setDateOfBirth(LocalDate.parse(resultSet.getString("date_of_birth")));
         user.setHeight(resultSet.getDouble("height"));
         user.setWeight(resultSet.getDouble("weight"));
-        user.setEmail(resultSet.getString("email"));
+        user.setSex(resultSet.getString("sex"));
+        user.setActivityLevel(resultSet.getString("activity_level"));
         user.setFitnessGoal(resultSet.getString("fitness_goal"));
         user.setPasswordHash(resultSet.getString("password_hash"));
         return user;

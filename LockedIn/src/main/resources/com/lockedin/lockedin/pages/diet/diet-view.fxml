@@ -54,6 +54,16 @@
               spacing="12"
               fillWidth="true">
             <VBox styleClass="diet-card"
+                  spacing="10"
+                  fillWidth="true">
+                <Label text="Meal date"
+                       styleClass="diet-section-title" />
+                <DatePicker fx:id="foodDatePicker"
+                            promptText="Select a date"
+                            styleClass="diet-input"
+                            maxWidth="Infinity" />
+            </VBox>
+            <VBox styleClass="diet-card"
                   spacing="10">
                 <Label text="Add Food"
                        styleClass="diet-section-title" />
