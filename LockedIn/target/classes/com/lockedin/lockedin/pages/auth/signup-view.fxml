@@ -71,6 +71,12 @@
         <TextField fx:id="weightField"
                    promptText="Enter your weight in kg"
                    styleClass="diet-input" />
+        <Label text="Sex"
+               styleClass="profile-detail-label" />
+        <ComboBox fx:id="sexCombo"
+                  promptText="Select your sex"
+                  styleClass="diet-input"
+                  maxWidth="Infinity" />
         <Label text="Fitness Goal"
                styleClass="profile-detail-label" />
         <ComboBox fx:id="fitnessGoalCombo"

@@ -31,7 +31,8 @@ public class UserDAOTest {
                 170.0,
                 65.0,
                 "Password1!",
-                "Build Muscle");
+                "Build Muscle",
+                "Male");
     }
 
     @BeforeEach
@@ -109,5 +110,21 @@ public class UserDAOTest {
         assertEquals(170.0, found.getHeight());
         assertEquals(65.0, found.getWeight());
         assertEquals("Build Muscle", found.getFitnessGoal());
+    }
+
+    @Test
+    void updateFirstName_returnsTrue_andPersists() {
+        User user = makeUser("names@test.com");
+        userDAO.createUser(user);
+        int id = user.getId();
+        assertTrue(userDAO.updateFirstName(id, "Janet"));
+        User found = userDAO.getUserById(id).orElseThrow();
+        assertEquals("Janet", found.getFirstName());
+        assertEquals("Doe", found.getLastName());
+    }
+
+    @Test
+    void updateFirstName_returnsFalse_whenIdMissing() {
+        assertFalse(userDAO.updateFirstName(99999, "A"));
     }
 }

@@ -18,6 +18,7 @@ public class UserTest {
                 170.0,
                 70.0,
                 "Password1!",
+                "Female",
                 "Maintain Fitness");
     }
 

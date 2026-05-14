@@ -92,7 +92,8 @@ public class AuthenticationTest {
                 170.0,
                 65.0,
                 "Password1!",
-                "Maintain Fitness");
+                "Maintain Fitness",
+                "Male");
     }
 
     @Test

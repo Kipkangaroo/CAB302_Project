@@ -7,8 +7,9 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.shape.*?>
 <VBox xmlns="http://javafx.com/javafx"
-       xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController" fillWidth="true" maxWidth="Infinity" maxHeight="Infinity">
-       <VBox styleClass="profile-header" fillWidth="true">
+      xmlns:fx="http://javafx.com/fxml" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController"
+      maxWidth="Infinity" maxHeight="Infinity">
+       <VBox styleClass="profile-header">
               <Label text="My Profile" styleClass="profile-header-title" />
               <Label text="Your personal details and weekly streak" styleClass="profile-header-subtitle">
                      <VBox.margin>

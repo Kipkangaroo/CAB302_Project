@@ -27,11 +27,13 @@ public class SignUpController {
     @FXML private DatePicker dobPicker;
     @FXML private TextField heightField;
     @FXML private TextField weightField;
+    @FXML private ComboBox<String> sexCombo;
     @FXML private ComboBox<String> fitnessGoalCombo;
 
-    /** Initializes the sign-up form by populating the fitness goal dropdown. */
+    /** Initializes the sign-up form by populating dropdowns. */
     @FXML
     private void initialize() {
+        sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
         fitnessGoalCombo.setItems(
                 FXCollections.observableArrayList(
                         "Lose Weight", "Build Muscle", "Maintain Fitness"));
@@ -55,6 +57,7 @@ public class SignUpController {
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
         String fitnessGoal = fitnessGoalCombo.getValue();
+        String sex = sexCombo.getValue();
         LocalDate dob = dobPicker.getValue();
         double height;
         double weight;
@@ -71,6 +74,7 @@ public class SignUpController {
                 || dobPicker.getValue() == null
                 || heightText.isEmpty()
                 || weightText.isEmpty()
+                || sexCombo.getValue() == null
                 || fitnessGoal == null) {
             Authentication.showError("All fields are required", "Please fill in all fields.");
             return;
@@ -121,10 +125,11 @@ public class SignUpController {
                                 firstName,
                                 lastName,
                                 email,
-                                dobPicker.getValue(),
+                                dob,
                                 height,
                                 weight,
                                 password,
+                                sex,
                                 fitnessGoal))) {
             Authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {

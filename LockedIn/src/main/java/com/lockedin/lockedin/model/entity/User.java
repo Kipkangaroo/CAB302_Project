@@ -22,6 +22,7 @@ public class User {
     private double height;
     private double weight;
     private String email;
+    private String sex;
     private String fitnessGoal;
     private String passwordHash;
 
@@ -36,6 +37,7 @@ public class User {
             double height,
             double weight,
             String password,
+            String sex,
             String fitnessGoal) {
         this.id = id;
         this.firstName = firstName;
@@ -44,6 +46,7 @@ public class User {
         this.height = height;
         this.weight = weight;
         this.email = email;
+        this.sex = sex;
         this.fitnessGoal = fitnessGoal;
         this.passwordHash = getHash(password);
     }
@@ -132,6 +135,14 @@ public class User {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet

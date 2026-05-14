@@ -36,6 +36,7 @@ public class UserDAO {
                 + "weight REAL NOT NULL, "
                 + "email TEXT NOT NULL UNIQUE, "
                 + "fitness_goal TEXT, "
+                + "sex TEXT, "
                 + "password_hash TEXT NOT NULL"
                 + ")";
 
@@ -48,7 +49,7 @@ public class UserDAO {
 
     public boolean createUser(User user) {
         String sql = "INSERT INTO users(first_name, last_name, date_of_birth, height, weight, email,"
-                + " fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                + " fitness_goal, sex, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getFirstName());
@@ -58,7 +59,8 @@ public class UserDAO {
             preparedStatement.setDouble(5, user.getWeight());
             preparedStatement.setString(6, user.getEmail());
             preparedStatement.setString(7, user.getFitnessGoal());
-            preparedStatement.setString(8, user.getPasswordHash());
+            preparedStatement.setString(8, user.getSex());
+            preparedStatement.setString(9, user.getPasswordHash());
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted == 0) {
                 return false;
@@ -87,6 +89,17 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch user by id", e);
+        }
+    }
+
+    public boolean updateFirstName(int id, String firstName) {
+        String sql = "UPDATE users SET first_name = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update first name", e);
         }
     }
 
@@ -124,6 +137,7 @@ public class UserDAO {
         user.setWeight(resultSet.getDouble("weight"));
         user.setEmail(resultSet.getString("email"));
         user.setFitnessGoal(resultSet.getString("fitness_goal"));
+        user.setSex(resultSet.getString("sex"));
         user.setPasswordHash(resultSet.getString("password_hash"));
         return user;
     }
