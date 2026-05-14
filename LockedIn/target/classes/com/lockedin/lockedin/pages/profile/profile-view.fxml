@@ -80,6 +80,39 @@
                                    </VBox>
                             </HBox>
                      </VBox>
+                     <VBox styleClass="profile-card" spacing="8">
+                            <Label text="Workout Tracking Streak (Last 7 Days)" styleClass="profile-section-title" />
+                            <HBox alignment="CENTER" spacing="6">
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle0" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking0" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle1" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking1" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle2" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking2" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle3" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking3" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle4" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking4" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle5" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking5" styleClass="profile-day-label" />
+                                   </VBox>
+                                   <VBox alignment="CENTER" minWidth="30">
+                                          <Circle fx:id="workoutTrackingCircle6" radius="10" stroke="BLACK" strokeType="INSIDE" />
+                                          <Label fx:id="workoutTracking6" styleClass="profile-day-label" />
+                                   </VBox>
+                            </HBox>
+                     </VBox>
               </VBox>
        </ScrollPane>
        <HBox style="-fx-padding: 10 16 14 16;">
