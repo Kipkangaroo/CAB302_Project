@@ -96,6 +96,16 @@ public class FoodDAO {
         }
     }
 
+    public boolean[] getWeeklyCalorieTracking(int userID) {
+        boolean[] streakDays = new boolean[7];
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = LocalDate.now().minusDays(i);
+            List<Food> foods = getFoodsByDate(date, userID);
+            streakDays[i] = !foods.isEmpty();
+        }
+        return streakDays;
+    }
+
     public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userID) {
         String sql = "SELECT COALESCE(SUM("
                 + attribute
