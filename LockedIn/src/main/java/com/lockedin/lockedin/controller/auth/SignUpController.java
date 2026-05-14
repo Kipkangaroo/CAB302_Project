@@ -13,27 +13,49 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 /**
- * Controller responsible for handling user registration. Validates input fields, creates a new User
+ * Controller responsible for handling user registration. Validates input
+ * fields, creates a new User
  * entity, and stores it via UserDAO.
  */
 public class SignUpController {
-    @FXML private ImageView logoImageView;
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField confirmPasswordField;
-    @FXML private Button signupBtn;
-    @FXML private DatePicker dobPicker;
-    @FXML private TextField heightField;
-    @FXML private TextField weightField;
-    @FXML private ComboBox<String> sexCombo;
-    @FXML private ComboBox<String> fitnessGoalCombo;
+    @FXML
+    private ImageView logoImageView;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private PasswordField confirmPasswordField;
+    @FXML
+    private Button signupBtn;
+    @FXML
+    private DatePicker dobPicker;
+    @FXML
+    private TextField heightField;
+    @FXML
+    private TextField weightField;
+    @FXML
+    private ComboBox<String> sexCombo;
+    @FXML
+    private ComboBox<String> activityLevelCombo;
+    @FXML
+    private ComboBox<String> fitnessGoalCombo;
 
     /** Initializes the sign-up form by populating dropdowns. */
     @FXML
     private void initialize() {
         sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
+        activityLevelCombo.setItems(
+                FXCollections.observableArrayList(
+                        "Sedentary (little/no exercise)",
+                        "Lightly active (1–3 days/week)",
+                        "Moderately active (3–5 days/week)",
+                        "Very active (6–7 days/week)",
+                        "Extra active (physical job + exercise)"));
         fitnessGoalCombo.setItems(
                 FXCollections.observableArrayList(
                         "Lose Weight", "Build Muscle", "Maintain Fitness"));
@@ -58,6 +80,7 @@ public class SignUpController {
         String weightText = weightField.getText().trim();
         String fitnessGoal = fitnessGoalCombo.getValue();
         String sex = sexCombo.getValue();
+        String activityLevel = activityLevelCombo.getValue();
         LocalDate dob = dobPicker.getValue();
         double height;
         double weight;
@@ -74,7 +97,8 @@ public class SignUpController {
                 || dobPicker.getValue() == null
                 || heightText.isEmpty()
                 || weightText.isEmpty()
-                || sexCombo.getValue() == null
+                || sex == null
+                || activityLevel == null
                 || fitnessGoal == null) {
             Authentication.showError("All fields are required", "Please fill in all fields.");
             return;
@@ -101,8 +125,8 @@ public class SignUpController {
             Authentication.showError(
                     "Invalid password",
                     "Please enter a valid password. It must be at least 8 characters long and"
-                        + " contain at least one uppercase letter, one lowercase letter, and one"
-                        + " special character.");
+                            + " contain at least one uppercase letter, one lowercase letter, and one"
+                            + " special character.");
             return;
         }
         try {
@@ -128,9 +152,10 @@ public class SignUpController {
                                 dob,
                                 height,
                                 weight,
-                                password,
                                 sex,
-                                fitnessGoal))) {
+                                activityLevel,
+                                fitnessGoal,
+                                password))) {
             Authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
                 Authentication.switchScene(

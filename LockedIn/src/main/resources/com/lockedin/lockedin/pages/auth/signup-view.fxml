@@ -77,6 +77,12 @@
                   promptText="Select your sex"
                   styleClass="diet-input"
                   maxWidth="Infinity" />
+        <Label text="Activity Level"
+               styleClass="profile-detail-label" />
+        <ComboBox fx:id="activityLevelCombo"
+                  promptText="Select your activity level"
+                  styleClass="diet-input"
+                  maxWidth="Infinity" />
         <Label text="Fitness Goal"
                styleClass="profile-detail-label" />
         <ComboBox fx:id="fitnessGoalCombo"

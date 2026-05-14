@@ -17,9 +17,10 @@ public class UserTest {
                 dob,
                 170.0,
                 70.0,
-                "Password1!",
-                "Female",
-                "Maintain Fitness");
+                "Male",
+                "Sedentary (little/no exercise)",
+                "Maintain Fitness",
+                "Password1!");
     }
 
     // Birthday tomorrow: person has NOT yet reached their next birthday this year

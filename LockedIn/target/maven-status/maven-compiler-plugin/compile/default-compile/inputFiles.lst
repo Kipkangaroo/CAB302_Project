@@ -17,9 +17,12 @@
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAO.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/db/SqliteConnection.java
+/Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/ActivityLevel.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/Exercise.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/ExerciseSet.java
+/Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/FitnessGoal.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/Food.java
+/Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/Sex.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/User.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/WorkoutExerciseEntry.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/WorkoutRoutine.java

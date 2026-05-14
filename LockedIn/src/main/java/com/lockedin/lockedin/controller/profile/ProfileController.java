@@ -30,6 +30,7 @@ public class ProfileController {
     private Label fitnessGoalLabel;
     @FXML
     private TextField firstNameField;
+
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();

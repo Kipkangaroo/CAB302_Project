@@ -30,9 +30,10 @@ public class UserDAOTest {
                 LocalDate.of(2000, 1, 1),
                 170.0,
                 65.0,
-                "Password1!",
+                "Male",
+                "Sedentary (little/no exercise)",
                 "Build Muscle",
-                "Male");
+                "Password1!");
     }
 
     @BeforeEach
