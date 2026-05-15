@@ -2,7 +2,9 @@ package com.lockedin.lockedin.model.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +33,8 @@ public class UserDAOTest {
                 170.0,
                 65.0,
                 "Male",
-                "Sedentary (little/no exercise)",
-                "Build Muscle",
+                ActivityLevel.SEDENTARY,
+                FitnessGoal.BUILD_MUSCLE,
                 "Password1!");
     }
 
@@ -110,7 +112,7 @@ public class UserDAOTest {
         assertEquals(LocalDate.of(2000, 1, 1), found.getDateOfBirth());
         assertEquals(170.0, found.getHeight());
         assertEquals(65.0, found.getWeight(null));
-        assertEquals("Build Muscle", found.getFitnessGoal(null));
+        assertEquals(FitnessGoal.BUILD_MUSCLE, found.getFitnessGoal(null));
     }
 
     @Test

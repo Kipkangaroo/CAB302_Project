@@ -1,11 +1,11 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.user;
 
 import java.time.LocalDate;
 
 public class UserDetailSnapshot {
     private int id;
     private final int userId;
-    private String fitnessGoal;
+    private FitnessGoal fitnessGoal;
     private double weight;
     private LocalDate effectiveFrom;
 
@@ -13,7 +13,7 @@ public class UserDetailSnapshot {
         this.userId = userId;
     }
 
-    public UserDetailSnapshot(int id, int userId, String fitnessGoal, double weight, LocalDate effectiveFrom) {
+    public UserDetailSnapshot(int id, int userId, FitnessGoal fitnessGoal, double weight, LocalDate effectiveFrom) {
         this.id = id;
         this.userId = userId;
         this.fitnessGoal = fitnessGoal;
@@ -33,7 +33,7 @@ public class UserDetailSnapshot {
         this.id = id;
     }
 
-    public String getFitnessGoal() {
+    public FitnessGoal getFitnessGoal() {
         return fitnessGoal;
     }
 
@@ -45,7 +45,7 @@ public class UserDetailSnapshot {
         return effectiveFrom;
     }
 
-    public void setFitnessGoal(String fitnessGoal) {
+    public void setFitnessGoal(FitnessGoal fitnessGoal) {
         this.fitnessGoal = fitnessGoal;
     }
 

@@ -2,9 +2,10 @@ package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.dao.UserDetailSnapshotDAO;
-import com.lockedin.lockedin.model.entity.User;
-
-import com.lockedin.lockedin.model.entity.UserDetailSnapshot;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
+import com.lockedin.lockedin.model.entity.user.UserDetailSnapshot;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -46,24 +47,16 @@ public class SignUpController {
     @FXML
     private ComboBox<String> sexCombo;
     @FXML
-    private ComboBox<String> activityLevelCombo;
+    private ComboBox<ActivityLevel> activityLevelCombo;
     @FXML
-    private ComboBox<String> fitnessGoalCombo;
+    private ComboBox<FitnessGoal> fitnessGoalCombo;
 
     /** Initializes the sign-up form by populating dropdowns. */
     @FXML
     private void initialize() {
         sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
-        activityLevelCombo.setItems(
-                FXCollections.observableArrayList(
-                        "Sedentary (little/no exercise)",
-                        "Lightly active (1–3 days/week)",
-                        "Moderately active (3–5 days/week)",
-                        "Very active (6–7 days/week)",
-                        "Extra active (physical job + exercise)"));
-        fitnessGoalCombo.setItems(
-                FXCollections.observableArrayList(
-                        "Lose Weight", "Build Muscle", "Maintain Fitness"));
+        activityLevelCombo.setItems(FXCollections.observableArrayList(ActivityLevel.values()));
+        fitnessGoalCombo.setItems(FXCollections.observableArrayList(FitnessGoal.values()));
         // Trigger signup when pressing Enter
         signupBtn.setDefaultButton(true);
     }
@@ -83,9 +76,9 @@ public class SignUpController {
         String confirmPassword = confirmPasswordField.getText().trim();
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
-        String fitnessGoal = fitnessGoalCombo.getValue();
+        FitnessGoal fitnessGoal = fitnessGoalCombo.getValue();
         String sex = sexCombo.getValue();
-        String activityLevel = activityLevelCombo.getValue();
+        ActivityLevel activityLevel = activityLevelCombo.getValue();
         LocalDate dob = dobPicker.getValue();
         double height;
         double weight;

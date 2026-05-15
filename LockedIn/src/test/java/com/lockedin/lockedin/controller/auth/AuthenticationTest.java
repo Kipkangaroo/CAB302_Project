@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -102,8 +104,8 @@ public class AuthenticationTest {
                 170.0,
                 65.0,
                 "Male",
-                "Sedentary (little/no exercise)",
-                "Maintain Fitness",
+                ActivityLevel.SEDENTARY,
+                FitnessGoal.MAINTAIN_FITNESS,
                 "Password1!");
     }
 

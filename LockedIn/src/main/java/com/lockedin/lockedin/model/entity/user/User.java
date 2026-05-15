@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.user;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -27,8 +27,8 @@ public class User {
     private double weight;
     private String email;
     private String sex;
-    private String fitnessGoal;
-    private String activityLevel;
+    private FitnessGoal fitnessGoal;
+    private ActivityLevel activityLevel;
     private String passwordHash;
     private UserDetailSnapshotDAO snapshotDAO;
 
@@ -45,8 +45,8 @@ public class User {
             double height,
             double weight,
             String sex,
-            String activityLevel,
-            String fitnessGoal,
+            ActivityLevel activityLevel,
+            FitnessGoal fitnessGoal,
             String password) {
         this.id = id;
         this.firstName = firstName;
@@ -116,7 +116,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getFitnessGoal(LocalDate date) {
+    public FitnessGoal getFitnessGoal(LocalDate date) {
         if (date == null) {
             return this.fitnessGoal;
         }
@@ -127,7 +127,7 @@ public class User {
         return this.fitnessGoal;
     }
 
-    public void setFitnessGoal(String fitnessGoal) {
+    public void setFitnessGoal(FitnessGoal fitnessGoal) {
         this.fitnessGoal = fitnessGoal;
     }
 
@@ -170,24 +170,18 @@ public class User {
         this.sex = sex;
     }
 
-    public String getActivityLevel() {
+    public ActivityLevel getActivityLevel() {
         return activityLevel;
     }
 
-    public void setActivityLevel(String activityLevel) {
+    public void setActivityLevel(ActivityLevel activityLevel) {
         this.activityLevel = activityLevel;
     }
 
-    // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet
-    // this year; simple year subtraction overstates age before the birthday.
     public int getAge() {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
-    /**
-     * BMR for a given calendar day uses weight (including snapshot history) and age as of that day.
-     * {@code onDate == null} means "today" for weight/age.
-     */
     public double getBMR(LocalDate onDate) {
         double w = onDate == null ? this.weight : getWeight(onDate);
         int ageYears =
@@ -204,24 +198,19 @@ public class User {
     /** {@code onDate == null} means "today" for BMR inputs (weight/age). */
     public double getTDEE(LocalDate onDate) {
         double bmr = getBMR(onDate);
-        return switch (this.activityLevel) {
-            case "Sedentary (little/no exercise)" -> bmr * 1.2;
-            case "Lightly active (1–3 days/week)" -> bmr * 1.375;
-            case "Moderately active (3–5 days/week)" -> bmr * 1.55;
-            case "Very active (6–7 days/week)" -> bmr * 1.725;
-            case "Extra active (physical job + exercise)" -> bmr * 1.9;
-            default -> bmr;
-        };
+        if (activityLevel == null) {
+            return bmr;
+        }
+        return bmr * activityLevel.getTdeeMultiplier();
     }
 
     public double getTargetCalories(LocalDate date) {
         double tdee = getTDEE(date);
-        return switch (getFitnessGoal(date)) {
-            case "Lose Weight" -> tdee - 500;
-            case "Build Muscle" -> tdee + 500;
-            case "Maintain Fitness" -> tdee;
-            default -> tdee;
-        };
+        FitnessGoal goal = getFitnessGoal(date);
+        if (goal == null) {
+            return tdee;
+        }
+        return tdee + goal.getCalorieAdjustment();
     }
 
     public double getTargetProtein(LocalDate date) {
@@ -237,30 +226,18 @@ public class User {
     }
 
     private double getProteinRatio(LocalDate date) {
-        return switch (getFitnessGoal(date)) {
-            case "Lose Weight" -> 0.35;
-            case "Build Muscle" -> 0.30;
-            case "Maintain Fitness" -> 0.25;
-            default -> 0.25;
-        };
+        FitnessGoal goal = getFitnessGoal(date);
+        return goal == null ? 0.25 : goal.getProteinRatio();
     }
 
     private double getCarbsRatio(LocalDate date) {
-        return switch (getFitnessGoal(date)) {
-            case "Lose Weight" -> 0.35;
-            case "Build Muscle" -> 0.50;
-            case "Maintain Fitness" -> 0.45;
-            default -> 0.45;
-        };
+        FitnessGoal goal = getFitnessGoal(date);
+        return goal == null ? 0.45 : goal.getCarbsRatio();
     }
 
     private double getFatsRatio(LocalDate date) {
-        return switch (getFitnessGoal(date)) {
-            case "Lose Weight" -> 0.30;
-            case "Build Muscle" -> 0.20;
-            case "Maintain Fitness" -> 0.30;
-            default -> 0.30;
-        };
+        FitnessGoal goal = getFitnessGoal(date);
+        return goal == null ? 0.30 : goal.getFatsRatio();
     }
 
 }

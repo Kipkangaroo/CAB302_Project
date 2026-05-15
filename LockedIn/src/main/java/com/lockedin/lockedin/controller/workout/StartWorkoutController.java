@@ -2,8 +2,8 @@ package com.lockedin.lockedin.controller.workout;
 
 import com.lockedin.lockedin.model.dao.DBExercisesDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
-import com.lockedin.lockedin.model.entity.Exercise;
-import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+import com.lockedin.lockedin.model.entity.workout.Exercise;
+import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;

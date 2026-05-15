@@ -4,5 +4,5 @@
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/UserDAOTest.java
 /Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAOTest.java
-/Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/entity/EntityBehaviorTest.java
-/Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/entity/UserTest.java
+/Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/entity/user/UserTest.java
+/Users/tusar/Downloads/CAB302_Project/LockedIn/src/test/java/com/lockedin/lockedin/model/entity/workout/EntityBehaviorTest.java

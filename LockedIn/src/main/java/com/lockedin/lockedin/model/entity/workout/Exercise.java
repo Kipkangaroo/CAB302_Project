@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.workout;
 
 /**
  * Represents an exercise definition loaded from the exercise database. Stores metadata such as

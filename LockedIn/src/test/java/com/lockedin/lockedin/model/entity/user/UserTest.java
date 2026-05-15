@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,8 +18,8 @@ public class UserTest {
                 170.0,
                 70.0,
                 "Male",
-                "Sedentary (little/no exercise)",
-                "Maintain Fitness",
+                ActivityLevel.SEDENTARY,
+                FitnessGoal.MAINTAIN_FITNESS,
                 "Password1!");
     }
 

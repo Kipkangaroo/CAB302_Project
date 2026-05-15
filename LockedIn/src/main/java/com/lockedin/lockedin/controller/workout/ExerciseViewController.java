@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.workout;
 
 import com.lockedin.lockedin.model.dao.DBExercisesDAO;
-import com.lockedin.lockedin.model.entity.Exercise;
+import com.lockedin.lockedin.model.entity.workout.Exercise;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

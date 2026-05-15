@@ -1,7 +1,9 @@
 package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -58,8 +60,12 @@ public class UserDAO {
             preparedStatement.setDouble(5, user.getHeight());
             preparedStatement.setDouble(6, user.getWeight(null));
             preparedStatement.setString(7, user.getSex());
-            preparedStatement.setString(8, user.getActivityLevel());
-            preparedStatement.setString(9, user.getFitnessGoal(null));
+            ActivityLevel activityLevel = user.getActivityLevel();
+            preparedStatement.setString(
+                    8, activityLevel == null ? null : activityLevel.getDisplayName());
+            FitnessGoal fitnessGoal = user.getFitnessGoal(null);
+            preparedStatement.setString(
+                    9, fitnessGoal == null ? null : fitnessGoal.getDisplayName());
             preparedStatement.setString(10, user.getPasswordHash());
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted == 0) {
@@ -136,8 +142,8 @@ public class UserDAO {
         user.setHeight(resultSet.getDouble("height"));
         user.setWeight(resultSet.getDouble("weight"));
         user.setSex(resultSet.getString("sex"));
-        user.setActivityLevel(resultSet.getString("activity_level"));
-        user.setFitnessGoal(resultSet.getString("fitness_goal"));
+        user.setActivityLevel(ActivityLevel.fromDisplayName(resultSet.getString("activity_level")));
+        user.setFitnessGoal(FitnessGoal.fromDisplayName(resultSet.getString("fitness_goal")));
         user.setPasswordHash(resultSet.getString("password_hash"));
         return user;
     }

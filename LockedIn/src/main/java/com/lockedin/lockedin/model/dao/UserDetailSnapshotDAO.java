@@ -1,7 +1,8 @@
 package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
-import com.lockedin.lockedin.model.entity.UserDetailSnapshot;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.UserDetailSnapshot;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -42,7 +43,9 @@ public class UserDetailSnapshotDAO {
             UserDetailSnapshot existing = existingSnapshot.get();
             String updateSql = "UPDATE user_detail_snapshots SET fitness_goal = ?, weight = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
-                preparedStatement.setString(1, userDetailSnapshot.getFitnessGoal());
+                FitnessGoal fitnessGoal = userDetailSnapshot.getFitnessGoal();
+                preparedStatement.setString(
+                        1, fitnessGoal == null ? null : fitnessGoal.getDisplayName());
                 preparedStatement.setDouble(2, userDetailSnapshot.getWeight());
                 preparedStatement.setInt(3, existing.getId());
                 return preparedStatement.executeUpdate() > 0;
@@ -55,7 +58,9 @@ public class UserDetailSnapshotDAO {
         String sql = "INSERT INTO user_detail_snapshots(user_id, fitness_goal, weight, effective_from) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, userDetailSnapshot.getUserId());
-            preparedStatement.setString(2, userDetailSnapshot.getFitnessGoal());
+            FitnessGoal fitnessGoal = userDetailSnapshot.getFitnessGoal();
+            preparedStatement.setString(
+                    2, fitnessGoal == null ? null : fitnessGoal.getDisplayName());
             preparedStatement.setDouble(3, userDetailSnapshot.getWeight());
             preparedStatement.setString(4, userDetailSnapshot.getEffectiveFrom().toString());
             int rowsInserted = preparedStatement.executeUpdate();
@@ -131,7 +136,7 @@ public class UserDetailSnapshotDAO {
         return new UserDetailSnapshot(
             resultSet.getInt("id"),
             resultSet.getInt("user_id"),
-            resultSet.getString("fitness_goal"),
+            FitnessGoal.fromDisplayName(resultSet.getString("fitness_goal")),
             resultSet.getDouble("weight"),
             LocalDate.parse(resultSet.getString("effective_from")));
     }

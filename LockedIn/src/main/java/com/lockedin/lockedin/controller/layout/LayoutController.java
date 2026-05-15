@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.layout;
 
 import com.lockedin.lockedin.controller.auth.LogInController;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

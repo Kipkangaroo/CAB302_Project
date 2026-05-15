@@ -2,8 +2,8 @@ package com.lockedin.lockedin.controller.diet;
 
 import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.entity.Food;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.diet.Food;
+import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import com.lockedin.lockedin.service.AiModelService;

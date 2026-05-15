@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

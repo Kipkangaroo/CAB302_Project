@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.profile;
 
 import com.lockedin.lockedin.controller.auth.Authentication;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;

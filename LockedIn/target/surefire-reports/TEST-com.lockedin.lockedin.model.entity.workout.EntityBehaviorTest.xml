@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.515" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.008" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -59,18 +59,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="isValidEmail_acceptsSubdomain" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.486"/>
-  <testcase name="isValidEmail_rejectsEmailWithoutTld" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="authenticate_wrongPassword_returnsEmpty" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.015"/>
-  <testcase name="isValidPassword_rejectsNoSpecialCharacter" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="isValidPassword_rejectsTooShort" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
-  <testcase name="isValidPassword_rejectsNoLowercase" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
-  <testcase name="authenticate_correctCredentials_returnsPresent" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="isValidPassword_rejectsNoUppercase" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
-  <testcase name="isValidEmail_acceptsTypicalEmail" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="isValidEmail_rejectsEmailWithoutDomain" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="authenticate_unknownEmail_returnsEmpty" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
-  <testcase name="isValidEmail_rejectsEmptyString" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
-  <testcase name="isValidEmail_rejectsEmailWithoutAt" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.001"/>
-  <testcase name="isValidPassword_acceptsValidPassword" classname="com.lockedin.lockedin.controller.auth.AuthenticationTest" time="0.0"/>
+  <testcase name="workoutExerciseEntry_shortConstructor_defaultsIdAndRestSeconds" classname="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.0"/>
+  <testcase name="exerciseToString_returnsExerciseName" classname="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.001"/>
+  <testcase name="exerciseImageUrl_usesImageIdAndOption" classname="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.003"/>
+  <testcase name="userGetHash_returnsDeterministicSha256HexNotPlainText" classname="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.001"/>
+  <testcase name="workoutExerciseEntryToString_formatsExerciseSummary" classname="com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest" time="0.001"/>
 </testsuite>

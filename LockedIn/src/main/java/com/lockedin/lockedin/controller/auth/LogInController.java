@@ -1,6 +1,6 @@
 package com.lockedin.lockedin.controller.auth;
 
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
