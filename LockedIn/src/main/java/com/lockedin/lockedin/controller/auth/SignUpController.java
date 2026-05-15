@@ -1,8 +1,10 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.dao.UserDetailSnapshotDAO;
 import com.lockedin.lockedin.model.entity.User;
 
+import com.lockedin.lockedin.model.entity.UserDetailSnapshot;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Controller responsible for handling user registration. Validates input
@@ -18,6 +21,8 @@ import java.time.LocalDate;
  * entity, and stores it via UserDAO.
  */
 public class SignUpController {
+    private final Authentication authentication = new Authentication();
+
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -65,7 +70,7 @@ public class SignUpController {
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
-        Authentication.switchScene(
+        authentication.switchScene(
                 logoImageView, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
     }
 
@@ -85,7 +90,7 @@ public class SignUpController {
         double height;
         double weight;
         if (!password.equals(confirmPassword)) {
-            Authentication.showError(
+            authentication.showError(
                     "Passwords do not match", "Please enter the same password in both fields.");
             return;
         }
@@ -100,29 +105,29 @@ public class SignUpController {
                 || sex == null
                 || activityLevel == null
                 || fitnessGoal == null) {
-            Authentication.showError("All fields are required", "Please fill in all fields.");
+            authentication.showError("All fields are required", "Please fill in all fields.");
             return;
         }
         if (!firstName.matches("^[A-Za-z]+$") || !lastName.matches("^[A-Za-z]+$")) {
-            Authentication.showError(
+            authentication.showError(
                     "Invalid name", "First name and last name must contain letters only.");
             return;
         }
         if (dob.plusYears(18).isAfter(LocalDate.now())) {
-            Authentication.showError(
+            authentication.showError(
                     "Age restriction", "You must be at least 18 years old to sign up.");
             return;
         }
-        if (!Authentication.isValidEmail(email)) {
-            Authentication.showError("Invalid email", "Please enter a valid email format.");
+        if (!authentication.isValidEmail(email)) {
+            authentication.showError("Invalid email", "Please enter a valid email format.");
             return;
         }
         if (new UserDAO().getUserByEmail(email).isPresent()) {
-            Authentication.showError("Email already exists", "Please log in to your account.");
+            authentication.showError("Email already exists", "Please log in to your account.");
             return;
         }
-        if (!Authentication.isValidPassword(password)) {
-            Authentication.showError(
+        if (!authentication.isValidPassword(password)) {
+            authentication.showError(
                     "Invalid password",
                     "Please enter a valid password. It must be at least 8 characters long and"
                             + " contain at least one uppercase letter, one lowercase letter, and one"
@@ -133,12 +138,12 @@ public class SignUpController {
             height = Double.parseDouble(heightText);
             weight = Double.parseDouble(weightText);
         } catch (NumberFormatException e) {
-            Authentication.showError(
+            authentication.showError(
                     "Invalid height or weight", "Height and weight must be valid numbers.");
             return;
         }
         if (height <= 0 || weight <= 0) {
-            Authentication.showError(
+            authentication.showError(
                     "Invalid height or weight", "Height and weight must be greater than 0.");
             return;
         }
@@ -156,15 +161,22 @@ public class SignUpController {
                                 activityLevel,
                                 fitnessGoal,
                                 password))) {
-            Authentication.showInfo("Signup successful", "You can now log in to your account.");
+            Optional<User> addedUser = new UserDAO().getUserByEmail(email);
+            if (addedUser.isPresent()) {
+                User u = addedUser.get();
+                new UserDetailSnapshotDAO()
+                        .addUserDetailSnapshot(
+                                new UserDetailSnapshot(0, u.getId(), u.getFitnessGoal(null), u.getWeight(null), LocalDate.now()));
+            }
+            authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
-                Authentication.switchScene(
+                authentication.switchScene(
                         signupBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            Authentication.showError("Signup failed", "Please try again.");
+            authentication.showError("Signup failed", "Please try again.");
         }
     }
 }

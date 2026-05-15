@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.012" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.013" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AU"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter /Users/tusar/Downloads/CAB302_Project/LockedIn/target/surefire 2026-05-14T22-21-57_480-jvmRun1 surefire-20260514222157588_1tmp surefire_0-20260514222157588_2tmp"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter /Users/tusar/Downloads/CAB302_Project/LockedIn/target/surefire 2026-05-15T14-24-25_172-jvmRun1 surefire-20260515142425604_1tmp surefire_0-20260515142425604_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/tusar/Downloads/CAB302_Project/LockedIn/target/test-classes:/Users/tusar/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.1/junit-jupiter-api-5.12.1.jar:/Users/tusar/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar:/Users/tusar/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.1/junit-jupiter-engine-5.12.1.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar:"/>
@@ -59,16 +59,16 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="updateFirstName_returnsTrue_andPersists" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
-  <testcase name="createUser_assignsGeneratedId" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
-  <testcase name="authenticate_returnsFalse_whenEmailNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="updateFirstName_returnsTrue_andPersists" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.002"/>
+  <testcase name="createUser_assignsGeneratedId" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
+  <testcase name="authenticate_returnsFalse_whenEmailNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
   <testcase name="updateFirstName_returnsFalse_whenIdMissing" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
-  <testcase name="createUser_returnsTrue" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
-  <testcase name="getUserById_returnsEmpty_whenNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="createUser_returnsTrue" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
+  <testcase name="getUserById_returnsEmpty_whenNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.002"/>
   <testcase name="authenticate_returnsTrue_withCorrectPassword" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
-  <testcase name="createUser_preservesAllFields" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
-  <testcase name="authenticate_returnsFalse_withWrongPassword" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
-  <testcase name="getUserByEmail_returnsUser_whenExists" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
-  <testcase name="getUserByEmail_returnsEmpty_whenNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="createUser_preservesAllFields" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="authenticate_returnsFalse_withWrongPassword" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="getUserByEmail_returnsUser_whenExists" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.001"/>
+  <testcase name="getUserByEmail_returnsEmpty_whenNotFound" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
   <testcase name="getUserById_returnsUser_whenExists" classname="com.lockedin.lockedin.model.dao.UserDAOTest" time="0.0"/>
 </testsuite>

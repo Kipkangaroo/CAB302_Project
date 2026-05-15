@@ -109,8 +109,8 @@ public class UserDAOTest {
         assertEquals("g@test.com", found.getEmail());
         assertEquals(LocalDate.of(2000, 1, 1), found.getDateOfBirth());
         assertEquals(170.0, found.getHeight());
-        assertEquals(65.0, found.getWeight());
-        assertEquals("Build Muscle", found.getFitnessGoal());
+        assertEquals(65.0, found.getWeight(null));
+        assertEquals("Build Muscle", found.getFitnessGoal(null));
     }
 
     @Test

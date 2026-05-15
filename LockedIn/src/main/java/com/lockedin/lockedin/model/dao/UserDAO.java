@@ -56,10 +56,10 @@ public class UserDAO {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getDateOfBirth().toString());
             preparedStatement.setDouble(5, user.getHeight());
-            preparedStatement.setDouble(6, user.getWeight());
+            preparedStatement.setDouble(6, user.getWeight(null));
             preparedStatement.setString(7, user.getSex());
             preparedStatement.setString(8, user.getActivityLevel());
-            preparedStatement.setString(9, user.getFitnessGoal());
+            preparedStatement.setString(9, user.getFitnessGoal(null));
             preparedStatement.setString(10, user.getPasswordHash());
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted == 0) {

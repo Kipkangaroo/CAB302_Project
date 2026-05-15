@@ -5,11 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly">
+      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/UserDetailSnapshot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/db/SqliteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/db/SqliteConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/controller/auth/AuthenticationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/controller/auth/AuthenticationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/UserDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.auth.AuthenticationTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.auth.AuthenticationTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.diet.DietControllerInputTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.diet.DietControllerInputTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.FoodDAOTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.FoodDAOTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.UserDAOTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.UserDAOTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.EntityBehaviorTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.EntityBehaviorTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.UserTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.UserTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.auth.AuthenticationTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.auth.AuthenticationTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.diet.DietControllerInputTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.diet.DietControllerInputTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.FoodDAOTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.FoodDAOTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.UserDAOTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.UserDAOTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.EntityBehaviorTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.EntityBehaviorTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.UserTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.UserTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +111,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "Tusar-AI-Food-Values",
+    "git-widget-placeholder": "Tusar-MakingFitnessGoal__and__Weight__Modifiable",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",

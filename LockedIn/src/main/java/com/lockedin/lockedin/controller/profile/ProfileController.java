@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class ProfileController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+    private final Authentication authentication = new Authentication();
     private final FoodDAO foodDAO = new FoodDAO();
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private User user;
@@ -99,7 +100,7 @@ public class ProfileController {
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();
-        Authentication.switchScene(logoutBtn, LOGIN_VIEW);
+        authentication.switchScene(logoutBtn, LOGIN_VIEW);
     }
 
     @FXML
@@ -112,8 +113,9 @@ public class ProfileController {
         user = CurrentUser.get();
         ageLabel.setText("Age: " + user.getAge());
         heightLabel.setText("Height: " + user.getHeight() + " cm");
-        weightLabel.setText("Weight: " + user.getWeight() + " kg");
-        fitnessGoalLabel.setText("Fitness Goal: " + user.getFitnessGoal());
+        LocalDate today = LocalDate.now();
+        weightLabel.setText("Weight: " + user.getWeight(today) + " kg");
+        fitnessGoalLabel.setText("Fitness Goal: " + user.getFitnessGoal(today));
         firstNameField.setText("Hello " + user.getFirstName() + "!");
         updateCalorieTrackingStreak();
     }

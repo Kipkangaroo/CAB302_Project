@@ -27,6 +27,7 @@ public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
+    private User currentUser;
     public DatePicker foodDatePicker;
     AiModelService apiHandler;
     private double targetCalories;
@@ -87,13 +88,8 @@ public class DietController {
         foodDatePicker.setValue(LocalDate.now());
         foodDatePicker.valueProperty().addListener(onDateSelected());
         this.apiHandler = new AiModelService(currentUserID);
-        User currentUser = CurrentUser.get();
-        targetCalories = currentUser.getTargetCalories();
-        targetProtein = currentUser.getTargetProtein();
-        targetCarbs = currentUser.getTargetCarbs();
-        targetFats = currentUser.getTargetFats();
+        this.currentUser = CurrentUser.get();
         setFoodsOnList(LocalDate.now());
-        updateGUI(foodDatePicker.getValue());
     }
 
     @FXML
@@ -152,6 +148,12 @@ public class DietController {
     }
 
     private void updateGUI(LocalDate date) {
+        if (date != null && currentUser != null) {
+            targetCalories = currentUser.getTargetCalories(date);
+            targetProtein = currentUser.getTargetProtein(date);
+            targetCarbs = currentUser.getTargetCarbs(date);
+            targetFats = currentUser.getTargetFats(date);
+        }
         updateTotals(date);
         refreshTotalsLabels();
         updateProgressBars();
@@ -227,6 +229,9 @@ public class DietController {
     }
 
     private void updateTotals(LocalDate date) {
+        if (date == null) {
+            return;
+        }
         totalCalories = foodDAO.getDailyTotalByAttribute(date, "calories", currentUserID);
         totalProtein = foodDAO.getDailyTotalByAttribute(date, "protein", currentUserID);
         totalCarbs = foodDAO.getDailyTotalByAttribute(date, "carbs", currentUserID);
