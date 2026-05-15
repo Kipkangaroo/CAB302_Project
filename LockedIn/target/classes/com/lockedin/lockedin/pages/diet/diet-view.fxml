@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
       fillWidth="true"
@@ -9,8 +13,32 @@
       maxHeight="Infinity">
     <VBox styleClass="diet-header"
           fillWidth="true">
-        <Label text="Nutrition Tracker"
-               styleClass="diet-header-title" />
+        <AnchorPane minHeight="32"
+                    prefHeight="32">
+            <HBox alignment="CENTER_LEFT"
+                  spacing="12"
+                  AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0">
+                <Label text="Nutrition Tracker"
+                       styleClass="diet-header-title"
+                       HBox.hgrow="ALWAYS"
+                       maxWidth="Infinity" />
+            </HBox>
+            <ImageView fitWidth="44"
+                       fitHeight="44"
+                       preserveRatio="true"
+                       smooth="true"
+                       onMouseClicked="#handleAiLogoClick"
+                       AnchorPane.topAnchor="2.0"
+                       AnchorPane.rightAnchor="0.0"
+                       styleClass="diet-ai-logo"
+                       scaleX="1.5"
+                       scaleY="1.5">
+                <image>
+                    <Image url="@../../images/ai-upload-photo-icon.png" />
+                </image>
+            </ImageView>
+        </AnchorPane>
         <Label text="Track your meals and stay aligned with your goals"
                styleClass="diet-header-subtitle">
             <VBox.margin>
@@ -25,6 +53,16 @@
         <VBox styleClass="diet-page-bg"
               spacing="12"
               fillWidth="true">
+            <VBox styleClass="diet-card"
+                  spacing="10"
+                  fillWidth="true">
+                <Label text="Meal date"
+                       styleClass="diet-section-title" />
+                <DatePicker fx:id="foodDatePicker"
+                            promptText="Select a date"
+                            styleClass="diet-input"
+                            maxWidth="Infinity" />
+            </VBox>
             <VBox styleClass="diet-card"
                   spacing="10">
                 <Label text="Add Food"

@@ -1,9 +1,10 @@
 package com.lockedin.lockedin.model.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
- * Represents a single food entry logged by a user. Stores nutritional information (calories and
+ * Represents a single food entry logged by a user. Stores nutritional
+ * information (calories and
  * macros), the user who logged it, and the date of consumption.
  */
 public class Food {
@@ -14,10 +15,10 @@ public class Food {
     private int protein;
     private int carbs;
     private int fats;
-    private Date date;
+    private LocalDate date;
 
     public Food() {
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
     public Food(int id, int userID, String name, int calories, int protein, int carbs, int fats) {
@@ -25,7 +26,7 @@ public class Food {
         this.userID = userID;
         this.name = name;
         this.calories = calories;
-        this.date = new Date();
+        this.date = LocalDate.now();
         this.protein = protein;
         this.carbs = carbs;
         this.fats = fats;
@@ -51,7 +52,7 @@ public class Food {
         return fats;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -75,7 +76,7 @@ public class Food {
         this.fats = fats;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

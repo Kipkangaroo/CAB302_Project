@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added back icon onto sign up page and left aligned the text labels.">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,13 +20,21 @@
     <option name="cachedIndexableFilesCount" value="154" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Akhilesh" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -33,7 +45,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Kipkangaroo/CAB302_Project.git&quot;,
-    &quot;accountId&quot;: &quot;9cdbde35-1e1e-4f53-8b62-3d5ae267458e&quot;
+    &quot;accountId&quot;: &quot;5d7d4a7f-6cec-4ddd-90b4-4276bb45fa61&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -47,6 +59,9 @@
     <commands />
     <urls />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -58,27 +73,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Akhilesh2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kipka/OneDrive/Desktop/CAB302/CAB302_Project&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LockedIn.executor": "Run",
+    "JUnit.FoodDAOTest.executor": "Run",
+    "Maven.LockedIn [clean].executor": "Run",
+    "Maven.LockedIn [compile].executor": "Run",
+    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "Maven.LockedIn [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "Tusar-AI-Food-Values",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Application.LockedIn">
     <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -94,10 +117,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FoodDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lockedin.lockedin.model.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lockedin.lockedin.model.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.model.dao.FoodDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.LockedIn" />
+      <item itemvalue="JUnit.FoodDAOTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LockedIn" />
-        <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="Application.LockedIn" />
         <item itemvalue="Application.LockedIn" />
         <item itemvalue="Application.LockedIn" />
@@ -108,6 +150,7 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -118,6 +161,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777369627836</updated>
+      <workItem from="1778418163058" duration="3273000" />
+      <workItem from="1778575236968" duration="2016000" />
+      <workItem from="1778578362699" duration="122000" />
+      <workItem from="1778578490841" duration="16064000" />
+      <workItem from="1778676151227" duration="489000" />
+      <workItem from="1778676678547" duration="1983000" />
+      <workItem from="1778678690383" duration="1703000" />
+      <workItem from="1778754464286" duration="7000" />
+      <workItem from="1778755621273" duration="5848000" />
     </task>
     <task id="LOCAL-00001" summary="Update files">
       <option name="closed" value="true" />
@@ -199,8 +251,115 @@
       <option name="project" value="LOCAL" />
       <updated>1777602688494</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updating Meeting Minutes">
+      <option name="closed" value="true" />
+      <created>1777801104976</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1777801104976</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Deleting second copy of Food, User and Exercise databases">
+      <option name="closed" value="true" />
+      <created>1777809965898</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1777809965898</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Adding resources">
+      <option name="closed" value="true" />
+      <created>1777811872184</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1777811872184</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Adding resources">
+      <option name="closed" value="true" />
+      <created>1777811878037</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777811878037</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added upload meal image icon and file explorer window after clicked">
+      <option name="closed" value="true" />
+      <created>1778421624208</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421624208</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Updated Icon">
+      <option name="closed" value="true" />
+      <created>1778575300989</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778575300989</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Implemented getting nutritional values from image">
+      <option name="closed" value="true" />
+      <created>1778656494788</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778656494788</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Implemented the API call on a separate thread to avoid app freezing">
+      <option name="closed" value="true" />
+      <created>1778659353869</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778659353869</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Updated all instances of Food-related Date to LocalDate and implemented date picker attribute to the Diet View">
+      <option name="closed" value="true" />
+      <created>1778664621366</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1778664621366</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Increased GUI height to accommodate space for date picker and adjusted login-view.fxml accordingly.">
+      <option name="closed" value="true" />
+      <created>1778666271103</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1778666271103</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added removal confirmation prompt after &quot;Remove&quot; food button press">
+      <option name="closed" value="true" />
+      <created>1778757133638</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1778757133638</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added &quot;Sex&quot; attribute to User and updated the sign-up page">
+      <option name="closed" value="true" />
+      <created>1778759628267</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1778759628267</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added activityLevel attribute to User and updated daily caloric goals accordingly">
+      <option name="closed" value="true" />
+      <created>1778761782135</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1778761782135</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -224,7 +383,19 @@
     <MESSAGE value="Edited the logo and added it as the window icon as well." />
     <MESSAGE value="Updated the profile image placeholder to an animated face" />
     <MESSAGE value="Mass code reformat (following google-java-format) + import optimisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mass code reformat (following google-java-format) + import optimisation" />
+    <MESSAGE value="Updating Meeting Minutes" />
+    <MESSAGE value="Deleting second copy of Food, User and Exercise databases" />
+    <MESSAGE value="Adding resources" />
+    <MESSAGE value="Added upload meal image icon and file explorer window after clicked" />
+    <MESSAGE value="Updated Icon" />
+    <MESSAGE value="Implemented getting nutritional values from image" />
+    <MESSAGE value="Implemented the API call on a separate thread to avoid app freezing" />
+    <MESSAGE value="Updated all instances of Food-related Date to LocalDate and implemented date picker attribute to the Diet View" />
+    <MESSAGE value="Increased GUI height to accommodate space for date picker and adjusted login-view.fxml accordingly." />
+    <MESSAGE value="Added removal confirmation prompt after &quot;Remove&quot; food button press" />
+    <MESSAGE value="Added &quot;Sex&quot; attribute to User and updated the sign-up page" />
+    <MESSAGE value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

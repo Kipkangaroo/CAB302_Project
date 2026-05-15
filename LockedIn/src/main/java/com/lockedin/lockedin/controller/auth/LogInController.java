@@ -49,7 +49,7 @@ public class LogInController {
 
     private void successfulLogin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
-        Scene scene = new Scene(loader.load(), 410, 650);
+        Scene scene = new Scene(loader.load(), 410, 750);
         Stage stage = (Stage) loginBtn.getScene().getWindow();
         stage.setScene(scene);
     }
@@ -93,7 +93,7 @@ public class LogInController {
                 new FXMLLoader(
                         getClass()
                                 .getResource("/com/lockedin/lockedin/pages/auth/signup-view.fxml"));
-        Scene scene = new Scene(loader.load(), 410, 650);
+        Scene scene = new Scene(loader.load(), 410, 750);
         Stage stage = (Stage) loginBtn.getScene().getWindow();
         stage.setScene(scene);
     }

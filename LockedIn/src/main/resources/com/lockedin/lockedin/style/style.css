@@ -36,6 +36,24 @@
     -fx-opacity: 0.84;
 }
 
+.diet-ai-logo {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.diet-ai-logo:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.58;
+    -fx-scale-y: 1.58;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.45), 12, 0.2, 0, 0);
+}
+
+.diet-ai-logo:pressed {
+    -fx-opacity: 0.9;
+    -fx-scale-x: 1.42;
+    -fx-scale-y: 1.42;
+}
+
 .diet-scroll {
     -fx-background-color: #F0F2F5;
     -fx-border-color: transparent;
@@ -108,6 +126,50 @@
 .date-picker.diet-input>.arrow-button {
     -fx-background-color: #E9EEF5;
     -fx-background-radius: 0 10 10 0;
+}
+
+.date-picker.diet-input>.arrow-button:hover {
+    -fx-background-color: #DDE6F2;
+}
+
+/* Calendar popup – same palette as diet / auth forms */
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 12, 0, 0, 3);
+}
+
+.date-picker-popup>.month-year-pane {
+    -fx-background-color: #E9EEF5;
+    -fx-background-radius: 8;
+    -fx-padding: 6 8 8 8;
+}
+
+.date-picker-popup .spinner .button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup .spinner .button:hover {
+    -fx-background-color: #DDE6F2;
+    -fx-background-radius: 6;
+}
+
+.date-picker-popup .day-cell:hover,
+.date-picker-popup .week-number-cell:hover {
+    -fx-background-color: #E3F2FD;
+}
+
+.date-picker-popup .day-cell:selected,
+.date-picker-popup .day-cell:selected:focused {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .today {
+    -fx-border-color: #1565C0;
+    -fx-border-width: 1;
 }
 
 /* Login tagline – matches app secondary text (e.g. diet buttons) */
@@ -461,9 +523,28 @@
     -fx-padding: 14;
 }
 
+.profile-card-avatar-shell {
+    -fx-alignment: center;
+}
+
+.profile-avatar-stack {
+    -fx-alignment: center;
+}
+
+.profile-edit-icon-wrap {
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
+}
+
 .profile-name-label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-cursor: default;
 }
 
 .profile-section-title {

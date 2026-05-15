@@ -7,14 +7,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 /**
- * Represents a user profile, including personal details, authentication data, and fitness goal
+ * Represents a user profile, including personal details, authentication data,
+ * and fitness goal
  * calculations. Provides helper methods for computing TDEE and macro targets.
  */
 public class User {
     private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
     private static final double CALORIES_PER_GRAM_CARBS = 4.0;
     private static final double CALORIES_PER_GRAM_FATS = 9.0;
-
     private int id;
     private String firstName;
     private String lastName;
@@ -22,10 +22,13 @@ public class User {
     private double height;
     private double weight;
     private String email;
+    private String sex;
     private String fitnessGoal;
+    private String activityLevel;
     private String passwordHash;
 
-    public User() {}
+    public User() {
+    }
 
     public User(
             int id,
@@ -35,8 +38,10 @@ public class User {
             LocalDate dateOfBirth,
             double height,
             double weight,
-            String password,
-            String fitnessGoal) {
+            String sex,
+            String activityLevel,
+            String fitnessGoal,
+            String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,7 +49,9 @@ public class User {
         this.height = height;
         this.weight = weight;
         this.email = email;
+        this.sex = sex;
         this.fitnessGoal = fitnessGoal;
+        this.activityLevel = activityLevel;
         this.passwordHash = getHash(password);
     }
 
@@ -134,17 +141,56 @@ public class User {
         this.weight = weight;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(String activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
     // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet
     // this year; simple year subtraction overstates age before the birthday.
     public int getAge() {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
-    public double getTDEE() {
+    public double getBMR() {
         // Mifflin-St Jeor BMR formula
-        double BMR = 10 * weight + 6.25 * height - 5 * getAge() + 5;
-        double TDEE = BMR * 1.2;
-        return TDEE;
+        switch (this.sex) {
+            case "Male":
+                return (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
+            case "Female":
+                return (10 * weight) + (6.25 * height) - (5 * getAge()) - 161;
+            default:
+                return 0;
+        }
+    }
+
+    public double getTDEE() {
+        // Mifflin-St Jeor BMR formula + activity level multiplier
+        switch (this.activityLevel) {
+            case "Sedentary (little/no exercise)":
+                return getBMR() * 1.2;
+            case "Lightly active (1–3 days/week)":
+                return getBMR() * 1.375;
+            case "Moderately active (3–5 days/week)":
+                return getBMR() * 1.55;
+            case "Very active (6–7 days/week)":
+                return getBMR() * 1.725;
+            case "Extra active (physical job + exercise)":
+                return getBMR() * 1.9;
+            default:
+                return getBMR();
+        }
     }
 
     public double getTargetCalories() {

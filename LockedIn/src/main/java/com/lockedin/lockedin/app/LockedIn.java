@@ -23,7 +23,7 @@ public class LockedIn extends Application {
                 new FXMLLoader(
                         LockedIn.class.getResource(
                                 "/com/lockedin/lockedin/pages/auth/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 410, 650);
+        Scene scene = new Scene(fxmlLoader.load(), 410, 750);
         stage.setTitle("LockedIN");
         stage.getIcons()
                 .add(
