@@ -65,7 +65,7 @@ public class LayoutController {
             Pane appPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
             pageContainer.getChildren().setAll(appPage);
         } catch (IOException e) {
-            // TODO: add user-visible error handling.
+            throw new RuntimeException("Failed to load page: " + page, e);
         }
     }
 

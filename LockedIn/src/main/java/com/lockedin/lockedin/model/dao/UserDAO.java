@@ -58,12 +58,12 @@ public class UserDAO {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getDateOfBirth().toString());
             preparedStatement.setDouble(5, user.getHeight());
-            preparedStatement.setDouble(6, user.getWeight(null));
+            preparedStatement.setDouble(6, user.getWeight());
             preparedStatement.setString(7, user.getSex());
             ActivityLevel activityLevel = user.getActivityLevel();
             preparedStatement.setString(
                     8, activityLevel == null ? null : activityLevel.getDisplayName());
-            FitnessGoal fitnessGoal = user.getFitnessGoal(null);
+            FitnessGoal fitnessGoal = user.getFitnessGoal();
             preparedStatement.setString(
                     9, fitnessGoal == null ? null : fitnessGoal.getDisplayName());
             preparedStatement.setString(10, user.getPasswordHash());
@@ -105,6 +105,28 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
             throw new RuntimeException("Failed to update first name", e);
+        }
+    }
+
+    public boolean updateFitnessGoal(int id, FitnessGoal fitnessGoal) {
+        String sql = "UPDATE users SET fitness_goal = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, fitnessGoal.getDisplayName());
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update fitness goal", e);
+        }
+    }
+
+    public boolean updateWeight(int id, double weight) {
+        String sql = "UPDATE users SET weight = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setDouble(1, weight);
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update weight", e);
         }
     }
 

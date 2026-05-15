@@ -11,15 +11,18 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * SQLite connection manager. Opens each database file at most once and reuses the connection
- * across DAOs. Connections for different files are independent; accessing one file never closes
+ * SQLite connection manager. Opens each database file at most once and reuses
+ * the connection
+ * across DAOs. Connections for different files are independent; accessing one
+ * file never closes
  * another.
  */
 public final class SqliteConnection {
     private static final Path DB_DIRECTORY = Paths.get("LockedIn", "data").toAbsolutePath();
     private static final Map<Path, Connection> CONNECTIONS = new ConcurrentHashMap<>();
 
-    private SqliteConnection() {}
+    private SqliteConnection() {
+    }
 
     public static Connection getInstance(String dbFileName) {
         Path dbPath = DB_DIRECTORY.resolve(dbFileName).toAbsolutePath();

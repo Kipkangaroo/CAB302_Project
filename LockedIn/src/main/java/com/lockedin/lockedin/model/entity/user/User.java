@@ -5,10 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
 
-import com.lockedin.lockedin.model.dao.UserDetailSnapshotDAO;
-
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
 
 /**
  * Represents a user profile, including personal details, authentication data,
@@ -30,10 +28,10 @@ public class User {
     private FitnessGoal fitnessGoal;
     private ActivityLevel activityLevel;
     private String passwordHash;
-    private UserDetailSnapshotDAO snapshotDAO;
+    private UserProgressDAO progressDAO;
 
     public User() {
-        this.snapshotDAO = new UserDetailSnapshotDAO();
+        this.progressDAO = new UserProgressDAO();
     }
 
     public User(
@@ -59,7 +57,7 @@ public class User {
         this.fitnessGoal = fitnessGoal;
         this.activityLevel = activityLevel;
         this.passwordHash = getHash(password);
-        this.snapshotDAO = new UserDetailSnapshotDAO();
+        this.progressDAO = new UserProgressDAO();
     }
 
     public static String getHash(String password) {
@@ -116,14 +114,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public FitnessGoal getFitnessGoal(LocalDate date) {
-        if (date == null) {
-            return this.fitnessGoal;
-        }
-        Optional<UserDetailSnapshot> activeSnapshot = snapshotDAO.getActiveUserDetailSnapshot(this.id, date);
-        if (activeSnapshot.isPresent()) {
-            return activeSnapshot.get().getFitnessGoal();
-        }
+    public FitnessGoal getFitnessGoal() {
         return this.fitnessGoal;
     }
 
@@ -147,14 +138,7 @@ public class User {
         this.height = height;
     }
 
-    public double getWeight(LocalDate date) {
-        if (date == null) {
-            return this.weight;
-        }
-        Optional<UserDetailSnapshot> activeSnapshot = snapshotDAO.getActiveUserDetailSnapshot(this.id, date);
-        if (activeSnapshot.isPresent()) {
-            return activeSnapshot.get().getWeight();
-        }
+    public double getWeight() {
         return this.weight;
     }
 
@@ -182,62 +166,53 @@ public class User {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
-    public double getBMR(LocalDate onDate) {
-        double w = onDate == null ? this.weight : getWeight(onDate);
-        int ageYears =
-                onDate == null
-                        ? getAge()
-                        : (int) ChronoUnit.YEARS.between(dateOfBirth, onDate);
+    public double getBMR() {
         return switch (this.sex) {
-            case "Male" -> (10 * w) + (6.25 * height) - (5 * ageYears) + 5;
-            case "Female" -> (10 * w) + (6.25 * height) - (5 * ageYears) - 161;
+            case "Male" -> (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
+            case "Female" -> (10 * weight) + (6.25 * height) - (5 * getAge()) - 161;
             default -> 0;
         };
     }
 
-    /** {@code onDate == null} means "today" for BMR inputs (weight/age). */
-    public double getTDEE(LocalDate onDate) {
-        double bmr = getBMR(onDate);
+    public double getTDEE() {
+        double bmr = getBMR();
         if (activityLevel == null) {
             return bmr;
         }
         return bmr * activityLevel.getTdeeMultiplier();
     }
 
-    public double getTargetCalories(LocalDate date) {
-        double tdee = getTDEE(date);
-        FitnessGoal goal = getFitnessGoal(date);
+    public double getTargetCalories() {
+        double tdee = getTDEE();
+        FitnessGoal goal = getFitnessGoal();
         if (goal == null) {
             return tdee;
         }
         return tdee + goal.getCalorieAdjustment();
     }
 
-    public double getTargetProtein(LocalDate date) {
-        return (getTargetCalories(date) * getProteinRatio(date)) / CALORIES_PER_GRAM_PROTEIN;
+    public double getTargetProtein(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getProteinRatio(fitnessGoal)) / CALORIES_PER_GRAM_PROTEIN;
     }
 
-    public double getTargetCarbs(LocalDate date) {
-        return (getTargetCalories(date) * getCarbsRatio(date)) / CALORIES_PER_GRAM_CARBS;
+    public double getTargetCarbs(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getCarbsRatio(fitnessGoal)) / CALORIES_PER_GRAM_CARBS;
     }
 
-    public double getTargetFats(LocalDate date) {
-        return (getTargetCalories(date) * getFatsRatio(date)) / CALORIES_PER_GRAM_FATS;
+    public double getTargetFats(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getFatsRatio(fitnessGoal)) / CALORIES_PER_GRAM_FATS;
     }
 
-    private double getProteinRatio(LocalDate date) {
-        FitnessGoal goal = getFitnessGoal(date);
-        return goal == null ? 0.25 : goal.getProteinRatio();
+    private static double getProteinRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.25 : fitnessGoal.getProteinRatio();
     }
 
-    private double getCarbsRatio(LocalDate date) {
-        FitnessGoal goal = getFitnessGoal(date);
-        return goal == null ? 0.45 : goal.getCarbsRatio();
+    private static double getCarbsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.45 : fitnessGoal.getCarbsRatio();
     }
 
-    private double getFatsRatio(LocalDate date) {
-        FitnessGoal goal = getFitnessGoal(date);
-        return goal == null ? 0.30 : goal.getFatsRatio();
+    private static double getFatsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.30 : fitnessGoal.getFatsRatio();
     }
 
 }

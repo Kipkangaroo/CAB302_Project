@@ -2,7 +2,9 @@ package com.lockedin.lockedin.controller.diet;
 
 import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.diet.Food;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
@@ -149,10 +151,11 @@ public class DietController {
 
     private void updateGUI(LocalDate date) {
         if (date != null && currentUser != null) {
-            targetCalories = currentUser.getTargetCalories(date);
-            targetProtein = currentUser.getTargetProtein(date);
-            targetCarbs = currentUser.getTargetCarbs(date);
-            targetFats = currentUser.getTargetFats(date);
+            targetCalories = new UserProgressDAO().getDailyTargetCalories(currentUserID, date);
+            FitnessGoal fitnessGoal = currentUser.getFitnessGoal();
+            targetProtein = currentUser.getTargetProtein(targetCalories, fitnessGoal);
+            targetCarbs = currentUser.getTargetCarbs(targetCalories, fitnessGoal);
+            targetFats = currentUser.getTargetFats(targetCalories, fitnessGoal);
         }
         updateTotals(date);
         refreshTotalsLabels();

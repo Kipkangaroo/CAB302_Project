@@ -1,11 +1,11 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.dao.UserDetailSnapshotDAO;
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.user.ActivityLevel;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
-import com.lockedin.lockedin.model.entity.user.UserDetailSnapshot;
+import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -23,7 +23,7 @@ import java.util.Optional;
  */
 public class SignUpController {
     private final Authentication authentication = new Authentication();
-
+    private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -64,7 +64,7 @@ public class SignUpController {
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
         authentication.switchScene(
-                logoImageView, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+                logoImageView, LOGIN_VIEW);
     }
 
     @FXML
@@ -127,25 +127,21 @@ public class SignUpController {
                             + " special character.");
             return;
         }
-        try {
-            height = Double.parseDouble(heightText);
-            weight = Double.parseDouble(weightText);
-        } catch (NumberFormatException e) {
+        Double parsedHeight = parseValidDouble(heightText);
+        Double parsedWeight = parseValidDouble(weightText);
+        if (parsedHeight == null || parsedWeight == null) {
             authentication.showError(
-                    "Invalid height or weight", "Height and weight must be valid numbers.");
+                    "Invalid height or weight", "Height and weight must be valid real numbers greater than 0.");
             return;
         }
-        if (height <= 0 || weight <= 0) {
-            authentication.showError(
-                    "Invalid height or weight", "Height and weight must be greater than 0.");
-            return;
-        }
+        height = parsedHeight;
+        weight = parsedWeight;
         if (new UserDAO()
                 .createUser(
                         new User(
                                 0,
-                                firstName,
-                                lastName,
+                                capitalize(firstName),
+                                capitalize(lastName),
                                 email,
                                 dob,
                                 height,
@@ -157,9 +153,16 @@ public class SignUpController {
             Optional<User> addedUser = new UserDAO().getUserByEmail(email);
             if (addedUser.isPresent()) {
                 User u = addedUser.get();
-                new UserDetailSnapshotDAO()
-                        .addUserDetailSnapshot(
-                                new UserDetailSnapshot(0, u.getId(), u.getFitnessGoal(null), u.getWeight(null), LocalDate.now()));
+                // Add initial user progress
+                new UserProgressDAO()
+                        .addUserProgress(
+                                new UserProgress(
+                                        0,
+                                        u.getId(),
+                                        u.getFitnessGoal(),
+                                        u.getWeight(),
+                                        u.getTargetCalories(),
+                                        LocalDate.now()));  
             }
             authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
@@ -171,5 +174,24 @@ public class SignUpController {
         } else {
             authentication.showError("Signup failed", "Please try again.");
         }
+    }
+
+    public static Double parseValidDouble(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            double value = Double.parseDouble(text.trim());
+            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
+                return null;
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private String capitalize(String string) {
+        return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 }
