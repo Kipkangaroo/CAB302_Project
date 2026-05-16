@@ -84,6 +84,11 @@ public class LogInController {
     }
 
     @FXML
+    private void handleForgotPassword() throws IOException {
+        authentication.switchScene(loginBtn, FORGOT_PASSWORD_VIEW);
+    }
+
+    @FXML
     private void handleSignup() throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 getClass()
