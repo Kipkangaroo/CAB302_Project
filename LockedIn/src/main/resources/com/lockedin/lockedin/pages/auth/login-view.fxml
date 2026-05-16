@@ -45,6 +45,12 @@
                            promptText="Enter your password"
                            styleClass="diet-input"
                            maxWidth="Infinity" />
+            <HBox alignment="CENTER_RIGHT"
+                  maxWidth="Infinity">
+                <Hyperlink fx:id="forgotPasswordLink"
+                           text="Forgot your password?"
+                           onAction="#handleForgotPassword" />
+            </HBox>
             <Button fx:id="loginBtn"
                     text="Log In"
                     onAction="#handleLogIn"

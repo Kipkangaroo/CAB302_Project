@@ -21,6 +21,8 @@ import java.util.Optional;
  */
 public class LogInController {
     private static final String MAIN_VIEW = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
+    private static final String FORGOT_PASSWORD_VIEW =
+            "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
     private static User loggedInUser;
     private final Authentication authentication = new Authentication();
     @FXML
@@ -74,6 +76,11 @@ public class LogInController {
     private void failedLogin() {
         authentication.showError(
                 "Invalid email or password", "Please enter a valid email and password.");
+    }
+
+    @FXML
+    private void handleForgotPassword() throws IOException {
+        authentication.switchScene(loginBtn, FORGOT_PASSWORD_VIEW);
     }
 
     @FXML
