@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
-import com.lockedin.lockedin.model.entity.Food;
+import com.lockedin.lockedin.model.entity.diet.Food;
 
 import java.sql.*;
 import java.time.LocalDate;

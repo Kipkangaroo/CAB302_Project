@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.workout;
 
 import java.util.ArrayList;
 import java.util.HashMap;

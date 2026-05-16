@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.diet;
 
 import java.time.LocalDate;
 

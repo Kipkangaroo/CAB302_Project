@@ -2,8 +2,10 @@ package com.lockedin.lockedin.controller.diet;
 
 import com.lockedin.lockedin.logic.DietLogic;
 import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.entity.Food;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.entity.diet.Food;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import com.lockedin.lockedin.service.AiModelService;
@@ -27,6 +29,7 @@ public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
+    private User currentUser;
     public DatePicker foodDatePicker;
     AiModelService apiHandler;
     private double targetCalories;
@@ -87,13 +90,8 @@ public class DietController {
         foodDatePicker.setValue(LocalDate.now());
         foodDatePicker.valueProperty().addListener(onDateSelected());
         this.apiHandler = new AiModelService(currentUserID);
-        User currentUser = CurrentUser.get();
-        targetCalories = currentUser.getTargetCalories();
-        targetProtein = currentUser.getTargetProtein();
-        targetCarbs = currentUser.getTargetCarbs();
-        targetFats = currentUser.getTargetFats();
+        this.currentUser = CurrentUser.get();
         setFoodsOnList(LocalDate.now());
-        updateGUI(foodDatePicker.getValue());
     }
 
     @FXML
@@ -152,6 +150,13 @@ public class DietController {
     }
 
     private void updateGUI(LocalDate date) {
+        if (date != null && currentUser != null) {
+            targetCalories = new UserProgressDAO().getDailyTargetCalories(currentUserID, date);
+            FitnessGoal fitnessGoal = currentUser.getFitnessGoal();
+            targetProtein = currentUser.getTargetProtein(targetCalories, fitnessGoal);
+            targetCarbs = currentUser.getTargetCarbs(targetCalories, fitnessGoal);
+            targetFats = currentUser.getTargetFats(targetCalories, fitnessGoal);
+        }
         updateTotals(date);
         refreshTotalsLabels();
         updateProgressBars();
@@ -227,6 +232,9 @@ public class DietController {
     }
 
     private void updateTotals(LocalDate date) {
+        if (date == null) {
+            return;
+        }
         totalCalories = foodDAO.getDailyTotalByAttribute(date, "calories", currentUserID);
         totalProtein = foodDAO.getDailyTotalByAttribute(date, "protein", currentUserID);
         totalCarbs = foodDAO.getDailyTotalByAttribute(date, "carbs", currentUserID);

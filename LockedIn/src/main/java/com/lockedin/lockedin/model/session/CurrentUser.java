@@ -1,6 +1,6 @@
 package com.lockedin.lockedin.model.session;
 
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 
 public class CurrentUser {
     private static User user;

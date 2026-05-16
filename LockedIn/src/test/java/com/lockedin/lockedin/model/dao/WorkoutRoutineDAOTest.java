@@ -2,7 +2,7 @@ package com.lockedin.lockedin.model.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

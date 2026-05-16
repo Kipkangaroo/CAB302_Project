@@ -3,7 +3,7 @@ package com.lockedin.lockedin.model.dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.lockedin.lockedin.model.entity.Food;
+import com.lockedin.lockedin.model.entity.diet.Food;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

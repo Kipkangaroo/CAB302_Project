@@ -1,4 +1,4 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.workout;
 
 /**
  * Represents a single set performed for a specific exercise. Stores the exercise reference along

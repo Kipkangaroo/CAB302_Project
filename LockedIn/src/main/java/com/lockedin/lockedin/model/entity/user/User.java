@@ -1,10 +1,12 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.user;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
 
 /**
  * Represents a user profile, including personal details, authentication data,
@@ -23,11 +25,13 @@ public class User {
     private double weight;
     private String email;
     private String sex;
-    private String fitnessGoal;
-    private String activityLevel;
+    private FitnessGoal fitnessGoal;
+    private ActivityLevel activityLevel;
     private String passwordHash;
+    private UserProgressDAO progressDAO;
 
     public User() {
+        this.progressDAO = new UserProgressDAO();
     }
 
     public User(
@@ -39,8 +43,8 @@ public class User {
             double height,
             double weight,
             String sex,
-            String activityLevel,
-            String fitnessGoal,
+            ActivityLevel activityLevel,
+            FitnessGoal fitnessGoal,
             String password) {
         this.id = id;
         this.firstName = firstName;
@@ -53,6 +57,7 @@ public class User {
         this.fitnessGoal = fitnessGoal;
         this.activityLevel = activityLevel;
         this.passwordHash = getHash(password);
+        this.progressDAO = new UserProgressDAO();
     }
 
     public static String getHash(String password) {
@@ -109,11 +114,11 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getFitnessGoal() {
-        return fitnessGoal;
+    public FitnessGoal getFitnessGoal() {
+        return this.fitnessGoal;
     }
 
-    public void setFitnessGoal(String fitnessGoal) {
+    public void setFitnessGoal(FitnessGoal fitnessGoal) {
         this.fitnessGoal = fitnessGoal;
     }
 
@@ -134,7 +139,7 @@ public class User {
     }
 
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
 
     public void setWeight(double weight) {
@@ -149,111 +154,65 @@ public class User {
         this.sex = sex;
     }
 
-    public String getActivityLevel() {
+    public ActivityLevel getActivityLevel() {
         return activityLevel;
     }
 
-    public void setActivityLevel(String activityLevel) {
+    public void setActivityLevel(ActivityLevel activityLevel) {
         this.activityLevel = activityLevel;
     }
 
-    // ChronoUnit.YEARS.between() accounts for whether the birthday has occurred yet
-    // this year; simple year subtraction overstates age before the birthday.
     public int getAge() {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
     public double getBMR() {
-        // Mifflin-St Jeor BMR formula
-        switch (this.sex) {
-            case "Male":
-                return (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
-            case "Female":
-                return (10 * weight) + (6.25 * height) - (5 * getAge()) - 161;
-            default:
-                return 0;
-        }
+        return switch (this.sex) {
+            case "Male" -> (10 * weight) + (6.25 * height) - (5 * getAge()) + 5;
+            case "Female" -> (10 * weight) + (6.25 * height) - (5 * getAge()) - 161;
+            default -> 0;
+        };
     }
 
     public double getTDEE() {
-        // Mifflin-St Jeor BMR formula + activity level multiplier
-        switch (this.activityLevel) {
-            case "Sedentary (little/no exercise)":
-                return getBMR() * 1.2;
-            case "Lightly active (1–3 days/week)":
-                return getBMR() * 1.375;
-            case "Moderately active (3–5 days/week)":
-                return getBMR() * 1.55;
-            case "Very active (6–7 days/week)":
-                return getBMR() * 1.725;
-            case "Extra active (physical job + exercise)":
-                return getBMR() * 1.9;
-            default:
-                return getBMR();
+        double bmr = getBMR();
+        if (activityLevel == null) {
+            return bmr;
         }
+        return bmr * activityLevel.getTdeeMultiplier();
     }
 
     public double getTargetCalories() {
-        switch (this.fitnessGoal) {
-            case "Lose Weight":
-                return getTDEE() - 500;
-            case "Build Muscle":
-                return getTDEE() + 500;
-            case "Maintain Fitness":
-                return getTDEE();
-            default:
-                return getTDEE();
+        double tdee = getTDEE();
+        FitnessGoal goal = getFitnessGoal();
+        if (goal == null) {
+            return tdee;
         }
+        return tdee + goal.getCalorieAdjustment();
     }
 
-    public double getTargetProtein() {
-        return (getTargetCalories() * getProteinRatio()) / CALORIES_PER_GRAM_PROTEIN;
+    public double getTargetProtein(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getProteinRatio(fitnessGoal)) / CALORIES_PER_GRAM_PROTEIN;
     }
 
-    public double getTargetCarbs() {
-        return (getTargetCalories() * getCarbsRatio()) / CALORIES_PER_GRAM_CARBS;
+    public double getTargetCarbs(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getCarbsRatio(fitnessGoal)) / CALORIES_PER_GRAM_CARBS;
     }
 
-    public double getTargetFats() {
-        return (getTargetCalories() * getFatsRatio()) / CALORIES_PER_GRAM_FATS;
+    public double getTargetFats(double totalCalories, FitnessGoal fitnessGoal) {
+        return (totalCalories * getFatsRatio(fitnessGoal)) / CALORIES_PER_GRAM_FATS;
     }
 
-    private double getProteinRatio() {
-        switch (this.fitnessGoal) {
-            case "Lose Weight":
-                return 0.35;
-            case "Build Muscle":
-                return 0.30;
-            case "Maintain Fitness":
-                return 0.25;
-            default:
-                return 0.25;
-        }
+    private static double getProteinRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.25 : fitnessGoal.getProteinRatio();
     }
 
-    private double getCarbsRatio() {
-        switch (this.fitnessGoal) {
-            case "Lose Weight":
-                return 0.35;
-            case "Build Muscle":
-                return 0.50;
-            case "Maintain Fitness":
-                return 0.45;
-            default:
-                return 0.45;
-        }
+    private static double getCarbsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.45 : fitnessGoal.getCarbsRatio();
     }
 
-    private double getFatsRatio() {
-        switch (this.fitnessGoal) {
-            case "Lose Weight":
-                return 0.30;
-            case "Build Muscle":
-                return 0.20;
-            case "Maintain Fitness":
-                return 0.30;
-            default:
-                return 0.30;
-        }
+    private static double getFatsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.30 : fitnessGoal.getFatsRatio();
     }
+
 }

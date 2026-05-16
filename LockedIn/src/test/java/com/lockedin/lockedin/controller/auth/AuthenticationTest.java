@@ -4,84 +4,95 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Unit tests for the Authentication utility class. Verifies email and password
- * validation rules
- * using representative valid and invalid input cases.
+ * Unit tests for {@link Authentication}. Verifies email and password validation and login against
+ * an in-memory database.
  */
 public class AuthenticationTest {
+
+    private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
+
+    private Authentication auth;
+
+    @BeforeEach
+    void setUp() throws SQLException {
+        Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
+        auth = new Authentication(new UserDAO(conn));
+    }
 
     // ---- isValidEmail ----
 
     @Test
     void isValidEmail_acceptsTypicalEmail() {
-        assertTrue(Authentication.isValidEmail("user@example.com"));
+        assertTrue(auth.isValidEmail("user@example.com"));
     }
 
     @Test
     void isValidEmail_acceptsSubdomain() {
-        assertTrue(Authentication.isValidEmail("user@mail.example.org"));
+        assertTrue(auth.isValidEmail("user@mail.example.org"));
     }
 
     @Test
     void isValidEmail_rejectsEmailWithoutAt() {
-        assertFalse(Authentication.isValidEmail("userexample.com"));
+        assertFalse(auth.isValidEmail("userexample.com"));
     }
 
     @Test
     void isValidEmail_rejectsEmailWithoutDomain() {
-        assertFalse(Authentication.isValidEmail("user@"));
+        assertFalse(auth.isValidEmail("user@"));
     }
 
     @Test
     void isValidEmail_rejectsEmailWithoutTld() {
-        assertFalse(Authentication.isValidEmail("user@example"));
+        assertFalse(auth.isValidEmail("user@example"));
     }
 
     @Test
     void isValidEmail_rejectsEmptyString() {
-        assertFalse(Authentication.isValidEmail(""));
+        assertFalse(auth.isValidEmail(""));
     }
 
     // ---- isValidPassword ----
 
     @Test
     void isValidPassword_acceptsValidPassword() {
-        assertTrue(Authentication.isValidPassword("Secure@123"));
+        assertTrue(auth.isValidPassword("Secure@123"));
     }
 
     @Test
     void isValidPassword_rejectsTooShort() {
-        assertFalse(Authentication.isValidPassword("Ab!1234"));
+        assertFalse(auth.isValidPassword("Ab!1234"));
     }
 
     @Test
     void isValidPassword_rejectsNoUppercase() {
-        assertFalse(Authentication.isValidPassword("password1!"));
+        assertFalse(auth.isValidPassword("password1!"));
     }
 
     @Test
     void isValidPassword_rejectsNoLowercase() {
-        assertFalse(Authentication.isValidPassword("PASSWORD1!"));
+        assertFalse(auth.isValidPassword("PASSWORD1!"));
     }
 
     @Test
     void isValidPassword_rejectsNoSpecialCharacter() {
-        assertFalse(Authentication.isValidPassword("Password123"));
+        assertFalse(auth.isValidPassword("Password123"));
     }
 
-    // ---- authenticate(email, password, UserDAO) ----
-
-    private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
+    // ---- authenticate ----
 
     private User makeUser(String email) {
         return new User(
@@ -93,8 +104,8 @@ public class AuthenticationTest {
                 170.0,
                 65.0,
                 "Male",
-                "Sedentary (little/no exercise)",
-                "Maintain Fitness",
+                ActivityLevel.SEDENTARY,
+                FitnessGoal.MAINTAIN_FITNESS,
                 "Password1!");
     }
 
@@ -103,8 +114,9 @@ public class AuthenticationTest {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         UserDAO userDAO = new UserDAO(conn);
         userDAO.createUser(makeUser("jane@test.com"));
+        Authentication login = new Authentication(userDAO);
 
-        Optional<User> result = Authentication.authenticate("jane@test.com", "Password1!", userDAO);
+        Optional<User> result = login.authenticate("jane@test.com", "Password1!");
         assertTrue(result.isPresent());
     }
 
@@ -113,8 +125,9 @@ public class AuthenticationTest {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         UserDAO userDAO = new UserDAO(conn);
         userDAO.createUser(makeUser("jane2@test.com"));
+        Authentication login = new Authentication(userDAO);
 
-        Optional<User> result = Authentication.authenticate("jane2@test.com", "WrongPass1!", userDAO);
+        Optional<User> result = login.authenticate("jane2@test.com", "WrongPass1!");
         assertTrue(result.isEmpty());
     }
 
@@ -122,8 +135,9 @@ public class AuthenticationTest {
     void authenticate_unknownEmail_returnsEmpty() throws Exception {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         UserDAO userDAO = new UserDAO(conn);
+        Authentication login = new Authentication(userDAO);
 
-        Optional<User> result = Authentication.authenticate("nobody@test.com", "Password1!", userDAO);
+        Optional<User> result = login.authenticate("nobody@test.com", "Password1!");
         assertTrue(result.isEmpty());
     }
 }

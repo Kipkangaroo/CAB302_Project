@@ -1,8 +1,10 @@
-package com.lockedin.lockedin.model.entity;
+package com.lockedin.lockedin.model.entity.workout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import com.lockedin.lockedin.model.entity.user.User;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package com.lockedin.lockedin.model.dao;
 
-import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;

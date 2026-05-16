@@ -19,7 +19,7 @@ import javafx.concurrent.Task;
 import java.time.LocalDate;
 
 import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.entity.Food;
+import com.lockedin.lockedin.model.entity.diet.Food;
 
 public class AiModelService {
     private final int userID;

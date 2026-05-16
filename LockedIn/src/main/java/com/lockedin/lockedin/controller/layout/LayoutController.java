@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.layout;
 
 import com.lockedin.lockedin.controller.auth.LogInController;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +65,7 @@ public class LayoutController {
             Pane appPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
             pageContainer.getChildren().setAll(appPage);
         } catch (IOException e) {
-            // TODO: add user-visible error handling.
+            throw new RuntimeException("Failed to load page: " + page, e);
         }
     }
 
