@@ -4,12 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)">
+      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/ForgotPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/service/SendEmail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.auth.AuthenticationTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.controller.diet.DietControllerInputTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.FoodDAOTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.UserDAOTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.EntityBehaviorTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.UserTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.user.UserTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.auth.AuthenticationTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.controller.diet.DietControllerInputTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.FoodDAOTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.UserDAOTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.EntityBehaviorTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.UserTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.user.UserTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/test-classes/META-INF/jpms.args" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,34 +104,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LockedIn.executor": "Run",
-    "JUnit.FoodDAOTest.executor": "Run",
-    "Maven.LockedIn [clean].executor": "Run",
-    "Maven.LockedIn [compile].executor": "Run",
-    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Maven.LockedIn [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "Tusar-AI-Food-Values",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FoodDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Tusar-MakingFitnessGoal__and__Weight__Modifiable&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tusar/Downloads/CAB302_Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.LockedIn">
     <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
@@ -170,6 +201,9 @@
       <workItem from="1778678690383" duration="1703000" />
       <workItem from="1778754464286" duration="7000" />
       <workItem from="1778755621273" duration="5848000" />
+      <workItem from="1778833082885" duration="3786000" />
+      <workItem from="1778853885527" duration="1101000" />
+      <workItem from="1778856064469" duration="4486000" />
     </task>
     <task id="LOCAL-00001" summary="Update files">
       <option name="closed" value="true" />
@@ -355,7 +389,39 @@
       <option name="project" value="LOCAL" />
       <updated>1778761782135</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Created UserDetailSnapshot class and new DB - to track changes to User's Weight and Fitness Goals">
+      <option name="closed" value="true" />
+      <created>1778830812051</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1778830812051</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Changed activity level &amp; fitness goal to enums; Organised entities dir">
+      <option name="closed" value="true" />
+      <created>1778832137017</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1778832137017</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values">
+      <option name="closed" value="true" />
+      <created>1778848873949</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1778848873949</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)">
+      <option name="closed" value="true" />
+      <created>1778854126045</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1778854126045</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,7 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update files" />
     <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
     <MESSAGE value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
     <MESSAGE value="Updated placeholders - User details e.g. Name, age updated to be on the profile page" />
@@ -395,7 +460,11 @@
     <MESSAGE value="Added removal confirmation prompt after &quot;Remove&quot; food button press" />
     <MESSAGE value="Added &quot;Sex&quot; attribute to User and updated the sign-up page" />
     <MESSAGE value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
+    <MESSAGE value="Created UserDetailSnapshot class and new DB - to track changes to User's Weight and Fitness Goals" />
+    <MESSAGE value="Changed activity level &amp; fitness goal to enums; Organised entities dir" />
+    <MESSAGE value="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values" />
+    <MESSAGE value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

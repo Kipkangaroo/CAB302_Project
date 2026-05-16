@@ -126,6 +126,17 @@ public class UserDAO {
         return providedHash.equals(user.get().getPasswordHash());
     }
 
+    public boolean updatePassword(String email, String plainPassword) {
+        String sql = "UPDATE users SET password_hash = ? WHERE email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, User.getHash(plainPassword));
+            preparedStatement.setString(2, email);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update password", e);
+        }
+    }
+
     private User mapUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("id"));
