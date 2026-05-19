@@ -1,9 +1,0 @@
-com/lockedin/lockedin/model/entity/user/UserProgress.class
-com/lockedin/lockedin/model/dao/UserDAO.class
-com/lockedin/lockedin/model/entity/user/FitnessGoal.class
-module-info.class
-com/lockedin/lockedin/model/dao/UserProgressDAO.class
-com/lockedin/lockedin/model/entity/user/ActivityLevel.class
-com/lockedin/lockedin/app/LockedIn.class
-com/lockedin/lockedin/model/entity/user/User.class
-com/lockedin/lockedin/controller/auth/Authentication.class

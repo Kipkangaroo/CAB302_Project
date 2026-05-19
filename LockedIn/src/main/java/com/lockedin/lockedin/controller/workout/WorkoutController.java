@@ -29,6 +29,8 @@ public class WorkoutController {
             "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
     private static final String HISTORY_VIEW =
             "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
+    private static final String AI_WORKOUT_VIEW =
+            "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
 
     @FXML private Label workoutCountLabel;
     @FXML private VBox workoutsContainer;
@@ -164,10 +166,12 @@ public class WorkoutController {
 
     @FXML
     public void handleAiGenerator() {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setHeaderText("Coming Soon");
-        a.setContentText("AI Workout Generator will be available in a future update.");
-        a.showAndWait();
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(AI_WORKOUT_VIEW));
+            stackPane().getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open AI workout generator", e);
+        }
     }
 
     private StackPane stackPane() {

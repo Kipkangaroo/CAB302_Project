@@ -4058,6 +4058,19 @@ public class DBExercisesDAO {
         }
     }
 
+    /** Returns the DB id of an exercise whose name matches (case-insensitive), or 0 if not found. */
+    public int findExerciseIdByName(String name) {
+        String sql = "SELECT id FROM exercises WHERE lower(name)=lower(?) LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt("id");
+        } catch (SQLException e) {
+            System.err.println("Error finding exercise by name: " + e.getMessage());
+        }
+        return 0;
+    }
+
     private Exercise mapRowToExercise(ResultSet rs) throws SQLException {
         return new Exercise(
                 rs.getInt("id"),
