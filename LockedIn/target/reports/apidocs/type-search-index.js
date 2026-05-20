@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.lockedin.lockedin.app","l":"JohnDemoSeeder"},{"p":"com.lockedin.lockedin.app","l":"LockedIn"}];updateSearchResults();

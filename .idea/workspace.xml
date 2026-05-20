@@ -4,75 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Adding *.file back on .gitignore">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/app/LockedIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/app/LockedIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/auth/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/layout/LayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/layout/LayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/AiWorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/AiWorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/CreateWorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/CreateWorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/ExerciseViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/ExerciseViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/StartWorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/StartWorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutDetailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/DBExercisesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/DBExercisesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/OtpDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/OtpDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/OTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/OTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/diet/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/diet/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/ActivityLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/ActivityLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/FitnessGoal.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/FitnessGoal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/ExerciseSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/ExerciseSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/WorkoutExerciseEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/WorkoutExerciseEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/WorkoutRoutine.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/entity/workout/WorkoutRoutine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/session/CurrentUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/session/CurrentUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/service/AiModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/service/AiModelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/service/AiWorkoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/service/AiWorkoutService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/images/edit-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/layout/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/layout/main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/create-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/create-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/exercise-list-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/exercise-list-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/start-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/start-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-history-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-history-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/UserDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/images/edit-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/layout/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/layout/main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/create-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/create-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/exercise-list-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/exercise-list-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/start-workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/start-workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-history-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-history-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,34 +70,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FoodDAOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LockedIn [test].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tusar/Downloads/CAB302_Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LockedIn.executor": "Run",
+    "JUnit.FoodDAOTest.executor": "Run",
+    "JUnit.test in LockedIn.executor": "Run",
+    "Maven.LockedIn [clean].executor": "Run",
+    "Maven.LockedIn [compile].executor": "Run",
+    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "Maven.LockedIn [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.lockedin.lockedin.model.entity.user" />
@@ -201,14 +136,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in LockedIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/LockedIn/src/test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.LockedIn" />
+      <item itemvalue="JUnit.test in LockedIn" />
       <item itemvalue="JUnit.FoodDAOTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.test in LockedIn" />
+        <item itemvalue="JUnit.FoodDAOTest" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +185,7 @@
       <workItem from="1778853885527" duration="1101000" />
       <workItem from="1778856064469" duration="4486000" />
       <workItem from="1779241830835" duration="223000" />
-      <workItem from="1779242123006" duration="1341000" />
+      <workItem from="1779242123006" duration="3027000" />
     </task>
     <task id="LOCAL-00001" summary="Update files">
       <option name="closed" value="true" />
@@ -482,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779236558571</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.">
+      <option name="closed" value="true" />
+      <created>1779244099361</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1779244099361</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated placeholders - User details e.g. Name, age updated to be on the profile page" />
     <MESSAGE value="Updated the colour scheme of the Diet page to match the workout page + added logo and features image onto the login page" />
     <MESSAGE value="Added back icon onto sign up page and left aligned the text labels." />
     <MESSAGE value="Adjust colour and font scheme of elements within log-in and sign-up to match that of diet and workout page." />
@@ -525,7 +477,8 @@
     <MESSAGE value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
     <MESSAGE value="Uploaded API_KEY_FILE template - add API keys here" />
     <MESSAGE value="Adding *.file back on .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding *.file back on .gitignore" />
+    <MESSAGE value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

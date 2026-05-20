@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.lockedin.lockedin","l":"com.lockedin.lockedin.app"}];updateSearchResults();
