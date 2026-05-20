@@ -23,29 +23,35 @@ import org.controlsfx.control.SearchableComboBox;
 import java.io.IOException;
 
 /**
- * Controller for creating a new workout routine. Handles exercise selection, validation, list
+ * Controller for creating a new workout routine. Handles exercise selection,
+ * validation, list
  * management, and saving the final routine to the database.
  */
 public class CreateWorkoutController {
 
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-
-    @FXML private Button backButton;
-    @FXML private TextField workoutNameField;
-    @FXML private TextField workoutNotesField;
-    @FXML private SearchableComboBox<Exercise> exerciseCombo;
-    @FXML private TextField setsField;
-    @FXML private TextField repsField;
-    @FXML private TextField restField;
-    @FXML private ListView<WorkoutExerciseEntry> exerciseList;
-
-    private final ObservableList<WorkoutExerciseEntry> entries =
-            FXCollections.observableArrayList();
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private final ObservableList<WorkoutExerciseEntry> entries = FXCollections.observableArrayList();
+    @FXML
+    private Button backButton;
+    @FXML
+    private TextField workoutNameField;
+    @FXML
+    private TextField workoutNotesField;
+    @FXML
+    private SearchableComboBox<Exercise> exerciseCombo;
+    @FXML
+    private TextField setsField;
+    @FXML
+    private TextField repsField;
+    @FXML
+    private TextField restField;
+    @FXML
+    private ListView<WorkoutExerciseEntry> exerciseList;
     private WorkoutRoutineDAO routineDAO;
 
     /**
-     * Initializes the form: - Loads exercises from DB - Sets default values - Configures the
+     * Initializes the form: - Loads exercises from DB - Sets default values -
+     * Configures the
      * exercise list cell factory
      */
     @FXML
@@ -75,7 +81,8 @@ public class CreateWorkoutController {
             int sets = Integer.parseInt(setsField.getText().trim());
             int reps = Integer.parseInt(repsField.getText().trim());
             int rest = Integer.parseInt(restField.getText().trim());
-            if (sets <= 0 || reps <= 0 || rest < 0) throw new NumberFormatException();
+            if (sets <= 0 || reps <= 0 || rest < 0)
+                throw new NumberFormatException();
             entries.add(
                     new WorkoutExerciseEntry(
                             0, selected.getId(), selected.getName(), sets, reps, rest));
@@ -109,7 +116,8 @@ public class CreateWorkoutController {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate back", e);
         }

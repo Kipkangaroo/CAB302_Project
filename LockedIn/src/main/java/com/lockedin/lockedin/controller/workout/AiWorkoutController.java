@@ -15,29 +15,37 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.util.List;
 
 public class AiWorkoutController {
 
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-
-    @FXML private Button backButton;
-    @FXML private ComboBox<String> experienceCombo;
-    @FXML private ComboBox<String> timeCombo;
-    @FXML private ComboBox<String> muscleGroupCombo;
-    @FXML private ComboBox<String> goalCombo;
-    @FXML private Button generateButton;
-    @FXML private ProgressIndicator loadingIndicator;
-    @FXML private Label statusLabel;
-    @FXML private VBox resultCard;
-    @FXML private Label routineNameLabel;
-    @FXML private VBox exerciseListContainer;
-    @FXML private Button saveButton;
-
-    private WorkoutResult generatedResult;
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private final WorkoutRoutineDAO routineDAO = new WorkoutRoutineDAO();
     private final AiWorkoutService aiService = new AiWorkoutService();
+    @FXML
+    private Button backButton;
+    @FXML
+    private ComboBox<String> experienceCombo;
+    @FXML
+    private ComboBox<String> timeCombo;
+    @FXML
+    private ComboBox<String> muscleGroupCombo;
+    @FXML
+    private ComboBox<String> goalCombo;
+    @FXML
+    private Button generateButton;
+    @FXML
+    private ProgressIndicator loadingIndicator;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private VBox resultCard;
+    @FXML
+    private Label routineNameLabel;
+    @FXML
+    private VBox exerciseListContainer;
+    @FXML
+    private Button saveButton;
+    private WorkoutResult generatedResult;
 
     @FXML
     public void initialize() {
@@ -99,7 +107,8 @@ public class AiWorkoutController {
 
     @FXML
     public void handleSave() {
-        if (generatedResult == null) return;
+        if (generatedResult == null)
+            return;
         routineDAO.saveRoutine(
                 CurrentUser.getId(),
                 generatedResult.routineName,
@@ -135,7 +144,7 @@ public class AiWorkoutController {
 
         Label detailLabel = new Label(
                 entry.getSets() + " sets \u00d7 " + entry.getReps()
-                + " reps  |  " + entry.getRestSeconds() + "s rest");
+                        + " reps  |  " + entry.getRestSeconds() + "s rest");
         detailLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #757575;");
 
         VBox textBox = new VBox(2, nameLabel, detailLabel);
@@ -169,7 +178,8 @@ public class AiWorkoutController {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate back", e);
         }

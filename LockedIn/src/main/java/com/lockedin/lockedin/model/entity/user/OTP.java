@@ -42,7 +42,7 @@ public class OTP {
         return otpDAO.verifyOtp(email, otpCode);
     }
 
-    public void sendOtpToEmail () throws IOException {
+    public void sendOtpToEmail() throws IOException {
         SendEmail sendEmail = new SendEmail();
         sendEmail.sendOtpEmail(email, otpCode);
     }

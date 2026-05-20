@@ -1,15 +1,12 @@
 package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
-import com.lockedin.lockedin.model.dao.UserDAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
-import java.util.Random;
 
 /**
  * Data access for one-time password codes linked to user accounts. Each user
@@ -19,7 +16,6 @@ import java.util.Random;
 public class OtpDAO {
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;
-    private final UserDAO userDAO;
 
     public OtpDAO() {
         this(SqliteConnection.getInstance(USERS_DB_FILE));
@@ -27,7 +23,6 @@ public class OtpDAO {
 
     public OtpDAO(Connection connection) {
         this.connection = connection;
-        this.userDAO = new UserDAO();
         createOtpTable();
     }
 

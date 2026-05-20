@@ -19,30 +19,31 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller for the Workout Detail page. Displays all exercises in a selected routine and allows
+ * Controller for the Workout Detail page. Displays all exercises in a selected
+ * routine and allows
  * editing, deleting, and adding exercises, as well as starting the workout.
  */
 public class WorkoutDetailController {
 
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private static final String START_WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/start-workout-view.fxml";
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private static final String START_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/start-workout-view.fxml";
 
     private static int currentRoutineId = -1;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Label workoutNameLabel;
+    @FXML
+    private Label workoutNotesLabel;
+    @FXML
+    private VBox exercisesContainer;
+    private WorkoutRoutineDAO routineDAO;
+    private DBExercisesDAO exercisesDAO;
+    private WorkoutRoutineDAO.RoutineData currentRoutine;
 
     public static void setCurrentRoutineId(int id) {
         currentRoutineId = id;
     }
-
-    @FXML private Button backButton;
-    @FXML private Label workoutNameLabel;
-    @FXML private Label workoutNotesLabel;
-    @FXML private VBox exercisesContainer;
-
-    private WorkoutRoutineDAO routineDAO;
-    private DBExercisesDAO exercisesDAO;
-    private WorkoutRoutineDAO.RoutineData currentRoutine;
 
     @FXML
     public void initialize() {
@@ -91,15 +92,14 @@ public class WorkoutDetailController {
         nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #1a1a1a;");
         nameLabel.setWrapText(true);
 
-        Label detailLabel =
-                new Label(
-                        "\u2299  "
-                                + entry.getSets()
-                                + " \u00D7 "
-                                + entry.getReps()
-                                + "    \u23F1  "
-                                + entry.getRestSeconds()
-                                + "s");
+        Label detailLabel = new Label(
+                "\u2299  "
+                        + entry.getSets()
+                        + " \u00D7 "
+                        + entry.getReps()
+                        + "    \u23F1  "
+                        + entry.getRestSeconds()
+                        + "s");
         detailLabel.setStyle("-fx-text-fill: #1565C0; -fx-font-size: 12px;");
 
         VBox textCol = new VBox(4, nameLabel, detailLabel);
@@ -153,7 +153,8 @@ public class WorkoutDetailController {
         dialog.showAndWait()
                 .ifPresent(
                         bt -> {
-                            if (bt != ButtonType.OK) return;
+                            if (bt != ButtonType.OK)
+                                return;
                             try {
                                 int sets = Integer.parseInt(setsField.getText().trim());
                                 int reps = Integer.parseInt(repsField.getText().trim());
@@ -200,9 +201,11 @@ public class WorkoutDetailController {
         dialog.showAndWait()
                 .ifPresent(
                         bt -> {
-                            if (bt != ButtonType.OK) return;
+                            if (bt != ButtonType.OK)
+                                return;
                             Exercise sel = combo.getValue();
-                            if (sel == null) return;
+                            if (sel == null)
+                                return;
                             try {
                                 int sets = Integer.parseInt(setsField.getText().trim());
                                 int reps = Integer.parseInt(repsField.getText().trim());
@@ -246,7 +249,8 @@ public class WorkoutDetailController {
             StartWorkoutController.setCurrentRoutineId(currentRoutineId);
             Pane page = FXMLLoader.load(getClass().getResource(START_WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to start workout", e);
         }
@@ -261,7 +265,8 @@ public class WorkoutDetailController {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate back", e);
         }

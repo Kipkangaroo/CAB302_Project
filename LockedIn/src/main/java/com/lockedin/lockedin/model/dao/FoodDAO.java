@@ -96,6 +96,16 @@ public class FoodDAO {
         }
     }
 
+    public void deleteAllForUser(int userId) {
+        String sql = "DELETE FROM foods WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete foods for user " + userId, e);
+        }
+    }
+
     public boolean[] getWeeklyCalorieTracking(int userID) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {

@@ -6,7 +6,6 @@ import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
@@ -41,6 +40,7 @@ public class ProfileController {
     private static final Paint COMPLETED_FILL = Paint.valueOf(BLUE_FILL);
     private static final Paint MISSED_FILL = Paint.valueOf(WHITE_FILL);
     private final Authentication authentication = new Authentication();
+    private final UserDAO userDAO = new UserDAO();
     private final FoodDAO foodDAO = new FoodDAO();
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
@@ -67,7 +67,6 @@ public class ProfileController {
     private Image editImage;
     private Image saveImage;
 
-    
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();
@@ -105,16 +104,9 @@ public class ProfileController {
         editingDetails = false;
         updateEditIcon();
         user.setWeight(weight);
-        new UserDAO().updateWeight(user.getId(), weight);
-        new UserProgressDAO()
-                .addUserProgress(
-                        new UserProgress(
-                                0,
-                                user.getId(),
-                                user.getFitnessGoal(),
-                                weight,
-                                user.getTargetCalories(),
-                                LocalDate.now()));
+        userDAO.updateWeight(user.getId(), weight);
+        progressDAO.addUserProgress(new UserProgress(0, user.getId(), user.getFitnessGoal(), weight,
+                user.getTargetCalories(), LocalDate.now()));
         setFieldEditing(weightField, false);
         setFieldEditing(fitnessGoalField, false);
         refreshDetailFields();
@@ -161,6 +153,7 @@ public class ProfileController {
         heightLabel.setText("Height: " + user.getHeight() + " cm");
         refreshDetailFields();
         firstNameLabel.setText("Hello " + user.getFirstName() + "!");
+        updateEditIcon();
         updateTrackingStreaks();
     }
 

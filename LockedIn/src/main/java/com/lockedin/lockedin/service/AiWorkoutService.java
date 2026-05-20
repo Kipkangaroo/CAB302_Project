@@ -29,20 +29,11 @@ public class AiWorkoutService {
     private final Gson gson = new Gson();
     private final DBExercisesDAO exercisesDAO = new DBExercisesDAO();
 
-    public static class WorkoutResult {
-        public final String routineName;
-        public final List<WorkoutExerciseEntry> exercises;
-
-        public WorkoutResult(String routineName, List<WorkoutExerciseEntry> exercises) {
-            this.routineName = routineName;
-            this.exercises = exercises;
-        }
-    }
-
     private String getApiKey() throws IOException {
         Properties props = new Properties();
         try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
-            if (input == null) throw new IOException("Missing resource file: config.file");
+            if (input == null)
+                throw new IOException("Missing resource file: config.file");
             props.load(input);
         }
         return props.getProperty("nvidia.api.key").trim();
@@ -50,7 +41,8 @@ public class AiWorkoutService {
 
     private String buildPrompt(String experience, String time, String muscleGroup, String goal) throws IOException {
         try (InputStream input = getClass().getResourceAsStream(PROMPT_DIR)) {
-            if (input == null) throw new IOException("Missing resource file: workout_generation_prompt.txt");
+            if (input == null)
+                throw new IOException("Missing resource file: workout_generation_prompt.txt");
             String template = new String(input.readAllBytes());
             return template
                     .replace("{experience}", experience)
@@ -101,7 +93,8 @@ public class AiWorkoutService {
             if (content.startsWith("```")) {
                 int start = content.indexOf('\n') + 1;
                 int end = content.lastIndexOf("```");
-                if (end > start) content = content.substring(start, end).trim();
+                if (end > start)
+                    content = content.substring(start, end).trim();
             }
 
             JsonObject result = gson.fromJson(content, JsonObject.class);
@@ -135,5 +128,15 @@ public class AiWorkoutService {
                 return generateWorkout(experience, time, muscleGroup, goal);
             }
         };
+    }
+
+    public static class WorkoutResult {
+        public final String routineName;
+        public final List<WorkoutExerciseEntry> exercises;
+
+        public WorkoutResult(String routineName, List<WorkoutExerciseEntry> exercises) {
+            this.routineName = routineName;
+            this.exercises = exercises;
+        }
     }
 }

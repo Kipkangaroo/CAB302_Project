@@ -1,19 +1,20 @@
 package com.lockedin.lockedin.model.entity.workout;
 
 /**
- * Represents an exercise definition loaded from the exercise database. Stores metadata such as
- * name, instructions, category, primary muscle, and an image ID used to construct URLs for form
+ * Represents an exercise definition loaded from the exercise database. Stores
+ * metadata such as
+ * name, instructions, category, primary muscle, and an image ID used to
+ * construct URLs for form
  * demonstration images.
  */
 public class Exercise {
+    private static final String baseImageUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
     private int id;
     private String name;
     private String instruction;
     private String category;
     private String primaryMuscle;
     private String exerciseImageId;
-    private static final String baseImageUrl =
-            "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
 
     public Exercise(
             int id,

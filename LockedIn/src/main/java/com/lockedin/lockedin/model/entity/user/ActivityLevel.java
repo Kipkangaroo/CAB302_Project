@@ -19,6 +19,18 @@ public enum ActivityLevel {
         this.tdeeMultiplier = tdeeMultiplier;
     }
 
+    public static ActivityLevel fromDisplayName(String displayName) {
+        if (displayName == null) {
+            return null;
+        }
+        for (ActivityLevel level : values()) {
+            if (level.displayName.equals(displayName)) {
+                return level;
+            }
+        }
+        return null;
+    }
+
     public String getDisplayName() {
         return displayName;
     }
@@ -30,17 +42,5 @@ public enum ActivityLevel {
     @Override
     public String toString() {
         return displayName;
-    }
-
-    public static ActivityLevel fromDisplayName(String displayName) {
-        if (displayName == null) {
-            return null;
-        }
-        for (ActivityLevel level : values()) {
-            if (level.displayName.equals(displayName)) {
-                return level;
-            }
-        }
-        return null;
     }
 }

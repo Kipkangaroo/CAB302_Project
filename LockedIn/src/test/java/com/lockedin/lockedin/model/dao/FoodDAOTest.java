@@ -18,8 +18,8 @@ import java.time.LocalDate;
  */
 public class FoodDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
-    private FoodDAO foodDAO;
     private static final int USER_ID = 1;
+    private FoodDAO foodDAO;
     private LocalDate today;
 
     @BeforeEach

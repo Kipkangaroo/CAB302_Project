@@ -1,7 +1,8 @@
 package com.lockedin.lockedin.model.entity.user;
 
 /**
- * User fitness goal for calorie and macro targets. {@link #getDisplayName()} matches
+ * User fitness goal for calorie and macro targets. {@link #getDisplayName()}
+ * matches
  * values stored in the database.
  */
 public enum FitnessGoal {
@@ -28,6 +29,18 @@ public enum FitnessGoal {
         this.fatsRatio = fatsRatio;
     }
 
+    public static FitnessGoal fromDisplayName(String displayName) {
+        if (displayName == null) {
+            return null;
+        }
+        for (FitnessGoal goal : values()) {
+            if (goal.displayName.equals(displayName)) {
+                return goal;
+            }
+        }
+        return null;
+    }
+
     public String getDisplayName() {
         return displayName;
     }
@@ -51,17 +64,5 @@ public enum FitnessGoal {
     @Override
     public String toString() {
         return displayName;
-    }
-
-    public static FitnessGoal fromDisplayName(String displayName) {
-        if (displayName == null) {
-            return null;
-        }
-        for (FitnessGoal goal : values()) {
-            if (goal.displayName.equals(displayName)) {
-                return goal;
-            }
-        }
-        return null;
     }
 }

@@ -22,8 +22,8 @@ import java.util.Optional;
  * entity, and stores it via UserDAO.
  */
 public class SignUpController {
-    private final Authentication authentication = new Authentication();
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+    private final Authentication authentication = new Authentication();
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -50,6 +50,21 @@ public class SignUpController {
     private ComboBox<ActivityLevel> activityLevelCombo;
     @FXML
     private ComboBox<FitnessGoal> fitnessGoalCombo;
+
+    public static Double parseValidDouble(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            double value = Double.parseDouble(text.trim());
+            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
+                return null;
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 
     /** Initializes the sign-up form by populating dropdowns. */
     @FXML
@@ -162,7 +177,7 @@ public class SignUpController {
                                         u.getFitnessGoal(),
                                         u.getWeight(),
                                         u.getTargetCalories(),
-                                        LocalDate.now()));  
+                                        LocalDate.now()));
             }
             authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
@@ -173,21 +188,6 @@ public class SignUpController {
             }
         } else {
             authentication.showError("Signup failed", "Please try again.");
-        }
-    }
-
-    public static Double parseValidDouble(String text) {
-        if (text == null || text.trim().isEmpty()) {
-            return null;
-        }
-        try {
-            double value = Double.parseDouble(text.trim());
-            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
-                return null;
-            }
-            return value;
-        } catch (NumberFormatException e) {
-            return null;
         }
     }
 

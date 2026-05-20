@@ -18,22 +18,21 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller for the main Workout page. Displays all workout routines created by the user, and
+ * Controller for the main Workout page. Displays all workout routines created
+ * by the user, and
  * provides navigation to create, view, or delete routines.
  */
 public class WorkoutController {
 
-    private static final String CREATE_VIEW =
-            "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
-    private static final String DETAIL_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
-    private static final String HISTORY_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
-    private static final String AI_WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
+    private static final String CREATE_VIEW = "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
+    private static final String DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+    private static final String HISTORY_VIEW = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
+    private static final String AI_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
 
-    @FXML private Label workoutCountLabel;
-    @FXML private VBox workoutsContainer;
+    @FXML
+    private Label workoutCountLabel;
+    @FXML
+    private VBox workoutsContainer;
 
     private WorkoutRoutineDAO routineDAO;
 
@@ -44,8 +43,7 @@ public class WorkoutController {
     }
 
     private void loadWorkouts() {
-        List<WorkoutRoutineDAO.RoutineData> routines =
-                routineDAO.getRoutinesByUser(CurrentUser.getId());
+        List<WorkoutRoutineDAO.RoutineData> routines = routineDAO.getRoutinesByUser(CurrentUser.getId());
 
         int n = routines.size();
         workoutCountLabel.setText(
@@ -66,7 +64,8 @@ public class WorkoutController {
     }
 
     /**
-     * Builds a UI card representing a single workout routine. Includes name, notes, exercise count,
+     * Builds a UI card representing a single workout routine. Includes name, notes,
+     * exercise count,
      * and edit/delete actions.
      */
     private VBox buildWorkoutCard(WorkoutRoutineDAO.RoutineData routine) {
@@ -114,12 +113,11 @@ public class WorkoutController {
         deleteBtn.setOnAction(
                 e -> {
                     e.consume();
-                    Alert confirm =
-                            new Alert(
-                                    Alert.AlertType.CONFIRMATION,
-                                    "Delete \"" + routine.name + "\"?",
-                                    ButtonType.YES,
-                                    ButtonType.NO);
+                    Alert confirm = new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            "Delete \"" + routine.name + "\"?",
+                            ButtonType.YES,
+                            ButtonType.NO);
                     confirm.setHeaderText(null);
                     confirm.showAndWait()
                             .ifPresent(

@@ -6,8 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import com.lockedin.lockedin.model.dao.UserProgressDAO;
-
 /**
  * Represents a user profile, including personal details, authentication data,
  * and fitness goal
@@ -28,10 +26,8 @@ public class User {
     private FitnessGoal fitnessGoal;
     private ActivityLevel activityLevel;
     private String passwordHash;
-    private UserProgressDAO progressDAO;
 
     public User() {
-        this.progressDAO = new UserProgressDAO();
     }
 
     public User(
@@ -57,7 +53,6 @@ public class User {
         this.fitnessGoal = fitnessGoal;
         this.activityLevel = activityLevel;
         this.passwordHash = getHash(password);
-        this.progressDAO = new UserProgressDAO();
     }
 
     public static String getHash(String password) {
@@ -72,6 +67,18 @@ public class User {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("SHA-256 algorithm not available", e);
         }
+    }
+
+    private static double getProteinRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.25 : fitnessGoal.getProteinRatio();
+    }
+
+    private static double getCarbsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.45 : fitnessGoal.getCarbsRatio();
+    }
+
+    private static double getFatsRatio(FitnessGoal fitnessGoal) {
+        return fitnessGoal == null ? 0.30 : fitnessGoal.getFatsRatio();
     }
 
     public int getId() {
@@ -201,18 +208,6 @@ public class User {
 
     public double getTargetFats(double totalCalories, FitnessGoal fitnessGoal) {
         return (totalCalories * getFatsRatio(fitnessGoal)) / CALORIES_PER_GRAM_FATS;
-    }
-
-    private static double getProteinRatio(FitnessGoal fitnessGoal) {
-        return fitnessGoal == null ? 0.25 : fitnessGoal.getProteinRatio();
-    }
-
-    private static double getCarbsRatio(FitnessGoal fitnessGoal) {
-        return fitnessGoal == null ? 0.45 : fitnessGoal.getCarbsRatio();
-    }
-
-    private static double getFatsRatio(FitnessGoal fitnessGoal) {
-        return fitnessGoal == null ? 0.30 : fitnessGoal.getFatsRatio();
     }
 
 }

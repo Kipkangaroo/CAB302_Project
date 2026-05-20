@@ -1,7 +1,8 @@
 package com.lockedin.lockedin.model.entity.workout;
 
 /**
- * Represents a single set performed for a specific exercise. Stores the exercise reference along
+ * Represents a single set performed for a specific exercise. Stores the
+ * exercise reference along
  * with reps and weight used.
  */
 public class ExerciseSet {

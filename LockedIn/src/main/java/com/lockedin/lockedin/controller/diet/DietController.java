@@ -29,9 +29,9 @@ public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
-    private User currentUser;
     public DatePicker foodDatePicker;
     AiModelService apiHandler;
+    private User currentUser;
     private double targetCalories;
     private double targetProtein;
     private double targetCarbs;

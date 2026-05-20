@@ -15,7 +15,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Coordinates credential checks, login against the database, and common auth UI actions (alerts,
+ * Coordinates credential checks, login against the database, and common auth UI
+ * actions (alerts,
  * scene changes). Holds a {@link UserDAO} for data access.
  */
 public class Authentication {
@@ -27,10 +28,18 @@ public class Authentication {
     }
 
     /**
-     * @param userDAO data access for login; supplied in tests with an in-memory database.
+     * @param userDAO data access for login; supplied in tests with an in-memory
+     *                database.
      */
     public Authentication(UserDAO userDAO) {
         this.userDAO = Objects.requireNonNull(userDAO, "userDAO");
+    }
+
+    private static void showAlert(Alert.AlertType type, String header, String content) {
+        Alert alert = new Alert(type);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public boolean isValidEmail(String email) {
@@ -62,7 +71,8 @@ public class Authentication {
     }
 
     /**
-     * Attempts to authenticate a user by email and password using this instance's {@link
+     * Attempts to authenticate a user by email and password using this instance's
+     * {@link
      * UserDAO}.
      *
      * @return the user if credentials match, otherwise empty.
@@ -71,12 +81,5 @@ public class Authentication {
         Optional<User> user = userDAO.getUserByEmail(email);
         boolean ok = user.isPresent() && userDAO.authenticate(email, password);
         return ok ? user : Optional.empty();
-    }
-
-    private static void showAlert(Alert.AlertType type, String header, String content) {
-        Alert alert = new Alert(type);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

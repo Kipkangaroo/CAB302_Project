@@ -5,7 +5,8 @@ import com.lockedin.lockedin.model.entity.user.User;
 public class CurrentUser {
     private static User user;
 
-    private CurrentUser() {}
+    private CurrentUser() {
+    }
 
     public static void set(User u) {
         user = u;

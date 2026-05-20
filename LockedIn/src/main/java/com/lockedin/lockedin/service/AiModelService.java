@@ -22,11 +22,11 @@ import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.diet.Food;
 
 public class AiModelService {
-    private final int userID;
     private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
     private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
     private static final String FOOD_IMAGE_PROMPT_DIR = "/com/lockedin/lockedin/service/food_image_prompt.txt";
     private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
+    private final int userID;
     private final HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
     private final FoodDAO foodDAO = new FoodDAO();

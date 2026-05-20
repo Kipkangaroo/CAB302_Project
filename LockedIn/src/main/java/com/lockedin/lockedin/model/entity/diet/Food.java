@@ -36,56 +36,56 @@ public class Food {
         return name;
     }
 
-    public int getCalories() {
-        return calories;
-    }
-
-    public int getProtein() {
-        return protein;
-    }
-
-    public int getCarbs() {
-        return carbs;
-    }
-
-    public int getFats() {
-        return fats;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCalories() {
+        return calories;
     }
 
     public void setCalories(int calories) {
         this.calories = calories;
     }
 
+    public int getProtein() {
+        return protein;
+    }
+
     public void setProtein(int protein) {
         this.protein = protein;
+    }
+
+    public int getCarbs() {
+        return carbs;
     }
 
     public void setCarbs(int carbs) {
         this.carbs = carbs;
     }
 
+    public int getFats() {
+        return fats;
+    }
+
     public void setFats(int fats) {
         this.fats = fats;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public int getUserID() {
         return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public int getId() {

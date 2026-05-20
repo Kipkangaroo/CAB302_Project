@@ -21,19 +21,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Controller for the Workout History page. Displays all completed workouts for the current user,
+ * Controller for the Workout History page. Displays all completed workouts for
+ * the current user,
  * grouped with exercise summaries and completion timestamps.
  */
 public class WorkoutHistoryController {
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private static final DateTimeFormatter DISPLAY_DATE =
-            DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
 
-    @FXML private Button backButton;
-    @FXML private Label historyCountLabel;
-    @FXML private VBox chartContainer;
-    @FXML private VBox historyContainer;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Label historyCountLabel;
+    @FXML
+    private VBox chartContainer;
+    @FXML
+    private VBox historyContainer;
 
     private WorkoutRoutineDAO routineDAO;
 
@@ -44,8 +47,8 @@ public class WorkoutHistoryController {
     }
 
     private void loadHistory() {
-        List<WorkoutRoutineDAO.CompletedWorkoutData> workouts =
-                routineDAO.getCompletedWorkoutsByUser(CurrentUser.getId());
+        List<WorkoutRoutineDAO.CompletedWorkoutData> workouts = routineDAO
+                .getCompletedWorkoutsByUser(CurrentUser.getId());
 
         chartContainer.getChildren().clear();
         historyContainer.getChildren().clear();
@@ -88,8 +91,7 @@ public class WorkoutHistoryController {
         VBox titleColumn = new VBox(3, nameLabel, dateLabel);
         HBox.setHgrow(titleColumn, Priority.ALWAYS);
 
-        Label summaryBadge =
-                new Label(workout.totalExercises + " exercises  -  " + workout.totalSets + " sets");
+        Label summaryBadge = new Label(workout.totalExercises + " exercises  -  " + workout.totalSets + " sets");
         summaryBadge.getStyleClass().add("exercise-badge");
 
         HBox topRow = new HBox(8, titleColumn, summaryBadge);
@@ -98,10 +100,9 @@ public class WorkoutHistoryController {
         VBox exerciseSummary = new VBox(6);
         Map<String, ExerciseTotals> totals = summarizeExercises(workout.sets);
         totals.forEach(
-                (exerciseName, total) ->
-                        exerciseSummary
-                                .getChildren()
-                                .add(buildExerciseSummaryRow(exerciseName, total)));
+                (exerciseName, total) -> exerciseSummary
+                        .getChildren()
+                        .add(buildExerciseSummaryRow(exerciseName, total)));
 
         VBox card = new VBox(12, topRow, exerciseSummary);
         card.getStyleClass().add("workout-card");
@@ -115,14 +116,13 @@ public class WorkoutHistoryController {
         exerciseLabel.setWrapText(true);
         HBox.setHgrow(exerciseLabel, Priority.ALWAYS);
 
-        Label detailLabel =
-                new Label(
-                        total.sets
-                                + " sets  -  "
-                                + total.completedReps
-                                + "/"
-                                + total.targetReps
-                                + " reps");
+        Label detailLabel = new Label(
+                total.sets
+                        + " sets  -  "
+                        + total.completedReps
+                        + "/"
+                        + total.targetReps
+                        + " reps");
         detailLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #1565C0; -fx-font-weight: bold;");
 
         HBox row = new HBox(8, exerciseLabel, detailLabel);
@@ -134,8 +134,7 @@ public class WorkoutHistoryController {
             List<WorkoutRoutineDAO.CompletedSetData> sets) {
         Map<String, ExerciseTotals> totals = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedSetData set : sets) {
-            ExerciseTotals total =
-                    totals.computeIfAbsent(set.exerciseName, ignored -> new ExerciseTotals());
+            ExerciseTotals total = totals.computeIfAbsent(set.exerciseName, ignored -> new ExerciseTotals());
             total.sets++;
             total.targetReps += set.targetReps;
             total.completedReps += set.completedReps;
@@ -184,28 +183,30 @@ public class WorkoutHistoryController {
     }
 
     /*
-    private BarChart<String, Number> buildWorkoutsPerWeekChart(Map<LocalDate, Long> data) {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Date");
-        yAxis.setLabel("Workouts Completed");
-
-        BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
-        chart.setTitle("Workouts Completed (Last 7 Days)");
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Workouts");
-
-        LocalDate today = LocalDate.now();
-        for (int i = 0; i < 7; i++) {
-            LocalDate date = today.minusDays(i);
-            series.getData().add(new XYChart.Data<>(date.toString(), data.getOrDefault(date, 0L)));
-        }
-
-        chart.getData().add(series);
-        chart.setLegendVisible(false);
-        return chart;
-    }
+     * private BarChart<String, Number> buildWorkoutsPerWeekChart(Map<LocalDate,
+     * Long> data) {
+     * CategoryAxis xAxis = new CategoryAxis();
+     * NumberAxis yAxis = new NumberAxis();
+     * xAxis.setLabel("Date");
+     * yAxis.setLabel("Workouts Completed");
+     * 
+     * BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
+     * chart.setTitle("Workouts Completed (Last 7 Days)");
+     * 
+     * XYChart.Series<String, Number> series = new XYChart.Series<>();
+     * series.setName("Workouts");
+     * 
+     * LocalDate today = LocalDate.now();
+     * for (int i = 0; i < 7; i++) {
+     * LocalDate date = today.minusDays(i);
+     * series.getData().add(new XYChart.Data<>(date.toString(),
+     * data.getOrDefault(date, 0L)));
+     * }
+     * 
+     * chart.getData().add(series);
+     * chart.setLegendVisible(false);
+     * return chart;
+     * }
      */
 
     private Map<LocalDate, Integer> computeRepsPerDay(List<WorkoutRoutineDAO.CompletedWorkoutData> workouts) {

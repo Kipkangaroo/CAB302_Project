@@ -154,6 +154,16 @@ public class UserDAO {
         return providedHash.equals(user.get().getPasswordHash());
     }
 
+    public boolean deleteUser(int id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete user", e);
+        }
+    }
+
     public boolean updatePassword(String email, String plainPassword) {
         String sql = "UPDATE users SET password_hash = ? WHERE email = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
