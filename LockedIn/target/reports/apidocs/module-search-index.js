@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"com.lockedin.lockedin"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();

@@ -45,7 +45,7 @@ jobs:
       - name: Upload JavaDoc artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: LockedIn/target/site/apidocs
+          path: LockedIn/target/reports/apidocs
 
       - name: Deploy to GitHub Pages
         id: deployment

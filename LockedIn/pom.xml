@@ -107,6 +107,7 @@
                 <configuration>
                     <source>21</source>
                     <doclint>none</doclint>
+                    <legacyMode>true</legacyMode>
                 </configuration>
             </plugin>
         </plugins>
