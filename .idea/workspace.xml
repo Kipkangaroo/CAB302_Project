@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Uploaded API_KEY_FILE template - add API keys here">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +387,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778854126045</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236019674</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236019674</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236112736</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236112736</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +421,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
     <MESSAGE value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
     <MESSAGE value="Updated placeholders - User details e.g. Name, age updated to be on the profile page" />
     <MESSAGE value="Updated the colour scheme of the Diet page to match the workout page + added logo and features image onto the login page" />
@@ -430,7 +445,8 @@
     <MESSAGE value="Changed activity level &amp; fitness goal to enums; Organised entities dir" />
     <MESSAGE value="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values" />
     <MESSAGE value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
+    <MESSAGE value="Uploaded API_KEY_FILE template - add API keys here" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uploaded API_KEY_FILE template - add API keys here" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
