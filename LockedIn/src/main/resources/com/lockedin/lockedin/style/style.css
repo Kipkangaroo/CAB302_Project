@@ -613,3 +613,14 @@
     -fx-stroke: #1E2A38;
     -fx-stroke-width: 1;
 }
+.delete-measurement-btn {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: white;
+    -fx-padding: 2 6 2 6;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4;
+}
+
+.delete-measurement-btn:hover {
+    -fx-background-color: #c9302c;
+}

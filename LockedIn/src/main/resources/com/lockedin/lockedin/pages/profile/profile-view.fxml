@@ -5,6 +5,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController"
       maxWidth="Infinity" maxHeight="Infinity">
@@ -116,10 +121,64 @@
                     </VBox>
                 </HBox>
             </VBox>
+            <!-- Measurement Tracking Section -->
+            <VBox styleClass="profile-card" spacing="12">
+                <Label text="Track Your Measurements" styleClass="profile-section-title"/>
+
+                <!-- Add Measurement -->
+                <HBox spacing="10">
+                    <ComboBox fx:id="measurementTypeCombo" prefWidth="140">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Weight"/>
+                                <String fx:value="Waist"/>
+                                <String fx:value="Body Fat %"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <TextField fx:id="newMeasurementField"
+                               promptText="Enter value"
+                               maxWidth="120"/>
+
+                    <Button text="Add" onAction="#handleAddMeasurement"/>
+                </HBox>
+
+                <!-- Measurement History -->
+                <VBox spacing="6">
+                    <Label text="Measurement History"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <VBox fx:id="measurementHistoryBox" spacing="4"/>
+                </VBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="btn7Days" text="Last 7 Days" onAction="#handleRange7Days"/>
+                    <Button fx:id="btn30Days" text="Last 30 Days" onAction="#handleRange30Days"/>
+                    <Button fx:id="btnAllTime" text="All Time" onAction="#handleRangeAllTime"/>
+                </HBox>
+
+                <VBox spacing="8">
+                    <Label text="Trend Over Time" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+                    <LineChart fx:id="measurementTrendChart" prefHeight="250" prefWidth="Infinity">
+                        <xAxis>
+                            <CategoryAxis label="Date"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Value"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+
+            </VBox>
         </VBox>
     </ScrollPane>
     <HBox style="-fx-padding: 10 16 14 16;">
         <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogout" text="Log Out"
                 styleClass="primary-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-padding: 14 0 14 0;"/>
+        <Label fx:id="deleteAccountLabel"
+               text="Delete Account"
+               onMouseClicked="#handleDeleteAccount"
+               style="-fx-text-fill: #d9534f; -fx-underline: true; -fx-cursor: hand;"
+               alignment="CENTER"/>
     </HBox>
 </VBox>

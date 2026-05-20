@@ -1,10 +1,12 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
+//import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.user.ActivityLevel;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
+//import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
