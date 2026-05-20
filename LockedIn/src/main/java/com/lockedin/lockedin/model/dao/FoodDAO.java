@@ -9,24 +9,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Data Access Object for storing and retrieving food entries. Handles table
- * creation and provides a
- * connection to the food database.
+ * Data access object for food records.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class FoodDAO {
     private static final String FOOD_DB_FILE = "food.db";
     private final Connection connection;
 
+    /**
+     * Creates a new FoodDAO.
+     */
     public FoodDAO() {
         this.connection = SqliteConnection.getInstance(FOOD_DB_FILE);
         createFoodTable();
     }
 
+    /**
+     * Creates a new FoodDAO.
+     * @param connection The connection.
+     */
     public FoodDAO(Connection connection) {
         this.connection = connection;
         createFoodTable();
     }
 
+    /**
+     * Performs create food table.
+     */
     private void createFoodTable() {
         String sql = "CREATE TABLE IF NOT EXISTS foods ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -46,6 +56,11 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Performs add food.
+     * @param food The food.
+     * @param date The date.
+     */
     public void addFood(Food food, LocalDate date) {
         String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
                 + " ?, ?, ?, ?, ?, ?)";
@@ -68,6 +83,12 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Returns the foods by date.
+     * @param targetDate The target date.
+     * @param userID The user id.
+     * @return The foods by date.
+     */
     public List<Food> getFoodsByDate(LocalDate targetDate, int userID) {
         String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
                 + " date = ? AND user_id = ? ORDER BY name";
@@ -86,6 +107,10 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Performs remove food.
+     * @param id The id.
+     */
     public void removeFood(int id) {
         String sql = "DELETE FROM foods WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -96,6 +121,10 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Performs delete all for user.
+     * @param userId The user id.
+     */
     public void deleteAllForUser(int userId) {
         String sql = "DELETE FROM foods WHERE user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -106,6 +135,11 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Returns the weekly calorie tracking.
+     * @param userID The user id.
+     * @return The weekly calorie tracking.
+     */
     public boolean[] getWeeklyCalorieTracking(int userID) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {
@@ -116,6 +150,13 @@ public class FoodDAO {
         return streakDays;
     }
 
+    /**
+     * Returns the daily total by attribute.
+     * @param targetDate The target date.
+     * @param attribute The attribute.
+     * @param userID The user id.
+     * @return The daily total by attribute.
+     */
     public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userID) {
         String sql = "SELECT COALESCE(SUM("
                 + attribute
@@ -134,6 +175,11 @@ public class FoodDAO {
         }
     }
 
+    /**
+     * Performs map row to food.
+     * @param rs The rs.
+     * @throws SQLException If the operation fails.
+     */
     private Food mapRowToFood(ResultSet rs) throws SQLException {
         Food food = new Food();
         food.setId(rs.getInt("id"));

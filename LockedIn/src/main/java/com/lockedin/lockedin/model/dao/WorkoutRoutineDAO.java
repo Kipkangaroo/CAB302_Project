@@ -13,14 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a full workout routine, including its metadata and the list of
- * exercises that belong
- * to it.
+ * Data access object for workout routine records.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutRoutineDAO {
 
     private final Connection connection;
 
+    /**
+     * Creates a new WorkoutRoutineDAO.
+     */
     public WorkoutRoutineDAO() {
         try {
             Path dbPath = Paths.get("LockedIn", "data", "users.db").toAbsolutePath();
@@ -33,16 +36,31 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Creates a new WorkoutRoutineDAO.
+     * @param connection The connection.
+     */
     public WorkoutRoutineDAO(Connection connection) {
         this.connection = connection;
         createTables();
         migrate();
     }
 
+    /**
+     * Performs create tables.
+     */
     private void createTables() {
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(
                     """
+                                /**
+                                 * Performs workout routines.
+                                 * @param AUTOINCREMENT The autoincrement.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param '' The ''.
+                                 * @param NULL The null.
+                                 */
                                 CREATE TABLE IF NOT EXISTS workout_routines (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     user_id INTEGER NOT NULL,
@@ -53,6 +71,16 @@ public class WorkoutRoutineDAO {
                             """);
             stmt.execute(
                     """
+                                /**
+                                 * Performs routine exercises.
+                                 * @param AUTOINCREMENT The autoincrement.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param 60 The 60.
+                                 */
                                 CREATE TABLE IF NOT EXISTS routine_exercises (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     routine_id INTEGER NOT NULL,
@@ -65,6 +93,16 @@ public class WorkoutRoutineDAO {
                             """);
             stmt.execute(
                     """
+                                /**
+                                 * Performs completed workouts.
+                                 * @param AUTOINCREMENT The autoincrement.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 */
                                 CREATE TABLE IF NOT EXISTS completed_workouts (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     user_id INTEGER NOT NULL,
@@ -77,6 +115,17 @@ public class WorkoutRoutineDAO {
                             """);
             stmt.execute(
                     """
+                                /**
+                                 * Performs completed workout sets.
+                                 * @param AUTOINCREMENT The autoincrement.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 * @param NULL The null.
+                                 */
                                 CREATE TABLE IF NOT EXISTS completed_workout_sets (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     completed_workout_id INTEGER NOT NULL,
@@ -113,6 +162,14 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Performs save routine.
+     * @param userId The user id.
+     * @param name The name.
+     * @param notes The notes.
+     * @param entries The entries.
+     * @return The numeric result.
+     */
     public int saveRoutine(
             int userId, String name, String notes, List<WorkoutExerciseEntry> entries) {
         String sql = "INSERT INTO workout_routines (user_id, name, notes, created_at) VALUES (?,?,?,?)";
@@ -134,6 +191,11 @@ public class WorkoutRoutineDAO {
         return -1;
     }
 
+    /**
+     * Performs insert exercises.
+     * @param routineId The routine id.
+     * @param entries The entries.
+     */
     private void insertExercises(int routineId, List<WorkoutExerciseEntry> entries)
             throws SQLException {
         String sql = """
@@ -155,6 +217,11 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Returns the routines by user.
+     * @param userId The user id.
+     * @return The routines by user.
+     */
     public List<RoutineData> getRoutinesByUser(int userId) {
         List<RoutineData> routines = new ArrayList<>();
         String sql = "SELECT id, name, notes FROM workout_routines WHERE user_id=? ORDER BY created_at"
@@ -179,6 +246,11 @@ public class WorkoutRoutineDAO {
 
     // ── Save ────────────────────────────────────────────────────────────────
 
+    /**
+     * Returns the total workouts by user.
+     * @param userId The user id.
+     * @return The total workouts by user.
+     */
     public int getTotalWorkoutsByUser(int userId) {
         int totalWorkouts = 0;
         String sql = "SELECT COUNT(*) FROM completed_workouts WHERE user_id=?";
@@ -194,6 +266,11 @@ public class WorkoutRoutineDAO {
         return totalWorkouts;
     }
 
+    /**
+     * Returns the routine by id.
+     * @param routineId The routine id.
+     * @return The routine by id.
+     */
     public RoutineData getRoutineById(int routineId) {
         String sql = "SELECT id, name, notes FROM workout_routines WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -214,6 +291,12 @@ public class WorkoutRoutineDAO {
 
     // ── Read ────────────────────────────────────────────────────────────────
 
+    /**
+     * Returns the exercises for routine.
+     * @param routineId The routine id.
+     * @return The exercises for routine.
+     * @throws SQLException If the operation fails.
+     */
     private List<WorkoutExerciseEntry> getExercisesForRoutine(int routineId) throws SQLException {
         List<WorkoutExerciseEntry> entries = new ArrayList<>();
         String sql = "SELECT id, exercise_id, exercise_name, sets, reps, rest_seconds "
@@ -235,6 +318,13 @@ public class WorkoutRoutineDAO {
         return entries;
     }
 
+    /**
+     * Performs update exercise.
+     * @param entryId The entry id.
+     * @param sets The sets.
+     * @param reps The reps.
+     * @param restSeconds The rest seconds.
+     */
     public void updateExercise(int entryId, int sets, int reps, int restSeconds) {
         String sql = "UPDATE routine_exercises SET sets=?, reps=?, rest_seconds=? WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -248,6 +338,15 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Performs add exercise to routine.
+     * @param routineId The routine id.
+     * @param exerciseId The exercise id.
+     * @param exerciseName The exercise name.
+     * @param sets The sets.
+     * @param reps The reps.
+     * @param restSeconds The rest seconds.
+     */
     public void addExerciseToRoutine(
             int routineId,
             int exerciseId,
@@ -273,6 +372,10 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Performs remove exercise from routine.
+     * @param entryId The entry id.
+     */
     public void removeExerciseFromRoutine(int entryId) {
         String sql = "DELETE FROM routine_exercises WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -285,6 +388,10 @@ public class WorkoutRoutineDAO {
 
     // ── Update ──────────────────────────────────────────────────────────────
 
+    /**
+     * Performs delete routine.
+     * @param routineId The routine id.
+     */
     public void deleteRoutine(int routineId) {
         try (PreparedStatement ps1 = connection.prepareStatement(
                 "DELETE FROM routine_exercises WHERE routine_id=?");
@@ -336,11 +443,26 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Performs save completed workout.
+     * @param userId The user id.
+     * @param routine The routine.
+     * @param completedSets The completed sets.
+     * @return The numeric result.
+     */
     public int saveCompletedWorkout(
             int userId, RoutineData routine, List<CompletedSetData> completedSets) {
         return saveCompletedWorkout(userId, routine, completedSets, LocalDateTime.now());
     }
 
+    /**
+     * Performs save completed workout.
+     * @param userId The user id.
+     * @param routine The routine.
+     * @param completedSets The completed sets.
+     * @param completedAt The completed at.
+     * @return The numeric result.
+     */
     public int saveCompletedWorkout(
             int userId,
             RoutineData routine,
@@ -427,6 +549,11 @@ public class WorkoutRoutineDAO {
         return workouts;
     }
 
+    /**
+     * Returns the weekly workout tracking.
+     * @param userID The user id.
+     * @return The weekly workout tracking.
+     */
     public boolean[] getWeeklyWorkoutTracking(int userID) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {
@@ -437,6 +564,11 @@ public class WorkoutRoutineDAO {
         return streakDays;
     }
 
+    /**
+     * Performs insert completed sets.
+     * @param completedWorkoutId The completed workout id.
+     * @param completedSets The completed sets.
+     */
     private void insertCompletedSets(int completedWorkoutId, List<CompletedSetData> completedSets)
             throws SQLException {
         String sql = """
@@ -460,6 +592,11 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Returns the completed sets for workout.
+     * @param completedWorkoutId The completed workout id.
+     * @return The completed sets for workout.
+     */
     private List<CompletedSetData> getCompletedSetsForWorkout(int completedWorkoutId)
             throws SQLException {
         List<CompletedSetData> sets = new ArrayList<>();
@@ -487,12 +624,24 @@ public class WorkoutRoutineDAO {
         return sets;
     }
 
+    /**
+     * Provides routine data functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
+     */
     public static class RoutineData {
         public final int id;
         public final String name;
         public final String notes;
         public final List<WorkoutExerciseEntry> exercises;
 
+        /**
+         * Creates a new RoutineData.
+         * @param id The id.
+         * @param name The name.
+         * @param notes The notes.
+         * @param exercises The exercises.
+         */
         public RoutineData(
                 int id, String name, String notes, List<WorkoutExerciseEntry> exercises) {
             this.id = id;
@@ -503,9 +652,9 @@ public class WorkoutRoutineDAO {
     }
 
     /**
-     * Represents a single completed set during a workout session. Used for saving
-     * workout history
-     * and generating summaries.
+     * Provides completed set data functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
      */
     public static class CompletedSetData {
         public final int exerciseId;
@@ -515,6 +664,15 @@ public class WorkoutRoutineDAO {
         public final int completedReps;
         public final int restSeconds;
 
+        /**
+         * Creates a new CompletedSetData.
+         * @param exerciseId The exercise id.
+         * @param exerciseName The exercise name.
+         * @param setNumber The set number.
+         * @param targetReps The target reps.
+         * @param completedReps The completed reps.
+         * @param restSeconds The rest seconds.
+         */
         public CompletedSetData(
                 int exerciseId,
                 String exerciseName,
@@ -531,6 +689,11 @@ public class WorkoutRoutineDAO {
         }
     }
 
+    /**
+     * Provides completed workout data functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
+     */
     public static class CompletedWorkoutData {
         public final int id;
         public final int routineId;
@@ -540,6 +703,16 @@ public class WorkoutRoutineDAO {
         public final int totalSets;
         public final List<CompletedSetData> sets;
 
+        /**
+         * Creates a new CompletedWorkoutData.
+         * @param id The id.
+         * @param routineId The routine id.
+         * @param routineName The routine name.
+         * @param completedAt The completed at.
+         * @param totalExercises The total exercises.
+         * @param totalSets The total sets.
+         * @param sets The sets.
+         */
         public CompletedWorkoutData(
                 int id,
                 int routineId,

@@ -17,9 +17,9 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Controller responsible for handling user registration. Validates input
- * fields, creates a new User
- * entity, and stores it via UserDAO.
+ * JavaFX controller for the sign up screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class SignUpController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
@@ -51,6 +51,10 @@ public class SignUpController {
     @FXML
     private ComboBox<FitnessGoal> fitnessGoalCombo;
 
+    /**
+     * Performs parse valid double.
+     * @param text The text.
+     */
     public static Double parseValidDouble(String text) {
         if (text == null || text.trim().isEmpty()) {
             return null;
@@ -75,12 +79,20 @@ public class SignUpController {
         // Trigger signup when pressing Enter
         signupBtn.setDefaultButton(true);
     }
+    /**
+     * Performs handle back button.
+     * @param event The event.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
         authentication.switchScene(
                 logoImageView, LOGIN_VIEW);
     }
+    /**
+     * Performs handle signup.
+     */
 
     @FXML
     private void handleSignup() {
@@ -191,6 +203,11 @@ public class SignUpController {
         }
     }
 
+    /**
+     * Performs capitalize.
+     * @param string The string.
+     * @return The resulting text.
+     */
     private String capitalize(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }

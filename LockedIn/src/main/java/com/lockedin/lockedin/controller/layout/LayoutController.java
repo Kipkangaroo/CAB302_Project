@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Controller for the main application layout. Handles navigation between
- * Workout, Diet, and Profile
- * pages, and updates the active navigation button styling.
+ * JavaFX controller for the layout screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class LayoutController {
 
@@ -32,23 +32,35 @@ public class LayoutController {
     public Button btnDiet;
     @FXML
     public Button btnProfile;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
         showWorkoutPage();
     }
+    /**
+     * Performs show workout page.
+     */
 
     @FXML
     private void showWorkoutPage() {
         loadPage(WORKOUT_VIEW);
         setActive(btnWorkout);
     }
+    /**
+     * Performs show diet page.
+     */
 
     @FXML
     private void showDietPage() {
         loadPage(DIET_VIEW);
         setActive(btnDiet);
     }
+    /**
+     * Performs show profile page.
+     */
 
     @FXML
     private void showProfilePage() {
@@ -56,6 +68,10 @@ public class LayoutController {
         setActive(btnProfile);
     }
 
+    /**
+     * Performs load page.
+     * @param page The page.
+     */
     private void loadPage(String page) {
         try {
             Pane appPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
@@ -65,6 +81,10 @@ public class LayoutController {
         }
     }
 
+    /**
+     * Sets the active.
+     * @param active The active.
+     */
     private void setActive(Button active) {
         btnWorkout.setStyle(INACTIVE);
         btnDiet.setStyle(INACTIVE);

@@ -22,8 +22,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Seeds a demo user "John" with one month of diet, workout, and progress data ending
- * on 20/05/2026.
+ * Seeds a demo user "John" with sample diet, workout, and progress data for demonstrations.
+ *
+ * @author LockedIn Team
+ * @version 1.0
  */
 public final class JohnDemoSeeder {
 
@@ -36,6 +38,9 @@ public final class JohnDemoSeeder {
     private static final double START_WEIGHT_KG = 60.0;
     private static final double END_WEIGHT_KG = 65.0;
 
+    /**
+     * Creates a new JohnDemoSeeder.
+     */
     private JohnDemoSeeder() {
     }
 
@@ -57,6 +62,9 @@ public final class JohnDemoSeeder {
         userDAO.deleteUser(userId);
     }
 
+    /**
+     * Seeds demo data for John if the demo account does not already exist.
+     */
     public static void seedIfAbsent() {
         UserDAO userDAO = new UserDAO();
         if (userDAO.getUserByEmail(JOHN_EMAIL).isPresent()) {
@@ -87,6 +95,9 @@ public final class JohnDemoSeeder {
         userDAO.updateFitnessGoal(userId, FitnessGoal.MAINTAIN_FITNESS);
     }
 
+    /**
+     * Performs build john user.
+     */
     private static User buildJohnUser() {
         User user = new User();
         user.setFirstName("John");
@@ -102,6 +113,13 @@ public final class JohnDemoSeeder {
         return user;
     }
 
+    /**
+     * Performs create workout routines.
+     * @param userId The user id.
+     * @param exercisesDAO The exercises dao.
+     * @param workoutDAO The workout dao.
+     * @return A list of matching records.
+     */
     private static List<WorkoutRoutineDAO.RoutineData> createWorkoutRoutines(
             int userId, DBExercisesDAO exercisesDAO, WorkoutRoutineDAO workoutDAO) {
         List<RoutineTemplate> templates = List.of(
@@ -173,6 +191,14 @@ public final class JohnDemoSeeder {
         return saved;
     }
 
+    /**
+     * Performs entry.
+     * @param exercisesDAO The exercises dao.
+     * @param name The name.
+     * @param sets The sets.
+     * @param reps The reps.
+     * @param restSeconds The rest seconds.
+     */
     private static WorkoutExerciseEntry entry(
             DBExercisesDAO exercisesDAO, String name, int sets, int reps, int restSeconds) {
         int exerciseId = exercisesDAO.findExerciseIdByName(name);
@@ -182,6 +208,15 @@ public final class JohnDemoSeeder {
         return new WorkoutExerciseEntry(0, exerciseId, name, sets, reps, restSeconds);
     }
 
+    /**
+     * Performs seed february data.
+     * @param john The john.
+     * @param userId The user id.
+     * @param routines The routines.
+     * @param foodDAO The food dao.
+     * @param progressDAO The progress dao.
+     * @param workoutDAO The workout dao.
+     */
     private static void seedFebruaryData(
             User john,
             int userId,
@@ -221,11 +256,21 @@ public final class JohnDemoSeeder {
         }
     }
 
+    /**
+     * Returns whether gym day.
+     * @param date The date.
+     * @return true if the condition holds; otherwise false.
+     */
     private static boolean isGymDay(LocalDate date) {
         DayOfWeek day = date.getDayOfWeek();
         return day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
     }
 
+    /**
+     * Performs weight for day.
+     * @param dayNumber The day number.
+     * @return The computed value.
+     */
     private static double weightForDay(int dayNumber) {
         if (dayNumber >= 20) {
             return END_WEIGHT_KG;
@@ -233,6 +278,13 @@ public final class JohnDemoSeeder {
         return START_WEIGHT_KG + (END_WEIGHT_KG - START_WEIGHT_KG) * (dayNumber - 1) / 19.0;
     }
 
+    /**
+     * Performs target calories for.
+     * @param base The base.
+     * @param weight The weight.
+     * @param goal The goal.
+     * @return The computed value.
+     */
     private static double targetCaloriesFor(User base, double weight, FitnessGoal goal) {
         User snapshot = new User();
         snapshot.setDateOfBirth(base.getDateOfBirth());
@@ -244,6 +296,11 @@ public final class JohnDemoSeeder {
         return snapshot.getTargetCalories();
     }
 
+    /**
+     * Performs build completed sets.
+     * @param routine The routine.
+     * @return A list of matching records.
+     */
     private static List<WorkoutRoutineDAO.CompletedSetData> buildCompletedSets(
             WorkoutRoutineDAO.RoutineData routine) {
         List<WorkoutRoutineDAO.CompletedSetData> completedSets = new ArrayList<>();
@@ -266,6 +323,11 @@ public final class JohnDemoSeeder {
         return completedSets;
     }
 
+    /**
+     * Performs meals for day.
+     * @param dayNumber The day number.
+     * @return A list of matching records.
+     */
     private static List<Meal> mealsForDay(int dayNumber) {
         Meal[][] weeklyRotation = {
             {
@@ -311,13 +373,35 @@ public final class JohnDemoSeeder {
         return selected;
     }
 
+    /**
+     * Performs meal.
+     * @param name The name.
+     * @param calories The calories.
+     * @param protein The protein.
+     * @param carbs The carbs.
+     * @param fats The fats.
+     */
     private static Meal meal(String name, int calories, int protein, int carbs, int fats) {
         return new Meal(name, calories, protein, carbs, fats);
     }
 
+    /**
+     * Performs routine template.
+     * @param name The name.
+     * @param notes The notes.
+     * @param exercises The exercises.
+     */
     private record RoutineTemplate(String name, String notes, List<WorkoutExerciseEntry> exercises) {
     }
 
+    /**
+     * Performs meal.
+     * @param name The name.
+     * @param calories The calories.
+     * @param protein The protein.
+     * @param carbs The carbs.
+     * @param fats The fats.
+     */
     private record Meal(String name, int calories, int protein, int carbs, int fats) {
     }
 }

@@ -14,7 +14,11 @@ import com.lockedin.lockedin.model.entity.user.OTP;
 
 import java.io.IOException;
 
-/** Controller for the forgot-password screen (email + Get OTP). */
+/**
+ * JavaFX controller for the forgot password screen.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class ForgotPasswordController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private final UserDAO userDAO = new UserDAO();
@@ -38,17 +42,28 @@ public class ForgotPasswordController {
     private PasswordField confirmPasswordField;
     @FXML
     private Button getOtpBtn;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     private void initialize() {
         getOtpBtn.setDefaultButton(true);
         setPasswordEntryVisible(false);
     }
+    /**
+     * Performs handle back button.
+     * @param event The event.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
         authentication.switchScene(backImageView, LOGIN_VIEW);
     }
+    /**
+     * Performs handle get otp.
+     */
 
     @FXML
     private void handleGetOtp() {
@@ -81,6 +96,9 @@ public class ForgotPasswordController {
         switchToOtpEntryMode();
     }
 
+    /**
+     * Performs switch to otp entry mode.
+     */
     private void switchToOtpEntryMode() {
         awaitingOtp = true;
         resettingPassword = false;
@@ -93,6 +111,9 @@ public class ForgotPasswordController {
         getOtpBtn.setText("Verify OTP");
     }
 
+    /**
+     * Performs handle verify otp.
+     */
     private void handleVerifyOtp() {
         String otpText = emailField.getText().trim();
         if (otpText.isEmpty()) {
@@ -113,6 +134,9 @@ public class ForgotPasswordController {
         switchToPasswordResetMode();
     }
 
+    /**
+     * Performs switch to password reset mode.
+     */
     private void switchToPasswordResetMode() {
         awaitingOtp = false;
         resettingPassword = true;
@@ -123,6 +147,9 @@ public class ForgotPasswordController {
         getOtpBtn.setText("Reset Password");
     }
 
+    /**
+     * Performs handle reset password.
+     */
     private void handleResetPassword() {
         String password = passwordField.getText().trim();
         String confirmPassword = confirmPasswordField.getText().trim();
@@ -155,6 +182,10 @@ public class ForgotPasswordController {
         }
     }
 
+    /**
+     * Sets the password entry visible.
+     * @param visible The visible.
+     */
     private void setPasswordEntryVisible(boolean visible) {
         emailField.setVisible(!visible);
         emailField.setManaged(!visible);

@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Controller for the Workout History page. Displays all completed workouts for
- * the current user,
- * grouped with exercise summaries and completion timestamps.
+ * JavaFX controller for the workout history screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutHistoryController {
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
@@ -39,6 +39,9 @@ public class WorkoutHistoryController {
     private VBox historyContainer;
 
     private WorkoutRoutineDAO routineDAO;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -46,6 +49,9 @@ public class WorkoutHistoryController {
         loadHistory();
     }
 
+    /**
+     * Performs load history.
+     */
     private void loadHistory() {
         List<WorkoutRoutineDAO.CompletedWorkoutData> workouts = routineDAO
                 .getCompletedWorkoutsByUser(CurrentUser.getId());
@@ -80,6 +86,10 @@ public class WorkoutHistoryController {
         }
     }
 
+    /**
+     * Performs build history card.
+     * @param workout The workout.
+     */
     private VBox buildHistoryCard(WorkoutRoutineDAO.CompletedWorkoutData workout) {
         Label nameLabel = new Label(workout.routineName);
         nameLabel.setStyle("-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #061424;");
@@ -109,6 +119,11 @@ public class WorkoutHistoryController {
         return card;
     }
 
+    /**
+     * Performs build exercise summary row.
+     * @param exerciseName The exercise name.
+     * @param total The total.
+     */
     private HBox buildExerciseSummaryRow(String exerciseName, ExerciseTotals total) {
         Label exerciseLabel = new Label(exerciseName);
         exerciseLabel.setStyle(
@@ -130,6 +145,11 @@ public class WorkoutHistoryController {
         return row;
     }
 
+    /**
+     * Performs summarize exercises.
+     * @param sets The sets.
+     * @return The resulting text.
+     */
     private Map<String, ExerciseTotals> summarizeExercises(
             List<WorkoutRoutineDAO.CompletedSetData> sets) {
         Map<String, ExerciseTotals> totals = new LinkedHashMap<>();
@@ -142,6 +162,11 @@ public class WorkoutHistoryController {
         return totals;
     }
 
+    /**
+     * Performs format completed at.
+     * @param completedAt The completed at.
+     * @return The resulting text.
+     */
     private String formatCompletedAt(String completedAt) {
         try {
             return LocalDateTime.parse(completedAt).format(DISPLAY_DATE);
@@ -150,6 +175,10 @@ public class WorkoutHistoryController {
         }
     }
 
+    /**
+     * Performs compute workouts per day.
+     * @param workouts The workouts.
+     */
     private Map<LocalDate, Long> computeWorkoutsPerDay(List<WorkoutRoutineDAO.CompletedWorkoutData> workouts) {
         Map<LocalDate, Long> workoutsPerDay = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
@@ -159,6 +188,11 @@ public class WorkoutHistoryController {
         return workoutsPerDay;
     }
 
+    /**
+     * Performs build workouts per day chart.
+     * @param data The data.
+     * @return The resulting text.
+     */
     private BarChart<String, Number> buildWorkoutsPerDayChart(Map<LocalDate, Long> data) {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -218,6 +252,11 @@ public class WorkoutHistoryController {
         return repsPerDay;
     }
 
+    /**
+     * Performs build reps per day chart.
+     * @param data The data.
+     * @return The resulting text.
+     */
     private LineChart<String, Number> buildRepsPerDayChart(Map<LocalDate, Integer> data) {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -240,6 +279,9 @@ public class WorkoutHistoryController {
         chart.setLegendVisible(false);
         return chart;
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
@@ -254,6 +296,11 @@ public class WorkoutHistoryController {
         }
     }
 
+    /**
+     * Provides exercise totals functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
+     */
     private static class ExerciseTotals {
         int sets;
         int targetReps;

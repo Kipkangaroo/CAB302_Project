@@ -18,9 +18,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller for the main Workout page. Displays all workout routines created
- * by the user, and
- * provides navigation to create, view, or delete routines.
+ * JavaFX controller for the workout screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutController {
 
@@ -35,6 +35,9 @@ public class WorkoutController {
     private VBox workoutsContainer;
 
     private WorkoutRoutineDAO routineDAO;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -42,6 +45,9 @@ public class WorkoutController {
         loadWorkouts();
     }
 
+    /**
+     * Performs load workouts.
+     */
     private void loadWorkouts() {
         List<WorkoutRoutineDAO.RoutineData> routines = routineDAO.getRoutinesByUser(CurrentUser.getId());
 
@@ -132,6 +138,10 @@ public class WorkoutController {
         return card;
     }
 
+    /**
+     * Performs open detail.
+     * @param routineId The routine id.
+     */
     private void openDetail(int routineId) {
         try {
             WorkoutDetailController.setCurrentRoutineId(routineId);
@@ -141,6 +151,9 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open workout detail", e);
         }
     }
+    /**
+     * Performs handle create workout.
+     */
 
     @FXML
     public void handleCreateWorkout() {
@@ -151,6 +164,9 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open create workout page", e);
         }
     }
+    /**
+     * Performs handle history.
+     */
 
     @FXML
     public void handleHistory() {
@@ -161,6 +177,9 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open workout history", e);
         }
     }
+    /**
+     * Performs handle ai generator.
+     */
 
     @FXML
     public void handleAiGenerator() {
@@ -172,6 +191,9 @@ public class WorkoutController {
         }
     }
 
+    /**
+     * Performs stack pane.
+     */
     private StackPane stackPane() {
         return (StackPane) workoutsContainer.getScene().lookup("#pageContainer");
     }

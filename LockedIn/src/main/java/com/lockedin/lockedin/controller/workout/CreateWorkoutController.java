@@ -23,9 +23,9 @@ import org.controlsfx.control.SearchableComboBox;
 import java.io.IOException;
 
 /**
- * Controller for creating a new workout routine. Handles exercise selection,
- * validation, list
- * management, and saving the final routine to the database.
+ * JavaFX controller for the create workout screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class CreateWorkoutController {
 
@@ -69,6 +69,9 @@ public class CreateWorkoutController {
         repsField.setText("10");
         restField.setText("60");
     }
+    /**
+     * Performs handle add exercise.
+     */
 
     @FXML
     public void handleAddExercise() {
@@ -90,6 +93,9 @@ public class CreateWorkoutController {
             showError("Sets and reps must be positive numbers; rest \u2265 0.");
         }
     }
+    /**
+     * Performs handle save.
+     */
 
     @FXML
     public void handleSave() {
@@ -106,12 +112,18 @@ public class CreateWorkoutController {
                 CurrentUser.getId(), name, workoutNotesField.getText().trim(), entries);
         navigateBack();
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
         navigateBack();
     }
 
+    /**
+     * Performs navigate back.
+     */
     private void navigateBack() {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
@@ -123,6 +135,10 @@ public class CreateWorkoutController {
         }
     }
 
+    /**
+     * Performs show error.
+     * @param msg The msg.
+     */
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setHeaderText(null);
@@ -132,6 +148,11 @@ public class CreateWorkoutController {
 
     // ── Custom cell ──────────────────────────────────────────────────────────
 
+    /**
+     * Provides exercise entry cell functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
+     */
     private class ExerciseEntryCell extends ListCell<WorkoutExerciseEntry> {
         private final HBox content;
         private final Label label;
@@ -150,6 +171,11 @@ public class CreateWorkoutController {
             content.setAlignment(Pos.CENTER_LEFT);
             content.setPadding(new Insets(4, 4, 4, 4));
         }
+        /**
+         * Performs update item.
+         * @param item The item.
+         * @param empty The empty.
+         */
 
         @Override
         protected void updateItem(WorkoutExerciseEntry item, boolean empty) {

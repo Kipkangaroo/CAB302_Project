@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Controller for the Exercise Details view. Allows users to search for an
- * exercise and displays its
- * name, primary muscle, instructions, and form images.
+ * JavaFX controller for the exercise view screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class ExerciseViewController {
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
@@ -80,6 +80,10 @@ public class ExerciseViewController {
                             }
                         });
     }
+    /**
+     * Performs handle back button.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     public void handleBackButton() throws IOException {
@@ -90,10 +94,18 @@ public class ExerciseViewController {
         }
     }
 
+    /**
+     * Returns the selected exercise id.
+     * @return The selected exercise id.
+     */
     public Integer getSelectedExerciseId() {
         return selectedExerciseId;
     }
 
+    /**
+     * Performs update exercise details.
+     * @param exercise The exercise.
+     */
     private void updateExerciseDetails(Exercise exercise) {
         selectedExerciseId = exercise.getId();
         exerciseName.setText(exercise.getName());

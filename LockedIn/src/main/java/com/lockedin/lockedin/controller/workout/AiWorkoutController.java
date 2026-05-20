@@ -16,6 +16,11 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 
+/**
+ * JavaFX controller for the ai workout screen.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class AiWorkoutController {
 
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
@@ -46,6 +51,9 @@ public class AiWorkoutController {
     @FXML
     private Button saveButton;
     private WorkoutResult generatedResult;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -66,6 +74,9 @@ public class AiWorkoutController {
         resultCard.setManaged(false);
         saveButton.setDisable(true);
     }
+    /**
+     * Performs handle generate.
+     */
 
     @FXML
     public void handleGenerate() {
@@ -104,6 +115,9 @@ public class AiWorkoutController {
         worker.setDaemon(true);
         worker.start();
     }
+    /**
+     * Performs handle save.
+     */
 
     @FXML
     public void handleSave() {
@@ -116,12 +130,19 @@ public class AiWorkoutController {
                 generatedResult.exercises);
         navigateBack();
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
         navigateBack();
     }
 
+    /**
+     * Performs display result.
+     * @param result The result.
+     */
     private void displayResult(WorkoutResult result) {
         routineNameLabel.setText(result.routineName);
         exerciseListContainer.getChildren().clear();
@@ -136,6 +157,10 @@ public class AiWorkoutController {
         statusLabel.setText("");
     }
 
+    /**
+     * Performs build exercise row.
+     * @param entry The entry.
+     */
     private HBox buildExerciseRow(WorkoutExerciseEntry entry) {
         Label nameLabel = new Label(entry.getExerciseName());
         nameLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold;");
@@ -157,6 +182,10 @@ public class AiWorkoutController {
         return row;
     }
 
+    /**
+     * Sets the generating state.
+     * @param generating The generating.
+     */
     private void setGeneratingState(boolean generating) {
         loadingIndicator.setVisible(generating);
         generateButton.setDisable(generating);
@@ -169,11 +198,19 @@ public class AiWorkoutController {
         }
     }
 
+    /**
+     * Performs show status.
+     * @param message The message.
+     * @param isError The is error.
+     */
     private void showStatus(String message, boolean isError) {
         statusLabel.setText(message);
         statusLabel.setStyle(isError ? "-fx-text-fill: #e53935;" : "-fx-text-fill: #1565C0;");
     }
 
+    /**
+     * Performs navigate back.
+     */
     private void navigateBack() {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));

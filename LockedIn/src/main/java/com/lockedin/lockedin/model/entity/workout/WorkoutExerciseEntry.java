@@ -1,11 +1,10 @@
 package com.lockedin.lockedin.model.entity.workout;
 
 /**
- * Represents a single exercise entry inside a workout routine. Stores the
- * exercise reference (ID +
- * name) along with sets, reps, and rest time. Used both when building routines
- * and when loading
- * them from the database.
+ * Represents one exercise slot in a routine with sets, reps, and rest time.
+ *
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutExerciseEntry {
     private final int id;
@@ -31,29 +30,57 @@ public class WorkoutExerciseEntry {
         this.restSeconds = restSeconds;
     }
 
+    /**
+     * Returns the id.
+     * @return The id.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Returns the exercise id.
+     * @return The exercise id.
+     */
     public int getExerciseId() {
         return exerciseId;
     }
 
+    /**
+     * Returns the exercise name.
+     * @return The exercise name.
+     */
     public String getExerciseName() {
         return exerciseName;
     }
 
+    /**
+     * Returns the sets.
+     * @return The sets.
+     */
     public int getSets() {
         return sets;
     }
 
+    /**
+     * Returns the reps.
+     * @return The reps.
+     */
     public int getReps() {
         return reps;
     }
 
+    /**
+     * Returns the rest seconds.
+     * @return The rest seconds.
+     */
     public int getRestSeconds() {
         return restSeconds;
     }
+    /**
+     * Returns a string representation of this object.
+     * @return The resulting text.
+     */
 
     @Override
     public String toString() {

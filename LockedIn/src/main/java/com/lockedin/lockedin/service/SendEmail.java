@@ -6,12 +6,21 @@ import java.util.Properties;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.MailerBuilder;
 
+/**
+ * Provides send email functionality for LockedIn.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class SendEmail {
     private static final String EMAIL_PASSWORD_DIR = "/com/lockedin/lockedin/service/config.file";
     private static final String FROM_EMAIL = "tusarifb@gmail.com";
     private static final String FROM_NAME = "LockedIn";
     private String APP_PASSWORD;
 
+    /**
+     * Creates a new SendEmail.
+     * @throws IOException If the operation fails.
+     */
     public SendEmail() throws IOException {
         Properties props = new Properties();
         try (InputStream input = getClass().getResourceAsStream(EMAIL_PASSWORD_DIR)) {
@@ -23,10 +32,20 @@ public class SendEmail {
         APP_PASSWORD = props.getProperty("app.password").trim();
     }
 
+    /**
+     * Performs send otp email.
+     * @param toEmail The to email.
+     * @param otpCode The otp code.
+     */
     public void sendOtpEmail(String toEmail, int otpCode) {
         send(toEmail, otpCode);
     }
 
+    /**
+     * Performs send.
+     * @param toEmail The to email.
+     * @param otpCode The otp code.
+     */
     private void send(String toEmail, int otpCode) {
         MailerBuilder
                 .withSMTPServer("smtp.gmail.com", 587, FROM_EMAIL, APP_PASSWORD)

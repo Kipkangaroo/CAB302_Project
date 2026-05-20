@@ -18,6 +18,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Service for ai workout service operations.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class AiWorkoutService {
 
     private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
@@ -29,6 +34,11 @@ public class AiWorkoutService {
     private final Gson gson = new Gson();
     private final DBExercisesDAO exercisesDAO = new DBExercisesDAO();
 
+    /**
+     * Returns the api key.
+     * @return The api key.
+     * @throws IOException If the operation fails.
+     */
     private String getApiKey() throws IOException {
         Properties props = new Properties();
         try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
@@ -39,6 +49,15 @@ public class AiWorkoutService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
+    /**
+     * Performs build prompt.
+     * @param experience The experience.
+     * @param time The time.
+     * @param muscleGroup The muscle group.
+     * @param goal The goal.
+     * @return The resulting text.
+     * @throws IOException If the operation fails.
+     */
     private String buildPrompt(String experience, String time, String muscleGroup, String goal) throws IOException {
         try (InputStream input = getClass().getResourceAsStream(PROMPT_DIR)) {
             if (input == null)
@@ -52,6 +71,13 @@ public class AiWorkoutService {
         }
     }
 
+    /**
+     * Performs generate workout.
+     * @param experience The experience.
+     * @param time The time.
+     * @param muscleGroup The muscle group.
+     * @param goal The goal.
+     */
     public WorkoutResult generateWorkout(String experience, String time, String muscleGroup, String goal) {
         try {
             String key = getApiKey();
@@ -120,9 +146,20 @@ public class AiWorkoutService {
         }
     }
 
+    /**
+     * Performs create generate workout task.
+     * @param experience The experience.
+     * @param time The time.
+     * @param muscleGroup The muscle group.
+     * @param goal The goal.
+     * @return A JavaFX task that performs the work on a background thread.
+     */
     public Task<WorkoutResult> createGenerateWorkoutTask(
             String experience, String time, String muscleGroup, String goal) {
         return new Task<>() {
+            /**
+             * Runs the background task and returns its result.
+             */
             @Override
             protected WorkoutResult call() {
                 return generateWorkout(experience, time, muscleGroup, goal);
@@ -130,10 +167,20 @@ public class AiWorkoutService {
         };
     }
 
+    /**
+     * Provides workout result functionality for LockedIn.
+     * @author LockedIn Team
+     * @version 1.0
+     */
     public static class WorkoutResult {
         public final String routineName;
         public final List<WorkoutExerciseEntry> exercises;
 
+        /**
+         * Creates a new WorkoutResult.
+         * @param routineName The routine name.
+         * @param exercises The exercises.
+         */
         public WorkoutResult(String routineName, List<WorkoutExerciseEntry> exercises) {
             this.routineName = routineName;
             this.exercises = exercises;

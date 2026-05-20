@@ -26,8 +26,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Controller for the Profile page. Displays the currently logged-in user's
- * personal information.
+ * JavaFX controller for the profile screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class ProfileController {
     private static final String BLUE_FILL = "#028ee1";
@@ -66,12 +67,19 @@ public class ProfileController {
     private ImageView editActionIcon;
     private Image editImage;
     private Image saveImage;
+    /**
+     * Performs handle logout.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();
         authentication.switchScene(logoutBtn, LOGIN_VIEW);
     }
+    /**
+     * Performs handle edit details.
+     */
 
     @FXML
     private void handleEditDetails() {
@@ -82,6 +90,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Performs enter edit mode.
+     */
     private void enterEditMode() {
         editingDetails = true;
         updateEditIcon();
@@ -94,6 +105,9 @@ public class ProfileController {
         weightField.selectAll();
     }
 
+    /**
+     * Performs exit edit mode.
+     */
     private void exitEditMode() {
         Double weight = SignUpController.parseValidDouble(weightField.getText());
         if (weight == null) {
@@ -112,11 +126,17 @@ public class ProfileController {
         refreshDetailFields();
     }
 
+    /**
+     * Performs refresh detail fields.
+     */
     private void refreshDetailFields() {
         weightField.setText("Weight: " + user.getWeight() + " kg");
         fitnessGoalField.setText("Fitness Goal: " + user.getFitnessGoal());
     }
 
+    /**
+     * Performs update edit icon.
+     */
     private void updateEditIcon() {
         editActionIcon.setFitWidth(ICON_SIZE);
         editActionIcon.setFitHeight(ICON_SIZE);
@@ -126,6 +146,11 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Sets the field editing.
+     * @param field The field.
+     * @param editing The editing.
+     */
     private void setFieldEditing(TextField field, boolean editing) {
         field.setEditable(editing);
         field.setFocusTraversable(editing);
@@ -137,6 +162,9 @@ public class ProfileController {
             field.getStyleClass().remove("profile-detail-field-editing");
         }
     }
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     private void initialize() {
@@ -157,11 +185,19 @@ public class ProfileController {
         updateTrackingStreaks();
     }
 
+    /**
+     * Performs update tracking streaks.
+     */
     private void updateTrackingStreaks() {
         updateStreak(calorieStreakRow, foodDAO.getWeeklyCalorieTracking(user.getId()));
         updateStreak(workoutStreakRow, workoutDAO.getWeeklyWorkoutTracking(user.getId()));
     }
 
+    /**
+     * Performs update streak.
+     * @param row The row.
+     * @param completed The completed.
+     */
     private void updateStreak(HBox row, boolean[] completed) {
         LocalDate today = LocalDate.now();
         for (int j = 0; j < row.getChildren().size(); j++) {
