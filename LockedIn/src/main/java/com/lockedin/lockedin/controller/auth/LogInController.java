@@ -56,6 +56,10 @@ public class LogInController {
         }
         authenticate(email, passwordField.getText().trim());
     }
+    @FXML
+    private void initialize() {
+        loginBtn.setDefaultButton(true);
+    }
 
     /**
      * Performs successful login.

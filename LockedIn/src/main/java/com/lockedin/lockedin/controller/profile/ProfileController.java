@@ -2,18 +2,17 @@ package com.lockedin.lockedin.controller.profile;
 
 import com.lockedin.lockedin.controller.auth.Authentication;
 import com.lockedin.lockedin.controller.auth.SignUpController;
-import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.dao.UserProgressDAO;
-import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
-import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.dao.*;
+import com.lockedin.lockedin.model.entity.user.Measurement;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -22,6 +21,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.sql.SQLXML;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -45,6 +45,8 @@ public class ProfileController {
     private final FoodDAO foodDAO = new FoodDAO();
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
+    private final MeasurementDAO measurementDAO = new MeasurementDAO();
+    private String selectedRange = "ALL"; // ALL, 7, 30
     private User user;
     private boolean editingDetails;
     @FXML
@@ -67,8 +69,35 @@ public class ProfileController {
     private ImageView editActionIcon;
     private Image editImage;
     private Image saveImage;
+    @FXML
+    private Button deleteAccountBtn;
+    @FXML
+    private ComboBox<String> measurementTypeCombo;
+    @FXML
+    private TextField newMeasurementField;
+    @FXML
+    private VBox measurementHistoryBox;
+    @FXML
+    private LineChart<String, Number> measurementTrendChart;
+    @FXML
+    private void handleRange7Days() {
+        selectedRange = "7";
+        loadMeasurementTrend();
+    }
+    @FXML
+    private void handleRange30Days() {
+        selectedRange = "30";
+        loadMeasurementTrend();
+    }
+    @FXML
+    private void handleRangeAllTime() {
+        selectedRange = "ALL";
+        loadMeasurementTrend();
+    }
+
     /**
      * Performs handle logout.
+     *
      * @throws IOException If the operation fails.
      */
 
@@ -77,6 +106,7 @@ public class ProfileController {
         CurrentUser.clear();
         authentication.switchScene(logoutBtn, LOGIN_VIEW);
     }
+
     /**
      * Performs handle edit details.
      */
@@ -148,7 +178,8 @@ public class ProfileController {
 
     /**
      * Sets the field editing.
-     * @param field The field.
+     *
+     * @param field   The field.
      * @param editing The editing.
      */
     private void setFieldEditing(TextField field, boolean editing) {
@@ -162,6 +193,7 @@ public class ProfileController {
             field.getStyleClass().remove("profile-detail-field-editing");
         }
     }
+
     /**
      * Initializes FXML-bound UI components after the view loads.
      */
@@ -183,6 +215,16 @@ public class ProfileController {
         firstNameLabel.setText("Hello " + user.getFirstName() + "!");
         updateEditIcon();
         updateTrackingStreaks();
+        measurementTypeCombo.getSelectionModel().select("Weight");
+        measurementTypeCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
+            loadMeasurements();
+            loadMeasurementTrend();
+        });
+
+        loadMeasurements();
+        loadMeasurementTrend();
+
+
     }
 
     /**
@@ -195,7 +237,8 @@ public class ProfileController {
 
     /**
      * Performs update streak.
-     * @param row The row.
+     *
+     * @param row       The row.
      * @param completed The completed.
      */
     private void updateStreak(HBox row, boolean[] completed) {
@@ -210,4 +253,124 @@ public class ProfileController {
             circle.setFill(completed[daysAgo] ? COMPLETED_FILL : MISSED_FILL);
         }
     }
+    /**
+     * Loads and displays the measurement history for the selected type.
+     */
+    private void loadMeasurements() {
+        measurementHistoryBox.getChildren().clear();
+
+        String type = measurementTypeCombo.getValue();
+        var list = measurementDAO.getMeasurements(type);
+
+        for (Measurement m : list) {
+            HBox row = new HBox(10);
+
+            Label entry = new Label(m.getDate() + " — " + m.getValue() + " (" + m.getType() + ")");
+            entry.getStyleClass().add("measurement-entry");
+
+            Button deleteBtn = new Button("X");
+            deleteBtn.getStyleClass().add("delete-measurement-btn");
+
+            deleteBtn.setOnAction(e -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Delete this measurement?");
+                alert.setHeaderText("Confirm Deletion");
+
+                var result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    measurementDAO.deleteMeasurement(m.getId());
+                    loadMeasurements();
+                    loadMeasurementTrend();
+                }
+            });
+
+            row.getChildren().addAll(entry, deleteBtn);
+            measurementHistoryBox.getChildren().add(row);
+        }
+    }
+    /**
+     * Updates the line chart to show the trend for the selected measurement type and time range.
+     */
+    private void loadMeasurementTrend() {
+        measurementTrendChart.getData().clear();
+
+        String type = measurementTypeCombo.getValue();
+        var list = measurementDAO.getMeasurements(type);
+
+        LocalDate now = LocalDate.now();
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(type + " Trend");
+
+        for (Measurement m : list) {
+
+            boolean include = switch (selectedRange) {
+                case "7" -> !m.getDate().isBefore(now.minusDays(7));
+                case "30" -> !m.getDate().isBefore(now.minusDays(30));
+                default -> true; // ALL
+            };
+
+            if (include) {
+                series.getData().add(new XYChart.Data<>(m.getDate().toString(), m.getValue()));
+            }
+        }
+
+        measurementTrendChart.getData().add(series);
+    }
+    /**
+     * Adds a new measurement entry for the selected type and refreshes the history and trend.
+     */
+    @FXML
+    private void handleAddMeasurement() {
+        String type = measurementTypeCombo.getValue();
+        String input = newMeasurementField.getText();
+
+        if (input.isBlank()) {
+            authentication.showError("Invalid Input", "Please enter a measurement value.");
+            return;
+        }
+
+        double value;
+        try {
+            value = Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            authentication.showError("Invalid Number", "Please enter a valid numeric value.");
+            return;
+        }
+
+        Measurement m = new Measurement(
+                CurrentUser.get().getId(),
+                value,
+                type,
+                LocalDate.now()
+        );
+
+        measurementDAO.addMeasurement(m);
+        newMeasurementField.clear();
+        loadMeasurements();
+    }
+
+
+    @FXML
+    public void handleDeleteAccount(javafx.scene.input.MouseEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete your account? This action cannot be undone.");
+        alert.setHeaderText("Confirm Account Deletion");
+
+        var result = alert.showAndWait();
+        if (result.isEmpty() || result.get() != ButtonType.OK) {
+            return;
+        }
+
+        boolean success = userDAO.deleteUser(user.getId());
+
+        if (success) {
+            CurrentUser.clear();
+            authentication.switchScene((javafx.scene.Node) event.getSource(), LOGIN_VIEW);
+        } else {
+            authentication.showError("Error", "Failed to delete user.");
+        }
+    }
+
 }
+
