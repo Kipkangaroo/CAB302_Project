@@ -4,8 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
       fx:controller="com.lockedin.lockedin.controller.workout.WorkoutHistoryController"
       fillWidth="true"
       maxWidth="Infinity"
@@ -18,18 +18,18 @@
                     text="←"
                     styleClass="header-btn"
                     onAction="#handleBack"
-                    style="-fx-font-size: 16px;" />
+                    style="-fx-font-size: 16px;"/>
             <Label text="Workout History"
                    textFill="white"
                    style="-fx-font-size: 22px; -fx-font-weight: bold;"
                    HBox.hgrow="ALWAYS"
-                   maxWidth="Infinity" />
+                   maxWidth="Infinity"/>
         </HBox>
         <Label fx:id="historyCountLabel"
                textFill="white"
                style="-fx-font-size: 13px; -fx-opacity: 0.82;">
             <VBox.margin>
-                <Insets top="4" />
+                <Insets top="4"/>
             </VBox.margin>
         </Label>
     </VBox>
@@ -44,7 +44,7 @@
             </VBox>
             <VBox fx:id="historyContainer"
                   spacing="10"
-                  fillWidth="true" />
+                  fillWidth="true"/>
         </VBox>
     </ScrollPane>
 </VBox>

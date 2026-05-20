@@ -2,8 +2,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
       fx:controller="com.lockedin.lockedin.controller.workout.WorkoutDetailController"
       fillWidth="true"
       maxWidth="Infinity"
@@ -17,18 +17,18 @@
                     text="←"
                     styleClass="header-btn"
                     onAction="#handleBack"
-                    style="-fx-font-size: 16px;" />
-            <Region HBox.hgrow="ALWAYS" />
+                    style="-fx-font-size: 16px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
             <Button text="✏"
                     styleClass="header-btn"
                     onAction="#handleEditWorkoutName"
-                    style="-fx-font-size: 15px;" />
+                    style="-fx-font-size: 15px;"/>
         </HBox>
         <Label fx:id="workoutNameLabel"
                textFill="white"
                style="-fx-font-size: 22px; -fx-font-weight: bold;">
             <VBox.margin>
-                <Insets top="8" />
+                <Insets top="8"/>
             </VBox.margin>
         </Label>
         <Label fx:id="workoutNotesLabel"
@@ -36,7 +36,7 @@
                style="-fx-font-size: 13px; -fx-opacity: 0.82;"
                wrapText="true">
             <VBox.margin>
-                <Insets top="2" />
+                <Insets top="2"/>
             </VBox.margin>
         </Label>
     </VBox>
@@ -51,12 +51,12 @@
             <!-- Exercise cards injected by WorkoutDetailController -->
             <VBox fx:id="exercisesContainer"
                   spacing="10"
-                  fillWidth="true" />
+                  fillWidth="true"/>
             <!-- Add Exercise dashed button -->
             <Button text="+ Add Exercise"
                     styleClass="add-exercise-dashed"
                     maxWidth="Infinity"
-                    onAction="#handleAddExercise" />
+                    onAction="#handleAddExercise"/>
         </VBox>
     </ScrollPane>
     <!-- ── Start Workout button ── -->
@@ -66,6 +66,6 @@
                 onAction="#handleStartWorkout"
                 maxWidth="Infinity"
                 HBox.hgrow="ALWAYS"
-                style="-fx-padding: 14 0 14 0;" />
+                style="-fx-padding: 14 0 14 0;"/>
     </HBox>
 </VBox>

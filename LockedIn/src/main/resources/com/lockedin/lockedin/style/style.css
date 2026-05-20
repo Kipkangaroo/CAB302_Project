@@ -60,7 +60,7 @@
     -fx-padding: 0;
 }
 
-.diet-scroll>.viewport {
+.diet-scroll > .viewport {
     -fx-background-color: #F0F2F5;
 }
 
@@ -104,7 +104,7 @@
     -fx-border-width: 1.2;
 }
 
-.combo-box-base.diet-input>.list-cell {
+.combo-box-base.diet-input > .list-cell {
     -fx-padding: 8 12 8 12;
 }
 
@@ -116,19 +116,19 @@
     -fx-border-width: 1.2;
 }
 
-.date-picker.diet-input>.text-field {
+.date-picker.diet-input > .text-field {
     -fx-background-color: white;
     -fx-background-insets: 0;
     -fx-border-width: 0;
     -fx-padding: 10 12 10 12;
 }
 
-.date-picker.diet-input>.arrow-button {
+.date-picker.diet-input > .arrow-button {
     -fx-background-color: #E9EEF5;
     -fx-background-radius: 0 10 10 0;
 }
 
-.date-picker.diet-input>.arrow-button:hover {
+.date-picker.diet-input > .arrow-button:hover {
     -fx-background-color: #DDE6F2;
 }
 
@@ -140,7 +140,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 12, 0, 0, 3);
 }
 
-.date-picker-popup>.month-year-pane {
+.date-picker-popup > .month-year-pane {
     -fx-background-color: #E9EEF5;
     -fx-background-radius: 8;
     -fx-padding: 6 8 8 8;
@@ -205,12 +205,12 @@
     -fx-accent: #43A047;
 }
 
-.diet-progress-bar>.track {
+.diet-progress-bar > .track {
     -fx-background-color: #E0E0E0;
     -fx-background-radius: 8;
 }
 
-.diet-progress-bar>.bar {
+.diet-progress-bar > .bar {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
     -fx-background-radius: 8;
     -fx-background-insets: 0;
@@ -246,7 +246,7 @@
     -fx-padding: 0;
 }
 
-.workout-scroll>.viewport {
+.workout-scroll > .viewport {
     -fx-background-color: #F0F2F5;
 }
 
@@ -394,12 +394,12 @@
     -fx-accent: rgba(255, 255, 255, 0.55);
 }
 
-.workout-progress-bar>.track {
+.workout-progress-bar > .track {
     -fx-background-color: rgba(255, 255, 255, 0.25);
     -fx-background-radius: 4;
 }
 
-.workout-progress-bar>.bar {
+.workout-progress-bar > .bar {
     -fx-background-color: rgba(255, 255, 255, 0.65);
     -fx-background-radius: 4;
     -fx-background-insets: 0;
@@ -502,7 +502,7 @@
     -fx-padding: 0;
 }
 
-.profile-scroll>.viewport {
+.profile-scroll > .viewport {
     -fx-background-color: #F0F2F5;
 }
 

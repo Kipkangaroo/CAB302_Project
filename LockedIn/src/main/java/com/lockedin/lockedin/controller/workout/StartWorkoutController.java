@@ -22,43 +22,63 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Controller responsible for running a workout routine. Handles set progression, tracking completed
- * sets, updating UI, and saving workout results when finished.
+ * JavaFX controller for the start workout screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class StartWorkoutController {
-    private static final String WORKOUT_DETAIL_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+    private static final String WORKOUT_DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
 
     private static int currentRoutineId = -1;
-
-    public static void setCurrentRoutineId(int routineId) {
-        currentRoutineId = routineId;
-    }
-
-    @FXML private Button backButton;
-    @FXML private Label workoutNameLabel;
-    @FXML private Label progressTextLabel;
-    @FXML private ProgressBar workoutProgressBar;
-    @FXML private Label exerciseNameLabel;
-    @FXML private Label setsLabel;
-    @FXML private Label repsLabel;
-    @FXML private Label restLabel;
-    @FXML private Label setLabel;
-    @FXML private Label targetLabel;
-    @FXML private TextField completedRepsField;
-    @FXML private Button completeSetButton;
-    @FXML private HBox upNextBox;
-    @FXML private Label upNextLabel;
-    @FXML private ImageView exerciseImageView;
-
+    private final Map<Integer, Exercise> exerciseCache = new HashMap<>();
+    private final List<WorkoutRoutineDAO.CompletedSetData> completedSets = new ArrayList<>();
+    @FXML
+    private Button backButton;
+    @FXML
+    private Label workoutNameLabel;
+    @FXML
+    private Label progressTextLabel;
+    @FXML
+    private ProgressBar workoutProgressBar;
+    @FXML
+    private Label exerciseNameLabel;
+    @FXML
+    private Label setsLabel;
+    @FXML
+    private Label repsLabel;
+    @FXML
+    private Label restLabel;
+    @FXML
+    private Label setLabel;
+    @FXML
+    private Label targetLabel;
+    @FXML
+    private TextField completedRepsField;
+    @FXML
+    private Button completeSetButton;
+    @FXML
+    private HBox upNextBox;
+    @FXML
+    private Label upNextLabel;
+    @FXML
+    private ImageView exerciseImageView;
     private WorkoutRoutineDAO routineDAO;
     private DBExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData routine;
-    private final Map<Integer, Exercise> exerciseCache = new HashMap<>();
-    private final List<WorkoutRoutineDAO.CompletedSetData> completedSets = new ArrayList<>();
     private int exerciseIndex;
     private int setIndex;
     private int totalSets;
+
+    /**
+     * Sets the current routine id.
+     * @param routineId The routine id.
+     */
+    public static void setCurrentRoutineId(int routineId) {
+        currentRoutineId = routineId;
+    }
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -77,7 +97,8 @@ public class StartWorkoutController {
     }
 
     /**
-     * Handles completion of a set: - Validates reps input - Records the completed set - Moves to
+     * Handles completion of a set: - Validates reps input - Records the completed
+     * set - Moves to
      * the next set or finishes the workout
      */
     @FXML
@@ -112,6 +133,9 @@ public class StartWorkoutController {
         advanceSet();
         showCurrentSet();
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
@@ -127,6 +151,9 @@ public class StartWorkoutController {
                         });
     }
 
+    /**
+     * Performs show current set.
+     */
     private void showCurrentSet() {
         WorkoutExerciseEntry exercise = currentExercise();
         int completed = completedSets.size();
@@ -152,10 +179,13 @@ public class StartWorkoutController {
         upNextBox.setManaged(upNext != null);
     }
 
+    /**
+     * Performs update exercise image.
+     * @param entry The entry.
+     */
     private void updateExerciseImage(WorkoutExerciseEntry entry) {
-        Exercise exercise =
-                exerciseCache.computeIfAbsent(
-                        entry.getExerciseId(), exerciseId -> exercisesDAO.getExerciseById(exerciseId));
+        Exercise exercise = exerciseCache.computeIfAbsent(
+                entry.getExerciseId(), exerciseId -> exercisesDAO.getExerciseById(exerciseId));
         if (exercise == null
                 || exercise.getExerciseImageId() == null
                 || exercise.getExerciseImageId().isBlank()) {
@@ -165,15 +195,25 @@ public class StartWorkoutController {
         exerciseImageView.setImage(new Image(exercise.getExerciseImageUrl(0), true));
     }
 
+    /**
+     * Performs current exercise.
+     */
     private WorkoutExerciseEntry currentExercise() {
         return routine.exercises.get(exerciseIndex);
     }
 
+    /**
+     * Returns whether last set.
+     * @return true if the condition holds; otherwise false.
+     */
     private boolean isLastSet() {
         WorkoutExerciseEntry exercise = currentExercise();
         return exerciseIndex == routine.exercises.size() - 1 && setIndex == exercise.getSets() - 1;
     }
 
+    /**
+     * Performs advance set.
+     */
     private void advanceSet() {
         WorkoutExerciseEntry exercise = currentExercise();
         if (setIndex < exercise.getSets() - 1) {
@@ -184,6 +224,10 @@ public class StartWorkoutController {
         }
     }
 
+    /**
+     * Returns the up next text.
+     * @return The up next text.
+     */
     private String getUpNextText() {
         WorkoutExerciseEntry exercise = currentExercise();
         if (setIndex < exercise.getSets() - 1) {
@@ -195,10 +239,12 @@ public class StartWorkoutController {
         return null;
     }
 
+    /**
+     * Performs finish workout.
+     */
     private void finishWorkout() {
         workoutProgressBar.setProgress(1);
-        int historyId =
-                routineDAO.saveCompletedWorkout(CurrentUser.getId(), routine, completedSets);
+        int historyId = routineDAO.saveCompletedWorkout(CurrentUser.getId(), routine, completedSets);
         if (historyId < 0) {
             showError("Workout completed, but it could not be saved to history.");
             return;
@@ -211,6 +257,9 @@ public class StartWorkoutController {
         navigateBack();
     }
 
+    /**
+     * Performs navigate back.
+     */
     private void navigateBack() {
         try {
             WorkoutDetailController.setCurrentRoutineId(currentRoutineId);
@@ -224,6 +273,10 @@ public class StartWorkoutController {
         }
     }
 
+    /**
+     * Performs show error.
+     * @param message The message.
+     */
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);

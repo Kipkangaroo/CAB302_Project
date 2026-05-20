@@ -21,20 +21,34 @@ import java.time.LocalDate;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.entity.diet.Food;
 
+/**
+ * Service for ai model service operations.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class AiModelService {
-    private final int userID;
     private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
     private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
     private static final String FOOD_IMAGE_PROMPT_DIR = "/com/lockedin/lockedin/service/food_image_prompt.txt";
     private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
+    private final int userID;
     private final HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
     private final FoodDAO foodDAO = new FoodDAO();
 
+    /**
+     * Creates a new AiModelService.
+     * @param userID The user id.
+     */
     public AiModelService(int userID) {
         this.userID = userID;
     }
 
+    /**
+     * Returns the api key.
+     * @return The api key.
+     * @throws IOException If the operation fails.
+     */
     private String getApiKey() throws IOException {
         Properties props = new Properties();
         try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
@@ -46,6 +60,11 @@ public class AiModelService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
+    /**
+     * Performs analyze image with prompt.
+     * @param imagePath The image path.
+     * @param date The date.
+     */
     public Food analyzeImageWithPrompt(Path imagePath, LocalDate date) {
         try {
             String key = getApiKey();
@@ -74,6 +93,11 @@ public class AiModelService {
         return null;
     }
 
+    /**
+     * Performs send image with prompt.
+     * @param imagePath The image path.
+     * @param date The date.
+     */
     public Food sendImageWithPrompt(Path imagePath, LocalDate date) {
         Food food = analyzeImageWithPrompt(imagePath, date);
         if (food != null) {
@@ -82,8 +106,17 @@ public class AiModelService {
         return food;
     }
 
+    /**
+     * Performs create analyze image task.
+     * @param imagePath The image path.
+     * @param date The date.
+     * @return A JavaFX task that performs the work on a background thread.
+     */
     public Task<Food> createAnalyzeImageTask(Path imagePath, LocalDate date) {
         return new Task<>() {
+            /**
+             * Runs the background task and returns its result.
+             */
             @Override
             protected Food call() {
                 return analyzeImageWithPrompt(imagePath, date);
@@ -91,6 +124,11 @@ public class AiModelService {
         };
     }
 
+    /**
+     * Performs build body.
+     * @param messages The messages.
+     * @return The resulting text.
+     */
     private Map<String, Object> buildBody(List<Map<String, Object>> messages) {
         return Map.of(
                 "model", MODEL,
@@ -102,6 +140,11 @@ public class AiModelService {
                 "presence_penalty", 0.00);
     }
 
+    /**
+     * Performs build request.
+     * @param key The key.
+     * @param body The body.
+     */
     private HttpRequest buildRequest(String key, Map<String, Object> body) {
         return HttpRequest.newBuilder()
                 .uri(URI.create(API_URL))
@@ -112,6 +155,12 @@ public class AiModelService {
                 .build();
     }
 
+    /**
+     * Performs post and parse.
+     * @param key The key.
+     * @param body The body.
+     * @return The resulting text.
+     */
     private String postAndParse(String key, Map<String, Object> body) {
         try {
             HttpResponse<String> response = client.send(
@@ -131,6 +180,12 @@ public class AiModelService {
         }
     }
 
+    /**
+     * Performs build data uri.
+     * @param imagePath The image path.
+     * @return The resulting text.
+     * @throws Exception If the operation fails.
+     */
     private String buildDataUri(Path imagePath) throws Exception {
         byte[] bytes = Files.readAllBytes(imagePath);
         String base64 = Base64.getEncoder().encodeToString(bytes);
@@ -140,6 +195,11 @@ public class AiModelService {
         return "data:" + mediaType + ";base64," + base64;
     }
 
+    /**
+     * Performs read food image prompt.
+     * @return The resulting text.
+     * @throws IOException If the operation fails.
+     */
     private String readFoodImagePrompt() throws IOException {
         try (InputStream input = getClass().getResourceAsStream(FOOD_IMAGE_PROMPT_DIR)) {
             if (input == null) {

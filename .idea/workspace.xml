@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/DBExercisesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/DBExercisesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-cli/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-cli/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.user.UserTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.model.entity.workout.EntityBehaviorTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/test-classes/META-INF/jpms.args" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +74,7 @@
   "keyToString": {
     "Application.LockedIn.executor": "Run",
     "JUnit.FoodDAOTest.executor": "Run",
+    "JUnit.test in LockedIn.executor": "Run",
     "Maven.LockedIn [clean].executor": "Run",
     "Maven.LockedIn [compile].executor": "Run",
     "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
@@ -91,7 +84,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "Brandon---AI-Workout-Feature",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
@@ -102,16 +95,22 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "settings.editor.selected.configurable": "advanced.settings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lockedin.lockedin.model.entity.user" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.LockedIn">
     <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.app.LockedIn" />
       <module name="LockedIn" />
+      <option name="VM_PARAMETERS" value="--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.lockedin.lockedin.controller.pages.*" />
@@ -137,17 +136,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in LockedIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/LockedIn/src/test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.LockedIn" />
+      <item itemvalue="JUnit.test in LockedIn" />
       <item itemvalue="JUnit.FoodDAOTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.test in LockedIn" />
         <item itemvalue="JUnit.FoodDAOTest" />
-        <item itemvalue="Application.LockedIn" />
-        <item itemvalue="Application.LockedIn" />
-        <item itemvalue="Application.LockedIn" />
       </list>
     </recent_temporary>
   </component>
@@ -178,6 +184,8 @@
       <workItem from="1778833082885" duration="3786000" />
       <workItem from="1778853885527" duration="1101000" />
       <workItem from="1778856064469" duration="4486000" />
+      <workItem from="1779241830835" duration="223000" />
+      <workItem from="1779242123006" duration="3027000" />
     </task>
     <task id="LOCAL-00001" summary="Update files">
       <option name="closed" value="true" />
@@ -395,7 +403,39 @@
       <option name="project" value="LOCAL" />
       <updated>1778854126045</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236019674</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236019674</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236112736</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236112736</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Adding *.file back on .gitignore">
+      <option name="closed" value="true" />
+      <created>1779236558571</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236558571</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.">
+      <option name="closed" value="true" />
+      <created>1779244099361</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1779244099361</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,9 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
-    <MESSAGE value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
-    <MESSAGE value="Updated placeholders - User details e.g. Name, age updated to be on the profile page" />
     <MESSAGE value="Updated the colour scheme of the Diet page to match the workout page + added logo and features image onto the login page" />
     <MESSAGE value="Added back icon onto sign up page and left aligned the text labels." />
     <MESSAGE value="Adjust colour and font scheme of elements within log-in and sign-up to match that of diet and workout page." />
@@ -438,7 +475,10 @@
     <MESSAGE value="Changed activity level &amp; fitness goal to enums; Organised entities dir" />
     <MESSAGE value="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values" />
     <MESSAGE value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
+    <MESSAGE value="Uploaded API_KEY_FILE template - add API keys here" />
+    <MESSAGE value="Adding *.file back on .gitignore" />
+    <MESSAGE value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

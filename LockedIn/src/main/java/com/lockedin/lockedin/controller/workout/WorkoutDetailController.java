@@ -19,30 +19,38 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller for the Workout Detail page. Displays all exercises in a selected routine and allows
- * editing, deleting, and adding exercises, as well as starting the workout.
+ * JavaFX controller for the workout detail screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutDetailController {
 
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private static final String START_WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/start-workout-view.fxml";
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private static final String START_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/start-workout-view.fxml";
 
     private static int currentRoutineId = -1;
-
-    public static void setCurrentRoutineId(int id) {
-        currentRoutineId = id;
-    }
-
-    @FXML private Button backButton;
-    @FXML private Label workoutNameLabel;
-    @FXML private Label workoutNotesLabel;
-    @FXML private VBox exercisesContainer;
-
+    @FXML
+    private Button backButton;
+    @FXML
+    private Label workoutNameLabel;
+    @FXML
+    private Label workoutNotesLabel;
+    @FXML
+    private VBox exercisesContainer;
     private WorkoutRoutineDAO routineDAO;
     private DBExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData currentRoutine;
+
+    /**
+     * Sets the current routine id.
+     * @param id The id.
+     */
+    public static void setCurrentRoutineId(int id) {
+        currentRoutineId = id;
+    }
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -51,6 +59,9 @@ public class WorkoutDetailController {
         loadRoutine();
     }
 
+    /**
+     * Performs load routine.
+     */
     private void loadRoutine() {
         currentRoutine = routineDAO.getRoutineById(currentRoutineId);
         if (currentRoutine == null) {
@@ -66,6 +77,10 @@ public class WorkoutDetailController {
         buildExerciseCards(currentRoutine.exercises);
     }
 
+    /**
+     * Performs build exercise cards.
+     * @param exercises The exercises.
+     */
     private void buildExerciseCards(List<WorkoutExerciseEntry> exercises) {
         exercisesContainer.getChildren().clear();
 
@@ -81,6 +96,11 @@ public class WorkoutDetailController {
         }
     }
 
+    /**
+     * Performs build exercise card.
+     * @param entry The entry.
+     * @param index The index.
+     */
     private HBox buildExerciseCard(WorkoutExerciseEntry entry, int index) {
         // Numbered circle
         Label numCircle = new Label(String.valueOf(index));
@@ -91,15 +111,14 @@ public class WorkoutDetailController {
         nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #1a1a1a;");
         nameLabel.setWrapText(true);
 
-        Label detailLabel =
-                new Label(
-                        "\u2299  "
-                                + entry.getSets()
-                                + " \u00D7 "
-                                + entry.getReps()
-                                + "    \u23F1  "
-                                + entry.getRestSeconds()
-                                + "s");
+        Label detailLabel = new Label(
+                "\u2299  "
+                        + entry.getSets()
+                        + " \u00D7 "
+                        + entry.getReps()
+                        + "    \u23F1  "
+                        + entry.getRestSeconds()
+                        + "s");
         detailLabel.setStyle("-fx-text-fill: #1565C0; -fx-font-size: 12px;");
 
         VBox textCol = new VBox(4, nameLabel, detailLabel);
@@ -130,6 +149,10 @@ public class WorkoutDetailController {
 
     // ── Edit exercise dialog ─────────────────────────────────────────────────
 
+    /**
+     * Performs show edit dialog.
+     * @param entry The entry.
+     */
     private void showEditDialog(WorkoutExerciseEntry entry) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Edit Exercise");
@@ -153,7 +176,8 @@ public class WorkoutDetailController {
         dialog.showAndWait()
                 .ifPresent(
                         bt -> {
-                            if (bt != ButtonType.OK) return;
+                            if (bt != ButtonType.OK)
+                                return;
                             try {
                                 int sets = Integer.parseInt(setsField.getText().trim());
                                 int reps = Integer.parseInt(repsField.getText().trim());
@@ -168,6 +192,9 @@ public class WorkoutDetailController {
     }
 
     // ── Add exercise dialog ──────────────────────────────────────────────────
+    /**
+     * Performs handle add exercise.
+     */
 
     @FXML
     public void handleAddExercise() {
@@ -200,9 +227,11 @@ public class WorkoutDetailController {
         dialog.showAndWait()
                 .ifPresent(
                         bt -> {
-                            if (bt != ButtonType.OK) return;
+                            if (bt != ButtonType.OK)
+                                return;
                             Exercise sel = combo.getValue();
-                            if (sel == null) return;
+                            if (sel == null)
+                                return;
                             try {
                                 int sets = Integer.parseInt(setsField.getText().trim());
                                 int reps = Integer.parseInt(repsField.getText().trim());
@@ -223,6 +252,9 @@ public class WorkoutDetailController {
     }
 
     // ── Edit workout name/notes dialog ───────────────────────────────────────
+    /**
+     * Performs handle edit workout name.
+     */
 
     @FXML
     public void handleEditWorkoutName() {
@@ -231,6 +263,9 @@ public class WorkoutDetailController {
         a.setContentText("Editing the workout name will be available in a future update.");
         a.showAndWait();
     }
+    /**
+     * Performs handle start workout.
+     */
 
     @FXML
     public void handleStartWorkout() {
@@ -246,22 +281,30 @@ public class WorkoutDetailController {
             StartWorkoutController.setCurrentRoutineId(currentRoutineId);
             Pane page = FXMLLoader.load(getClass().getResource(START_WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to start workout", e);
         }
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
         navigateBack();
     }
 
+    /**
+     * Performs navigate back.
+     */
     private void navigateBack() {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate back", e);
         }

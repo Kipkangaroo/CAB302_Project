@@ -25,13 +25,18 @@ import java.util.List;
 import java.util.Objects;
 
 // JavaFX controller: handles user input, updates totals, and manages Diet page UI
+/**
+ * JavaFX controller for the diet screen.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class DietController {
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
-    private User currentUser;
     public DatePicker foodDatePicker;
     AiModelService apiHandler;
+    private User currentUser;
     private double targetCalories;
     private double targetProtein;
     private double targetCarbs;
@@ -85,6 +90,10 @@ public class DietController {
     // -----------------------------
     // ADD FOOD BUTTON HANDLER
     // -----------------------------
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     * @throws IOException If the operation fails.
+     */
     @FXML
     private void initialize() throws IOException {
         foodDatePicker.setValue(LocalDate.now());
@@ -93,6 +102,9 @@ public class DietController {
         this.currentUser = CurrentUser.get();
         setFoodsOnList(LocalDate.now());
     }
+    /**
+     * Performs handle add food.
+     */
 
     @FXML
     private void handleAddFood() {
@@ -135,12 +147,20 @@ public class DietController {
         clearInputs();
     }
 
+    /**
+     * Sets the foods on list.
+     * @param date The date.
+     */
     private void setFoodsOnList(LocalDate date) {
         List<Food> currentFood = foodDAO.getFoodsByDate(date, currentUserID);
         foodList.getItems().setAll(currentFood);
         updateGUI(date);
     }
 
+    /**
+     * Handles the date selected UI action.
+     * @return A list of matching records.
+     */
     private ChangeListener<LocalDate> onDateSelected() {
         return (obs, oldDate, newDate) -> {
             if (newDate != null) {
@@ -149,6 +169,10 @@ public class DietController {
         };
     }
 
+    /**
+     * Performs update gui.
+     * @param date The date.
+     */
     private void updateGUI(LocalDate date) {
         if (date != null && currentUser != null) {
             targetCalories = new UserProgressDAO().getDailyTargetCalories(currentUserID, date);
@@ -162,16 +186,28 @@ public class DietController {
         updateProgressBars();
     }
 
+    /**
+     * Performs show input error.
+     * @param message The message.
+     */
     private void showInputError(String message) {
         inputErrorLabel.setText(message);
         inputErrorLabel.setVisible(true);
         inputErrorLabel.setManaged(true);
     }
+    /**
+     * Performs handle reset.
+     * @param actionEvent The action event.
+     */
 
     @FXML
     private void handleReset(ActionEvent actionEvent) {
         clearInputs();
     }
+    /**
+     * Performs handle remove food.
+     * @param actionEvent The action event.
+     */
 
     @FXML
     private void handleRemoveFood(ActionEvent actionEvent) {
@@ -198,6 +234,9 @@ public class DietController {
                             }
                         });
     }
+    /**
+     * Performs handle ai logo click.
+     */
 
     @FXML
     private void handleAiLogoClick() {
@@ -231,6 +270,10 @@ public class DietController {
         }
     }
 
+    /**
+     * Performs update totals.
+     * @param date The date.
+     */
     private void updateTotals(LocalDate date) {
         if (date == null) {
             return;
@@ -241,6 +284,9 @@ public class DietController {
         totalFats = foodDAO.getDailyTotalByAttribute(date, "fats", currentUserID);
     }
 
+    /**
+     * Performs refresh totals labels.
+     */
     private void refreshTotalsLabels() {
         caloriesProgressLabel.setText(
                 String.format("%.0f/%.0fkcal", totalCalories, targetCalories));
@@ -250,6 +296,9 @@ public class DietController {
         fatsProgressLabel.setText(String.format("%.0f/%.0fg fats", totalFats, targetFats));
     }
 
+    /**
+     * Performs update progress bars.
+     */
     private void updateProgressBars() {
         caloriesProgressBar.setProgress(clamp(totalCalories / targetCalories));
         proteinProgressBar.setProgress(clamp(totalProtein / targetProtein));
@@ -257,6 +306,11 @@ public class DietController {
         fatProgressBar.setProgress(clamp(totalFats / targetFats));
     }
 
+    /**
+     * Performs clamp.
+     * @param value The value.
+     * @return The computed value.
+     */
     private double clamp(double value) {
         if (Double.isNaN(value) || Double.isInfinite(value)) {
             return 0;
@@ -264,6 +318,9 @@ public class DietController {
         return Math.max(0, Math.min(1, value));
     }
 
+    /**
+     * Performs clear inputs.
+     */
     private void clearInputs() {
         foodField.clear();
         caloriesField.clear();

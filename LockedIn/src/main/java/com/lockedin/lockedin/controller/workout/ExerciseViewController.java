@@ -21,25 +21,35 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Controller for the Exercise Details view. Allows users to search for an exercise and displays its
- * name, primary muscle, instructions, and form images.
+ * JavaFX controller for the exercise view screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class ExerciseViewController {
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private Integer selectedExerciseId;
-    @FXML private ScrollPane exerciseDetails;
-    @FXML private Button backButton;
-    @FXML private SearchableComboBox<Exercise> exerciseSearch;
-    @FXML private Label exerciseName;
-    @FXML private Label primaryMuscle;
-    @FXML private Label instructions;
-    @FXML private ImageView formImage1;
-    @FXML private ImageView formImage2;
+    @FXML
+    private ScrollPane exerciseDetails;
+    @FXML
+    private Button backButton;
+    @FXML
+    private SearchableComboBox<Exercise> exerciseSearch;
+    @FXML
+    private Label exerciseName;
+    @FXML
+    private Label primaryMuscle;
+    @FXML
+    private Label instructions;
+    @FXML
+    private ImageView formImage1;
+    @FXML
+    private ImageView formImage2;
 
     /**
-     * Initializes the exercise search view: - Loads exercises from the database - Configures
-     * visibility of the details pane - Adds listener to update details when an exercise is selected
+     * Initializes the exercise search view: - Loads exercises from the database -
+     * Configures
+     * visibility of the details pane - Adds listener to update details when an
+     * exercise is selected
      */
     @FXML
     public void initialize() {
@@ -70,21 +80,32 @@ public class ExerciseViewController {
                             }
                         });
     }
+    /**
+     * Performs handle back button.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     public void handleBackButton() throws IOException {
-        Pane workoutPage =
-                FXMLLoader.load(Objects.requireNonNull(getClass().getResource(WORKOUT_VIEW)));
+        Pane workoutPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(WORKOUT_VIEW)));
         StackPane pageContainer = (StackPane) backButton.getScene().lookup("#pageContainer");
         if (pageContainer != null) {
             pageContainer.getChildren().setAll(workoutPage);
         }
     }
 
+    /**
+     * Returns the selected exercise id.
+     * @return The selected exercise id.
+     */
     public Integer getSelectedExerciseId() {
         return selectedExerciseId;
     }
 
+    /**
+     * Performs update exercise details.
+     * @param exercise The exercise.
+     */
     private void updateExerciseDetails(Exercise exercise) {
         selectedExerciseId = exercise.getId();
         exerciseName.setText(exercise.getName());

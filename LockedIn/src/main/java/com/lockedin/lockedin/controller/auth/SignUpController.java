@@ -17,13 +17,13 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Controller responsible for handling user registration. Validates input
- * fields, creates a new User
- * entity, and stores it via UserDAO.
+ * JavaFX controller for the sign up screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class SignUpController {
-    private final Authentication authentication = new Authentication();
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+    private final Authentication authentication = new Authentication();
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -51,6 +51,25 @@ public class SignUpController {
     @FXML
     private ComboBox<FitnessGoal> fitnessGoalCombo;
 
+    /**
+     * Performs parse valid double.
+     * @param text The text.
+     */
+    public static Double parseValidDouble(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            double value = Double.parseDouble(text.trim());
+            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
+                return null;
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     /** Initializes the sign-up form by populating dropdowns. */
     @FXML
     private void initialize() {
@@ -60,12 +79,20 @@ public class SignUpController {
         // Trigger signup when pressing Enter
         signupBtn.setDefaultButton(true);
     }
+    /**
+     * Performs handle back button.
+     * @param event The event.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
         authentication.switchScene(
                 logoImageView, LOGIN_VIEW);
     }
+    /**
+     * Performs handle signup.
+     */
 
     @FXML
     private void handleSignup() {
@@ -162,7 +189,7 @@ public class SignUpController {
                                         u.getFitnessGoal(),
                                         u.getWeight(),
                                         u.getTargetCalories(),
-                                        LocalDate.now()));  
+                                        LocalDate.now()));
             }
             authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
@@ -176,21 +203,11 @@ public class SignUpController {
         }
     }
 
-    public static Double parseValidDouble(String text) {
-        if (text == null || text.trim().isEmpty()) {
-            return null;
-        }
-        try {
-            double value = Double.parseDouble(text.trim());
-            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
-                return null;
-            }
-            return value;
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-
+    /**
+     * Performs capitalize.
+     * @param string The string.
+     * @return The resulting text.
+     */
     private String capitalize(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }

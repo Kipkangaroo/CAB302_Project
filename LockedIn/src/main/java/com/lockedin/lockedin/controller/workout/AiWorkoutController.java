@@ -15,29 +15,45 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * JavaFX controller for the ai workout screen.
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class AiWorkoutController {
 
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-
-    @FXML private Button backButton;
-    @FXML private ComboBox<String> experienceCombo;
-    @FXML private ComboBox<String> timeCombo;
-    @FXML private ComboBox<String> muscleGroupCombo;
-    @FXML private ComboBox<String> goalCombo;
-    @FXML private Button generateButton;
-    @FXML private ProgressIndicator loadingIndicator;
-    @FXML private Label statusLabel;
-    @FXML private VBox resultCard;
-    @FXML private Label routineNameLabel;
-    @FXML private VBox exerciseListContainer;
-    @FXML private Button saveButton;
-
-    private WorkoutResult generatedResult;
+    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private final WorkoutRoutineDAO routineDAO = new WorkoutRoutineDAO();
     private final AiWorkoutService aiService = new AiWorkoutService();
+    @FXML
+    private Button backButton;
+    @FXML
+    private ComboBox<String> experienceCombo;
+    @FXML
+    private ComboBox<String> timeCombo;
+    @FXML
+    private ComboBox<String> muscleGroupCombo;
+    @FXML
+    private ComboBox<String> goalCombo;
+    @FXML
+    private Button generateButton;
+    @FXML
+    private ProgressIndicator loadingIndicator;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private VBox resultCard;
+    @FXML
+    private Label routineNameLabel;
+    @FXML
+    private VBox exerciseListContainer;
+    @FXML
+    private Button saveButton;
+    private WorkoutResult generatedResult;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -58,6 +74,9 @@ public class AiWorkoutController {
         resultCard.setManaged(false);
         saveButton.setDisable(true);
     }
+    /**
+     * Performs handle generate.
+     */
 
     @FXML
     public void handleGenerate() {
@@ -96,10 +115,14 @@ public class AiWorkoutController {
         worker.setDaemon(true);
         worker.start();
     }
+    /**
+     * Performs handle save.
+     */
 
     @FXML
     public void handleSave() {
-        if (generatedResult == null) return;
+        if (generatedResult == null)
+            return;
         routineDAO.saveRoutine(
                 CurrentUser.getId(),
                 generatedResult.routineName,
@@ -107,12 +130,19 @@ public class AiWorkoutController {
                 generatedResult.exercises);
         navigateBack();
     }
+    /**
+     * Performs handle back.
+     */
 
     @FXML
     public void handleBack() {
         navigateBack();
     }
 
+    /**
+     * Performs display result.
+     * @param result The result.
+     */
     private void displayResult(WorkoutResult result) {
         routineNameLabel.setText(result.routineName);
         exerciseListContainer.getChildren().clear();
@@ -127,6 +157,10 @@ public class AiWorkoutController {
         statusLabel.setText("");
     }
 
+    /**
+     * Performs build exercise row.
+     * @param entry The entry.
+     */
     private HBox buildExerciseRow(WorkoutExerciseEntry entry) {
         Label nameLabel = new Label(entry.getExerciseName());
         nameLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold;");
@@ -135,7 +169,7 @@ public class AiWorkoutController {
 
         Label detailLabel = new Label(
                 entry.getSets() + " sets \u00d7 " + entry.getReps()
-                + " reps  |  " + entry.getRestSeconds() + "s rest");
+                        + " reps  |  " + entry.getRestSeconds() + "s rest");
         detailLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #757575;");
 
         VBox textBox = new VBox(2, nameLabel, detailLabel);
@@ -148,6 +182,10 @@ public class AiWorkoutController {
         return row;
     }
 
+    /**
+     * Sets the generating state.
+     * @param generating The generating.
+     */
     private void setGeneratingState(boolean generating) {
         loadingIndicator.setVisible(generating);
         generateButton.setDisable(generating);
@@ -160,16 +198,25 @@ public class AiWorkoutController {
         }
     }
 
+    /**
+     * Performs show status.
+     * @param message The message.
+     * @param isError The is error.
+     */
     private void showStatus(String message, boolean isError) {
         statusLabel.setText(message);
         statusLabel.setStyle(isError ? "-fx-text-fill: #e53935;" : "-fx-text-fill: #1565C0;");
     }
 
+    /**
+     * Performs navigate back.
+     */
     private void navigateBack() {
         try {
             Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
             StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) pc.getChildren().setAll(page);
+            if (pc != null)
+                pc.getChildren().setAll(page);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate back", e);
         }
