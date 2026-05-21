@@ -18,6 +18,13 @@ public class UserProgressDAO {
   public UserProgressDAO() {
     this.connection = SqliteConnection.getInstance(USER_DB);
     createUserProgressTable();
+    addSessionTargetColumnIfMissing();
+  }
+
+  public UserProgressDAO(Connection connection) {
+    this.connection = connection;
+    createUserProgressTable();
+    addSessionTargetColumnIfMissing();
   }
 
   private void createUserProgressTable() {
@@ -27,13 +34,23 @@ public class UserProgressDAO {
         + "fitness_goal TEXT NOT NULL, "
         + "weight REAL NOT NULL, "
         + "target_calories REAL NOT NULL, "
-        + "effective_from TEXT NOT NULL"
+        + "effective_from TEXT NOT NULL, "
+        + "target_sessions INTEGER DEFAULT 3"
         + ")";
 
     try (Statement statement = connection.createStatement()) {
       statement.execute(sql);
     } catch (SQLException e) {
       throw new RuntimeException("Failed to create user_progress table", e);
+    }
+  }
+
+  private void addSessionTargetColumnIfMissing() {
+    try (Statement statement = connection.createStatement()) {
+      statement.execute(
+          "ALTER TABLE user_progress ADD COLUMN target_sessions INTEGER DEFAULT 3");
+    } catch (SQLException e) {
+      // Column already exists — ignore
     }
   }
 
@@ -136,6 +153,34 @@ public class UserProgressDAO {
       return progress.get().getTargetCalories();
     }
     return new UserDAO().getUserById(userId).map(User::getTargetCalories).orElse(0.0);
+  }
+
+  public int getSessionTarget(int userId) {
+    String sql = "SELECT target_sessions FROM user_progress "
+        + "WHERE user_id = ? ORDER BY effective_from DESC, id DESC LIMIT 1";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+      preparedStatement.setInt(1, userId);
+      try (ResultSet resultSet = preparedStatement.executeQuery()) {
+        if (resultSet.next()) {
+          int val = resultSet.getInt("target_sessions");
+          return resultSet.wasNull() ? 3 : val;
+        }
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException("Failed to get session target", e);
+    }
+    return 3;
+  }
+
+  public void updateSessionTarget(int userId, int target) {
+    String sql = "UPDATE user_progress SET target_sessions = ? WHERE user_id = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+      preparedStatement.setInt(1, target);
+      preparedStatement.setInt(2, userId);
+      preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException("Failed to update session target", e);
+    }
   }
 
   private UserProgress mapUserProgress(ResultSet resultSet) throws SQLException {

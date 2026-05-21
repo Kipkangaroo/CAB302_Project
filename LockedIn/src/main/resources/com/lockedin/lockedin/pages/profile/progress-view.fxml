@@ -37,8 +37,6 @@
             <!-- Weekly Sessions -->
             <VBox styleClass="profile-card" spacing="10">
                 <Label text="Weekly Sessions" styleClass="profile-section-title"/>
-                <Label text="Target: 3 workouts this week"
-                       style="-fx-font-size: 12px; -fx-text-fill: #65758a;"/>
                 <ProgressBar fx:id="sessionsBar"
                              progress="0"
                              minHeight="22"
@@ -46,6 +44,17 @@
                              styleClass="diet-progress-bar"/>
                 <Label fx:id="sessionsLabel"
                        styleClass="diet-progress-label"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Weekly target:"
+                           style="-fx-font-size: 12px; -fx-text-fill: #65758a;"/>
+                    <Spinner fx:id="sessionTargetSpinner"
+                             prefWidth="70"
+                             editable="true"/>
+                    <Button text="Set"
+                            onAction="#handleSetSessionTarget"
+                            styleClass="diet-secondary-btn"
+                            style="-fx-padding: 4 12 4 12; -fx-font-size: 12px;"/>
+                </HBox>
             </VBox>
 
             <!-- Daily Calories -->
