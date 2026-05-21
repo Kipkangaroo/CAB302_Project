@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -30,12 +32,12 @@ public class ProgressController {
 
     private static final String PROFILE_VIEW =
             "/com/lockedin/lockedin/pages/profile/profile-view.fxml";
-    private static final int SESSION_TARGET = 3;
     private static final String GREEN_BAR = "-fx-accent: #4caf50;";
 
     @FXML private Button backButton;
     @FXML private ProgressBar sessionsBar;
     @FXML private Label sessionsLabel;
+    @FXML private Spinner<Integer> sessionTargetSpinner;
     @FXML private ProgressBar caloriesBar;
     @FXML private Label caloriesLabel;
     @FXML private ProgressBar weightBar;
@@ -60,11 +62,22 @@ public class ProgressController {
         LocalDate monday = LocalDate.now().with(DayOfWeek.MONDAY);
         LocalDate today = LocalDate.now();
         int actual = routineDAO.getCompletedWorkoutsByUserBetween(userId, monday, today).size();
-        double pct = ProgressCalculator.calculatePercentage(actual, SESSION_TARGET);
+        int target = progressDAO.getSessionTarget(userId);
+        sessionTargetSpinner.setValueFactory(
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 14, target));
+        double pct = ProgressCalculator.calculatePercentage(actual, target);
         sessionsBar.setProgress(pct / 100.0);
         styleBar(sessionsBar, pct);
         sessionsLabel.setText(
-                String.format("%d / %d sessions (%.0f%%)", actual, SESSION_TARGET, pct));
+                String.format("%d / %d sessions (%.0f%%)", actual, target, pct));
+    }
+
+    @FXML
+    public void handleSetSessionTarget() {
+        int userId = CurrentUser.getId();
+        int target = sessionTargetSpinner.getValue();
+        progressDAO.updateSessionTarget(userId, target);
+        loadSessionsSection(userId);
     }
 
     private void loadCaloriesSection(int userId) {

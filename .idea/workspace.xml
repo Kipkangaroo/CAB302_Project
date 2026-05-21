@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProgressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserProgressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserProgressDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/progress-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/progress-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/progress-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/progress-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +75,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.FoodDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressCalculatorTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.WorkoutRoutineDAOTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.test in LockedIn.executor&quot;: &quot;Run&quot;,
     &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
@@ -115,7 +111,7 @@
       <recent name="com.lockedin.lockedin.model.entity.user" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LockedIn">
+  <component name="RunManager" selected="JUnit.test in LockedIn">
     <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -193,11 +189,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LockedIn" />
-        <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="JUnit.test in LockedIn" />
+        <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
         <item itemvalue="JUnit.ProgressCalculatorTest" />
+        <item itemvalue="Application.LockedIn" />
       </list>
     </recent_temporary>
   </component>
@@ -496,7 +492,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779360754102</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
+      <option name="closed" value="true" />
+      <created>1779362889829</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1779362889829</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
