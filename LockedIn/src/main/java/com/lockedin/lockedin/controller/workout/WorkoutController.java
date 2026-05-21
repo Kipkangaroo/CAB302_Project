@@ -28,6 +28,7 @@ public class WorkoutController {
     private static final String DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
     private static final String HISTORY_VIEW = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
     private static final String AI_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
+    private static final String WEEKLY_SUMMARY_VIEW = "/com/lockedin/lockedin/pages/workout/weekly-summary-view.fxml";
 
     @FXML
     private Label workoutCountLabel;
@@ -177,6 +178,20 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open workout history", e);
         }
     }
+    /**
+     * Performs handle weekly summary.
+     */
+
+    @FXML
+    public void handleWeeklySummary() {
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(WEEKLY_SUMMARY_VIEW));
+            stackPane().getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open weekly summary", e);
+        }
+    }
+
     /**
      * Performs handle ai generator.
      */
