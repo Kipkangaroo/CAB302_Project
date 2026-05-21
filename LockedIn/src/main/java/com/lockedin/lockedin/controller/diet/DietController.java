@@ -13,7 +13,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import java.io.File;
@@ -31,6 +34,9 @@ import java.util.Objects;
  * @version 1.0
  */
 public class DietController {
+
+    private static final String CALORIE_TRENDS_VIEW =
+            "/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml";
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
@@ -316,6 +322,22 @@ public class DietController {
             return 0;
         }
         return Math.max(0, Math.min(1, value));
+    }
+
+    /**
+     * Navigates to the calorie trends screen.
+     */
+    @FXML
+    public void handleCalorieTrends() {
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(CALORIE_TRENDS_VIEW));
+            StackPane pc = (StackPane) foodList.getScene().lookup("#pageContainer");
+            if (pc != null) {
+                pc.getChildren().setAll(page);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open calorie trends", e);
+        }
     }
 
     /**
