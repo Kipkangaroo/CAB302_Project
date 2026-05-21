@@ -11,36 +11,30 @@
       maxHeight="Infinity">
     <VBox styleClass="diet-header"
           fillWidth="true">
-        <AnchorPane minHeight="32"
-                    prefHeight="32">
-            <HBox alignment="CENTER_LEFT"
-                  spacing="12"
-                  AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="52.0">
-                <Label text="Nutrition Tracker"
-                       styleClass="diet-header-title"
-                       HBox.hgrow="ALWAYS"
-                       maxWidth="Infinity"/>
-                <Button text="📈"
-                        onAction="#handleCalorieTrends"
-                        style="-fx-background-color: transparent; -fx-text-fill: white;
-                               -fx-font-size: 18px; -fx-cursor: hand; -fx-padding: 2 4 2 4;"/>
-            </HBox>
-            <ImageView fitWidth="44"
-                       fitHeight="44"
-                       preserveRatio="true"
-                       smooth="true"
-                       onMouseClicked="#handleAiLogoClick"
-                       AnchorPane.topAnchor="2.0"
-                       AnchorPane.rightAnchor="0.0"
-                       styleClass="diet-ai-logo"
-                       scaleX="1.5"
-                       scaleY="1.5">
-                <image>
-                    <Image url="@../../images/ai-upload-photo-icon.png"/>
-                </image>
-            </ImageView>
-        </AnchorPane>
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Nutrition Tracker"
+                   styleClass="diet-header-title"
+                   HBox.hgrow="ALWAYS"
+                   maxWidth="Infinity"/>
+            <Button text="📈"
+                    onAction="#handleCalorieTrends"
+                    styleClass="header-btn"
+                    style="-fx-font-size: 16px;"/>
+            <Button onAction="#handleAiLogoClick"
+                    styleClass="header-btn"
+                    style="-fx-font-size: 16px;">
+                <graphic>
+                    <ImageView fitWidth="18"
+                               fitHeight="18"
+                               preserveRatio="true"
+                               smooth="true">
+                        <image>
+                            <Image url="@../../images/ai-upload-photo-icon.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
         <Label text="Track your meals and stay aligned with your goals"
                styleClass="diet-header-subtitle">
             <VBox.margin>

@@ -19,8 +19,8 @@
                    HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
             <Button text="📊"
                     onAction="#handleGoalsProgress"
-                    style="-fx-background-color: transparent; -fx-text-fill: white;
-                           -fx-font-size: 18px; -fx-cursor: hand; -fx-padding: 2 4 2 4;"/>
+                    styleClass="header-btn"
+                    style="-fx-font-size: 16px;"/>
         </HBox>
         <Label text="Your personal details and weekly streak" styleClass="profile-header-subtitle">
             <VBox.margin>
