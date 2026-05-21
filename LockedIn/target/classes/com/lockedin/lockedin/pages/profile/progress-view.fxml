@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="com.lockedin.lockedin.controller.profile.ProgressController"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
+
+    <!-- ── Header ── -->
+    <VBox styleClass="profile-header">
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Button fx:id="backButton"
+                    text="←"
+                    onAction="#handleBack"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;
+                           -fx-font-size: 18px; -fx-cursor: hand; -fx-padding: 2 6 2 0;"/>
+            <Label text="Goals Progress"
+                   styleClass="profile-header-title"
+                   HBox.hgrow="ALWAYS"
+                   maxWidth="Infinity"/>
+        </HBox>
+        <Label text="Track how close you are to your fitness targets"
+               styleClass="profile-header-subtitle">
+            <VBox.margin><Insets top="4"/></VBox.margin>
+        </Label>
+    </VBox>
+
+    <!-- ── Scrollable content ── -->
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                styleClass="profile-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="profile-page-bg" spacing="12" fillWidth="true">
+
+            <!-- Weekly Sessions -->
+            <VBox styleClass="profile-card" spacing="10">
+                <Label text="Weekly Sessions" styleClass="profile-section-title"/>
+                <Label text="Target: 3 workouts this week"
+                       style="-fx-font-size: 12px; -fx-text-fill: #65758a;"/>
+                <ProgressBar fx:id="sessionsBar"
+                             progress="0"
+                             minHeight="22"
+                             maxWidth="Infinity"
+                             styleClass="diet-progress-bar"/>
+                <Label fx:id="sessionsLabel"
+                       styleClass="diet-progress-label"/>
+            </VBox>
+
+            <!-- Daily Calories -->
+            <VBox styleClass="profile-card" spacing="10">
+                <Label text="Daily Calories" styleClass="profile-section-title"/>
+                <Label text="Today's intake vs. your calorie goal"
+                       style="-fx-font-size: 12px; -fx-text-fill: #65758a;"/>
+                <ProgressBar fx:id="caloriesBar"
+                             progress="0"
+                             minHeight="22"
+                             maxWidth="Infinity"
+                             styleClass="diet-progress-bar"/>
+                <Label fx:id="caloriesLabel"
+                       styleClass="diet-progress-label"/>
+            </VBox>
+
+            <!-- Body Weight Progress -->
+            <VBox styleClass="profile-card" spacing="10">
+                <Label text="Body Weight Progress" styleClass="profile-section-title"/>
+                <Label text="Progress toward your weight goal since you started"
+                       style="-fx-font-size: 12px; -fx-text-fill: #65758a;"/>
+                <ProgressBar fx:id="weightBar"
+                             progress="0"
+                             minHeight="22"
+                             maxWidth="Infinity"
+                             styleClass="diet-progress-bar"/>
+                <Label fx:id="weightLabel"
+                       styleClass="diet-progress-label"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>
