@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US12): add edit functionality for calorie entries&#10;&#10;- Add FoodDAO.updateFood() with UPDATE SQL&#10;- Add edit dialog to DietController on entry click&#10;- Dialog pre-populates with existing meal name and calories&#10;- ListView and daily total refresh immediately after edit&#10;- TDD: add updateFood test to FoodDAOTest">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,12 +40,12 @@
     &quot;assignee&quot;: &quot;ptusar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Kipkangaroo/CAB302_Project.git&quot;,
-    &quot;accountId&quot;: &quot;9e17910f-4448-4033-9632-cb9ebf8af9dd&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Kipkangaroo/CAB302_Project.git",
+    "accountId": "9cdbde35-1e1e-4f53-8b62-3d5ae267458e"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,41 +71,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LockedIn.executor": "Run",
-    "JUnit.FoodDAOTest.executor": "Run",
-    "JUnit.ProgressCalculatorTest.executor": "Run",
-    "JUnit.WorkoutRoutineDAOTest.executor": "Run",
-    "JUnit.test in LockedIn.executor": "Run",
-    "Maven.LockedIn [clean].executor": "Run",
-    "Maven.LockedIn [compile].executor": "Run",
-    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Maven.LockedIn [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FoodDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressCalculatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WorkoutRoutineDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test in LockedIn.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tusar/Downloads/CAB302_Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.lockedin.lockedin.model.entity.user" />
@@ -187,19 +189,18 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LockedIn" />
         <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="JUnit.test in LockedIn" />
         <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
         <item itemvalue="JUnit.ProgressCalculatorTest" />
-        <item itemvalue="Application.LockedIn" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.33514.17" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.33514.17" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
