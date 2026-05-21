@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
@@ -41,6 +42,36 @@
               spacing="10"
               fillWidth="true">
             <VBox fx:id="chartContainer" spacing="20">
+            </VBox>
+            <!-- Date range filter -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Filter by Date" styleClass="workout-card-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="From:"
+                           style="-fx-font-size: 13px;"/>
+                    <DatePicker fx:id="filterFromDate"
+                                promptText="Start date"
+                                styleClass="diet-input"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                    <Label text="To:"
+                           style="-fx-font-size: 13px;"/>
+                    <DatePicker fx:id="filterToDate"
+                                promptText="End date"
+                                styleClass="diet-input"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Button text="Filter"
+                            onAction="#handleFilter"
+                            styleClass="primary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button text="Clear"
+                            onAction="#handleClearFilter"
+                            styleClass="diet-secondary-btn"/>
+                </HBox>
             </VBox>
             <VBox fx:id="historyContainer"
                   spacing="10"

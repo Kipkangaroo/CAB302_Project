@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
@@ -37,6 +38,10 @@ public class WorkoutHistoryController {
     private VBox chartContainer;
     @FXML
     private VBox historyContainer;
+    @FXML
+    private DatePicker filterFromDate;
+    @FXML
+    private DatePicker filterToDate;
 
     private WorkoutRoutineDAO routineDAO;
     /**
@@ -57,24 +62,32 @@ public class WorkoutHistoryController {
                 .getCompletedWorkoutsByUser(CurrentUser.getId());
 
         chartContainer.getChildren().clear();
+        if (!workouts.isEmpty()) {
+            chartContainer.getChildren().add(buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts)));
+            chartContainer.getChildren().add(buildRepsPerDayChart(computeRepsPerDay(workouts)));
+        }
+
+        showCards(workouts, "No completed workouts yet", "Complete a workout to see it here.");
+    }
+
+    /**
+     * Rebuilds the history cards list with the given workouts.
+     * @param workouts The workouts to display.
+     * @param emptyCountText Text for historyCountLabel when list is empty.
+     * @param emptyBodyText Text shown inside the list when empty.
+     */
+    private void showCards(List<WorkoutRoutineDAO.CompletedWorkoutData> workouts,
+                           String emptyCountText, String emptyBodyText) {
         historyContainer.getChildren().clear();
         historyCountLabel.setText(
                 workouts.isEmpty()
-                        ? "No completed workouts yet"
+                        ? emptyCountText
                         : workouts.size()
                                 + " completed workout"
                                 + (workouts.size() == 1 ? "" : "s"));
 
-        if (!workouts.isEmpty()) {
-            Map<LocalDate, Long> workoutsPerDay = computeWorkoutsPerDay(workouts);
-            Map<LocalDate, Integer> repsPerDay = computeRepsPerDay(workouts);
-
-            chartContainer.getChildren().add(buildWorkoutsPerDayChart(workoutsPerDay));
-            chartContainer.getChildren().add(buildRepsPerDayChart(repsPerDay));
-        }
-
         if (workouts.isEmpty()) {
-            Label empty = new Label("Complete a workout to see it here.");
+            Label empty = new Label(emptyBodyText);
             empty.setStyle("-fx-text-fill: #757575; -fx-font-size: 13px;");
             empty.setWrapText(true);
             historyContainer.getChildren().add(empty);
@@ -84,6 +97,33 @@ public class WorkoutHistoryController {
         for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
             historyContainer.getChildren().add(buildHistoryCard(workout));
         }
+    }
+
+    /**
+     * Filters the history list to workouts completed within the selected date range.
+     */
+    @FXML
+    public void handleFilter() {
+        LocalDate from = filterFromDate.getValue();
+        LocalDate to = filterToDate.getValue();
+        if (from == null || to == null) return;
+
+        List<WorkoutRoutineDAO.CompletedWorkoutData> filtered =
+                routineDAO.getCompletedWorkoutsByUserBetween(CurrentUser.getId(), from, to);
+
+        showCards(filtered,
+                "No workouts found for this period.",
+                "No workouts found for this period.");
+    }
+
+    /**
+     * Clears the date filter and reloads all workouts.
+     */
+    @FXML
+    public void handleClearFilter() {
+        filterFromDate.setValue(null);
+        filterToDate.setValue(null);
+        loadHistory();
     }
 
     /**
