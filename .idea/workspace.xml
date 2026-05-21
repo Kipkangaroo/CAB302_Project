@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
-      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/CalorieTrendsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/profile/profile-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +75,7 @@
   "keyToString": {
     "Application.LockedIn.executor": "Run",
     "JUnit.FoodDAOTest.executor": "Run",
+    "JUnit.ProgressCalculatorTest.executor": "Run",
     "JUnit.WorkoutRoutineDAOTest.executor": "Run",
     "JUnit.test in LockedIn.executor": "Run",
     "Maven.LockedIn [clean].executor": "Run",
@@ -145,6 +142,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProgressCalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lockedin.lockedin.logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lockedin.lockedin.logic" />
+      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.logic.ProgressCalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WorkoutRoutineDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LockedIn" />
       <extension name="coverage">
@@ -170,6 +182,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.LockedIn" />
+      <item itemvalue="JUnit.ProgressCalculatorTest" />
       <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
       <item itemvalue="JUnit.test in LockedIn" />
       <item itemvalue="JUnit.FoodDAOTest" />
@@ -177,10 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.ProgressCalculatorTest" />
+        <item itemvalue="JUnit.test in LockedIn" />
         <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
-        <item itemvalue="JUnit.test in LockedIn" />
-        <item itemvalue="Application.LockedIn" />
       </list>
     </recent_temporary>
   </component>
@@ -479,7 +492,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779360754102</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
+      <option name="closed" value="true" />
+      <created>1779362889829</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1779362889829</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
