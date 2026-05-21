@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="com.lockedin.lockedin.controller.workout.AiWorkoutController"
+      fillWidth="true"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
+
+    <!-- ── Gradient header ── -->
+    <VBox styleClass="workout-header" fillWidth="true">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button fx:id="backButton"
+                    text="←"
+                    styleClass="header-btn"
+                    onAction="#handleBack"
+                    style="-fx-font-size: 16px;"/>
+            <Label text="✨ AI Workout Generator"
+                   textFill="white"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Label text="Tell us about yourself and we'll build your workout"
+               textFill="white"
+               style="-fx-font-size: 12px; -fx-opacity: 0.85;">
+            <VBox.margin>
+                <Insets top="4"/>
+            </VBox.margin>
+        </Label>
+    </VBox>
+
+    <!-- ── Scrollable body ── -->
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                styleClass="workout-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="workout-page-bg" spacing="14" fillWidth="true">
+
+            <!-- Experience Level -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Experience Level"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="How long have you been training?"
+                       style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="experienceCombo"
+                          maxWidth="Infinity"
+                          promptText="Select experience level"/>
+            </VBox>
+
+            <!-- Time Available -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Time Available"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="How many minutes can you train today?"
+                       style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="timeCombo"
+                              maxWidth="Infinity"
+                              HBox.hgrow="ALWAYS"
+                              promptText="Select duration"/>
+                    <Label text="minutes"
+                           style="-fx-text-fill: #555; -fx-font-size: 13px;"/>
+                </HBox>
+            </VBox>
+
+            <!-- Target Muscle Group -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Target Muscle Group"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="Which area would you like to focus on?"
+                       style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="muscleGroupCombo"
+                          maxWidth="Infinity"
+                          promptText="Select muscle group"/>
+            </VBox>
+
+            <!-- Exercise Goal -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Exercise Goal"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="What are you training for?"
+                       style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="goalCombo"
+                          maxWidth="Infinity"
+                          promptText="Select your goal"/>
+            </VBox>
+
+            <!-- Status label -->
+            <Label fx:id="statusLabel"
+                   text=""
+                   wrapText="true"
+                   style="-fx-font-size: 12px;"
+                   maxWidth="Infinity">
+                <VBox.margin>
+                    <Insets left="4" right="4"/>
+                </VBox.margin>
+            </Label>
+
+            <!-- Loading indicator -->
+            <ProgressIndicator fx:id="loadingIndicator"
+                               prefWidth="40"
+                               prefHeight="40"
+                               style="-fx-progress-color: #1565C0;">
+                <VBox.margin>
+                    <Insets top="4" bottom="4"/>
+                </VBox.margin>
+            </ProgressIndicator>
+
+            <!-- Generated workout result card -->
+            <VBox fx:id="resultCard" styleClass="workout-card" spacing="10">
+                <Label text="Generated Workout"
+                       style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1565C0;"/>
+                <Label fx:id="routineNameLabel"
+                       text=""
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <VBox fx:id="exerciseListContainer" spacing="6"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- ── Bottom buttons ── -->
+    <HBox style="-fx-padding: 10 16 14 16;" spacing="10">
+        <Button text="✨ Generate Workout"
+                fx:id="generateButton"
+                onAction="#handleGenerate"
+                maxWidth="Infinity"
+                HBox.hgrow="ALWAYS"
+                styleClass="primary-btn"
+                style="-fx-padding: 14 0 14 0;"/>
+        <Button text="Save"
+                fx:id="saveButton"
+                onAction="#handleSave"
+                style="-fx-padding: 14 16 14 16; -fx-background-color: #2e7d32;
+                       -fx-text-fill: white; -fx-font-weight: bold;
+                       -fx-background-radius: 8; -fx-cursor: hand;"/>
+    </HBox>
+</VBox>
