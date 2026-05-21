@@ -550,6 +550,43 @@ public class WorkoutRoutineDAO {
     }
 
     /**
+     * Completed workouts for a user within a calendar date range (inclusive),
+     * newest first.
+     */
+    public List<CompletedWorkoutData> getCompletedWorkoutsByUserBetween(
+            int userId, LocalDate start, LocalDate end) {
+        List<CompletedWorkoutData> workouts = new ArrayList<>();
+        String sql = """
+                SELECT id, routine_id, routine_name, completed_at, total_exercises, total_sets
+                FROM completed_workouts
+                WHERE user_id=? AND date(completed_at) BETWEEN ? AND ?
+                ORDER BY completed_at DESC
+                """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setString(2, start.toString());
+            ps.setString(3, end.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int completedWorkoutId = rs.getInt("id");
+                    workouts.add(
+                            new CompletedWorkoutData(
+                                    completedWorkoutId,
+                                    rs.getInt("routine_id"),
+                                    rs.getString("routine_name"),
+                                    rs.getString("completed_at"),
+                                    rs.getInt("total_exercises"),
+                                    rs.getInt("total_sets"),
+                                    getCompletedSetsForWorkout(completedWorkoutId)));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading completed workouts in range: " + e.getMessage());
+        }
+        return workouts;
+    }
+
+    /**
      * Returns the weekly workout tracking.
      * @param userID The user id.
      * @return The weekly workout tracking.
