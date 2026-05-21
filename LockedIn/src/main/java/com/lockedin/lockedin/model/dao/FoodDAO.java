@@ -6,7 +6,9 @@ import com.lockedin.lockedin.model.entity.diet.Food;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Data access object for food records.
@@ -173,6 +175,39 @@ public class FoodDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to get daily total for " + attribute, e);
         }
+    }
+
+    /**
+     * Returns total calories per day for a user within a date range (inclusive),
+     * ordered by date ascending. Days with no food logged are omitted from the map.
+     * @param start The start date.
+     * @param end The end date.
+     * @param userId The user id.
+     * @return Map of date to total calories for that day.
+     */
+    public Map<LocalDate, Double> getDailyTotalsForRange(
+            LocalDate start, LocalDate end, int userId) {
+        Map<LocalDate, Double> totals = new LinkedHashMap<>();
+        String sql = """
+                SELECT date, SUM(calories) AS total
+                FROM foods
+                WHERE user_id=? AND date BETWEEN ? AND ?
+                GROUP BY date
+                ORDER BY date
+                """;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            statement.setString(2, start.toString());
+            statement.setString(3, end.toString());
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    totals.put(LocalDate.parse(rs.getString("date")), rs.getDouble("total"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get daily calorie totals for range", e);
+        }
+        return totals;
     }
 
     /**

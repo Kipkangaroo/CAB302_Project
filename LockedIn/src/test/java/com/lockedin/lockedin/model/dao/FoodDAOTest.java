@@ -1,6 +1,7 @@
 package com.lockedin.lockedin.model.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.lockedin.lockedin.model.entity.diet.Food;
@@ -10,8 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 /**
  * Unit tests for FoodDAO using an in‑memory SQLite database. Verifies CRUD operations and daily
  * nutritional totals.
@@ -108,5 +110,23 @@ public class FoodDAOTest {
         assertEquals(10, food.getProtein());
         assertEquals(54, food.getCarbs());
         assertEquals(6, food.getFats());
+    }
+
+    @Test
+    void getDailyTotalsForRange_returnsOnlyDatesInRange() {
+        LocalDate yesterday = today.minusDays(1);
+        LocalDate fiveDaysAgo = today.minusDays(5);
+
+        foodDAO.addFood(makeFood("Chicken", 300, 30, 0, 10), today);
+        foodDAO.addFood(makeFood("Rice", 200, 4, 44, 1), yesterday);
+        foodDAO.addFood(makeFood("Oats", 100, 5, 20, 2), fiveDaysAgo);
+
+        Map<LocalDate, Double> result =
+                foodDAO.getDailyTotalsForRange(yesterday, today, USER_ID);
+
+        assertEquals(2, result.size());
+        assertFalse(result.containsKey(fiveDaysAgo));
+        assertEquals(300.0, result.get(today), 0.0);
+        assertEquals(200.0, result.get(yesterday), 0.0);
     }
 }

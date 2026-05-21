@@ -16,11 +16,15 @@
             <HBox alignment="CENTER_LEFT"
                   spacing="12"
                   AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0">
+                  AnchorPane.rightAnchor="52.0">
                 <Label text="Nutrition Tracker"
                        styleClass="diet-header-title"
                        HBox.hgrow="ALWAYS"
                        maxWidth="Infinity"/>
+                <Button text="📈"
+                        onAction="#handleCalorieTrends"
+                        style="-fx-background-color: transparent; -fx-text-fill: white;
+                               -fx-font-size: 18px; -fx-cursor: hand; -fx-padding: 2 4 2 4;"/>
             </HBox>
             <ImageView fitWidth="44"
                        fitHeight="44"

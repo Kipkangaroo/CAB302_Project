@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added maven-shade-plugin to produce executable fat JAR">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
+      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/CalorieTrendsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/workout/workout-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/WorkoutRoutineDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/workout/workout-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/test/java/com/lockedin/lockedin/model/dao/FoodDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/target/classes/com/lockedin/lockedin/pages/diet/diet-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,10 +177,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.FoodDAOTest" />
         <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
         <item itemvalue="JUnit.test in LockedIn" />
         <item itemvalue="Application.LockedIn" />
-        <item itemvalue="JUnit.FoodDAOTest" />
       </list>
     </recent_temporary>
   </component>
@@ -469,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779348775291</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat(US06): weekly workout summary screen with prev/next week navigation&#10;&#10;- Add WorkoutRoutineDAO.getCompletedWorkoutsByUserBetween() range query&#10;- Add WeeklySummaryController showing sessions, volume, active days&#10;- Add weekly-summary-view.fxml&#10;- TDD: add range query test to WorkoutRoutineDAOTest&quot;">
+      <option name="closed" value="true" />
+      <created>1779360754102</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1779360754102</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,8 +509,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added back icon onto sign up page and left aligned the text labels." />
-    <MESSAGE value="Adjust colour and font scheme of elements within log-in and sign-up to match that of diet and workout page." />
     <MESSAGE value="Edited the logo and added it as the window icon as well." />
     <MESSAGE value="Updated the profile image placeholder to an animated face" />
     <MESSAGE value="Mass code reformat (following google-java-format) + import optimisation" />
@@ -524,7 +532,9 @@
     <MESSAGE value="Adding *.file back on .gitignore" />
     <MESSAGE value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
     <MESSAGE value="Added maven-shade-plugin to produce executable fat JAR" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added maven-shade-plugin to produce executable fat JAR" />
+    <MESSAGE value="feat(US06): weekly workout summary screen with prev/next week navigation&#10;&#10;- Add WorkoutRoutineDAO.getCompletedWorkoutsByUserBetween() range query&#10;- Add WeeklySummaryController showing sessions, volume, active days&#10;- Add weekly-summary-view.fxml&#10;- TDD: add range query test to WorkoutRoutineDAOTest&quot;" />
+    <MESSAGE value="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
