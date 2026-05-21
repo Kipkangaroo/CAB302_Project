@@ -14,7 +14,9 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -107,6 +109,14 @@ public class DietController {
         this.apiHandler = new AiModelService(currentUserID);
         this.currentUser = CurrentUser.get();
         setFoodsOnList(LocalDate.now());
+        foodList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Food selected = foodList.getSelectionModel().getSelectedItem();
+                if (selected != null) {
+                    showEditFoodDialog(selected);
+                }
+            }
+        });
     }
     /**
      * Performs handle add food.
@@ -210,6 +220,54 @@ public class DietController {
     private void handleReset(ActionEvent actionEvent) {
         clearInputs();
     }
+    /**
+     * Opens an edit dialog pre-populated with the selected food's current values.
+     * On confirm, persists the changes and refreshes the list and daily totals.
+     * @param food The food to edit.
+     */
+    private void showEditFoodDialog(Food food) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Edit Food");
+        dialog.setHeaderText(food.getName());
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        TextField nameInput = new TextField(food.getName());
+        TextField calInput = new TextField(String.valueOf(food.getCalories()));
+        TextField proInput = new TextField(String.valueOf(food.getProtein()));
+        TextField carbInput = new TextField(String.valueOf(food.getCarbs()));
+        TextField fatInput = new TextField(String.valueOf(food.getFats()));
+
+        GridPane grid = new GridPane();
+        grid.setHgap(12);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(14));
+        grid.addRow(0, new Label("Name:"), nameInput);
+        grid.addRow(1, new Label("Calories:"), calInput);
+        grid.addRow(2, new Label("Protein:"), proInput);
+        grid.addRow(3, new Label("Carbs:"), carbInput);
+        grid.addRow(4, new Label("Fats:"), fatInput);
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.showAndWait()
+                .ifPresent(bt -> {
+                    if (bt != ButtonType.OK) return;
+                    String name = nameInput.getText().trim();
+                    if (name.isEmpty()) return;
+                    try {
+                        int calories = Integer.parseInt(calInput.getText().trim());
+                        int protein = Integer.parseInt(proInput.getText().trim());
+                        int carbs = Integer.parseInt(carbInput.getText().trim());
+                        int fats = Integer.parseInt(fatInput.getText().trim());
+                        if (calories >= 0 && protein >= 0 && carbs >= 0 && fats >= 0) {
+                            foodDAO.updateFood(food.getId(), name, calories, protein, carbs, fats);
+                            setFoodsOnList(foodDatePicker.getValue());
+                        }
+                    } catch (NumberFormatException ignored) {
+                    }
+                });
+    }
+
     /**
      * Performs handle remove food.
      * @param actionEvent The action event.

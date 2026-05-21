@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/profile/ProgressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserProgressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/UserProgressDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/progress-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/resources/com/lockedin/lockedin/pages/profile/progress-view.fxml" afterDir="false" />
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence">
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/diet/DietController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/model/dao/FoodDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -500,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779362889829</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence">
+      <option name="closed" value="true" />
+      <created>1779370032783</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1779370032783</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Edited the logo and added it as the window icon as well." />
     <MESSAGE value="Updated the profile image placeholder to an animated face" />
     <MESSAGE value="Mass code reformat (following google-java-format) + import optimisation" />
     <MESSAGE value="Updating Meeting Minutes" />
@@ -555,7 +560,8 @@
     <MESSAGE value="Added maven-shade-plugin to produce executable fat JAR" />
     <MESSAGE value="feat(US06): weekly workout summary screen with prev/next week navigation&#10;&#10;- Add WorkoutRoutineDAO.getCompletedWorkoutsByUserBetween() range query&#10;- Add WeeklySummaryController showing sessions, volume, active days&#10;- Add weekly-summary-view.fxml&#10;- TDD: add range query test to WorkoutRoutineDAOTest&quot;" />
     <MESSAGE value="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest" />
+    <MESSAGE value="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -110,6 +110,32 @@ public class FoodDAO {
     }
 
     /**
+     * Updates an existing food entry's name and nutritional values.
+     * @param id The food id.
+     * @param name The name.
+     * @param calories The calories.
+     * @param protein The protein.
+     * @param carbs The carbs.
+     * @param fats The fats.
+     */
+    public void updateFood(int id, String name, double calories, double protein,
+                           double carbs, double fats) {
+        String sql = "UPDATE foods SET name = ?, calories = ?, protein = ?, carbs = ?, fats = ?"
+                + " WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            statement.setInt(2, (int) calories);
+            statement.setInt(3, (int) protein);
+            statement.setInt(4, (int) carbs);
+            statement.setInt(5, (int) fats);
+            statement.setInt(6, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update food", e);
+        }
+    }
+
+    /**
      * Performs remove food.
      * @param id The id.
      */

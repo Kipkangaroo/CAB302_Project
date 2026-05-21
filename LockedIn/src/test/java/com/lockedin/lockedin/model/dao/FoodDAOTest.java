@@ -113,6 +113,21 @@ public class FoodDAOTest {
     }
 
     @Test
+    void updateFood_persistsNewValues() {
+        Food food = makeFood("Chicken", 200, 30, 0, 5);
+        foodDAO.addFood(food, today);
+
+        foodDAO.updateFood(food.getId(), "Grilled Chicken", 180, 35, 2, 4);
+
+        Food updated = foodDAO.getFoodsByDate(today, USER_ID).get(0);
+        assertEquals("Grilled Chicken", updated.getName());
+        assertEquals(180, updated.getCalories());
+        assertEquals(35, updated.getProtein());
+        assertEquals(2, updated.getCarbs());
+        assertEquals(4, updated.getFats());
+    }
+
+    @Test
     void getDailyTotalsForRange_returnsOnlyDatesInRange() {
         LocalDate yesterday = today.minusDays(1);
         LocalDate fiveDaysAgo = today.minusDays(5);
