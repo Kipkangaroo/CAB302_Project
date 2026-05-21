@@ -1,8 +1,13 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.User;
-
+//import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
+//import com.lockedin.lockedin.model.entity.user.UserProgress;
+import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,13 +16,16 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
- * Controller responsible for handling user registration. Validates input
- * fields, creates a new User
- * entity, and stores it via UserDAO.
+ * JavaFX controller for the sign up screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class SignUpController {
+    private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+    private final Authentication authentication = new Authentication();
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -41,33 +49,52 @@ public class SignUpController {
     @FXML
     private ComboBox<String> sexCombo;
     @FXML
-    private ComboBox<String> activityLevelCombo;
+    private ComboBox<ActivityLevel> activityLevelCombo;
     @FXML
-    private ComboBox<String> fitnessGoalCombo;
+    private ComboBox<FitnessGoal> fitnessGoalCombo;
+
+    /**
+     * Performs parse valid double.
+     * @param text The text.
+     */
+    public static Double parseValidDouble(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            double value = Double.parseDouble(text.trim());
+            if (value <= 0 || Double.isNaN(value) || Double.isInfinite(value)) {
+                return null;
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 
     /** Initializes the sign-up form by populating dropdowns. */
     @FXML
     private void initialize() {
         sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
-        activityLevelCombo.setItems(
-                FXCollections.observableArrayList(
-                        "Sedentary (little/no exercise)",
-                        "Lightly active (1–3 days/week)",
-                        "Moderately active (3–5 days/week)",
-                        "Very active (6–7 days/week)",
-                        "Extra active (physical job + exercise)"));
-        fitnessGoalCombo.setItems(
-                FXCollections.observableArrayList(
-                        "Lose Weight", "Build Muscle", "Maintain Fitness"));
+        activityLevelCombo.setItems(FXCollections.observableArrayList(ActivityLevel.values()));
+        fitnessGoalCombo.setItems(FXCollections.observableArrayList(FitnessGoal.values()));
         // Trigger signup when pressing Enter
         signupBtn.setDefaultButton(true);
     }
+    /**
+     * Performs handle back button.
+     * @param event The event.
+     * @throws IOException If the operation fails.
+     */
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
-        Authentication.switchScene(
-                logoImageView, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+        authentication.switchScene(
+                logoImageView, LOGIN_VIEW);
     }
+    /**
+     * Performs handle signup.
+     */
 
     @FXML
     private void handleSignup() {
@@ -78,14 +105,14 @@ public class SignUpController {
         String confirmPassword = confirmPasswordField.getText().trim();
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
-        String fitnessGoal = fitnessGoalCombo.getValue();
+        FitnessGoal fitnessGoal = fitnessGoalCombo.getValue();
         String sex = sexCombo.getValue();
-        String activityLevel = activityLevelCombo.getValue();
+        ActivityLevel activityLevel = activityLevelCombo.getValue();
         LocalDate dob = dobPicker.getValue();
         double height;
         double weight;
         if (!password.equals(confirmPassword)) {
-            Authentication.showError(
+            authentication.showError(
                     "Passwords do not match", "Please enter the same password in both fields.");
             return;
         }
@@ -100,54 +127,50 @@ public class SignUpController {
                 || sex == null
                 || activityLevel == null
                 || fitnessGoal == null) {
-            Authentication.showError("All fields are required", "Please fill in all fields.");
+            authentication.showError("All fields are required", "Please fill in all fields.");
             return;
         }
         if (!firstName.matches("^[A-Za-z]+$") || !lastName.matches("^[A-Za-z]+$")) {
-            Authentication.showError(
+            authentication.showError(
                     "Invalid name", "First name and last name must contain letters only.");
             return;
         }
         if (dob.plusYears(18).isAfter(LocalDate.now())) {
-            Authentication.showError(
+            authentication.showError(
                     "Age restriction", "You must be at least 18 years old to sign up.");
             return;
         }
-        if (!Authentication.isValidEmail(email)) {
-            Authentication.showError("Invalid email", "Please enter a valid email format.");
+        if (!authentication.isValidEmail(email)) {
+            authentication.showError("Invalid email", "Please enter a valid email format.");
             return;
         }
         if (new UserDAO().getUserByEmail(email).isPresent()) {
-            Authentication.showError("Email already exists", "Please log in to your account.");
+            authentication.showError("Email already exists", "Please log in to your account.");
             return;
         }
-        if (!Authentication.isValidPassword(password)) {
-            Authentication.showError(
+        if (!authentication.isValidPassword(password)) {
+            authentication.showError(
                     "Invalid password",
                     "Please enter a valid password. It must be at least 8 characters long and"
                             + " contain at least one uppercase letter, one lowercase letter, and one"
                             + " special character.");
             return;
         }
-        try {
-            height = Double.parseDouble(heightText);
-            weight = Double.parseDouble(weightText);
-        } catch (NumberFormatException e) {
-            Authentication.showError(
-                    "Invalid height or weight", "Height and weight must be valid numbers.");
+        Double parsedHeight = parseValidDouble(heightText);
+        Double parsedWeight = parseValidDouble(weightText);
+        if (parsedHeight == null || parsedWeight == null) {
+            authentication.showError(
+                    "Invalid height or weight", "Height and weight must be valid real numbers greater than 0.");
             return;
         }
-        if (height <= 0 || weight <= 0) {
-            Authentication.showError(
-                    "Invalid height or weight", "Height and weight must be greater than 0.");
-            return;
-        }
+        height = parsedHeight;
+        weight = parsedWeight;
         if (new UserDAO()
                 .createUser(
                         new User(
                                 0,
-                                firstName,
-                                lastName,
+                                capitalize(firstName),
+                                capitalize(lastName),
                                 email,
                                 dob,
                                 height,
@@ -156,15 +179,38 @@ public class SignUpController {
                                 activityLevel,
                                 fitnessGoal,
                                 password))) {
-            Authentication.showInfo("Signup successful", "You can now log in to your account.");
+            Optional<User> addedUser = new UserDAO().getUserByEmail(email);
+            if (addedUser.isPresent()) {
+                User u = addedUser.get();
+                // Add initial user progress
+                new UserProgressDAO()
+                        .addUserProgress(
+                                new UserProgress(
+                                        0,
+                                        u.getId(),
+                                        u.getFitnessGoal(),
+                                        u.getWeight(),
+                                        u.getTargetCalories(),
+                                        LocalDate.now()));
+            }
+            authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
-                Authentication.switchScene(
+                authentication.switchScene(
                         signupBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            Authentication.showError("Signup failed", "Please try again.");
+            authentication.showError("Signup failed", "Please try again.");
         }
+    }
+
+    /**
+     * Performs capitalize.
+     * @param string The string.
+     * @return The resulting text.
+     */
+    private String capitalize(String string) {
+        return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 }

@@ -1,31 +1,43 @@
 package com.lockedin.lockedin.model.dao;
 
 import com.lockedin.lockedin.model.db.SqliteConnection;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.ActivityLevel;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
 /**
- * Data Access Object for user accounts. Handles creation of the users table and
- * provides a
- * connection for saving and retrieving user profile and authentication data.
+ * Data access object for user records.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class UserDAO {
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;
 
+    /**
+     * Creates a new UserDAO.
+     */
     public UserDAO() {
         this.connection = SqliteConnection.getInstance(USERS_DB_FILE);
         createUsersTable();
     }
 
+    /**
+     * Creates a new UserDAO.
+     * @param connection The connection.
+     */
     public UserDAO(Connection connection) {
         this.connection = connection;
         createUsersTable();
     }
 
+    /**
+     * Performs create users table.
+     */
     private void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -48,6 +60,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Performs create user.
+     * @param user The user.
+     * @return true if the operation succeeds; otherwise false.
+     */
     public boolean createUser(User user) {
         String sql = "INSERT INTO users(first_name, last_name, email, date_of_birth, height, weight, sex, activity_level, fitness_goal, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -58,8 +75,12 @@ public class UserDAO {
             preparedStatement.setDouble(5, user.getHeight());
             preparedStatement.setDouble(6, user.getWeight());
             preparedStatement.setString(7, user.getSex());
-            preparedStatement.setString(8, user.getActivityLevel());
-            preparedStatement.setString(9, user.getFitnessGoal());
+            ActivityLevel activityLevel = user.getActivityLevel();
+            preparedStatement.setString(
+                    8, activityLevel == null ? null : activityLevel.getDisplayName());
+            FitnessGoal fitnessGoal = user.getFitnessGoal();
+            preparedStatement.setString(
+                    9, fitnessGoal == null ? null : fitnessGoal.getDisplayName());
             preparedStatement.setString(10, user.getPasswordHash());
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted == 0) {
@@ -76,6 +97,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Returns the user by id.
+     * @param id The id.
+     * @return The user by id.
+     */
     public Optional<User> getUserById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -91,6 +117,12 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Performs update first name.
+     * @param id The id.
+     * @param firstName The first name.
+     * @return true if the operation succeeds; otherwise false.
+     */
     public boolean updateFirstName(int id, String firstName) {
         String sql = "UPDATE users SET first_name = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -102,6 +134,45 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Performs update fitness goal.
+     * @param id The id.
+     * @param fitnessGoal The fitness goal.
+     * @return true if the operation succeeds; otherwise false.
+     */
+    public boolean updateFitnessGoal(int id, FitnessGoal fitnessGoal) {
+        String sql = "UPDATE users SET fitness_goal = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, fitnessGoal.getDisplayName());
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update fitness goal", e);
+        }
+    }
+
+    /**
+     * Performs update weight.
+     * @param id The id.
+     * @param weight The weight.
+     * @return true if the operation succeeds; otherwise false.
+     */
+    public boolean updateWeight(int id, double weight) {
+        String sql = "UPDATE users SET weight = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setDouble(1, weight);
+            preparedStatement.setInt(2, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update weight", e);
+        }
+    }
+
+    /**
+     * Returns the user by email.
+     * @param email The email.
+     * @return The user by email.
+     */
     public Optional<User> getUserByEmail(String email) {
         String sql = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -117,6 +188,12 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Performs authenticate.
+     * @param email The email.
+     * @param plainPassword The plain password.
+     * @return true if the operation succeeds; otherwise false.
+     */
     public boolean authenticate(String email, String plainPassword) {
         Optional<User> user = getUserByEmail(email);
         if (user.isEmpty()) {
@@ -126,6 +203,43 @@ public class UserDAO {
         return providedHash.equals(user.get().getPasswordHash());
     }
 
+    /**
+     * Performs delete user.
+     * @param id The id.
+     * @return true if the operation succeeds; otherwise false.
+     */
+    public boolean deleteUser(int id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete user", e);
+        }
+    }
+
+    /**
+     * Performs update password.
+     * @param email The email.
+     * @param plainPassword The plain password.
+     * @return true if the operation succeeds; otherwise false.
+     */
+    public boolean updatePassword(String email, String plainPassword) {
+        String sql = "UPDATE users SET password_hash = ? WHERE email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, User.getHash(plainPassword));
+            preparedStatement.setString(2, email);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update password", e);
+        }
+    }
+
+    /**
+     * Performs map user.
+     * @param resultSet The result set.
+     * @throws SQLException If the operation fails.
+     */
     private User mapUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("id"));
@@ -136,8 +250,8 @@ public class UserDAO {
         user.setHeight(resultSet.getDouble("height"));
         user.setWeight(resultSet.getDouble("weight"));
         user.setSex(resultSet.getString("sex"));
-        user.setActivityLevel(resultSet.getString("activity_level"));
-        user.setFitnessGoal(resultSet.getString("fitness_goal"));
+        user.setActivityLevel(ActivityLevel.fromDisplayName(resultSet.getString("activity_level")));
+        user.setFitnessGoal(FitnessGoal.fromDisplayName(resultSet.getString("fitness_goal")));
         user.setPasswordHash(resultSet.getString("password_hash"));
         return user;
     }

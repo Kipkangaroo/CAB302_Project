@@ -2,13 +2,15 @@ package com.lockedin.lockedin.model.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.lockedin.lockedin.model.entity.WorkoutExerciseEntry;
+import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +101,26 @@ public class WorkoutRoutineDAOTest {
         workoutDAO.removeExerciseFromRoutine(entryId);
         WorkoutRoutineDAO.RoutineData after = workoutDAO.getRoutineById(id);
         assertEquals(1, after.exercises.size());
+    }
+
+    @Test
+    void getCompletedWorkoutsByUserBetween_returnsOnlyWorkoutsInRange() {
+        int routineId = workoutDAO.saveRoutine(USER_ID, "Range Test", null, new ArrayList<>());
+        WorkoutRoutineDAO.RoutineData routine = workoutDAO.getRoutineById(routineId);
+
+        LocalDateTime now = LocalDateTime.now();
+        workoutDAO.saveCompletedWorkout(USER_ID, routine, List.of(), now);
+        workoutDAO.saveCompletedWorkout(USER_ID, routine, List.of(), now.minusDays(1));
+        workoutDAO.saveCompletedWorkout(USER_ID, routine, List.of(), now.minusDays(10));
+
+        LocalDate start = LocalDate.now().minusDays(3);
+        LocalDate end = LocalDate.now();
+        List<WorkoutRoutineDAO.CompletedWorkoutData> results =
+                workoutDAO.getCompletedWorkoutsByUserBetween(USER_ID, start, end);
+
+        assertEquals(2, results.size());
+        String tenDaysAgo = LocalDate.now().minusDays(10).toString();
+        assertFalse(results.stream().anyMatch(w -> w.completedAt.startsWith(tenDaysAgo)));
     }
 
     @Test

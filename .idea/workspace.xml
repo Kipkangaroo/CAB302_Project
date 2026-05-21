@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly">
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="feat(US12): add edit functionality for calorie entries&#10;&#10;- Add FoodDAO.updateFood() with UPDATE SQL&#10;- Add edit dialog to DietController on entry click&#10;- Dialog pre-populates with existing meal name and calories&#10;- ListView and daily total refresh immediately after edit&#10;- TDD: add updateFood test to FoodDAOTest">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="173" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+    <option name="cachedIndexableFilesCount" value="154" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -29,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Mimi" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,12 +40,12 @@
     &quot;assignee&quot;: &quot;ptusar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Kipkangaroo/CAB302_Project.git&quot;,
-    &quot;accountId&quot;: &quot;5d7d4a7f-6cec-4ddd-90b4-4276bb45fa61&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Kipkangaroo/CAB302_Project.git",
+    "accountId": "9cdbde35-1e1e-4f53-8b62-3d5ae267458e"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -72,34 +71,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LockedIn.executor": "Run",
-    "JUnit.FoodDAOTest.executor": "Run",
-    "Maven.LockedIn [clean].executor": "Run",
-    "Maven.LockedIn [compile].executor": "Run",
-    "Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Maven.LockedIn [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "Akhilesh2",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tusar/Downloads/CAB302_Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LockedIn.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FoodDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressCalculatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WorkoutRoutineDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test in LockedIn.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LockedIn [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tusar/Downloads/CAB302_Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lockedin.lockedin.model.entity.user" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.LockedIn">
     <configuration name="LockedIn" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
@@ -131,17 +142,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProgressCalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lockedin.lockedin.logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lockedin.lockedin.logic" />
+      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.logic.ProgressCalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkoutRoutineDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lockedin.lockedin.model.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lockedin.lockedin.model.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.lockedin.lockedin.model.dao.WorkoutRoutineDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test in LockedIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LockedIn" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/LockedIn/src/test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.LockedIn" />
+      <item itemvalue="JUnit.ProgressCalculatorTest" />
+      <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
+      <item itemvalue="JUnit.test in LockedIn" />
       <item itemvalue="JUnit.FoodDAOTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LockedIn" />
         <item itemvalue="JUnit.FoodDAOTest" />
-        <item itemvalue="Application.LockedIn" />
-        <item itemvalue="Application.LockedIn" />
-        <item itemvalue="Application.LockedIn" />
+        <item itemvalue="JUnit.test in LockedIn" />
+        <item itemvalue="JUnit.WorkoutRoutineDAOTest" />
+        <item itemvalue="JUnit.ProgressCalculatorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +201,6 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -169,6 +220,12 @@
       <workItem from="1778678690383" duration="1703000" />
       <workItem from="1778754464286" duration="7000" />
       <workItem from="1778755621273" duration="5848000" />
+      <workItem from="1778833082885" duration="3786000" />
+      <workItem from="1778853885527" duration="1101000" />
+      <workItem from="1778856064469" duration="4486000" />
+      <workItem from="1779241830835" duration="223000" />
+      <workItem from="1779242123006" duration="3027000" />
+      <workItem from="1779279662448" duration="5047000" />
     </task>
     <task id="LOCAL-00001" summary="Update files">
       <option name="closed" value="true" />
@@ -354,7 +411,111 @@
       <option name="project" value="LOCAL" />
       <updated>1778761782135</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Created UserDetailSnapshot class and new DB - to track changes to User's Weight and Fitness Goals">
+      <option name="closed" value="true" />
+      <created>1778830812051</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1778830812051</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Changed activity level &amp; fitness goal to enums; Organised entities dir">
+      <option name="closed" value="true" />
+      <created>1778832137017</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1778832137017</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values">
+      <option name="closed" value="true" />
+      <created>1778848873949</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1778848873949</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)">
+      <option name="closed" value="true" />
+      <created>1778854126045</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1778854126045</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236019674</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236019674</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Uploaded API_KEY_FILE template - add API keys here">
+      <option name="closed" value="true" />
+      <created>1779236112736</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236112736</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Adding *.file back on .gitignore">
+      <option name="closed" value="true" />
+      <created>1779236558571</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1779236558571</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.">
+      <option name="closed" value="true" />
+      <created>1779244099361</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1779244099361</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added maven-shade-plugin to produce executable fat JAR">
+      <option name="closed" value="true" />
+      <created>1779348775291</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1779348775291</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat(US06): weekly workout summary screen with prev/next week navigation&#10;&#10;- Add WorkoutRoutineDAO.getCompletedWorkoutsByUserBetween() range query&#10;- Add WeeklySummaryController showing sessions, volume, active days&#10;- Add weekly-summary-view.fxml&#10;- TDD: add range query test to WorkoutRoutineDAOTest&quot;">
+      <option name="closed" value="true" />
+      <created>1779360754102</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1779360754102</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest">
+      <option name="closed" value="true" />
+      <created>1779362889829</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1779362889829</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence">
+      <option name="closed" value="true" />
+      <created>1779370032783</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1779370032783</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat(US12): add edit functionality for calorie entries&#10;&#10;- Add FoodDAO.updateFood() with UPDATE SQL&#10;- Add edit dialog to DietController on entry click&#10;- Dialog pre-populates with existing meal name and calories&#10;- ListView and daily total refresh immediately after edit&#10;- TDD: add updateFood test to FoodDAOTest">
+      <option name="closed" value="true" />
+      <created>1779370442191</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1779370442191</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,22 +526,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Kasper-2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update files" />
-    <MESSAGE value="Simplified auth codes on sign in/sign up controllers" />
-    <MESSAGE value="Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.&#10;&#10;Values also linked to Diet Page" />
-    <MESSAGE value="Updated placeholders - User details e.g. Name, age updated to be on the profile page" />
-    <MESSAGE value="Updated the colour scheme of the Diet page to match the workout page + added logo and features image onto the login page" />
-    <MESSAGE value="Added back icon onto sign up page and left aligned the text labels." />
-    <MESSAGE value="Adjust colour and font scheme of elements within log-in and sign-up to match that of diet and workout page." />
-    <MESSAGE value="Edited the logo and added it as the window icon as well." />
-    <MESSAGE value="Updated the profile image placeholder to an animated face" />
     <MESSAGE value="Mass code reformat (following google-java-format) + import optimisation" />
     <MESSAGE value="Updating Meeting Minutes" />
     <MESSAGE value="Deleting second copy of Food, User and Exercise databases" />
@@ -394,7 +558,19 @@
     <MESSAGE value="Added removal confirmation prompt after &quot;Remove&quot; food button press" />
     <MESSAGE value="Added &quot;Sex&quot; attribute to User and updated the sign-up page" />
     <MESSAGE value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
+    <MESSAGE value="Created UserDetailSnapshot class and new DB - to track changes to User's Weight and Fitness Goals" />
+    <MESSAGE value="Changed activity level &amp; fitness goal to enums; Organised entities dir" />
+    <MESSAGE value="Changed User snapshots to User progress; Weight modifiable in profile without affecting previous daily caloric and macro values" />
+    <MESSAGE value="Fixed path issues with .db files, added icons to profile-view and made FitnessGoal updatable (changes caloric values accordingly)" />
+    <MESSAGE value="Uploaded API_KEY_FILE template - add API keys here" />
+    <MESSAGE value="Adding *.file back on .gitignore" />
+    <MESSAGE value="Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes." />
+    <MESSAGE value="Added maven-shade-plugin to produce executable fat JAR" />
+    <MESSAGE value="feat(US06): weekly workout summary screen with prev/next week navigation&#10;&#10;- Add WorkoutRoutineDAO.getCompletedWorkoutsByUserBetween() range query&#10;- Add WeeklySummaryController showing sessions, volume, active days&#10;- Add weekly-summary-view.fxml&#10;- TDD: add range query test to WorkoutRoutineDAOTest&quot;" />
+    <MESSAGE value="feat(US11): calorie trends chart with actual vs goal line series&#10;&#10;- Add FoodDAO.getDailyTotalsForRange() with GROUP BY date SQL&#10;- Add CalorieTrendsController with 7-day and 30-day toggle&#10;- Add calorie-trends-view.fxml&#10;- TDD: add range query tests to FoodDAOTest" />
+    <MESSAGE value="feat(US09): make weekly session goal user-editable&#10;&#10;- Add target_sessions column to user_progress table&#10;- Add UserProgressDAO.getSessionTarget() and updateSessionTarget()&#10;- Add Spinner/Set button to progress-view.fxml for session target&#10;- Wire ProgressController to persist and reload target on change&#10;- TDD: add UserProgressDAOTest for session target persistence" />
+    <MESSAGE value="feat(US12): add edit functionality for calorie entries&#10;&#10;- Add FoodDAO.updateFood() with UPDATE SQL&#10;- Add edit dialog to DietController on entry click&#10;- Dialog pre-populates with existing meal name and calories&#10;- ListView and daily total refresh immediately after edit&#10;- TDD: add updateFood test to FoodDAOTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(US12): add edit functionality for calorie entries&#10;&#10;- Add FoodDAO.updateFood() with UPDATE SQL&#10;- Add edit dialog to DietController on entry click&#10;- Dialog pre-populates with existing meal name and calories&#10;- ListView and daily total refresh immediately after edit&#10;- TDD: add updateFood test to FoodDAOTest" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

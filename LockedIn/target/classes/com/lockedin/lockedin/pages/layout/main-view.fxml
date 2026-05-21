@@ -7,7 +7,7 @@
             stylesheets="@../../style/style.css">
     <center>
         <!-- main "container" for the page - this changes to the different pages according to button presses -->
-        <StackPane fx:id="pageContainer" />
+        <StackPane fx:id="pageContainer"/>
     </center>
     <bottom>
         <!-- layout for bottom nav -->
@@ -25,7 +25,7 @@
                                fitHeight="42"
                                preserveRatio="true"
                                styleClass="nav-icon">
-                        <Image url="@../../graphics/workout-icon.png" />
+                        <Image url="@../../graphics/workout-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
@@ -40,7 +40,7 @@
                                fitHeight="42"
                                preserveRatio="true"
                                styleClass="nav-icon">
-                        <Image url="@../../graphics/diet-icon.png" />
+                        <Image url="@../../graphics/diet-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
@@ -55,7 +55,7 @@
                                fitHeight="42"
                                preserveRatio="true"
                                styleClass="nav-icon">
-                        <Image url="@../../graphics/profile-icon.png" />
+                        <Image url="@../../graphics/profile-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>

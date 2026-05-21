@@ -1,72 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.007" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.053" tests="10" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="24"/>
-    <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/tusar/Downloads/CAB302_Project/LockedIn/target/test-classes:/Users/tusar/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.1/junit-jupiter-api-5.12.1.jar:/Users/tusar/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar:/Users/tusar/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.1/junit-jupiter-engine-5.12.1.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar:"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;C:\Users\mimin\.m2\repository\jakarta\mail\jakarta.mail-api\2.1.3\jakarta.mail-api-2.1.3.jar;C:\Users\mimin\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-mail\2.0.3\angus-mail-2.0.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\mimin\.m2\repository\com\sanctionco\jmail\jmail\1.6.3\jmail-1.6.3.jar;C:\Users\mimin\.m2\repository\com\github\bbottema\jetbrains-runtime-annotations\1.0.2\jetbrains-runtime-annotations-1.0.2.jar;C:\Users\mimin\.m2\repository\com\pivovarit\throwing-function\1.5.1\throwing-function-1.5.1.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-simple\2.0.16\slf4j-simple-2.0.16.jar;"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
     <property name="user.timezone" value="Australia/Brisbane"/>
-    <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="24"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AU"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter /Users/tusar/Downloads/CAB302_Project/LockedIn/target/surefire 2026-05-14T22-21-57_480-jvmRun1 surefire-20260514222157588_1tmp surefire_0-20260514222157588_2tmp"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\mimin\AppData\Local\Temp\surefire16178397563874781366 2026-05-21T17-11-11_931-jvmRun1 surefire-20260521171112260_1tmp surefire_0-20260521171112260_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/tusar/Downloads/CAB302_Project/LockedIn/target/test-classes:/Users/tusar/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.1/junit-jupiter-api-5.12.1.jar:/Users/tusar/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar:/Users/tusar/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.1/junit-jupiter-engine-5.12.1.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar:"/>
+    <property name="surefire.test.class.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;C:\Users\mimin\.m2\repository\jakarta\mail\jakarta.mail-api\2.1.3\jakarta.mail-api-2.1.3.jar;C:\Users\mimin\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-mail\2.0.3\angus-mail-2.0.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\mimin\.m2\repository\com\sanctionco\jmail\jmail\1.6.3\jmail-1.6.3.jar;C:\Users\mimin\.m2\repository\com\github\bbottema\jetbrains-runtime-annotations\1.0.2\jetbrains-runtime-annotations-1.0.2.jar;C:\Users\mimin\.m2\repository\com\pivovarit\throwing-function\1.5.1\throwing-function-1.5.1.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-simple\2.0.16\slf4j-simple-2.0.16.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/tusar"/>
+    <property name="user.home" value="C:\Users\mimin"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="jdk.module.path" value="/Users/tusar/Downloads/CAB302_Project/LockedIn/target/classes:/Users/tusar/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6-mac-aarch64.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6-mac-aarch64.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6-mac-aarch64.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6-mac-aarch64.jar:/Users/tusar/.m2/repository/org/xerial/sqlite-jdbc/3.36.0.3/sqlite-jdbc-3.36.0.3.jar:/Users/tusar/.m2/repository/org/controlsfx/controlsfx/11.2.1/controlsfx-11.2.1.jar:/Users/tusar/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"/>
-    <property name="java.version.date" value="2025-04-15"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home"/>
-    <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/tusar/Downloads/CAB302_Project/LockedIn"/>
+    <property name="jdk.module.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\mimin\.m2\repository\org\controlsfx\controlsfx\11.2.1\controlsfx-11.2.1.jar;C:\Users\mimin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\mimin\.m2\repository\org\simplejavamail\simple-java-mail\8.12.2\simple-java-mail-8.12.2.jar;C:\Users\mimin\.m2\repository\org\simplejavamail\core-module\8.12.2\core-module-8.12.2.jar"/>
+    <property name="java.version.date" value="2026-04-21"/>
+    <property name="java.home" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-booter/3.2.5/surefire-booter-3.2.5.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-api/3.2.5/surefire-api-3.2.5.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-logger-api/3.2.5/surefire-logger-api-3.2.5.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-shared-utils/3.2.5/surefire-shared-utils-3.2.5.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-extensions-spi/3.2.5/surefire-extensions-spi-3.2.5.jar:/Users/tusar/Downloads/CAB302_Project/LockedIn/target/test-classes:/Users/tusar/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6.jar:/Users/tusar/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.1/junit-jupiter-api-5.12.1.jar:/Users/tusar/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar:/Users/tusar/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tusar/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.1/junit-jupiter-engine-5.12.1.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/surefire-junit-platform/3.2.5/surefire-junit-platform-3.2.5.jar:/Users/tusar/.m2/repository/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar:/Users/tusar/.m2/repository/org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-booter\3.2.5\surefire-booter-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-api\3.2.5\surefire-api-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-logger-api\3.2.5\surefire-logger-api-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-shared-utils\3.2.5\surefire-shared-utils-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-extensions-spi\3.2.5\surefire-extensions-spi-3.2.5.jar;C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;C:\Users\mimin\.m2\repository\jakarta\mail\jakarta.mail-api\2.1.3\jakarta.mail-api-2.1.3.jar;C:\Users\mimin\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-mail\2.0.3\angus-mail-2.0.3.jar;C:\Users\mimin\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\mimin\.m2\repository\com\sanctionco\jmail\jmail\1.6.3\jmail-1.6.3.jar;C:\Users\mimin\.m2\repository\com\github\bbottema\jetbrains-runtime-annotations\1.0.2\jetbrains-runtime-annotations-1.0.2.jar;C:\Users\mimin\.m2\repository\com\pivovarit\throwing-function\1.5.1\throwing-function-1.5.1.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\mimin\.m2\repository\org\slf4j\slf4j-simple\2.0.16\slf4j-simple-2.0.16.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-junit-platform\3.2.5\surefire-junit-platform-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\common-java5\3.2.5\common-java5-3.2.5.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-launcher\1.12.1\junit-platform-launcher-1.12.1.jar"/>
+    <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="24.0.1+9-30"/>
-    <property name="user.name" value="tusar"/>
-    <property name="stdout.encoding" value="UTF-8"/>
-    <property name="path.separator" value=":"/>
-    <property name="os.version" value="26.3.1"/>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.runtime.version" value="21.0.11+10-LTS"/>
+    <property name="user.name" value="mimin"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="/Users/tusar/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="/var/folders/rw/9h8sh0ss6rj2bgff0tkpv_m00000gn/T/"/>
-    <property name="java.version" value="24.0.1"/>
-    <property name="user.dir" value="/Users/tusar/Downloads/CAB302_Project/LockedIn"/>
-    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Corretto-21.0.11.10.1"/>
+    <property name="localRepository" value="C:\Users\mimin\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-21/issues/"/>
+    <property name="java.io.tmpdir" value="C:\Users\mimin\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.11"/>
+    <property name="user.dir" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn"/>
+    <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/tusar/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin;C:\Program Files\Java\jdk-25\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\mimin\.local\bin;C:\Users\mimin\AppData\Local\Microsoft\WindowsApps;C:\Users\mimin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mimin\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;;."/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="24.0.1+9-30"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.class.version" value="68.0"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="21.0.11+10-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="getDailyTotalByAttribute_sumMultipleFoods_carbs" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.001"/>
-  <testcase name="getDailyTotalByAttribute_sumCalories" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.001"/>
-  <testcase name="getDailyTotalByAttribute_sumProtein" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.0"/>
-  <testcase name="removeFood_removesEntry" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.0"/>
-  <testcase name="getFoodsByDate_returnsEmpty_forDifferentDate" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.001"/>
-  <testcase name="addFood_assignsGeneratedId" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.0"/>
-  <testcase name="getFoodsByDate_returnedFoodHasCorrectNutrients" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.001"/>
-  <testcase name="getFoodsByDate_filtersBy_userId" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.0"/>
-  <testcase name="getFoodsByDate_returnsAddedFood" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.0"/>
+  <testcase name="getDailyTotalByAttribute_sumMultipleFoods_carbs" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.025"/>
+  <testcase name="getDailyTotalByAttribute_sumCalories" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.002"/>
+  <testcase name="getDailyTotalByAttribute_sumProtein" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.003"/>
+  <testcase name="removeFood_removesEntry" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.002"/>
+  <testcase name="getFoodsByDate_returnsEmpty_forDifferentDate" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.003"/>
+  <testcase name="addFood_assignsGeneratedId" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.003"/>
+  <testcase name="getFoodsByDate_returnedFoodHasCorrectNutrients" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.003"/>
+  <testcase name="getFoodsByDate_filtersBy_userId" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.003"/>
+  <testcase name="getFoodsByDate_returnsAddedFood" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.002"/>
   <testcase name="getDailyTotalByAttribute_returnsZero_whenNoFood" classname="com.lockedin.lockedin.model.dao.FoodDAOTest" time="0.001"/>
 </testsuite>

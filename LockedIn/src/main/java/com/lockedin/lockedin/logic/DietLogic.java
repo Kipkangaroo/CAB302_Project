@@ -1,8 +1,10 @@
 package com.lockedin.lockedin.logic;
 
 /**
- * Logic class for handling basic diet-related calculations and validation. Provides simple
- * arithmetic and numeric input checking for the Diet feature.
+ * Logic class for diet-related calculations and numeric input validation.
+ *
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class DietLogic {
     /**
@@ -16,6 +18,12 @@ public class DietLogic {
         return current + added;
     }
 
+    /**
+     * Checks whether a string represents a non-negative numeric value.
+     *
+     * @param value the text to validate
+     * @return true if the value parses as a non-negative number; otherwise false
+     */
     public boolean isValidNumber(String value) {
         if (value == null || value.isEmpty()) {
             return false;

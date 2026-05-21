@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="com.lockedin.lockedin.controller.diet.CalorieTrendsController"
+      fillWidth="true"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
+
+    <!-- ── Header ── -->
+    <VBox styleClass="diet-header" fillWidth="true">
+        <AnchorPane minHeight="32" prefHeight="32">
+            <HBox alignment="CENTER_LEFT"
+                  spacing="12"
+                  AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0">
+                <Button fx:id="backButton"
+                        text="←"
+                        onAction="#handleBack"
+                        styleClass="header-btn"
+                        style="-fx-font-size: 16px;"/>
+                <Label text="Calorie Trends"
+                       styleClass="diet-header-title"
+                       HBox.hgrow="ALWAYS"
+                       maxWidth="Infinity"/>
+            </HBox>
+        </AnchorPane>
+        <Label text="Daily intake vs. your calorie goal"
+               styleClass="diet-header-subtitle">
+            <VBox.margin><Insets top="4"/></VBox.margin>
+        </Label>
+    </VBox>
+
+    <!-- ── Scrollable content ── -->
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                styleClass="diet-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="diet-page-bg" spacing="12" fillWidth="true">
+
+            <!-- Range toggle -->
+            <VBox styleClass="diet-card" spacing="0">
+                <HBox spacing="10">
+                    <Button fx:id="btn7Days"
+                            text="7 Days"
+                            onAction="#handle7Days"
+                            styleClass="primary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button fx:id="btn30Days"
+                            text="30 Days"
+                            onAction="#handle30Days"
+                            styleClass="diet-secondary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                </HBox>
+            </VBox>
+
+            <!-- Chart card -->
+            <VBox styleClass="diet-card" spacing="10">
+                <Label text="Calories (kcal)" styleClass="diet-section-title"/>
+                <LineChart fx:id="calorieChart"
+                           prefHeight="300"
+                           animated="false"
+                           legendVisible="true">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="kcal"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>

@@ -18,22 +18,27 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller for the main Workout page. Displays all workout routines created by the user, and
- * provides navigation to create, view, or delete routines.
+ * JavaFX controller for the workout screen.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class WorkoutController {
 
-    private static final String CREATE_VIEW =
-            "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
-    private static final String DETAIL_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
-    private static final String HISTORY_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
+    private static final String CREATE_VIEW = "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
+    private static final String DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+    private static final String HISTORY_VIEW = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
+    private static final String AI_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
+    private static final String WEEKLY_SUMMARY_VIEW = "/com/lockedin/lockedin/pages/workout/weekly-summary-view.fxml";
 
-    @FXML private Label workoutCountLabel;
-    @FXML private VBox workoutsContainer;
+    @FXML
+    private Label workoutCountLabel;
+    @FXML
+    private VBox workoutsContainer;
 
     private WorkoutRoutineDAO routineDAO;
+    /**
+     * Initializes FXML-bound UI components after the view loads.
+     */
 
     @FXML
     public void initialize() {
@@ -41,9 +46,11 @@ public class WorkoutController {
         loadWorkouts();
     }
 
+    /**
+     * Performs load workouts.
+     */
     private void loadWorkouts() {
-        List<WorkoutRoutineDAO.RoutineData> routines =
-                routineDAO.getRoutinesByUser(CurrentUser.getId());
+        List<WorkoutRoutineDAO.RoutineData> routines = routineDAO.getRoutinesByUser(CurrentUser.getId());
 
         int n = routines.size();
         workoutCountLabel.setText(
@@ -64,7 +71,8 @@ public class WorkoutController {
     }
 
     /**
-     * Builds a UI card representing a single workout routine. Includes name, notes, exercise count,
+     * Builds a UI card representing a single workout routine. Includes name, notes,
+     * exercise count,
      * and edit/delete actions.
      */
     private VBox buildWorkoutCard(WorkoutRoutineDAO.RoutineData routine) {
@@ -112,12 +120,11 @@ public class WorkoutController {
         deleteBtn.setOnAction(
                 e -> {
                     e.consume();
-                    Alert confirm =
-                            new Alert(
-                                    Alert.AlertType.CONFIRMATION,
-                                    "Delete \"" + routine.name + "\"?",
-                                    ButtonType.YES,
-                                    ButtonType.NO);
+                    Alert confirm = new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            "Delete \"" + routine.name + "\"?",
+                            ButtonType.YES,
+                            ButtonType.NO);
                     confirm.setHeaderText(null);
                     confirm.showAndWait()
                             .ifPresent(
@@ -132,6 +139,10 @@ public class WorkoutController {
         return card;
     }
 
+    /**
+     * Performs open detail.
+     * @param routineId The routine id.
+     */
     private void openDetail(int routineId) {
         try {
             WorkoutDetailController.setCurrentRoutineId(routineId);
@@ -141,6 +152,9 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open workout detail", e);
         }
     }
+    /**
+     * Performs handle create workout.
+     */
 
     @FXML
     public void handleCreateWorkout() {
@@ -151,6 +165,9 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open create workout page", e);
         }
     }
+    /**
+     * Performs handle history.
+     */
 
     @FXML
     public void handleHistory() {
@@ -161,15 +178,37 @@ public class WorkoutController {
             throw new RuntimeException("Failed to open workout history", e);
         }
     }
+    /**
+     * Performs handle weekly summary.
+     */
+
+    @FXML
+    public void handleWeeklySummary() {
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(WEEKLY_SUMMARY_VIEW));
+            stackPane().getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open weekly summary", e);
+        }
+    }
+
+    /**
+     * Performs handle ai generator.
+     */
 
     @FXML
     public void handleAiGenerator() {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setHeaderText("Coming Soon");
-        a.setContentText("AI Workout Generator will be available in a future update.");
-        a.showAndWait();
+        try {
+            Pane page = FXMLLoader.load(getClass().getResource(AI_WORKOUT_VIEW));
+            stackPane().getChildren().setAll(page);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to open AI workout generator", e);
+        }
     }
 
+    /**
+     * Performs stack pane.
+     */
     private StackPane stackPane() {
         return (StackPane) workoutsContainer.getScene().lookup("#pageContainer");
     }

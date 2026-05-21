@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
       fx:controller="com.lockedin.lockedin.controller.workout.WorkoutHistoryController"
       fillWidth="true"
       maxWidth="Infinity"
@@ -18,18 +19,18 @@
                     text="←"
                     styleClass="header-btn"
                     onAction="#handleBack"
-                    style="-fx-font-size: 16px;" />
+                    style="-fx-font-size: 16px;"/>
             <Label text="Workout History"
                    textFill="white"
                    style="-fx-font-size: 22px; -fx-font-weight: bold;"
                    HBox.hgrow="ALWAYS"
-                   maxWidth="Infinity" />
+                   maxWidth="Infinity"/>
         </HBox>
         <Label fx:id="historyCountLabel"
                textFill="white"
                style="-fx-font-size: 13px; -fx-opacity: 0.82;">
             <VBox.margin>
-                <Insets top="4" />
+                <Insets top="4"/>
             </VBox.margin>
         </Label>
     </VBox>
@@ -42,9 +43,39 @@
               fillWidth="true">
             <VBox fx:id="chartContainer" spacing="20">
             </VBox>
+            <!-- Date range filter -->
+            <VBox styleClass="workout-card" spacing="10">
+                <Label text="Filter by Date" styleClass="workout-card-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="From:"
+                           style="-fx-font-size: 13px;"/>
+                    <DatePicker fx:id="filterFromDate"
+                                promptText="Start date"
+                                styleClass="diet-input"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                    <Label text="To:"
+                           style="-fx-font-size: 13px;"/>
+                    <DatePicker fx:id="filterToDate"
+                                promptText="End date"
+                                styleClass="diet-input"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Button text="Filter"
+                            onAction="#handleFilter"
+                            styleClass="primary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button text="Clear"
+                            onAction="#handleClearFilter"
+                            styleClass="diet-secondary-btn"/>
+                </HBox>
+            </VBox>
             <VBox fx:id="historyContainer"
                   spacing="10"
-                  fillWidth="true" />
+                  fillWidth="true"/>
         </VBox>
     </ScrollPane>
 </VBox>

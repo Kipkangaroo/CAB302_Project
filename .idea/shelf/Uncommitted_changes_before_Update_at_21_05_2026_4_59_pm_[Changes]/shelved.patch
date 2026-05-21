@@ -1,0 +1,210 @@
+Index: LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.ComboBox?>\r\n<?import javafx.scene.control.DatePicker?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.PasswordField?>\r\n<?import javafx.scene.control.ScrollPane?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.layout.VBox?>\r\n\r\n<ScrollPane fitToWidth=\"true\" xmlns:fx=\"http://javafx.com/fxml\"\r\n            fx:controller=\"com.lockedin.lockedin.controller.auth.SignUpController\">\r\n    <content>\r\n        <VBox alignment=\"TOP_CENTER\" spacing=\"12.0\"\r\n              prefWidth=\"400.0\" prefHeight=\"700.0\" style=\"-fx-padding: 30;\">\r\n            <Button fx:id=\"backBtn\" text=\"Back\" onAction=\"#handleBackButton\" />\r\n            <Label text=\"Sign Up\" style=\"-fx-font-size: 30; -fx-font-weight: bold;\" />\r\n            <Label text=\"First Name\" />\r\n            <TextField fx:id=\"firstNameField\" promptText=\"Enter your first name\" />\r\n            <Label text=\"Last Name\" />\r\n            <TextField fx:id=\"lastNameField\" promptText=\"Enter your last name\" />\r\n            <Label text=\"Email\" />\r\n            <TextField fx:id=\"emailField\" promptText=\"Enter your email\" />\r\n            <Label text=\"Password\" />\r\n            <PasswordField fx:id=\"passwordField\" promptText=\"Enter your password\" />\r\n            <Label text=\"Confirm Password\" />\r\n            <PasswordField fx:id=\"confirmPasswordField\" promptText=\"Confirm your password\" />\r\n            <Label text=\"Date of Birth\" />\r\n            <DatePicker fx:id=\"dobPicker\" promptText=\"Select your date of birth\" maxWidth=\"Infinity\" />\r\n            <Label text=\"Height (cm)\" />\r\n            <TextField fx:id=\"heightField\" promptText=\"Enter your height in cm\" />\r\n            <Label text=\"Weight (kg)\" />\r\n            <TextField fx:id=\"weightField\" promptText=\"Enter your weight in kg\" />\r\n            <Label text=\"Fitness Goal\" />\r\n            <ComboBox fx:id=\"fitnessGoalCombo\" promptText=\"Select your fitness goal\" maxWidth=\"Infinity\" />\r\n            <Button fx:id=\"signupBtn\" text=\"Sign Up\" onAction=\"#handleSignup\" />\r\n        </VBox>\r\n    </content>\r\n</ScrollPane>
+===================================================================
+diff --git a/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml b/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml
+--- a/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml	(revision 0645181f976966a078339190f69294ff8254eb94)
++++ b/LockedIn/target/classes/com/lockedin/lockedin/pages/auth/signup-view.fxml	(date 1777562223720)
+@@ -5,36 +5,36 @@
+ <?import javafx.scene.control.DatePicker?>
+ <?import javafx.scene.control.Label?>
+ <?import javafx.scene.control.PasswordField?>
+-<?import javafx.scene.control.ScrollPane?>
+ <?import javafx.scene.control.TextField?>
+ <?import javafx.scene.layout.VBox?>
+ 
++<?import javafx.scene.control.ScrollPane?>
+ <ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+             fx:controller="com.lockedin.lockedin.controller.auth.SignUpController">
+-    <content>
+-        <VBox alignment="TOP_CENTER" spacing="12.0"
+-              prefWidth="400.0" prefHeight="700.0" style="-fx-padding: 30;">
+-            <Button fx:id="backBtn" text="Back" onAction="#handleBackButton" />
+-            <Label text="Sign Up" style="-fx-font-size: 30; -fx-font-weight: bold;" />
+-            <Label text="First Name" />
+-            <TextField fx:id="firstNameField" promptText="Enter your first name" />
+-            <Label text="Last Name" />
+-            <TextField fx:id="lastNameField" promptText="Enter your last name" />
+-            <Label text="Email" />
+-            <TextField fx:id="emailField" promptText="Enter your email" />
+-            <Label text="Password" />
+-            <PasswordField fx:id="passwordField" promptText="Enter your password" />
+-            <Label text="Confirm Password" />
+-            <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password" />
+-            <Label text="Date of Birth" />
+-            <DatePicker fx:id="dobPicker" promptText="Select your date of birth" maxWidth="Infinity" />
+-            <Label text="Height (cm)" />
+-            <TextField fx:id="heightField" promptText="Enter your height in cm" />
+-            <Label text="Weight (kg)" />
+-            <TextField fx:id="weightField" promptText="Enter your weight in kg" />
+-            <Label text="Fitness Goal" />
+-            <ComboBox fx:id="fitnessGoalCombo" promptText="Select your fitness goal" maxWidth="Infinity" />
+-            <Button fx:id="signupBtn" text="Sign Up" onAction="#handleSignup" />
+-        </VBox>
+-    </content>
+-</ScrollPane>
+\ No newline at end of file
++
++    <VBox alignment="TOP_CENTER" spacing="12.0" xmlns:fx="http://javafx.com/fxml"
++
++          prefWidth="400.0" prefHeight="700.0" style="-fx-padding: 30;">
++        <Button fx:id="backBtn" text="Back" onAction="#handleBackButton"/>
++        <Label text="Sign Up" style="-fx-font-size: 30; -fx-font-weight: bold;"/>
++        <Label text="First Name"/>
++        <TextField fx:id="firstNameField" promptText="Enter your first name"/>
++        <Label text="Last Name"/>
++        <TextField fx:id="lastNameField" promptText="Enter your last name"/>
++        <Label text="Email"/>
++        <TextField fx:id="emailField" promptText="Enter your email"/>
++        <Label text="Password"/>
++        <PasswordField fx:id="passwordField" promptText="Enter your password"/>
++        <Label text="Confirm Password"/>
++        <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password"/>
++        <Label text="Date of Birth"/>
++        <DatePicker fx:id="dobPicker" promptText="Select your date of birth" maxWidth="Infinity"/>
++        <Label text="Height (cm)"/>
++        <TextField fx:id="heightField" promptText="Enter your height in cm"/>
++        <Label text="Weight (kg)"/>
++        <TextField fx:id="weightField" promptText="Enter your weight in kg"/>
++        <Label text="Fitness Goal"/>
++        <ComboBox fx:id="fitnessGoalCombo" promptText="Select your fitness goal" maxWidth="Infinity"/>
++        <Button fx:id="signupBtn" text="Sign Up" onAction="#handleSignup"/>
++    </VBox>
++</ScrollPane>
+Index: LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\controller\\auth\\AuthenticationTest.java\r\nC:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\controller\\diet\\DietControllerInputTest.java\r\nC:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\logic\\DietLogicTest.java\r\nC:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\model\\dao\\FoodDAOTest.java\r\nC:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\model\\dao\\UserDAOTest.java\r\nC:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\src\\test\\java\\com\\lockedin\\lockedin\\model\\dao\\WorkoutRoutineDAOTest.java\r\n
+===================================================================
+diff --git a/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst b/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+--- a/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst	(revision 0645181f976966a078339190f69294ff8254eb94)
++++ b/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst	(date 1777562544485)
+@@ -4,3 +4,4 @@
+ C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\src\test\java\com\lockedin\lockedin\model\dao\FoodDAOTest.java
+ C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\src\test\java\com\lockedin\lockedin\model\dao\UserDAOTest.java
+ C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\src\test\java\com\lockedin\lockedin\model\dao\WorkoutRoutineDAOTest.java
++C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\src\test\java\com\lockedin\lockedin\model\entity\UserTest.java
+Index: LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>com\\lockedin\\lockedin\\model\\dao\\FoodDAOTest.class\r\ncom\\lockedin\\lockedin\\controller\\auth\\AuthenticationTest.class\r\ncom\\lockedin\\lockedin\\logic\\DietLogicTest.class\r\ncom\\lockedin\\lockedin\\controller\\diet\\DietControllerInputTest.class\r\ncom\\lockedin\\lockedin\\model\\dao\\WorkoutRoutineDAOTest.class\r\ncom\\lockedin\\lockedin\\model\\dao\\UserDAOTest.class\r\n
+===================================================================
+diff --git a/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst b/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+--- a/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst	(revision 0645181f976966a078339190f69294ff8254eb94)
++++ b/LockedIn/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst	(date 1777562544867)
+@@ -1,6 +1,7 @@
+ com\lockedin\lockedin\model\dao\FoodDAOTest.class
+ com\lockedin\lockedin\controller\auth\AuthenticationTest.class
+ com\lockedin\lockedin\logic\DietLogicTest.class
++com\lockedin\lockedin\model\entity\UserTest.class
+ com\lockedin\lockedin\controller\diet\DietControllerInputTest.class
+ com\lockedin\lockedin\model\dao\WorkoutRoutineDAOTest.class
+ com\lockedin\lockedin\model\dao\UserDAOTest.class
+Index: LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<testsuite xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd\" version=\"3.0\" name=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.024\" tests=\"7\" errors=\"0\" skipped=\"0\" failures=\"0\">\r\n  <properties>\r\n    <property name=\"java.specification.version\" value=\"21\"/>\r\n    <property name=\"sun.cpu.isalist\" value=\"amd64\"/>\r\n    <property name=\"sun.jnu.encoding\" value=\"Cp1252\"/>\r\n    <property name=\"java.class.path\" value=\"C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\target\\test-classes;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-controls\\21.0.6\\javafx-controls-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-graphics\\21.0.6\\javafx-graphics-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-base\\21.0.6\\javafx-base-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-fxml\\21.0.6\\javafx-fxml-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\5.12.1\\junit-jupiter-api-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\1.12.1\\junit-platform-commons-1.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-engine\\5.12.1\\junit-jupiter-engine-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-engine\\1.12.1\\junit-platform-engine-1.12.1.jar;\"/>\r\n    <property name=\"java.vm.vendor\" value=\"Amazon.com Inc.\"/>\r\n    <property name=\"sun.arch.data.model\" value=\"64\"/>\r\n    <property name=\"user.variant\" value=\"\"/>\r\n    <property name=\"java.vendor.url\" value=\"https://aws.amazon.com/corretto/\"/>\r\n    <property name=\"user.timezone\" value=\"Australia/Brisbane\"/>\r\n    <property name=\"os.name\" value=\"Windows 11\"/>\r\n    <property name=\"java.vm.specification.version\" value=\"21\"/>\r\n    <property name=\"sun.java.launcher\" value=\"SUN_STANDARD\"/>\r\n    <property name=\"user.country\" value=\"AU\"/>\r\n    <property name=\"sun.boot.library.path\" value=\"C:\\Program Files\\Amazon Corretto\\jdk21.0.10_7\\bin\"/>\r\n    <property name=\"sun.java.command\" value=\"org.apache.maven.surefire.booter.ForkedBooter C:\\Users\\mimin\\AppData\\Local\\Temp\\surefire6264667288702268712 2026-04-30T05-54-42_807-jvmRun1 surefire-20260430055443055_1tmp surefire_0-20260430055443055_2tmp\"/>\r\n    <property name=\"jdk.debug\" value=\"release\"/>\r\n    <property name=\"surefire.test.class.path\" value=\"C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\target\\test-classes;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-controls\\21.0.6\\javafx-controls-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-graphics\\21.0.6\\javafx-graphics-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-base\\21.0.6\\javafx-base-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-fxml\\21.0.6\\javafx-fxml-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\5.12.1\\junit-jupiter-api-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\1.12.1\\junit-platform-commons-1.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-engine\\5.12.1\\junit-jupiter-engine-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-engine\\1.12.1\\junit-platform-engine-1.12.1.jar;\"/>\r\n    <property name=\"sun.cpu.endian\" value=\"little\"/>\r\n    <property name=\"user.home\" value=\"C:\\Users\\mimin\"/>\r\n    <property name=\"user.language\" value=\"en\"/>\r\n    <property name=\"java.specification.vendor\" value=\"Oracle Corporation\"/>\r\n    <property name=\"jdk.module.path\" value=\"C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\target\\classes;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-controls\\21.0.6\\javafx-controls-21.0.6-win.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-graphics\\21.0.6\\javafx-graphics-21.0.6-win.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-base\\21.0.6\\javafx-base-21.0.6-win.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-fxml\\21.0.6\\javafx-fxml-21.0.6-win.jar;C:\\Users\\mimin\\.m2\\repository\\org\\xerial\\sqlite-jdbc\\3.36.0.3\\sqlite-jdbc-3.36.0.3.jar;C:\\Users\\mimin\\.m2\\repository\\org\\controlsfx\\controlsfx\\11.2.1\\controlsfx-11.2.1.jar\"/>\r\n    <property name=\"java.version.date\" value=\"2026-01-20\"/>\r\n    <property name=\"java.home\" value=\"C:\\Program Files\\Amazon Corretto\\jdk21.0.10_7\"/>\r\n    <property name=\"file.separator\" value=\"\\\"/>\r\n    <property name=\"basedir\" value=\"C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\"/>\r\n    <property name=\"java.vm.compressedOopsMode\" value=\"Zero based\"/>\r\n    <property name=\"line.separator\" value=\"&#10;\"/>\r\n    <property name=\"java.vm.specification.vendor\" value=\"Oracle Corporation\"/>\r\n    <property name=\"java.specification.name\" value=\"Java Platform API Specification\"/>\r\n    <property name=\"surefire.real.class.path\" value=\"C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-booter\\3.2.5\\surefire-booter-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\3.2.5\\surefire-api-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-logger-api\\3.2.5\\surefire-logger-api-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-shared-utils\\3.2.5\\surefire-shared-utils-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-extensions-spi\\3.2.5\\surefire-extensions-spi-3.2.5.jar;C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\\target\\test-classes;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-controls\\21.0.6\\javafx-controls-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-graphics\\21.0.6\\javafx-graphics-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-base\\21.0.6\\javafx-base-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\openjfx\\javafx-fxml\\21.0.6\\javafx-fxml-21.0.6.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\5.12.1\\junit-jupiter-api-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\1.12.1\\junit-platform-commons-1.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-engine\\5.12.1\\junit-jupiter-engine-5.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-engine\\1.12.1\\junit-platform-engine-1.12.1.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-junit-platform\\3.2.5\\surefire-junit-platform-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\apache\\maven\\surefire\\common-java5\\3.2.5\\common-java5-3.2.5.jar;C:\\Users\\mimin\\.m2\\repository\\org\\junit\\platform\\junit-platform-launcher\\1.12.1\\junit-platform-launcher-1.12.1.jar\"/>\r\n    <property name=\"user.script\" value=\"\"/>\r\n    <property name=\"sun.management.compiler\" value=\"HotSpot 64-Bit Tiered Compilers\"/>\r\n    <property name=\"java.runtime.version\" value=\"21.0.10+7-LTS\"/>\r\n    <property name=\"user.name\" value=\"mimin\"/>\r\n    <property name=\"stdout.encoding\" value=\"Cp1252\"/>\r\n    <property name=\"path.separator\" value=\";\"/>\r\n    <property name=\"os.version\" value=\"10.0\"/>\r\n    <property name=\"java.runtime.name\" value=\"OpenJDK Runtime Environment\"/>\r\n    <property name=\"file.encoding\" value=\"UTF-8\"/>\r\n    <property name=\"java.vm.name\" value=\"OpenJDK 64-Bit Server VM\"/>\r\n    <property name=\"java.vendor.version\" value=\"Corretto-21.0.10.7.1\"/>\r\n    <property name=\"localRepository\" value=\"C:\\Users\\mimin\\.m2\\repository\"/>\r\n    <property name=\"java.vendor.url.bug\" value=\"https://github.com/corretto/corretto-21/issues/\"/>\r\n    <property name=\"java.io.tmpdir\" value=\"C:\\Users\\mimin\\AppData\\Local\\Temp\\\"/>\r\n    <property name=\"java.version\" value=\"21.0.10\"/>\r\n    <property name=\"user.dir\" value=\"C:\\Users\\mimin\\IdeaProjects\\CAB302_Project\\LockedIn\"/>\r\n    <property name=\"os.arch\" value=\"amd64\"/>\r\n    <property name=\"java.vm.specification.name\" value=\"Java Virtual Machine Specification\"/>\r\n    <property name=\"sun.os.patch.level\" value=\"\"/>\r\n    <property name=\"native.encoding\" value=\"Cp1252\"/>\r\n    <property name=\"java.library.path\" value=\"C:\\Program Files\\Amazon Corretto\\jdk21.0.10_7\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Users\\mimin\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\mimin\\bin;C:\\Program Files\\Amazon Corretto\\jdk21.0.10_7\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Windows\\system32;C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Git\\cmd;C:\\Users\\mimin\\.local\\bin;C:\\Users\\mimin\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\mimin\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\mimin\\.dotnet\\tools;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.3\\bin;C:\\Users\\mimin\\AppData\\Local\\GitHubDesktop\\bin;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl;.\"/>\r\n    <property name=\"java.vm.info\" value=\"mixed mode\"/>\r\n    <property name=\"stderr.encoding\" value=\"Cp1252\"/>\r\n    <property name=\"java.vendor\" value=\"Amazon.com Inc.\"/>\r\n    <property name=\"java.vm.version\" value=\"21.0.10+7-LTS\"/>\r\n    <property name=\"sun.io.unicode.encoding\" value=\"UnicodeLittle\"/>\r\n    <property name=\"java.class.version\" value=\"65.0\"/>\r\n  </properties>\r\n  <testcase name=\"testIsValidNumber_invalidNegative\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testAdd_PositiveNumbers\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testIsValidNumber_EmptyOrNull\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testIsValidNumber_invalidNonNumeric\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testAdd_ZeroValues\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testIsValidNumber_valid\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n  <testcase name=\"testAdd_MixedValues\" classname=\"com.lockedin.lockedin.logic.DietLogicTest\" time=\"0.0\"/>\r\n</testsuite>
+===================================================================
+diff --git a/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml b/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml
+--- a/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml	(revision 0645181f976966a078339190f69294ff8254eb94)
++++ b/LockedIn/target/surefire-reports/TEST-com.lockedin.lockedin.logic.DietLogicTest.xml	(date 1777562546813)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.logic.DietLogicTest" time="0.024" tests="7" errors="0" skipped="0" failures="0">
++<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.lockedin.lockedin.logic.DietLogicTest" time="0.026" tests="7" errors="0" skipped="0" failures="0">
+   <properties>
+     <property name="java.specification.version" value="21"/>
+     <property name="sun.cpu.isalist" value="amd64"/>
+@@ -10,12 +10,12 @@
+     <property name="user.variant" value=""/>
+     <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+     <property name="user.timezone" value="Australia/Brisbane"/>
+-    <property name="os.name" value="Windows 11"/>
++    <property name="os.name" value="Windows 10"/>
+     <property name="java.vm.specification.version" value="21"/>
+     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+     <property name="user.country" value="AU"/>
+-    <property name="sun.boot.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin"/>
+-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\mimin\AppData\Local\Temp\surefire6264667288702268712 2026-04-30T05-54-42_807-jvmRun1 surefire-20260430055443055_1tmp surefire_0-20260430055443055_2tmp"/>
++    <property name="sun.boot.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin"/>
++    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\mimin\AppData\Local\Temp\surefire13909196033760611976 2026-05-01T01-22-25_234-jvmRun1 surefire-20260501012225583_1tmp surefire_0-20260501012225583_2tmp"/>
+     <property name="jdk.debug" value="release"/>
+     <property name="surefire.test.class.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;"/>
+     <property name="sun.cpu.endian" value="little"/>
+@@ -23,8 +23,8 @@
+     <property name="user.language" value="en"/>
+     <property name="java.specification.vendor" value="Oracle Corporation"/>
+     <property name="jdk.module.path" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6-win.jar;C:\Users\mimin\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\mimin\.m2\repository\org\controlsfx\controlsfx\11.2.1\controlsfx-11.2.1.jar"/>
+-    <property name="java.version.date" value="2026-01-20"/>
+-    <property name="java.home" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7"/>
++    <property name="java.version.date" value="2026-04-21"/>
++    <property name="java.home" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10"/>
+     <property name="file.separator" value="\"/>
+     <property name="basedir" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn"/>
+     <property name="java.vm.compressedOopsMode" value="Zero based"/>
+@@ -34,7 +34,7 @@
+     <property name="surefire.real.class.path" value="C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-booter\3.2.5\surefire-booter-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-api\3.2.5\surefire-api-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-logger-api\3.2.5\surefire-logger-api-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-shared-utils\3.2.5\surefire-shared-utils-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-extensions-spi\3.2.5\surefire-extensions-spi-3.2.5.jar;C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn\target\test-classes;C:\Users\mimin\.m2\repository\org\openjfx\javafx-controls\21.0.6\javafx-controls-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-graphics\21.0.6\javafx-graphics-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-base\21.0.6\javafx-base-21.0.6.jar;C:\Users\mimin\.m2\repository\org\openjfx\javafx-fxml\21.0.6\javafx-fxml-21.0.6.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.12.1\junit-jupiter-api-5.12.1.jar;C:\Users\mimin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-commons\1.12.1\junit-platform-commons-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mimin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.12.1\junit-jupiter-engine-5.12.1.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-engine\1.12.1\junit-platform-engine-1.12.1.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\surefire-junit-platform\3.2.5\surefire-junit-platform-3.2.5.jar;C:\Users\mimin\.m2\repository\org\apache\maven\surefire\common-java5\3.2.5\common-java5-3.2.5.jar;C:\Users\mimin\.m2\repository\org\junit\platform\junit-platform-launcher\1.12.1\junit-platform-launcher-1.12.1.jar"/>
+     <property name="user.script" value=""/>
+     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+-    <property name="java.runtime.version" value="21.0.10+7-LTS"/>
++    <property name="java.runtime.version" value="21.0.11+10-LTS"/>
+     <property name="user.name" value="mimin"/>
+     <property name="stdout.encoding" value="Cp1252"/>
+     <property name="path.separator" value=";"/>
+@@ -42,29 +42,29 @@
+     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+     <property name="file.encoding" value="UTF-8"/>
+     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+-    <property name="java.vendor.version" value="Corretto-21.0.10.7.1"/>
++    <property name="java.vendor.version" value="Corretto-21.0.11.10.1"/>
+     <property name="localRepository" value="C:\Users\mimin\.m2\repository"/>
+     <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-21/issues/"/>
+     <property name="java.io.tmpdir" value="C:\Users\mimin\AppData\Local\Temp\"/>
+-    <property name="java.version" value="21.0.10"/>
++    <property name="java.version" value="21.0.11"/>
+     <property name="user.dir" value="C:\Users\mimin\IdeaProjects\CAB302_Project\LockedIn"/>
+     <property name="os.arch" value="amd64"/>
+     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+     <property name="sun.os.patch.level" value=""/>
+     <property name="native.encoding" value="Cp1252"/>
+-    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\mimin\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mimin\bin;C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Windows\system32;C:\Program Files\Microsoft SQL Server\170\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Users\mimin\.local\bin;C:\Users\mimin\AppData\Local\Microsoft\WindowsApps;C:\Users\mimin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mimin\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.3\bin;C:\Users\mimin\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
++    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Amazon Corretto\jdk21.0.11_10\bin;C:\Program Files\Java\jdk-25\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\mimin\.local\bin;C:\Users\mimin\AppData\Local\Microsoft\WindowsApps;C:\Users\mimin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mimin\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;;."/>
+     <property name="java.vm.info" value="mixed mode"/>
+     <property name="stderr.encoding" value="Cp1252"/>
+     <property name="java.vendor" value="Amazon.com Inc."/>
+-    <property name="java.vm.version" value="21.0.10+7-LTS"/>
++    <property name="java.vm.version" value="21.0.11+10-LTS"/>
+     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+     <property name="java.class.version" value="65.0"/>
+   </properties>
+-  <testcase name="testIsValidNumber_invalidNegative" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testAdd_PositiveNumbers" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testIsValidNumber_EmptyOrNull" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testIsValidNumber_invalidNonNumeric" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testAdd_ZeroValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testIsValidNumber_valid" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
+-  <testcase name="testAdd_MixedValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.0"/>
++  <testcase name="testIsValidNumber_invalidNegative" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.002"/>
++  <testcase name="testAdd_PositiveNumbers" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
++  <testcase name="testIsValidNumber_EmptyOrNull" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.002"/>
++  <testcase name="testIsValidNumber_invalidNonNumeric" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.004"/>
++  <testcase name="testAdd_ZeroValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
++  <testcase name="testIsValidNumber_valid" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.001"/>
++  <testcase name="testAdd_MixedValues" classname="com.lockedin.lockedin.logic.DietLogicTest" time="0.002"/>
+ </testsuite>
+\ No newline at end of file
+Index: LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>-------------------------------------------------------------------------------\r\nTest set: com.lockedin.lockedin.logic.DietLogicTest\r\n-------------------------------------------------------------------------------\r\nTests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.lockedin.lockedin.logic.DietLogicTest\r\n
+===================================================================
+diff --git a/LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt b/LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt
+--- a/LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt	(revision 0645181f976966a078339190f69294ff8254eb94)
++++ b/LockedIn/target/surefire-reports/com.lockedin.lockedin.logic.DietLogicTest.txt	(date 1777562546798)
+@@ -1,4 +1,4 @@
+ -------------------------------------------------------------------------------
+ Test set: com.lockedin.lockedin.logic.DietLogicTest
+ -------------------------------------------------------------------------------
+-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.lockedin.lockedin.logic.DietLogicTest
++Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in com.lockedin.lockedin.logic.DietLogicTest

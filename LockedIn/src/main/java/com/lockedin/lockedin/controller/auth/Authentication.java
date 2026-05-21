@@ -1,7 +1,7 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.entity.User;
+import com.lockedin.lockedin.model.entity.user.User;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,37 +11,101 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Utility class providing authentication-related helpers such as email/password validation, user
- * login verification, and scene switching.
+ * Coordinates credential validation, login, and shared authentication UI helpers.
+ *
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class Authentication {
-    private Authentication() {}
+    private final UserDAO userDAO;
 
-    public static boolean isValidEmail(String email) {
+    /**
+     * Creates an authentication helper using the application default user database.
+     */
+    public Authentication() {
+        this(new UserDAO());
+    }
+
+    /**
+     * Creates an authentication helper with the supplied user data access object.
+     *
+     * @param userDAO data access for login; supplied in tests with an in-memory database
+     */
+    public Authentication(UserDAO userDAO) {
+        this.userDAO = Objects.requireNonNull(userDAO, "userDAO");
+    }
+
+    /**
+     * Performs show alert.
+     * @param type The type.
+     * @param header The header.
+     * @param content The content.
+     */
+    private static void showAlert(Alert.AlertType type, String header, String content) {
+        Alert alert = new Alert(type);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    /**
+     * Returns whether valid email.
+     * @param email The email.
+     * @return true if the condition holds; otherwise false.
+     */
+    public boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 
-    public static boolean isValidPassword(String password) {
+    /**
+     * Returns whether valid password.
+     * @param password The password.
+     * @return true if the condition holds; otherwise false.
+     */
+    public boolean isValidPassword(String password) {
         return password.length() >= 8
                 && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$");
     }
 
-    public static void showError(String header, String content) {
+    /**
+     * Performs show error.
+     * @param header The header.
+     * @param content The content.
+     */
+    public void showError(String header, String content) {
         showAlert(Alert.AlertType.ERROR, header, content);
     }
 
-    public static void showInfo(String header, String content) {
+    /**
+     * Performs show info.
+     * @param header The header.
+     * @param content The content.
+     */
+    public void showInfo(String header, String content) {
         showAlert(Alert.AlertType.INFORMATION, header, content);
     }
 
-    public static void switchScene(Button sourceButton, String fxmlPath) throws IOException {
+    /**
+     * Performs switch scene.
+     * @param sourceButton The source button.
+     * @param fxmlPath The fxml path.
+     * @throws IOException If the operation fails.
+     */
+    public void switchScene(Button sourceButton, String fxmlPath) throws IOException {
         switchScene((Node) sourceButton, fxmlPath);
     }
 
-    public static void switchScene(Node source, String fxmlPath) throws IOException {
+    /**
+     * Performs switch scene.
+     * @param source The source.
+     * @param fxmlPath The fxml path.
+     * @throws IOException If the operation fails.
+     */
+    public void switchScene(Node source, String fxmlPath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Authentication.class.getResource(fxmlPath));
         Scene scene = new Scene(loader.load(), 410, 750);
         Stage stage = (Stage) source.getScene().getWindow();
@@ -49,29 +113,15 @@ public class Authentication {
     }
 
     /**
-     * Attempts to authenticate a user by email and password.
+     * Attempts to authenticate a user by email and password using this instance's
+     * {@link
+     * UserDAO}.
      *
-     * @return Optional<User> if authentication succeeds, otherwise empty.
+     * @return the user if credentials match, otherwise empty.
      */
-    public static Optional<User> authenticate(String email, String password) {
-        UserDAO userDAO = new UserDAO();
+    public Optional<User> authenticate(String email, String password) {
         Optional<User> user = userDAO.getUserByEmail(email);
-        boolean authenticated = user.isPresent() && userDAO.authenticate(email, password);
-        return authenticated ? user : Optional.empty();
-    }
-
-    // Overload that accepts an injected UserDAO, enabling unit tests to supply
-    // an in-memory database instead of the production SQLite file.
-    public static Optional<User> authenticate(String email, String password, UserDAO userDAO) {
-        Optional<User> user = userDAO.getUserByEmail(email);
-        boolean authenticated = user.isPresent() && userDAO.authenticate(email, password);
-        return authenticated ? user : Optional.empty();
-    }
-
-    private static void showAlert(Alert.AlertType type, String header, String content) {
-        Alert alert = new Alert(type);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
+        boolean ok = user.isPresent() && userDAO.authenticate(email, password);
+        return ok ? user : Optional.empty();
     }
 }

@@ -1,0 +1,36 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Compiled class file\n*.class\n\n.ignore/\n\n# Log file\n*.log\n\n# BlueJ files\n*.ctxt\n\n# Mobile Tools for Java (J2ME)\n.mtj.tmp/\n\n# Package Files #\n*.jar\n*.war\n*.nar\n*.ear\n*.zip\n*.tar.gz\n*.rar\n\n# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml\nhs_err_pid*\nreplay_pid*\n\n# Claude\n.claude/\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision f376d1309c97d9713131355651af2144204e22d2)
++++ b/.gitignore	(date 1779235876446)
+@@ -21,6 +21,8 @@
+ *.tar.gz
+ *.rar
+ 
++*.file
++
+ # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+ hs_err_pid*
+ replay_pid*
+Index: LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>nvidia.api.key=PASTE_KEY_HERE\napp.password=PASTE_KEY_HERE\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file b/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file
+--- a/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file	(revision f376d1309c97d9713131355651af2144204e22d2)
++++ b/LockedIn/src/main/resources/com/lockedin/lockedin/service/config.file	(date 1779235876451)
+@@ -1,3 +1,2 @@
+-nvidia.api.key=PASTE_KEY_HERE
+-app.password=PASTE_KEY_HERE
+-
++nvidia.api.key=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
++app.password=dlrj aqxx gxem cttz
+\ No newline at end of file
