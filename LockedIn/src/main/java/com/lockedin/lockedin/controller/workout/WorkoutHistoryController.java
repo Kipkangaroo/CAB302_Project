@@ -212,7 +212,8 @@ public class WorkoutHistoryController {
         Map<LocalDate, Integer> repsPerDay = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
             LocalDate date = LocalDateTime.parse(workout.completedAt).toLocalDate();
-            repsPerDay.put(date, workout.sets.stream().mapToInt(s -> s.completedReps).sum());
+            int reps = workout.sets.stream().mapToInt(s -> s.completedReps).sum();
+            repsPerDay.merge(date, reps, Integer::sum);
         }
         return repsPerDay;
     }

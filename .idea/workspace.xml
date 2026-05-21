@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly" />
+    <list default="true" id="b136c388-e790-4c70-81a5-48b70efdc2bc" name="Changes" comment="Added activityLevel attribute to User and updated daily caloric goals accordingly">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/food.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/food.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/data/users.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LockedIn/src/main/java/com/lockedin/lockedin/controller/workout/WorkoutHistoryController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="154" />
+    <option name="cachedIndexableFilesCount" value="173" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
