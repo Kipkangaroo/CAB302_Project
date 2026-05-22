@@ -3,6 +3,7 @@ package com.lockedin.lockedin.controller.profile;
 import com.lockedin.lockedin.controller.auth.Authentication;
 import com.lockedin.lockedin.controller.auth.SignUpController;
 import com.lockedin.lockedin.model.dao.*;
+import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.Measurement;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.sql.SQLXML;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * JavaFX controller for the profile screen.
@@ -53,6 +55,17 @@ public class ProfileController {
     private String selectedRange = "ALL"; // ALL, 7, 30
     private User user;
     private boolean editingDetails;
+    private static final Map<String, FitnessGoal> GOAL_MAP = Map.of(
+            "Lose Weight", FitnessGoal.LOSE_WEIGHT,
+            "Build Muscle", FitnessGoal.BUILD_MUSCLE,
+            "Maintain Fitness", FitnessGoal.MAINTAIN_FITNESS
+    );
+    private static final Map<FitnessGoal, String> GOAL_LABELS = Map.of(
+            FitnessGoal.LOSE_WEIGHT, "Lose Weight",
+            FitnessGoal.BUILD_MUSCLE, "Build Muscle",
+            FitnessGoal.MAINTAIN_FITNESS, "Maintain Fitness"
+    );
+
     @FXML
     private Button logoutBtn;
     @FXML
@@ -62,7 +75,7 @@ public class ProfileController {
     @FXML
     private TextField weightField;
     @FXML
-    private TextField fitnessGoalField;
+    private ComboBox<String> fitnessGoalCombo;
     @FXML
     private Label firstNameLabel;
     @FXML
@@ -148,9 +161,8 @@ public class ProfileController {
         updateEditIcon();
         double weight = user.getWeight();
         weightField.setText(weight == (long) weight ? String.valueOf((long) weight) : String.valueOf(weight));
-        fitnessGoalField.setText(String.valueOf(user.getFitnessGoal()));
         setFieldEditing(weightField, true);
-        setFieldEditing(fitnessGoalField, true);
+        fitnessGoalCombo.setDisable(false);
         weightField.requestFocus();
         weightField.selectAll();
     }
@@ -165,6 +177,10 @@ public class ProfileController {
                     "Invalid weight", "Weight cannot be empty and must be greater than 0.");
             return;
         }
+        String selectedLabel = fitnessGoalCombo.getValue();
+        FitnessGoal newGoal = GOAL_MAP.get(selectedLabel);
+        user.setFitnessGoal(newGoal);
+        userDAO.updateFitnessGoal(user.getId(), newGoal);
         editingDetails = false;
         updateEditIcon();
         user.setWeight(weight);
@@ -172,7 +188,7 @@ public class ProfileController {
         progressDAO.addUserProgress(new UserProgress(0, user.getId(), user.getFitnessGoal(), weight,
                 user.getTargetCalories(), LocalDate.now()));
         setFieldEditing(weightField, false);
-        setFieldEditing(fitnessGoalField, false);
+        fitnessGoalCombo.setDisable(true);
         refreshDetailFields();
     }
 
@@ -181,7 +197,7 @@ public class ProfileController {
      */
     private void refreshDetailFields() {
         weightField.setText("Weight: " + user.getWeight() + " kg");
-        fitnessGoalField.setText("Fitness Goal: " + user.getFitnessGoal());
+        fitnessGoalCombo.setValue(user.getFitnessGoal().toString());
     }
 
     /**
@@ -243,6 +259,8 @@ public class ProfileController {
 
         loadMeasurements();
         loadMeasurementTrend();
+        fitnessGoalCombo.getItems().setAll(GOAL_MAP.keySet());
+        fitnessGoalCombo.setValue(GOAL_LABELS.get(user.getFitnessGoal()));
 
 
     }
