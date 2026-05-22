@@ -63,8 +63,16 @@ public class WorkoutHistoryController {
 
         chartContainer.getChildren().clear();
         if (!workouts.isEmpty()) {
-            chartContainer.getChildren().add(buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts)));
-            chartContainer.getChildren().add(buildRepsPerDayChart(computeRepsPerDay(workouts)));
+            BarChart<String, Number> workoutsChart =
+                    buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts));
+            workoutsChart.getStyleClass().add("workout-chart");
+
+            LineChart<String, Number> repsChart =
+                    buildRepsPerDayChart(computeRepsPerDay(workouts));
+            repsChart.getStyleClass().add("workout-chart");
+
+            chartContainer.getChildren().add(workoutsChart);
+            chartContainer.getChildren().add(repsChart);
         }
 
         showCards(workouts, "No completed workouts yet", "Complete a workout to see it here.");
@@ -287,7 +295,8 @@ public class WorkoutHistoryController {
         Map<LocalDate, Integer> repsPerDay = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
             LocalDate date = LocalDateTime.parse(workout.completedAt).toLocalDate();
-            repsPerDay.put(date, workout.sets.stream().mapToInt(s -> s.completedReps).sum());
+            int reps = workout.sets.stream().mapToInt(s -> s.completedReps).sum();
+            repsPerDay.merge(date, reps, Integer::sum);
         }
         return repsPerDay;
     }
