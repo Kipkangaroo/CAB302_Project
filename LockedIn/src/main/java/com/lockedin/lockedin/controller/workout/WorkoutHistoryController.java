@@ -63,8 +63,16 @@ public class WorkoutHistoryController {
 
         chartContainer.getChildren().clear();
         if (!workouts.isEmpty()) {
-            chartContainer.getChildren().add(buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts)));
-            chartContainer.getChildren().add(buildRepsPerDayChart(computeRepsPerDay(workouts)));
+            BarChart<String, Number> workoutsChart =
+                    buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts));
+            workoutsChart.getStyleClass().add("workout-chart");
+
+            LineChart<String, Number> repsChart =
+                    buildRepsPerDayChart(computeRepsPerDay(workouts));
+            repsChart.getStyleClass().add("workout-chart");
+
+            chartContainer.getChildren().add(workoutsChart);
+            chartContainer.getChildren().add(repsChart);
         }
 
         showCards(workouts, "No completed workouts yet", "Complete a workout to see it here.");

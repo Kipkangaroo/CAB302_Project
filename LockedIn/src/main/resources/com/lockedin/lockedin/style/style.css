@@ -274,6 +274,19 @@
     -fx-font-size: 13px;
 }
 
+/* ===== Workout Chart Cards ===== */
+.chart-card {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);
+}
+
+.workout-chart {
+    -fx-padding: 10;
+    -fx-background-color: transparent;
+}
+
 /* ===== Exercise Count Badge ===== */
 .exercise-badge {
     -fx-background-color: #E3F2FD;
