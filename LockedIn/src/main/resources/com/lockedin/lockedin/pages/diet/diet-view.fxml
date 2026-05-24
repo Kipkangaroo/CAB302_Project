@@ -6,11 +6,9 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
-      fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
-    <VBox styleClass="diet-header"
-          fillWidth="true">
+    <VBox styleClass="diet-header">
         <HBox alignment="CENTER_LEFT" spacing="8">
             <Label text="Nutrition Tracker"
                    styleClass="diet-header-title"
@@ -26,11 +24,8 @@
                 <graphic>
                     <ImageView fitWidth="18"
                                fitHeight="18"
-                               preserveRatio="true"
-                               smooth="true">
-                        <image>
-                            <Image url="@../../graphics/icons/ai-upload-photo-icon.png"/>
-                        </image>
+                               preserveRatio="true">
+                        <Image url="@../../graphics/icons/ai-upload-photo-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
@@ -47,11 +42,9 @@
                 styleClass="diet-scroll"
                 hbarPolicy="NEVER">
         <VBox styleClass="diet-page-bg"
-              spacing="12"
-              fillWidth="true">
+              spacing="12">
             <VBox styleClass="diet-card"
-                  spacing="10"
-                  fillWidth="true">
+                  spacing="10">
                 <Label text="Meal date"
                        styleClass="diet-section-title"/>
                 <DatePicker fx:id="foodDatePicker"

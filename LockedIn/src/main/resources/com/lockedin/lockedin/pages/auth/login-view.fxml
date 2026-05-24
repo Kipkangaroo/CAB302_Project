@@ -14,9 +14,7 @@
       style="-fx-padding: 28 34 28 34; -fx-background-color: #F0F2F5;">
     <ImageView preserveRatio="true"
                fitHeight="100">
-        <image>
-            <Image url="@../../graphics/images/logo.png"/>
-        </image>
+        <Image url="@../../graphics/images/logo.png"/>
     </ImageView>
     <Label text="Train hard. Stay focused. Unlock your best self."
            styleClass="auth-form-tagline">
@@ -29,8 +27,7 @@
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>
-        <VBox alignment="TOP_LEFT"
-              spacing="11.0"
+        <VBox spacing="11.0"
               prefWidth="260.0"
               maxWidth="260.0">
             <Label text="Email"
@@ -62,12 +59,10 @@
             minHeight="24.0"/>
     <ImageView preserveRatio="true"
                fitHeight="220">
-        <image>
-            <Image url="@../../graphics/images/app-features.png"/>
-        </image>
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>
+        <Image url="@../../graphics/images/app-features.png"/>
     </ImageView>
     <HBox alignment="CENTER"
           spacing="8.0">

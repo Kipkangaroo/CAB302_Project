@@ -9,7 +9,6 @@ import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
@@ -25,10 +24,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
-import java.sql.SQLXML;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * JavaFX controller for the profile screen.
@@ -52,6 +51,7 @@ public class ProfileController {
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
     private final MeasurementDAO measurementDAO = new MeasurementDAO();
+    public ImageView imageView;
     private String selectedRange = "ALL"; // ALL, 7, 30
     private User user;
     private boolean editingDetails;
@@ -87,8 +87,6 @@ public class ProfileController {
     private Image editImage;
     private Image saveImage;
     @FXML
-    private ImageView deleteAccountIcon;
-    @FXML
     private ComboBox<String> measurementTypeCombo;
     @FXML
     private TextField newMeasurementField;
@@ -118,7 +116,7 @@ public class ProfileController {
     @FXML
     private void handleGoalsProgress() {
         try {
-            Pane page = FXMLLoader.load(getClass().getResource(PROGRESS_VIEW));
+            Pane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PROGRESS_VIEW)));
             StackPane pc = (StackPane) logoutBtn.getScene().lookup("#pageContainer");
             if (pc != null) {
                 pc.getChildren().setAll(page);

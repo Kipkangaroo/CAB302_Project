@@ -29,13 +29,11 @@
         </Label>
     </VBox>
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="profile-scroll" hbarPolicy="NEVER">
-        <VBox styleClass="profile-page-bg" spacing="12" fillWidth="true">
+        <VBox styleClass="profile-page-bg" spacing="12">
             <VBox styleClass="profile-card" alignment="CENTER" spacing="8" maxWidth="Infinity">
                 <StackPane styleClass="profile-avatar-stack" maxWidth="200" maxHeight="150">
                     <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true">
-                        <image>
-                            <Image url="@../../graphics/images/profileimage.png"/>
-                        </image>
+                        <Image url="@../../graphics/images/profileimage.png"/>
                     </ImageView>
                 </StackPane>
                 <Label fx:id="firstNameLabel" styleClass="profile-name-label" alignment="CENTER"/>
@@ -43,14 +41,14 @@
             <StackPane maxWidth="Infinity">
                 <VBox styleClass="profile-card" spacing="8" maxWidth="Infinity">
                     <Label text="Personal Information" styleClass="profile-section-title"/>
-                    <Label fx:id="ageLabel" text="" styleClass="profile-detail-label"/>
-                    <Label fx:id="heightLabel" text="" styleClass="profile-detail-label"/>
+                    <Label fx:id="ageLabel" styleClass="profile-detail-label"/>
+                    <Label fx:id="heightLabel" styleClass="profile-detail-label"/>
                     <TextField fx:id="weightField" editable="false" focusTraversable="false"
                                styleClass="profile-detail-field" maxWidth="Infinity"/>
                     <HBox spacing="10" alignment="CENTER_LEFT">
                         <Label text="Fitness Goal:" styleClass="profile-detail-label"/>
-                        <ComboBox fx:id="fitnessGoalCombo" editable="false" focusTraversable="false"
-                                   styleClass="profile-detail-field" maxWidth="Infinity"/>
+                        <ComboBox fx:id="fitnessGoalCombo" focusTraversable="false"
+                                  styleClass="profile-detail-field" maxWidth="Infinity"/>
                     </HBox>
                 </VBox>
                 <StackPane alignment="TOP_RIGHT" pickOnBounds="false">
@@ -59,9 +57,7 @@
                         <StackPane.margin>
                             <Insets top="6" right="6"/>
                         </StackPane.margin>
-                        <image>
-                            <Image url="@../../graphics/icons/edit-icon.png"/>
-                        </image>
+                        <Image url="@../../graphics/icons/edit-icon.png"/>
                     </ImageView>
                 </StackPane>
             </StackPane>
@@ -190,9 +186,7 @@
             <HBox.margin>
                 <Insets top="6" left="12"/>
             </HBox.margin>
-            <image>
-                <Image url="@../../graphics/icons/bin-icon.png"/>
-            </image>
+            <Image url="@../../graphics/icons/bin-icon.png"/>
         </ImageView>
     </HBox>
 </VBox>
