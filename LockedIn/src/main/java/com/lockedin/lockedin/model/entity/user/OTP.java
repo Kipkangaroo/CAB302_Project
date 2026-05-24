@@ -70,11 +70,14 @@ public class OTP {
     }
 
     /**
-     * Performs send otp to email.
-     * @throws IOException If the operation fails.
+     * Sends the OTP email on a background thread.
      */
-    public void sendOtpToEmail() throws IOException {
-        SendEmail sendEmail = new SendEmail();
-        sendEmail.sendOtpEmail(email, otpCode);
+    public void sendOtpToEmail() {
+        new Thread(() -> {
+            try {
+                new SendEmail().sendOtpEmail(email, otpCode);
+            } catch (IOException ignored) {
+            }
+        }).start();
     }
 }

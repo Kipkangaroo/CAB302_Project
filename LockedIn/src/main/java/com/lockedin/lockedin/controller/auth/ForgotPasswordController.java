@@ -82,14 +82,7 @@ public class ForgotPasswordController {
         }
         this.email = email;
         this.userOtp = new OTP(email);
-        try {
-            userOtp.sendOtpToEmail();
-        } catch (IOException e) {
-            authentication.showError(
-                    "Could not send OTP",
-                    "We couldn't send the email right now. Check your connection and try again.");
-            return;
-        }
+        userOtp.sendOtpToEmail();
         authentication.showInfo(
                 "OTP sent",
                 "If an account exists with that email, check for your OTP.");
