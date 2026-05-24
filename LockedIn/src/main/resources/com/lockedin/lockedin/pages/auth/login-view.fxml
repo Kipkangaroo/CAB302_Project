@@ -15,7 +15,7 @@
     <ImageView preserveRatio="true"
                fitHeight="100">
         <image>
-            <Image url="@../../images/logo.png"/>
+            <Image url="@../../graphics/images/logo.png"/>
         </image>
     </ImageView>
     <Label text="Train hard. Stay focused. Unlock your best self."
@@ -63,7 +63,7 @@
     <ImageView preserveRatio="true"
                fitHeight="220">
         <image>
-            <Image url="@../../images/app_features.png"/>
+            <Image url="@../../graphics/images/app-features.png"/>
         </image>
         <VBox.margin>
             <Insets top="4"/>

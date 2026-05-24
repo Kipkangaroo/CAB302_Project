@@ -29,7 +29,7 @@
                                preserveRatio="true"
                                smooth="true">
                         <image>
-                            <Image url="@../../images/ai-upload-photo-icon.png"/>
+                            <Image url="@../../graphics/icons/ai-upload-photo-icon.png"/>
                         </image>
                     </ImageView>
                 </graphic>

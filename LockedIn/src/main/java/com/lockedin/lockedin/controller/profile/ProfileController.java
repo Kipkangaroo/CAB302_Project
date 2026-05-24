@@ -40,8 +40,8 @@ public class ProfileController {
     private static final String WHITE_FILL = "#FFFFFF";
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private static final String PROGRESS_VIEW = "/com/lockedin/lockedin/pages/profile/progress-view.fxml";
-    private static final String EDIT_ICON = "/com/lockedin/lockedin/images/edit-icon.png";
-    private static final String SAVE_ICON = "/com/lockedin/lockedin/images/save-icon.png";
+    private static final String EDIT_ICON = "/com/lockedin/lockedin/graphics/icons/edit-icon.png";
+    private static final String SAVE_ICON = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
     private static final double ICON_SIZE = 46;
     private static final DateTimeFormatter DAY_LABEL_FORMAT = DateTimeFormatter.ofPattern("dd/MM");
     private static final Paint COMPLETED_FILL = Paint.valueOf(BLUE_FILL);
@@ -87,7 +87,7 @@ public class ProfileController {
     private Image editImage;
     private Image saveImage;
     @FXML
-    private Button deleteAccountBtn;
+    private ImageView deleteAccountIcon;
     @FXML
     private ComboBox<String> measurementTypeCombo;
     @FXML

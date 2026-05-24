@@ -48,7 +48,7 @@ public class LockedIn extends Application {
                                                 new Image(
                                                                 Objects.requireNonNull(
                                                                                 LockedIn.class.getResource(
-                                                                                                "/com/lockedin/lockedin/images/logo.png"),
+                                                                                                "/com/lockedin/lockedin/graphics/images/logo.png"),
                                                                                 "logo.png missing from classpath")
                                                                                 .toExternalForm()));
                 stage.setResizable(false);

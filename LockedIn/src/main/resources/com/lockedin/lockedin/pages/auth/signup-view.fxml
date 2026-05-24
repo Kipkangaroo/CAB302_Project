@@ -24,7 +24,7 @@
                        style="-fx-cursor: hand;"
                        onMouseClicked="#handleBackButton">
                 <image>
-                    <Image url="@../../images/back_arrow.png"/>
+                    <Image url="@../../graphics/icons/back-arrow-icon.png"/>
                 </image>
             </ImageView>
         </HBox>

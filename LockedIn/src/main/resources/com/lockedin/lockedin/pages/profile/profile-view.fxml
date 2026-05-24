@@ -34,7 +34,7 @@
                 <StackPane styleClass="profile-avatar-stack" maxWidth="200" maxHeight="150">
                     <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true">
                         <image>
-                            <Image url="@../../images/profileimage.png"/>
+                            <Image url="@../../graphics/images/profileimage.png"/>
                         </image>
                     </ImageView>
                 </StackPane>
@@ -60,7 +60,7 @@
                             <Insets top="6" right="6"/>
                         </StackPane.margin>
                         <image>
-                            <Image url="@../../images/edit-icon.png"/>
+                            <Image url="@../../graphics/icons/edit-icon.png"/>
                         </image>
                     </ImageView>
                 </StackPane>
@@ -185,10 +185,14 @@
     <HBox style="-fx-padding: 10 16 14 16;">
         <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogout" text="Log Out"
                 styleClass="primary-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-padding: 14 0 14 0;"/>
-        <Label fx:id="deleteAccountLabel"
-               text="Delete Account"
-               onMouseClicked="#handleDeleteAccount"
-               style="-fx-text-fill: #d9534f; -fx-underline: true; -fx-cursor: hand;"
-               alignment="CENTER"/>
+        <ImageView fx:id="deleteAccountIcon" fitWidth="32" fitHeight="32" preserveRatio="true"
+                   pickOnBounds="true" styleClass="profile-delete-icon" onMouseClicked="#handleDeleteAccount">
+            <HBox.margin>
+                <Insets top="6" left="12"/>
+            </HBox.margin>
+            <image>
+                <Image url="@../../graphics/icons/bin-icon.png"/>
+            </image>
+        </ImageView>
     </HBox>
 </VBox>
