@@ -45,11 +45,10 @@
                     <Label fx:id="heightLabel" styleClass="profile-detail-label"/>
                     <TextField fx:id="weightField" editable="false" focusTraversable="false"
                                styleClass="profile-detail-field" maxWidth="Infinity"/>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Fitness Goal:" styleClass="profile-detail-label"/>
-                        <ComboBox fx:id="fitnessGoalCombo" focusTraversable="false"
-                                  styleClass="profile-detail-field" maxWidth="Infinity"/>
-                    </HBox>
+                    <Label fx:id="fitnessGoalLabel" styleClass="profile-detail-label" maxWidth="Infinity"/>
+                    <ComboBox fx:id="fitnessGoalCombo" focusTraversable="false"
+                              styleClass="profile-goal-combo" maxWidth="Infinity"
+                              visible="false" managed="false"/>
                 </VBox>
                 <StackPane alignment="TOP_RIGHT" pickOnBounds="false">
                     <ImageView fx:id="editActionIcon" fitWidth="48" fitHeight="48" preserveRatio="true"

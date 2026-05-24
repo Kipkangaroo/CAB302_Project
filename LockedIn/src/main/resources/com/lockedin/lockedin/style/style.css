@@ -86,6 +86,21 @@
     -fx-font-weight: bold;
 }
 
+.diet-expand-header {
+    -fx-cursor: hand;
+    -fx-padding: 2 0 2 0;
+}
+
+.diet-expand-header:hover .diet-expand-chevron {
+    -fx-text-fill: #1565C0;
+}
+
+.diet-expand-chevron {
+    -fx-font-size: 12px;
+    -fx-text-fill: #757575;
+    -fx-padding: 0 2 0 0;
+}
+
 .diet-input {
     -fx-background-color: white;
     -fx-background-radius: 10;
@@ -597,6 +612,28 @@
 
 .profile-detail-label {
     -fx-font-size: 14px;
+}
+
+/* Profile fitness goal – compact combobox, same palette as diet-input */
+.combo-box-base.profile-goal-combo {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-height: 28;
+    -fx-min-height: 28;
+    -fx-max-height: 28;
+}
+
+.combo-box-base.profile-goal-combo > .list-cell {
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+}
+
+.combo-box-base.profile-goal-combo .arrow-button {
+    -fx-padding: 0 6 0 6;
 }
 
 .text-field.profile-detail-field {

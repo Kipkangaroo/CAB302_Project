@@ -75,6 +75,8 @@ public class ProfileController {
     @FXML
     private TextField weightField;
     @FXML
+    private Label fitnessGoalLabel;
+    @FXML
     private ComboBox<String> fitnessGoalCombo;
     @FXML
     private Label firstNameLabel;
@@ -160,7 +162,7 @@ public class ProfileController {
         double weight = user.getWeight();
         weightField.setText(weight == (long) weight ? String.valueOf((long) weight) : String.valueOf(weight));
         setFieldEditing(weightField, true);
-        fitnessGoalCombo.setDisable(false);
+        setFitnessGoalEditing(true);
         weightField.requestFocus();
         weightField.selectAll();
     }
@@ -186,8 +188,8 @@ public class ProfileController {
         progressDAO.addUserProgress(new UserProgress(0, user.getId(), user.getFitnessGoal(), weight,
                 user.getTargetCalories(), LocalDate.now()));
         setFieldEditing(weightField, false);
-        fitnessGoalCombo.setDisable(true);
         refreshDetailFields();
+        setFitnessGoalEditing(false);
     }
 
     /**
@@ -195,7 +197,22 @@ public class ProfileController {
      */
     private void refreshDetailFields() {
         weightField.setText("Weight: " + user.getWeight() + " kg");
-        fitnessGoalCombo.setValue(user.getFitnessGoal().toString());
+        String goalLabel = GOAL_LABELS.get(user.getFitnessGoal());
+        fitnessGoalLabel.setText("Fitness Goal: " + goalLabel);
+        fitnessGoalCombo.setValue(goalLabel);
+    }
+
+    /**
+     * Toggles fitness goal between read-only label and editable combobox.
+     *
+     * @param editing true when the personal-info card is in edit mode
+     */
+    private void setFitnessGoalEditing(boolean editing) {
+        fitnessGoalLabel.setVisible(!editing);
+        fitnessGoalLabel.setManaged(!editing);
+        fitnessGoalCombo.setVisible(editing);
+        fitnessGoalCombo.setManaged(editing);
+        fitnessGoalCombo.setDisable(!editing);
     }
 
     /**
@@ -259,8 +276,7 @@ public class ProfileController {
         loadMeasurementTrend();
         fitnessGoalCombo.getItems().setAll(GOAL_MAP.keySet());
         fitnessGoalCombo.setValue(GOAL_LABELS.get(user.getFitnessGoal()));
-
-
+        setFitnessGoalEditing(false);
     }
 
     /**

@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import java.io.File;
@@ -85,6 +87,12 @@ public class DietController {
     private Label fatsProgressLabel;
     @FXML
     private Label inputErrorLabel;
+    @FXML
+    private VBox addFoodBody;
+    @FXML
+    private Label addFoodChevron;
+
+    private boolean addFoodExpanded;
 
     // -----------------------------
     // ACCUMULATED TOTALS
@@ -117,6 +125,25 @@ public class DietController {
                 }
             }
         });
+        setAddFoodExpanded(false);
+    }
+
+    /**
+     * Expands or collapses the add-food macro form.
+     */
+    @FXML
+    private void handleToggleAddFood(MouseEvent event) {
+        setAddFoodExpanded(!addFoodExpanded);
+    }
+
+    private void setAddFoodExpanded(boolean expanded) {
+        addFoodExpanded = expanded;
+        addFoodBody.setVisible(expanded);
+        addFoodBody.setManaged(expanded);
+        addFoodChevron.setText(expanded ? "▲" : "▼");
+        if (expanded) {
+            foodField.requestFocus();
+        }
     }
     /**
      * Performs handle add food.
@@ -207,6 +234,7 @@ public class DietController {
      * @param message The message.
      */
     private void showInputError(String message) {
+        setAddFoodExpanded(true);
         inputErrorLabel.setText(message);
         inputErrorLabel.setVisible(true);
         inputErrorLabel.setManaged(true);

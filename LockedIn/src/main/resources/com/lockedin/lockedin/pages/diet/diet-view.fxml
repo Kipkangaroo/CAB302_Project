@@ -52,42 +52,61 @@
                             styleClass="diet-input"
                             maxWidth="Infinity"/>
             </VBox>
-            <VBox styleClass="diet-card"
-                  spacing="10">
-                <Label text="Add Food"
-                       styleClass="diet-section-title"/>
-                <TextField fx:id="foodField"
-                           promptText="Food Name"
-                           styleClass="diet-input"/>
-                <TextField fx:id="caloriesField"
-                           promptText="Calories"
-                           styleClass="diet-input"/>
-                <TextField fx:id="proteinField"
-                           promptText="Protein"
-                           styleClass="diet-input"/>
-                <TextField fx:id="carbsField"
-                           promptText="Carbs"
-                           styleClass="diet-input"/>
-                <TextField fx:id="fatsField"
-                           promptText="Fats"
-                           styleClass="diet-input"/>
-                <HBox spacing="10">
-                    <Button text="Add Food"
-                            onAction="#handleAddFood"
-                            styleClass="primary-btn"
-                            HBox.hgrow="ALWAYS"
-                            maxWidth="Infinity"/>
-                    <Button text="Reset"
-                            onAction="#handleReset"
-                            styleClass="diet-secondary-btn"/>
-                    <Button text="Remove Food"
-                            onAction="#handleRemoveFood"
-                            styleClass="diet-secondary-btn"/>
+            <VBox styleClass="diet-card" spacing="0">
+                <HBox fx:id="addFoodHeader"
+                      styleClass="diet-expand-header"
+                      alignment="CENTER_LEFT"
+                      spacing="8"
+                      onMouseClicked="#handleToggleAddFood"
+                      maxWidth="Infinity">
+                    <Label text="Add Food"
+                           styleClass="diet-section-title"
+                           HBox.hgrow="ALWAYS"
+                           maxWidth="Infinity"/>
+                    <Label fx:id="addFoodChevron"
+                           text="▼"
+                           styleClass="diet-expand-chevron"/>
                 </HBox>
-                <Label fx:id="inputErrorLabel"
-                       styleClass="diet-error-label"
-                       visible="false"
-                       managed="false"/>
+                <VBox fx:id="addFoodBody"
+                      spacing="10"
+                      visible="false"
+                      managed="false">
+                    <VBox.margin>
+                        <Insets top="10"/>
+                    </VBox.margin>
+                    <TextField fx:id="foodField"
+                               promptText="Food Name"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="caloriesField"
+                               promptText="Calories"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="proteinField"
+                               promptText="Protein"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="carbsField"
+                               promptText="Carbs"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="fatsField"
+                               promptText="Fats"
+                               styleClass="diet-input"/>
+                    <HBox spacing="10">
+                        <Button text="Add Food"
+                                onAction="#handleAddFood"
+                                styleClass="primary-btn"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                        <Button text="Reset"
+                                onAction="#handleReset"
+                                styleClass="diet-secondary-btn"/>
+                        <Button text="Remove Food"
+                                onAction="#handleRemoveFood"
+                                styleClass="diet-secondary-btn"/>
+                    </HBox>
+                    <Label fx:id="inputErrorLabel"
+                           styleClass="diet-error-label"
+                           visible="false"
+                           managed="false"/>
+                </VBox>
             </VBox>
             <VBox styleClass="diet-card"
                   spacing="10">

@@ -23,8 +23,7 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
+                               preserveRatio="true">
                         <Image url="@../../graphics/icons/workout-icon.png"/>
                     </ImageView>
                 </graphic>
@@ -38,8 +37,7 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
+                               preserveRatio="true">
                         <Image url="@../../graphics/icons/diet-icon.png"/>
                     </ImageView>
                 </graphic>
@@ -53,8 +51,7 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
+                               preserveRatio="true">
                         <Image url="@../../graphics/icons/profile-icon.png"/>
                     </ImageView>
                 </graphic>
