@@ -218,6 +218,23 @@
     -fx-background-color: #DDE6F2;
 }
 
+.signup-profile-placeholder {
+    -fx-cursor: hand;
+    -fx-opacity: 0.92;
+}
+
+.signup-profile-placeholder:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.signup-profile-placeholder:pressed {
+    -fx-opacity: 0.88;
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
 .signup-form .date-picker.diet-input > .text-field {
     -fx-padding: 8 12 8 12;
 }

@@ -1,12 +1,11 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-//import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.dao.UserImageDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.user.ActivityLevel;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
-//import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -14,21 +13,33 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.Optional;
 
 /**
  * JavaFX controller for the sign up screen.
+ * 
  * @author LockedIn Team
  * @version 1.0
  */
 public class SignUpController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private final Authentication authentication = new Authentication();
+    private Image selectedProfileImage;
+    private File selectedProfileImageFile;
     @FXML
     private ImageView logoImageView;
+    @FXML
+    private StackPane profilePhotoPane;
+    @FXML
+    private ImageView profilePlaceholderImageView;
     @FXML
     private TextField firstNameField;
     @FXML
@@ -68,6 +79,7 @@ public class SignUpController {
 
     /**
      * Performs parse valid double.
+     * 
      * @param text The text.
      */
     public static Double parseValidDouble(String text) {
@@ -96,6 +108,29 @@ public class SignUpController {
         eyeOffIcon = new Image(getClass().getResourceAsStream(
                 "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
         signupBtn.setDefaultButton(true);
+    }
+
+    private void applyCircularProfileClip() {
+        double width = profilePhotoPane.getPrefWidth();
+        double height = profilePhotoPane.getPrefHeight();
+        double radius = Math.min(width, height) / 2.0;
+        profilePhotoPane.setClip(new Circle(width / 2.0, height / 2.0, radius));
+    }
+
+    @FXML
+    private void handleProfilePlaceholderClick(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile photo");
+        fileChooser
+                .getExtensionFilters()
+                .add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(profilePlaceholderImageView.getScene().getWindow());
+        if (selectedFile != null) {
+            selectedProfileImageFile = selectedFile;
+            selectedProfileImage = new Image(selectedFile.toURI().toString(), true);
+            profilePlaceholderImageView.setImage(selectedProfileImage);
+            applyCircularProfileClip();
+        }
     }
 
     @FXML
@@ -142,8 +177,10 @@ public class SignUpController {
             PasswordField passwordField, TextField visiblePasswordField, boolean isVisible) {
         return isVisible ? visiblePasswordField.getText() : passwordField.getText();
     }
+
     /**
      * Performs handle back button.
+     * 
      * @param event The event.
      * @throws IOException If the operation fails.
      */
@@ -153,6 +190,7 @@ public class SignUpController {
         authentication.switchScene(
                 logoImageView, LOGIN_VIEW);
     }
+
     /**
      * Performs handle signup.
      */
@@ -164,7 +202,7 @@ public class SignUpController {
         String email = emailField.getText().trim();
         String password = getPasswordText(passwordField, visiblePasswordField, passwordVisible).trim();
         String confirmPassword = getPasswordText(
-                        confirmPasswordField, visibleConfirmPasswordField, confirmPasswordVisible)
+                confirmPasswordField, visibleConfirmPasswordField, confirmPasswordVisible)
                 .trim();
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
@@ -191,6 +229,12 @@ public class SignUpController {
                 || activityLevel == null
                 || fitnessGoal == null) {
             authentication.showError("All fields are required", "Please fill in all fields.");
+            return;
+        }
+        if (selectedProfileImage == null) {
+            authentication.showError(
+                    "Profile photo required",
+                    "Please upload a profile photo above your name.");
             return;
         }
         if (!firstName.matches("^[A-Za-z]+$") || !lastName.matches("^[A-Za-z]+$")) {
@@ -245,6 +289,15 @@ public class SignUpController {
             Optional<User> addedUser = new UserDAO().getUserByEmail(email);
             if (addedUser.isPresent()) {
                 User u = addedUser.get();
+                try {
+                    new UserImageDAO()
+                            .saveOrReplaceImage(
+                                    u.getId(), Files.readAllBytes(selectedProfileImageFile.toPath()));
+                } catch (IOException e) {
+                    authentication.showError(
+                            "Profile photo failed to save",
+                            "Your account was created, but the profile photo could not be stored.");
+                }
                 // Add initial user progress
                 new UserProgressDAO()
                         .addUserProgress(
@@ -270,6 +323,7 @@ public class SignUpController {
 
     /**
      * Performs capitalize.
+     * 
      * @param string The string.
      * @return The resulting text.
      */

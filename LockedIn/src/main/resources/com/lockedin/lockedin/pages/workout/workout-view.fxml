@@ -62,7 +62,7 @@
                     <Label text="AI Workout Generator"
                            textFill="white"
                            style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                    <Label text="Let AI create a personalized workout plan based on your goals"
+                    <Label text="Let AI create a personalized workout plan based on your goals."
                            textFill="white"
                            wrapText="true"
                            style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>

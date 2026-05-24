@@ -16,13 +16,33 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0
  */
 public final class SqliteConnection {
-    private static final Path DB_DIRECTORY = Paths.get("LockedIn", "data").toAbsolutePath();
+    private static final Path DB_DIRECTORY = resolveModuleDataDirectory();
     private static final Map<Path, Connection> CONNECTIONS = new ConcurrentHashMap<>();
 
     /**
      * Creates a new SqliteConnection.
      */
     private SqliteConnection() {
+    }
+
+    /**
+     * Resolves {@code data/} beside the module {@code pom.xml} (LockedIn project root).
+     */
+    private static Path resolveModuleDataDirectory() {
+        Path cwd = Paths.get("").toAbsolutePath().normalize();
+        Path nestedModule = cwd.resolve("LockedIn");
+        if (Files.isRegularFile(nestedModule.resolve("pom.xml"))) {
+            return nestedModule.resolve("data").toAbsolutePath();
+        }
+        if (Files.isRegularFile(cwd.resolve("pom.xml"))) {
+            return cwd.resolve("data").toAbsolutePath();
+        }
+        throw new IllegalStateException(
+                "Could not find pom.xml to locate the data directory. Working directory: " + cwd);
+    }
+
+    public static Path getDataDirectory() {
+        return DB_DIRECTORY;
     }
 
     /**

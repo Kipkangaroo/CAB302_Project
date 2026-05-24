@@ -12,28 +12,68 @@
             stylesheets="@../../style/style.css"
             styleClass="diet-scroll">
     <VBox xmlns:fx="http://javafx.com/fxml"
-          spacing="12.0"
+          spacing="0"
           prefWidth="400.0"
-          prefHeight="700.0"
           styleClass="signup-form"
-          style="-fx-padding: 30; -fx-background-color: #F0F2F5;">
-        <HBox alignment="CENTER_LEFT"
+          style="-fx-padding: 0 30 30 30; -fx-background-color: #F0F2F5;">
+        <VBox spacing="4.0"
               maxWidth="Infinity">
-            <ImageView fx:id="logoImageView"
-                       preserveRatio="true"
-                       fitHeight="50"
-                       pickOnBounds="true"
-                       style="-fx-cursor: hand;"
-                       onMouseClicked="#handleBackButton">
-                <HBox.margin>
-                    <Insets left="-11"/>
-                </HBox.margin>
-                <Image url="@../../graphics/icons/back-arrow-icon.png"/>
-            </ImageView>
-        </HBox>
-        <Label text="Sign Up"
-               styleClass="diet-section-title"/>
-        <Label text="First Name"
+            <StackPane maxWidth="Infinity"
+                       prefHeight="50"
+                       minHeight="50"
+                       maxHeight="50">
+                <VBox.margin>
+                    <Insets top="30"/>
+                </VBox.margin>
+                <Label text="Sign Up"
+                       styleClass="diet-section-title"
+                       alignment="CENTER"
+                       maxWidth="Infinity"
+                       mouseTransparent="true"
+                       StackPane.alignment="CENTER"/>
+                <HBox alignment="CENTER_LEFT"
+                      pickOnBounds="false"
+                      StackPane.alignment="CENTER_LEFT">
+                    <ImageView fx:id="logoImageView"
+                               preserveRatio="true"
+                               fitHeight="50"
+                               pickOnBounds="true"
+                               style="-fx-cursor: hand;"
+                               onMouseClicked="#handleBackButton">
+                        <HBox.margin>
+                            <Insets left="-11"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/back-arrow-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <HBox alignment="CENTER"
+                  maxWidth="Infinity">
+                <StackPane fx:id="profilePhotoPane"
+                           prefWidth="200"
+                           prefHeight="120"
+                           minWidth="200"
+                           minHeight="120"
+                           maxWidth="200"
+                           maxHeight="120"
+                           onMouseClicked="#handleProfilePlaceholderClick"
+                           styleClass="signup-profile-placeholder">
+                    <ImageView fx:id="profilePlaceholderImageView"
+                               preserveRatio="true"
+                               smooth="true"
+                               fitHeight="120"
+                               fitWidth="200"
+                               pickOnBounds="true">
+                        <image>
+                            <Image url="@../../graphics/images/profile-upload-placeholder.png"/>
+                        </image>
+                    </ImageView>
+                </StackPane>
+            </HBox>
+        </VBox>
+        <VBox spacing="8.0"
+              maxWidth="Infinity">
+            <Label text="First Name"
                styleClass="profile-detail-label"/>
         <TextField fx:id="firstNameField"
                    promptText="Enter your first name"
@@ -138,12 +178,13 @@
                   promptText="Select your fitness goal"
                   styleClass="profile-goal-combo"
                   maxWidth="Infinity"/>
-        <HBox alignment="CENTER_RIGHT"
-              maxWidth="Infinity">
-            <Button fx:id="signupBtn"
-                    text="Sign Up"
-                    onAction="#handleSignup"
-                    styleClass="primary-btn"/>
-        </HBox>
+            <HBox alignment="CENTER_RIGHT"
+                  maxWidth="Infinity">
+                <Button fx:id="signupBtn"
+                        text="Sign Up"
+                        onAction="#handleSignup"
+                        styleClass="primary-btn"/>
+            </HBox>
+        </VBox>
     </VBox>
 </ScrollPane>

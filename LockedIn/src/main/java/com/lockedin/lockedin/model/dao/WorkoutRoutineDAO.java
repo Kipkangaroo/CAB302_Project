@@ -1,11 +1,8 @@
 package com.lockedin.lockedin.model.dao;
 
+import com.lockedin.lockedin.model.db.SqliteConnection;
 import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,15 +22,9 @@ public class WorkoutRoutineDAO {
      * Creates a new WorkoutRoutineDAO.
      */
     public WorkoutRoutineDAO() {
-        try {
-            Path dbPath = Paths.get("LockedIn", "data", "users.db").toAbsolutePath();
-            Files.createDirectories(dbPath.getParent());
-            connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
-            createTables();
-            migrate();
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException("Failed to connect to workout database", e);
-        }
+        connection = SqliteConnection.getInstance("users.db");
+        createTables();
+        migrate();
     }
 
     /**

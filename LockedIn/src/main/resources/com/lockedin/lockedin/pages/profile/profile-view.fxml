@@ -28,11 +28,27 @@
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="profile-scroll" hbarPolicy="NEVER">
         <VBox styleClass="profile-page-bg" spacing="12">
             <VBox styleClass="profile-card" alignment="CENTER" spacing="8" maxWidth="Infinity">
-                <StackPane styleClass="profile-avatar-stack" maxWidth="200" maxHeight="150">
-                    <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true">
-                        <Image url="@../../graphics/images/profileimage.png"/>
-                    </ImageView>
-                </StackPane>
+                <HBox alignment="CENTER" maxWidth="Infinity">
+                    <StackPane fx:id="profilePhotoPane"
+                               alignment="CENTER"
+                               styleClass="profile-avatar-stack"
+                               prefWidth="200"
+                               prefHeight="120"
+                               minWidth="200"
+                               minHeight="120"
+                               maxWidth="200"
+                               maxHeight="120">
+                        <ImageView fx:id="imageView"
+                                   preserveRatio="true"
+                                   smooth="true"
+                                   fitHeight="120"
+                                   fitWidth="200"
+                                   pickOnBounds="true"
+                                   StackPane.alignment="CENTER">
+                            <Image url="@../../graphics/images/profileimage.png"/>
+                        </ImageView>
+                    </StackPane>
+                </HBox>
                 <Label fx:id="firstNameLabel" styleClass="profile-name-label" alignment="CENTER"/>
             </VBox>
             <StackPane maxWidth="Infinity">

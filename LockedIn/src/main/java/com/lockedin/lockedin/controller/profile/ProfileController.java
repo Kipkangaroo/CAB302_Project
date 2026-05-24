@@ -8,6 +8,7 @@ import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
+import javafx.geometry.Pos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
@@ -23,6 +24,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.util.Optional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -52,7 +55,11 @@ public class ProfileController {
     private final FoodDAO foodDAO = new FoodDAO();
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
-    public ImageView imageView;
+    private final UserImageDAO imageDAO = new UserImageDAO();
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private StackPane profilePhotoPane;
     private User user;
     private boolean editingDetails;
     private static final Map<String, FitnessGoal> GOAL_MAP = Map.of(
@@ -225,6 +232,13 @@ public class ProfileController {
         }
     }
 
+    private void applyCircularProfileClip() {
+        double width = profilePhotoPane.getPrefWidth();
+        double height = profilePhotoPane.getPrefHeight();
+        double radius = Math.min(width, height) / 2.0;
+        profilePhotoPane.setClip(new Circle(width / 2.0, height / 2.0, radius));
+    }
+
     /**
      * Initializes FXML-bound UI components after the view loads.
      */
@@ -250,6 +264,24 @@ public class ProfileController {
         fitnessGoalCombo.getItems().setAll(GOAL_MAP.keySet());
         fitnessGoalCombo.setValue(GOAL_LABELS.get(user.getFitnessGoal()));
         setFitnessGoalEditing(false);
+        loadProfileImage();
+    }
+    private void loadProfileImage() {
+        Optional<byte[]> imageData = imageDAO.getImageByUserId(user.getId());
+        Image image = imageData.isPresent()
+                ? new Image(new ByteArrayInputStream(imageData.get()))
+                : new Image(getClass().getResourceAsStream("/com/lockedin/lockedin/graphics/images/profileimage.png"));
+        imageView.setImage(image);
+        StackPane.setAlignment(imageView, Pos.CENTER);
+        if (image.getProgress() < 1 && !image.isError()) {
+            image.progressProperty().addListener((obs, oldProgress, newProgress) -> {
+                if (newProgress.doubleValue() >= 1.0) {
+                    StackPane.setAlignment(imageView, Pos.CENTER);
+                    applyCircularProfileClip();
+                }
+            });
+        }
+        applyCircularProfileClip();
     }
 
     /**
