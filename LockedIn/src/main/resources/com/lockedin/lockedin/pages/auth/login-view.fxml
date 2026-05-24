@@ -38,10 +38,32 @@
                        maxWidth="Infinity"/>
             <Label text="Password"
                    styleClass="profile-detail-label"/>
-            <PasswordField fx:id="passwordField"
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="passwordField"
+                               promptText="Enter your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visiblePasswordField"
                            promptText="Enter your password"
                            styleClass="diet-input"
-                           maxWidth="Infinity"/>
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="togglePasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleTogglePassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
             <HBox alignment="CENTER_RIGHT"
                   maxWidth="Infinity">
                 <Hyperlink fx:id="forgotPasswordLink"

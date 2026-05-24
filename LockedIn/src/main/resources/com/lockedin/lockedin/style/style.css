@@ -110,6 +110,29 @@
     -fx-padding: 10 12 10 12;
 }
 
+/* Auth password field – room for visibility toggle icon */
+.password-field-stack > .password-field,
+.password-field-stack > .text-field {
+    -fx-padding: 10 40 10 12;
+}
+
+.password-toggle-icon {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.password-toggle-icon:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.password-toggle-icon:pressed {
+    -fx-opacity: 0.85;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
 /* DatePicker / ComboBox – same look as .diet-input (auth & other forms) */
 .combo-box-base.diet-input {
     -fx-background-color: white;
@@ -178,6 +201,25 @@
 
 .date-picker.diet-input > .arrow-button:hover {
     -fx-background-color: #DDE6F2;
+}
+
+/* Signup: slightly less vertical padding only — same .diet-input look as other fields */
+.signup-form .combo-box-base.diet-input > .list-cell {
+    -fx-padding: 6 12 6 12;
+}
+
+.signup-form .combo-box-base.diet-input > .arrow-button {
+    -fx-background-color: #E9EEF5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.signup-form .combo-box-base.diet-input > .arrow-button:hover {
+    -fx-background-color: #DDE6F2;
+}
+
+.signup-form .date-picker.diet-input > .text-field {
+    -fx-padding: 8 12 8 12;
 }
 
 /* Calendar popup – same palette as diet / auth forms */

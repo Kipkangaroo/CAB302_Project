@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +32,13 @@ public class LogInController {
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private TextField visiblePasswordField;
+    @FXML
+    private ImageView togglePasswordIcon;
+    private boolean passwordVisible;
+    private Image eyeIcon;
+    private Image eyeOffIcon;
 
     /**
      * Returns the logged in user.
@@ -50,17 +59,46 @@ public class LogInController {
             authentication.showError("Invalid email", "Please enter a valid email format.");
             return;
         }
-        if (passwordField.getText().trim().isEmpty()) {
+        if (getPasswordText().trim().isEmpty()) {
             authentication.showError("Invalid password", "Password field is empty!");
             return;
         }
-        authenticate(email, passwordField.getText().trim());
+        authenticate(email, getPasswordText().trim());
     }
     @FXML
     private void initialize() {
         loginBtn.setDefaultButton(true);
         emailField.setText("john.demo@lockedin.app");
         passwordField.setText("Password1!");
+        eyeIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
+        eyeOffIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
+    }
+
+    @FXML
+    private void handleTogglePassword() {
+        if (passwordVisible) {
+            passwordField.setText(visiblePasswordField.getText());
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            togglePasswordIcon.setImage(eyeIcon);
+        } else {
+            visiblePasswordField.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            visiblePasswordField.setVisible(true);
+            visiblePasswordField.setManaged(true);
+            togglePasswordIcon.setImage(eyeOffIcon);
+        }
+        passwordVisible = !passwordVisible;
+        (passwordVisible ? visiblePasswordField : passwordField).requestFocus();
+    }
+
+    private String getPasswordText() {
+        return passwordVisible ? visiblePasswordField.getText() : passwordField.getText();
     }
 
     /**

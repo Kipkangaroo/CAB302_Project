@@ -11,6 +11,7 @@ import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -37,7 +38,19 @@ public class SignUpController {
     @FXML
     private PasswordField passwordField;
     @FXML
+    private TextField visiblePasswordField;
+    @FXML
+    private ImageView togglePasswordIcon;
+    @FXML
     private PasswordField confirmPasswordField;
+    @FXML
+    private TextField visibleConfirmPasswordField;
+    @FXML
+    private ImageView toggleConfirmPasswordIcon;
+    private boolean passwordVisible;
+    private boolean confirmPasswordVisible;
+    private Image eyeIcon;
+    private Image eyeOffIcon;
     @FXML
     private Button signupBtn;
     @FXML
@@ -78,8 +91,56 @@ public class SignUpController {
         sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
         activityLevelCombo.setItems(FXCollections.observableArrayList(ActivityLevel.values()));
         fitnessGoalCombo.setItems(FXCollections.observableArrayList(FitnessGoal.values()));
-        // Trigger signup when pressing Enter
+        eyeIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
+        eyeOffIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
         signupBtn.setDefaultButton(true);
+    }
+
+    @FXML
+    private void handleTogglePassword() {
+        passwordVisible = togglePasswordVisibility(
+                passwordField, visiblePasswordField, togglePasswordIcon, passwordVisible);
+    }
+
+    @FXML
+    private void handleToggleConfirmPassword() {
+        confirmPasswordVisible = togglePasswordVisibility(
+                confirmPasswordField,
+                visibleConfirmPasswordField,
+                toggleConfirmPasswordIcon,
+                confirmPasswordVisible);
+    }
+
+    private boolean togglePasswordVisibility(
+            PasswordField passwordField,
+            TextField visiblePasswordField,
+            ImageView toggleIcon,
+            boolean currentlyVisible) {
+        if (currentlyVisible) {
+            passwordField.setText(visiblePasswordField.getText());
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            toggleIcon.setImage(eyeIcon);
+        } else {
+            visiblePasswordField.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            visiblePasswordField.setVisible(true);
+            visiblePasswordField.setManaged(true);
+            toggleIcon.setImage(eyeOffIcon);
+        }
+        boolean nowVisible = !currentlyVisible;
+        (nowVisible ? visiblePasswordField : passwordField).requestFocus();
+        return nowVisible;
+    }
+
+    private String getPasswordText(
+            PasswordField passwordField, TextField visiblePasswordField, boolean isVisible) {
+        return isVisible ? visiblePasswordField.getText() : passwordField.getText();
     }
     /**
      * Performs handle back button.
@@ -101,8 +162,10 @@ public class SignUpController {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
         String email = emailField.getText().trim();
-        String password = passwordField.getText().trim();
-        String confirmPassword = confirmPasswordField.getText().trim();
+        String password = getPasswordText(passwordField, visiblePasswordField, passwordVisible).trim();
+        String confirmPassword = getPasswordText(
+                        confirmPasswordField, visibleConfirmPasswordField, confirmPasswordVisible)
+                .trim();
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
         FitnessGoal fitnessGoal = fitnessGoalCombo.getValue();
