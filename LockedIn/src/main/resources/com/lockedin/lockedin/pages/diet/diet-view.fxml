@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
+      fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
     <VBox styleClass="diet-header">
@@ -18,17 +19,6 @@
                     onAction="#handleCalorieTrends"
                     styleClass="header-btn"
                     style="-fx-font-size: 16px;"/>
-            <Button onAction="#handleAiLogoClick"
-                    styleClass="header-btn"
-                    style="-fx-font-size: 16px;">
-                <graphic>
-                    <ImageView fitWidth="18"
-                               fitHeight="18"
-                               preserveRatio="true">
-                        <Image url="@../../graphics/icons/ai-upload-photo-icon.png"/>
-                    </ImageView>
-                </graphic>
-            </Button>
         </HBox>
         <Label text="Track your meals and stay aligned with your goals"
                styleClass="diet-header-subtitle">
@@ -49,7 +39,7 @@
                        styleClass="diet-section-title"/>
                 <DatePicker fx:id="foodDatePicker"
                             promptText="Select a date"
-                            styleClass="diet-input"
+                            styleClass="diet-date-picker"
                             maxWidth="Infinity"/>
             </VBox>
             <VBox styleClass="diet-card" spacing="0">
@@ -89,12 +79,20 @@
                     <TextField fx:id="fatsField"
                                promptText="Fats"
                                styleClass="diet-input"/>
-                    <HBox spacing="10">
+                    <HBox spacing="10"
+                          alignment="CENTER_LEFT">
                         <Button text="Add Food"
                                 onAction="#handleAddFood"
                                 styleClass="primary-btn"
                                 HBox.hgrow="ALWAYS"
                                 maxWidth="Infinity"/>
+                        <ImageView fitWidth="54"
+                                   fitHeight="54"
+                                   styleClass="diet-ai-upload-icon"
+                                   onMouseClicked="#handleAiLogoClick"
+                                   preserveRatio="true">
+                            <Image url="@../../graphics/icons/ai-upload-icon.png"/>
+                        </ImageView>
                         <Button text="Reset"
                                 onAction="#handleReset"
                                 styleClass="diet-secondary-btn"/>
@@ -162,6 +160,8 @@
                 </Label>
                 <ListView fx:id="foodList"
                           prefHeight="300"
+                          maxHeight="300"
+                          minHeight="300"
                           styleClass="diet-food-list"/>
             </VBox>
         </VBox>

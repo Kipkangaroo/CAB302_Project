@@ -143,6 +143,39 @@
     -fx-background-radius: 0 10 10 0;
 }
 
+/* Diet page date picker – compact, matches profile-goal-combo sizing */
+.date-picker.diet-date-picker {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-height: 32;
+    -fx-min-height: 32;
+    -fx-max-height: 32;
+}
+
+.date-picker.diet-date-picker > .text-field {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6 0 0 6;
+    -fx-border-width: 0;
+    -fx-padding: 6 8 6 8;
+    -fx-font-size: 13px;
+}
+
+.date-picker.diet-date-picker > .arrow-button {
+    -fx-background-color: #E9EEF5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 6 6 0;
+    -fx-padding: 0 8 0 8;
+}
+
+.date-picker.diet-date-picker > .arrow-button:hover {
+    -fx-background-color: #DDE6F2;
+}
+
 .date-picker.diet-input > .arrow-button:hover {
     -fx-background-color: #DDE6F2;
 }
@@ -382,6 +415,24 @@
 .icon-btn:hover {
     -fx-background-color: #f0f0f0;
     -fx-background-radius: 6;
+}
+
+/* Diet AI upload – camera icon only, no button chrome */
+.diet-ai-upload-icon {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.diet-ai-upload-icon:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.diet-ai-upload-icon:pressed {
+    -fx-opacity: 0.85;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 /* ===== Numbered circle (exercise order in detail view) ===== */
