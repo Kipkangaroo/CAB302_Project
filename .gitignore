@@ -1,9 +1,7 @@
-# Compiled class file
+# Compiled class files
 *.class
 
-.ignore/
-
-# Log file
+# Log files
 *.log
 
 # BlueJ files
@@ -12,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package files
 *.jar
 *.war
 *.nar
@@ -21,11 +19,28 @@
 *.tar.gz
 *.rar
 
+# Secrets and local config (API keys, email credentials)
 *.file
+**/config.file
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
+# Maven build output
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Local Maven cache (should not live inside the project)
+.m2/
+
 # Claude
 .claude/
+
+.ignore/
