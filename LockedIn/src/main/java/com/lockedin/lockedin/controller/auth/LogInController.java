@@ -59,6 +59,8 @@ public class LogInController {
     @FXML
     private void initialize() {
         loginBtn.setDefaultButton(true);
+        emailField.setText("john.demo@lockedin.app");
+        passwordField.setText("Password1!");
     }
 
     /**

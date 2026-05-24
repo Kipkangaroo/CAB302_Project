@@ -724,6 +724,33 @@
     -fx-effect: dropshadow(gaussian, rgba(2, 142, 225, 0.28), 10, 0.25, 0, 1);
 }
 
+.profile-weight-chart {
+    -fx-padding: 4 0 0 0;
+    -fx-background-color: transparent;
+}
+
+.profile-weight-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.profile-weight-chart .chart-vertical-grid-lines,
+.profile-weight-chart .chart-horizontal-grid-lines {
+    -fx-stroke: #E8EEF2;
+}
+
+.profile-weight-chart .default-color0.chart-series-line {
+    -fx-stroke: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
+    -fx-stroke-width: 2.5px;
+}
+
+.profile-weight-chart .default-color0.chart-line-symbol {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047), white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+}
+
 .profile-day-label {
     -fx-font-size: 12px;
 }

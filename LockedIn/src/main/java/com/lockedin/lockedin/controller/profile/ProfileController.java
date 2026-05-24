@@ -4,7 +4,6 @@ import com.lockedin.lockedin.controller.auth.Authentication;
 import com.lockedin.lockedin.controller.auth.SignUpController;
 import com.lockedin.lockedin.model.dao.*;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
-import com.lockedin.lockedin.model.entity.user.Measurement;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
@@ -43,6 +42,9 @@ public class ProfileController {
     private static final String SAVE_ICON = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
     private static final double ICON_SIZE = 46;
     private static final DateTimeFormatter DAY_LABEL_FORMAT = DateTimeFormatter.ofPattern("dd/MM");
+    private static final DateTimeFormatter CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
+    private static final int WEIGHT_CHART_DAYS = 30;
+    private static final int CHART_LABEL_INTERVAL = 5;
     private static final Paint COMPLETED_FILL = Paint.valueOf(BLUE_FILL);
     private static final Paint MISSED_FILL = Paint.valueOf(WHITE_FILL);
     private final Authentication authentication = new Authentication();
@@ -50,9 +52,7 @@ public class ProfileController {
     private final FoodDAO foodDAO = new FoodDAO();
     private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
-    private final MeasurementDAO measurementDAO = new MeasurementDAO();
     public ImageView imageView;
-    private String selectedRange = "ALL"; // ALL, 7, 30
     private User user;
     private boolean editingDetails;
     private static final Map<String, FitnessGoal> GOAL_MAP = Map.of(
@@ -86,31 +86,10 @@ public class ProfileController {
     private HBox workoutStreakRow;
     @FXML
     private ImageView editActionIcon;
+    @FXML
+    private LineChart<String, Number> weightChart;
     private Image editImage;
     private Image saveImage;
-    @FXML
-    private ComboBox<String> measurementTypeCombo;
-    @FXML
-    private TextField newMeasurementField;
-    @FXML
-    private VBox measurementHistoryBox;
-    @FXML
-    private LineChart<String, Number> measurementTrendChart;
-    @FXML
-    private void handleRange7Days() {
-        selectedRange = "7";
-        loadMeasurementTrend();
-    }
-    @FXML
-    private void handleRange30Days() {
-        selectedRange = "30";
-        loadMeasurementTrend();
-    }
-    @FXML
-    private void handleRangeAllTime() {
-        selectedRange = "ALL";
-        loadMeasurementTrend();
-    }
 
     /**
      * Navigates to the goals progress screen.
@@ -190,6 +169,7 @@ public class ProfileController {
         setFieldEditing(weightField, false);
         refreshDetailFields();
         setFitnessGoalEditing(false);
+        loadWeightChart();
     }
 
     /**
@@ -266,17 +246,46 @@ public class ProfileController {
         firstNameLabel.setText("Hello " + user.getFirstName() + "!");
         updateEditIcon();
         updateTrackingStreaks();
-        measurementTypeCombo.getSelectionModel().select("Weight");
-        measurementTypeCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
-            loadMeasurements();
-            loadMeasurementTrend();
-        });
-
-        loadMeasurements();
-        loadMeasurementTrend();
+        loadWeightChart();
         fitnessGoalCombo.getItems().setAll(GOAL_MAP.keySet());
         fitnessGoalCombo.setValue(GOAL_LABELS.get(user.getFitnessGoal()));
         setFitnessGoalEditing(false);
+    }
+
+    /**
+     * Loads the 30-day weight progress line chart from user_progress history.
+     */
+    private void loadWeightChart() {
+        weightChart.getData().clear();
+
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusDays(WEIGHT_CHART_DAYS - 1);
+        Map<LocalDate, Double> dailyWeights =
+                progressDAO.getDailyWeightForRange(user.getId(), start, end);
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Weight");
+
+        for (int daysAgo = WEIGHT_CHART_DAYS - 1; daysAgo >= 0; daysAgo--) {
+            LocalDate date = end.minusDays(daysAgo);
+            String label = chartAxisLabel(date, daysAgo);
+            series.getData().add(new XYChart.Data<>(label, dailyWeights.getOrDefault(date, user.getWeight())));
+        }
+
+        weightChart.getData().add(series);
+    }
+
+    /**
+     * Returns a visible x-axis label only on selected days so the chart stays readable.
+     */
+    private String chartAxisLabel(LocalDate date, int daysAgo) {
+        if (daysAgo == 0) {
+            return "Today";
+        }
+        if (daysAgo == WEIGHT_CHART_DAYS - 1 || daysAgo % CHART_LABEL_INTERVAL == 0) {
+            return date.format(CHART_DATE_FORMAT);
+        }
+        return "";
     }
 
     /**
@@ -305,103 +314,6 @@ public class ProfileController {
             circle.setFill(completed[daysAgo] ? COMPLETED_FILL : MISSED_FILL);
         }
     }
-    /**
-     * Loads and displays the measurement history for the selected type.
-     */
-    private void loadMeasurements() {
-        measurementHistoryBox.getChildren().clear();
-
-        String type = measurementTypeCombo.getValue();
-        var list = measurementDAO.getMeasurements(type);
-
-        for (Measurement m : list) {
-            HBox row = new HBox(10);
-
-            Label entry = new Label(m.getDate() + " — " + m.getValue() + " (" + m.getType() + ")");
-            entry.getStyleClass().add("measurement-entry");
-
-            Button deleteBtn = new Button("X");
-            deleteBtn.getStyleClass().add("delete-measurement-btn");
-
-            deleteBtn.setOnAction(e -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Delete this measurement?");
-                alert.setHeaderText("Confirm Deletion");
-
-                var result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    measurementDAO.deleteMeasurement(m.getId());
-                    loadMeasurements();
-                    loadMeasurementTrend();
-                }
-            });
-
-            row.getChildren().addAll(entry, deleteBtn);
-            measurementHistoryBox.getChildren().add(row);
-        }
-    }
-    /**
-     * Updates the line chart to show the trend for the selected measurement type and time range.
-     */
-    private void loadMeasurementTrend() {
-        measurementTrendChart.getData().clear();
-
-        String type = measurementTypeCombo.getValue();
-        var list = measurementDAO.getMeasurements(type);
-
-        LocalDate now = LocalDate.now();
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName(type + " Trend");
-
-        for (Measurement m : list) {
-
-            boolean include = switch (selectedRange) {
-                case "7" -> !m.getDate().isBefore(now.minusDays(7));
-                case "30" -> !m.getDate().isBefore(now.minusDays(30));
-                default -> true; // ALL
-            };
-
-            if (include) {
-                series.getData().add(new XYChart.Data<>(m.getDate().toString(), m.getValue()));
-            }
-        }
-
-        measurementTrendChart.getData().add(series);
-    }
-    /**
-     * Adds a new measurement entry for the selected type and refreshes the history and trend.
-     */
-    @FXML
-    private void handleAddMeasurement() {
-        String type = measurementTypeCombo.getValue();
-        String input = newMeasurementField.getText();
-
-        if (input.isBlank()) {
-            authentication.showError("Invalid Input", "Please enter a measurement value.");
-            return;
-        }
-
-        double value;
-        try {
-            value = Double.parseDouble(input);
-        } catch (NumberFormatException e) {
-            authentication.showError("Invalid Number", "Please enter a valid numeric value.");
-            return;
-        }
-
-        Measurement m = new Measurement(
-                CurrentUser.get().getId(),
-                value,
-                type,
-                LocalDate.now()
-        );
-
-        measurementDAO.addMeasurement(m);
-        newMeasurementField.clear();
-        loadMeasurements();
-    }
-
 
     @FXML
     public void handleDeleteAccount(javafx.scene.input.MouseEvent event) throws IOException {

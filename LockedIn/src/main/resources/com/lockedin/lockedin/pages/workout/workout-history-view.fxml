@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -41,7 +42,25 @@
         <VBox styleClass="workout-page-bg"
               spacing="10"
               fillWidth="true">
-            <VBox fx:id="chartContainer" spacing="20" styleClass="chart-card">
+            <VBox fx:id="chartSection" spacing="10" styleClass="chart-card" managed="false" visible="false">
+                <Label text="Reps Completed (Last 7 Days)" styleClass="workout-card-title"/>
+                <LineChart fx:id="repsChart"
+                           styleClass="profile-weight-chart"
+                           prefHeight="260"
+                           animated="false"
+                           legendVisible="false"
+                           createSymbols="true">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Total Reps"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="false"
+                                    autoRanging="true"/>
+                    </yAxis>
+                </LineChart>
             </VBox>
             <!-- Date range filter -->
             <VBox styleClass="workout-card" spacing="10">

@@ -8,7 +8,9 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class UserProgressDAO {
@@ -145,6 +147,35 @@ public class UserProgressDAO {
     } catch (SQLException e) {
       throw new RuntimeException("Failed to delete user progress for user " + userId, e);
     }
+  }
+
+  /**
+   * Returns the effective weight for each day in the range, using the latest
+   * recorded progress on or before that date (forward-filled between entries).
+   */
+  public Map<LocalDate, Double> getDailyWeightForRange(int userId, LocalDate start, LocalDate end) {
+    List<UserProgress> history = new ArrayList<>(getUserProgressHistory(userId));
+    history.sort(
+        Comparator.comparing(UserProgress::getEffectiveFrom).thenComparing(UserProgress::getId));
+
+    double currentWeight =
+        new UserDAO().getUserById(userId).map(User::getWeight).orElse(0.0);
+
+    int idx = 0;
+    while (idx < history.size() && history.get(idx).getEffectiveFrom().isBefore(start)) {
+      currentWeight = history.get(idx).getWeight();
+      idx++;
+    }
+
+    Map<LocalDate, Double> weights = new LinkedHashMap<>();
+    for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
+      while (idx < history.size() && !history.get(idx).getEffectiveFrom().isAfter(date)) {
+        currentWeight = history.get(idx).getWeight();
+        idx++;
+      }
+      weights.put(date, currentWeight);
+    }
+    return weights;
   }
 
   public double getDailyTargetCalories(int userId, LocalDate date) {

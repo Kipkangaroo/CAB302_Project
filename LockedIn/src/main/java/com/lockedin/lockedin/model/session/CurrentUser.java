@@ -8,7 +8,7 @@ import com.lockedin.lockedin.model.entity.user.User;
  * @version 1.0
  */
 public class CurrentUser {
-    private static User user;
+    private static User activeUser;
 
     /**
      * Creates a new CurrentUser.
@@ -19,10 +19,10 @@ public class CurrentUser {
     /**
      * Stores the active session user.
      *
-     * @param u the user to set as the current session user
+     * @param user the user to set as the current session user
      */
-    public static void set(User u) {
-        user = u;
+    public static void set(User user) {
+        activeUser = user;
     }
 
     /**
@@ -31,7 +31,7 @@ public class CurrentUser {
      * @return the current session user, or null if none is set
      */
     public static User get() {
-        return user;
+        return activeUser;
     }
 
     /**
@@ -39,22 +39,21 @@ public class CurrentUser {
      * @return The id.
      */
     public static int getId() {
-        return user.getId();
+        return activeUser.getId();
     }
 
     /**
      * Clears the active session user.
      */
     public static void clear() {
-        user = null;
+        activeUser = null;
     }
 
     /**
      * Returns the user.
      * @return The user.
      */
-    public static User getUser() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+    public static User getActiveUser() {
+        return activeUser;
     }
 }

@@ -29,13 +29,17 @@ import java.util.Map;
 public class WorkoutHistoryController {
     private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
+    private static final DateTimeFormatter CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
+    private static final int REPS_CHART_DAYS = 7;
 
     @FXML
     private Button backButton;
     @FXML
     private Label historyCountLabel;
     @FXML
-    private VBox chartContainer;
+    private VBox chartSection;
+    @FXML
+    private LineChart<String, Number> repsChart;
     @FXML
     private VBox historyContainer;
     @FXML
@@ -61,18 +65,13 @@ public class WorkoutHistoryController {
         List<WorkoutRoutineDAO.CompletedWorkoutData> workouts = routineDAO
                 .getCompletedWorkoutsByUser(CurrentUser.getId());
 
-        chartContainer.getChildren().clear();
-        if (!workouts.isEmpty()) {
-            BarChart<String, Number> workoutsChart =
-                    buildWorkoutsPerDayChart(computeWorkoutsPerDay(workouts));
-            workoutsChart.getStyleClass().add("workout-chart");
-
-            LineChart<String, Number> repsChart =
-                    buildRepsPerDayChart(computeRepsPerDay(workouts));
-            repsChart.getStyleClass().add("workout-chart");
-
-            chartContainer.getChildren().add(workoutsChart);
-            chartContainer.getChildren().add(repsChart);
+        if (workouts.isEmpty()) {
+            chartSection.setVisible(false);
+            chartSection.setManaged(false);
+        } else {
+            chartSection.setVisible(true);
+            chartSection.setManaged(true);
+            loadRepsChart(computeRepsPerDay(workouts));
         }
 
         showCards(workouts, "No completed workouts yet", "Complete a workout to see it here.");
@@ -223,74 +222,6 @@ public class WorkoutHistoryController {
         }
     }
 
-    /**
-     * Performs compute workouts per day.
-     * @param workouts The workouts.
-     */
-    private Map<LocalDate, Long> computeWorkoutsPerDay(List<WorkoutRoutineDAO.CompletedWorkoutData> workouts) {
-        Map<LocalDate, Long> workoutsPerDay = new LinkedHashMap<>();
-        for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
-            LocalDate date = LocalDateTime.parse(workout.completedAt).toLocalDate();
-            workoutsPerDay.put(date, workoutsPerDay.getOrDefault(date, 0L) + 1);
-        }
-        return workoutsPerDay;
-    }
-
-    /**
-     * Performs build workouts per day chart.
-     * @param data The data.
-     * @return The resulting text.
-     */
-    private BarChart<String, Number> buildWorkoutsPerDayChart(Map<LocalDate, Long> data) {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Date");
-        yAxis.setLabel("Workouts Completed");
-
-        BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
-        chart.setTitle("Workouts Completed (Last 7 Days)");
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Workouts");
-
-        LocalDate today = LocalDate.now();
-        for (int i = 0; i < 7; i++) {
-            LocalDate date = today.minusDays(i);
-            series.getData().add(new XYChart.Data<>(date.toString(), data.getOrDefault(date, 0L)));
-        }
-
-        chart.getData().add(series);
-        chart.setLegendVisible(false);
-        return chart;
-    }
-
-    /*
-     * private BarChart<String, Number> buildWorkoutsPerWeekChart(Map<LocalDate,
-     * Long> data) {
-     * CategoryAxis xAxis = new CategoryAxis();
-     * NumberAxis yAxis = new NumberAxis();
-     * xAxis.setLabel("Date");
-     * yAxis.setLabel("Workouts Completed");
-     * 
-     * BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
-     * chart.setTitle("Workouts Completed (Last 7 Days)");
-     * 
-     * XYChart.Series<String, Number> series = new XYChart.Series<>();
-     * series.setName("Workouts");
-     * 
-     * LocalDate today = LocalDate.now();
-     * for (int i = 0; i < 7; i++) {
-     * LocalDate date = today.minusDays(i);
-     * series.getData().add(new XYChart.Data<>(date.toString(),
-     * data.getOrDefault(date, 0L)));
-     * }
-     * 
-     * chart.getData().add(series);
-     * chart.setLegendVisible(false);
-     * return chart;
-     * }
-     */
-
     private Map<LocalDate, Integer> computeRepsPerDay(List<WorkoutRoutineDAO.CompletedWorkoutData> workouts) {
         Map<LocalDate, Integer> repsPerDay = new LinkedHashMap<>();
         for (WorkoutRoutineDAO.CompletedWorkoutData workout : workouts) {
@@ -302,31 +233,22 @@ public class WorkoutHistoryController {
     }
 
     /**
-     * Performs build reps per day chart.
-     * @param data The data.
-     * @return The resulting text.
+     * Populates the reps line chart (oldest date left, today right).
      */
-    private LineChart<String, Number> buildRepsPerDayChart(Map<LocalDate, Integer> data) {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Date");
-        yAxis.setLabel("Reps Completed");
-
-        LineChart<String, Number> chart = new LineChart<>(xAxis, yAxis);
-        chart.setTitle("Reps Completed (Last 7 Days)");
+    private void loadRepsChart(Map<LocalDate, Integer> data) {
+        repsChart.getData().clear();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Reps");
 
         LocalDate today = LocalDate.now();
-        for (int i = 0; i < 7; i++) {
-            LocalDate date = today.minusDays(i);
-            series.getData().add(new XYChart.Data<>(date.toString(), data.getOrDefault(date, 0)));
+        for (int daysAgo = REPS_CHART_DAYS - 1; daysAgo >= 0; daysAgo--) {
+            LocalDate date = today.minusDays(daysAgo);
+            String label = daysAgo == 0 ? "Today" : date.format(CHART_DATE_FORMAT);
+            series.getData().add(new XYChart.Data<>(label, data.getOrDefault(date, 0)));
         }
 
-        chart.getData().add(series);
-        chart.setLegendVisible(false);
-        return chart;
+        repsChart.getData().add(series);
     }
     /**
      * Performs handle back.
