@@ -63,8 +63,8 @@ public class CreateWorkoutController {
         repsField.setText("10");
         restField.setText("60");
     }
-    /**
-     * Performs handle add exercise.
+        /**
+     * Handle add exercise.
      */
 
     @FXML
@@ -87,8 +87,8 @@ public class CreateWorkoutController {
             authentication.showError("Sets and reps must be positive numbers; rest \u2265 0.");
         }
     }
-    /**
-     * Performs handle save.
+        /**
+     * Handle save.
      */
 
     @FXML
@@ -107,8 +107,8 @@ public class CreateWorkoutController {
                 CurrentUser.getId(), name, workoutNotesField.getText().trim(), entries);
         navigateBack();
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML
@@ -116,8 +116,8 @@ public class CreateWorkoutController {
         navigateBack();
     }
 
-    /**
-     * Performs navigate back.
+        /**
+     * Navigate back.
      */
     private void navigateBack() {
         PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
@@ -149,10 +149,10 @@ public class CreateWorkoutController {
             content.setPadding(new Insets(4, 4, 4, 4));
         }
         /**
-         * Performs update item.
-         * @param item The item.
-         * @param empty The empty.
-         */
+ * Update item.
+ * @param item item
+ * @param empty empty
+ */
 
         @Override
         protected void updateItem(WorkoutExerciseEntry item, boolean empty) {

@@ -9,32 +9,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Data Access Object (DAO) responsible for managing user body measurements.
+ * Data access object for user body measurements (weight, body fat, and similar types).
  *
- * This class handles:
- * - Storing new measurements (e.g., weight, waist, body fat) for the logged‑in user
- * - Retrieving measurements filtered by type (Weight, Waist, Body Fat %)
- * - Ordering results by date to support trend analysis
- * - Deleting individual measurement entries when needed
- *
- * It acts as the data layer for the Measurements feature, enabling users
- * to track physical changes over time.
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class MeasurementDAO {
 
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;
 
+    /**
+     * Opens the default users database and ensures the measurements table exists.
+     */
     public MeasurementDAO() {
         this.connection = SqliteConnection.getInstance(USERS_DB_FILE);
         createMeasurementsTable();
     }
 
+    /**
+     * Uses the supplied connection (for example an in-memory database in tests).
+     *
+     * @param connection active SQLite connection
+     */
     public MeasurementDAO(Connection connection) {
         this.connection = connection;
         createMeasurementsTable();
     }
 
+    /** Creates the measurements table when missing. */
     private void createMeasurementsTable() {
         String sql = """
             CREATE TABLE IF NOT EXISTS measurements (
@@ -54,6 +57,11 @@ public class MeasurementDAO {
         }
     }
 
+    /**
+     * Inserts a measurement row for the given entity.
+     *
+     * @param m measurement to persist (user id, value, type, date)
+     */
     public void addMeasurement(Measurement m) {
         String sql = "INSERT INTO measurements (user_id, value, type, date) VALUES (?, ?, ?, ?)";
 
@@ -68,6 +76,12 @@ public class MeasurementDAO {
         }
     }
 
+    /**
+     * Returns all measurements of the given type for the currently logged-in user, oldest first.
+     *
+     * @param type measurement category (for example {@code Weight})
+     * @return chronological list of matching measurements
+     */
     public List<Measurement> getMeasurements(String type) {
         List<Measurement> list = new ArrayList<>();
 
@@ -93,6 +107,12 @@ public class MeasurementDAO {
 
         return list;
     }
+    /**
+     * Deletes a measurement by primary key.
+     *
+     * @param id database id of the measurement row
+     * @return {@code true} if exactly one row was removed
+     */
     public boolean deleteMeasurement(int id) {
         String sql = "DELETE FROM measurements WHERE id = ?";
 

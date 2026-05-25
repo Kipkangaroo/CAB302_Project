@@ -6,13 +6,27 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+/**
+ * Unit tests for Food, covering expected behaviour and edge cases using isolated or in-memory dependencies where appropriate.
+ *
+ * @author LockedIn Team
+ * @version 1.0
+ */
 class FoodTest {
 
+
+    /**
+     * Verifies defaultConstructor: sets Today As Date.
+     */
     @Test
     void defaultConstructor_setsTodayAsDate() {
         assertEquals(LocalDate.now(), new Food().getDate());
     }
 
+
+    /**
+     * Verifies parameterizedConstructor: sets Fields.
+     */
     @Test
     void parameterizedConstructor_setsFields() {
         Food food = new Food(1, 5, "Oats", 300, 10, 50, 6);
@@ -25,6 +39,10 @@ class FoodTest {
         assertEquals(6, food.getFats());
     }
 
+
+    /**
+     * Verifies setName: updates Value.
+     */
     @Test
     void setName_updatesValue() {
         Food food = new Food();
@@ -32,6 +50,10 @@ class FoodTest {
         assertEquals("Rice", food.getName());
     }
 
+
+    /**
+     * Verifies setMacros: updates All Macro Fields.
+     */
     @Test
     void setMacros_updatesAllMacroFields() {
         Food food = new Food();
@@ -45,6 +67,10 @@ class FoodTest {
         assertEquals(12, food.getFats());
     }
 
+
+    /**
+     * Verifies setDate: updates Value.
+     */
     @Test
     void setDate_updatesValue() {
         Food food = new Food();
@@ -53,6 +79,10 @@ class FoodTest {
         assertEquals(date, food.getDate());
     }
 
+
+    /**
+     * Verifies setUserId: updates Value.
+     */
     @Test
     void setUserId_updatesValue() {
         Food food = new Food();
@@ -60,6 +90,10 @@ class FoodTest {
         assertEquals(42, food.getUserId());
     }
 
+
+    /**
+     * Verifies setId: updates Value.
+     */
     @Test
     void setId_updatesValue() {
         Food food = new Food();
@@ -67,6 +101,10 @@ class FoodTest {
         assertEquals(99, food.getId());
     }
 
+
+    /**
+     * Verifies toString: includes Macros Summary.
+     */
     @Test
     void toString_includesMacrosSummary() {
         Food food = new Food(0, 1, "Chicken", 250, 30, 0, 8);

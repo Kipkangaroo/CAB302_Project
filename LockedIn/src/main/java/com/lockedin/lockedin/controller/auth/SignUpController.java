@@ -76,10 +76,10 @@ public class SignUpController {
     @FXML
     private ComboBox<FitnessGoal> fitnessGoalCombo;
 
-    /**
-     * Performs parse valid double.
+        /**
+     * Parse valid double.
      * 
-     * @param text The text.
+     * @param text text
      */
     public static Double parseValidDouble(String text) {
         if (text == null || text.trim().isEmpty()) {
@@ -109,6 +109,9 @@ public class SignUpController {
         signUpButton.setDefaultButton(true);
     }
 
+    /**
+     * Applies a circular clip to the profile photo pane so images render round.
+     */
     private void applyCircularProfileClip() {
         double width = profilePhotoPane.getPrefWidth();
         double height = profilePhotoPane.getPrefHeight();
@@ -116,6 +119,11 @@ public class SignUpController {
         profilePhotoPane.setClip(new Circle(width / 2.0, height / 2.0, radius));
     }
 
+    /**
+     * Opens a file chooser so the user can select a profile photo.
+     *
+     * @param event the mouse click event
+     */
     @FXML
     private void handleProfilePlaceholderClick(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -132,12 +140,18 @@ public class SignUpController {
         }
     }
 
+    /**
+     * Toggles visibility of the primary password field.
+     */
     @FXML
     private void handleTogglePassword() {
         passwordVisible = togglePasswordVisibility(
                 passwordField, visiblePasswordField, togglePasswordIcon, passwordVisible);
     }
 
+    /**
+     * Toggles visibility of the confirm-password field.
+     */
     @FXML
     private void handleToggleConfirmPassword() {
         confirmPasswordVisible = togglePasswordVisibility(
@@ -147,6 +161,11 @@ public class SignUpController {
                 confirmPasswordVisible);
     }
 
+    /**
+     * Swaps visibility between a password field and its plain-text counterpart.
+     *
+     * @return whether the plain-text field is now visible
+     */
     private boolean togglePasswordVisibility(
             PasswordField passwordField,
             TextField visiblePasswordField,
@@ -172,15 +191,23 @@ public class SignUpController {
         return nowVisible;
     }
 
+    /**
+     * Returns password text from the visible field pair.
+     *
+     * @param passwordField        the masked field
+     * @param visiblePasswordField the plain-text field
+     * @param isVisible            whether the plain-text field is shown
+     * @return the current password text
+     */
     private String getPasswordText(
             PasswordField passwordField, TextField visiblePasswordField, boolean isVisible) {
         return isVisible ? visiblePasswordField.getText() : passwordField.getText();
     }
 
-    /**
-     * Performs handle back button.
+        /**
+     * Handle back button.
      * 
-     * @param event The event.
+     * @param event event
      * @throws IOException If the operation fails.
      */
 
@@ -190,8 +217,8 @@ public class SignUpController {
         authentication.switchScene(logoImageView, loginView);
     }
 
-    /**
-     * Performs handle signup.
+        /**
+     * Handle signup.
      */
 
     @FXML
@@ -320,11 +347,11 @@ public class SignUpController {
         }
     }
 
-    /**
-     * Performs capitalize.
+        /**
+     * Capitalize.
      * 
-     * @param string The string.
-     * @return The resulting text.
+     * @param string string
+     * @return resulting text
      */
     private String capitalize(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();

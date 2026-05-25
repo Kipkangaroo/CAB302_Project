@@ -11,11 +11,11 @@ public class ExerciseSet {
     private int reps;
     private double weight;
 
-    /**
-     * Creates a new ExerciseSet.
-     * @param exercise The exercise.
-     * @param reps The reps.
-     * @param weight The weight.
+        /**
+     * Constructs a ExerciseSet using default application dependencies.
+     * @param exercise exercise
+     * @param reps reps
+     * @param weight weight
      */
     public ExerciseSet(Exercise exercise, int reps, double weight) {
         this.exercise = exercise;
@@ -23,57 +23,57 @@ public class ExerciseSet {
         this.weight = weight;
     }
 
-    /**
-     * Creates a new ExerciseSet.
-     * @param exercise The exercise.
+        /**
+     * Constructs a ExerciseSet using default application dependencies.
+     * @param exercise exercise
      */
     public ExerciseSet(Exercise exercise) {
         this.exercise = exercise;
     }
 
-    /**
+            /**
      * Returns the exercise.
-     * @return The exercise.
+     * @return exercise
      */
     public Exercise getExercise() {
         return exercise;
     }
 
-    /**
+        /**
      * Sets the exercise.
-     * @param exercise The exercise.
+     * @param exercise exercise
      */
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
     }
 
-    /**
+            /**
      * Returns the reps.
-     * @return The reps.
+     * @return reps
      */
     public int getReps() {
         return reps;
     }
 
-    /**
+        /**
      * Sets the reps.
-     * @param reps The reps.
+     * @param reps reps
      */
     public void setReps(int reps) {
         this.reps = reps;
     }
 
-    /**
+            /**
      * Returns the weight.
-     * @return The weight.
+     * @return weight
      */
     public double getWeight() {
         return weight;
     }
 
-    /**
+        /**
      * Sets the weight.
-     * @param weight The weight.
+     * @param weight weight
      */
     public void setWeight(double weight) {
         this.weight = weight;

@@ -46,12 +46,12 @@ public class Authentication {
         this.userDAO = Objects.requireNonNull(userDAO, "userDAO");
     }
 
-    /**
-     * Performs show alert.
+        /**
+     * Show alert.
      * 
      * @param type    The type.
      * @param header  The header.
-     * @param content The content.
+     * @param content content
      */
     private static void showAlert(Alert.AlertType type, String header, String content) {
         Alert alert = new Alert(type);
@@ -60,20 +60,20 @@ public class Authentication {
         alert.showAndWait();
     }
 
-    /**
+        /**
      * Returns whether valid email.
      * 
-     * @param email The email.
+     * @param email email
      * @return true if the condition holds; otherwise false.
      */
     public boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 
-    /**
+        /**
      * Returns whether valid password.
      * 
-     * @param password The password.
+     * @param password password
      * @return true if the condition holds; otherwise false.
      */
     public boolean isValidPassword(String password) {
@@ -81,11 +81,11 @@ public class Authentication {
                 && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$");
     }
 
-    /**
-     * Performs show error.
+        /**
+     * Show error.
      * 
      * @param header  The header.
-     * @param content The content.
+     * @param content content
      */
     public void showError(String header, String content) {
         showAlert(Alert.AlertType.ERROR, header, content);
@@ -138,18 +138,18 @@ public class Authentication {
         return confirm.showAndWait().filter(bt -> bt == ButtonType.YES).isPresent();
     }
 
-    /**
-     * Performs show info.
+        /**
+     * Show info.
      * 
      * @param header  The header.
-     * @param content The content.
+     * @param content content
      */
     public void showInfo(String header, String content) {
         showAlert(Alert.AlertType.INFORMATION, header, content);
     }
 
-    /**
-     * Performs switch scene.
+        /**
+     * Switch scene.
      * 
      * @param sourceButton The source button.
      * @param fxmlPath     The fxml path.
@@ -159,8 +159,8 @@ public class Authentication {
         switchScene((Node) sourceButton, fxmlPath);
     }
 
-    /**
-     * Performs switch scene.
+        /**
+     * Switch scene.
      * 
      * @param source   The source.
      * @param fxmlPath The fxml path.

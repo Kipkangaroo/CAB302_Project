@@ -47,6 +47,12 @@ public final class PageNavigator {
         }
     }
 
+    /**
+     * Locates the main layout {@code #pageContainer} stack pane from any node in the scene.
+     *
+     * @param anchor node on the active scene graph
+     * @return page container, or {@code null} when not found
+     */
     private static StackPane findPageContainer(Node anchor) {
         return (StackPane) anchor.getScene().lookup("#pageContainer");
     }

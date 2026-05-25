@@ -12,18 +12,31 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for UserProgressDAO, covering expected behaviour and edge cases using isolated or in-memory dependencies where appropriate.
+ *
+ * @author LockedIn Team
+ * @version 1.0
+ */
 class UserProgressDAOTest {
 
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
     private static final int USER_ID = 1;
     private UserProgressDAO progressDAO;
 
+    /**
+     * Prepares fixtures before each test method runs.
+     */
     @BeforeEach
     void setUp() throws Exception {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
         progressDAO = new UserProgressDAO(conn);
     }
 
+
+    /**
+     * Verifies getDailyTargetCalories: returns Recorded Value.
+     */
     @Test
     void getDailyTargetCalories_returnsRecordedValue() {
         LocalDate date = LocalDate.of(2024, 1, 15);
@@ -34,6 +47,10 @@ class UserProgressDAOTest {
         assertEquals(2200.0, progressDAO.getDailyTargetCalories(USER_ID, date));
     }
 
+
+    /**
+     * Verifies addUserProgress: assigns Generated Id.
+     */
     @Test
     void addUserProgress_assignsGeneratedId() {
         UserProgress up = new UserProgress(
@@ -42,11 +59,19 @@ class UserProgressDAOTest {
         assertTrue(up.getId() > 0);
     }
 
+
+    /**
+     * Verifies getUserProgressByDate: returns Empty when Missing.
+     */
     @Test
     void getUserProgressByDate_returnsEmpty_whenMissing() {
         assertTrue(progressDAO.getUserProgressByDate(USER_ID, LocalDate.of(2020, 1, 1)).isEmpty());
     }
 
+
+    /**
+     * Verifies getUserProgressByDate: returns Progress when Exists.
+     */
     @Test
     void getUserProgressByDate_returnsProgress_whenExists() {
         LocalDate date = LocalDate.of(2024, 3, 10);
@@ -57,6 +82,10 @@ class UserProgressDAOTest {
         assertEquals(FitnessGoal.LOSE_WEIGHT, found.getFitnessGoal());
     }
 
+
+    /**
+     * Verifies addUserProgress: updates Existing Row For Same Date.
+     */
     @Test
     void addUserProgress_updatesExistingRowForSameDate() {
         LocalDate date = LocalDate.of(2024, 4, 1);
@@ -70,6 +99,10 @@ class UserProgressDAOTest {
         assertEquals(FitnessGoal.MAINTAIN_FITNESS, found.getFitnessGoal());
     }
 
+
+    /**
+     * Verifies getUserProgressHistory: returns Entries For User.
+     */
     @Test
     void getUserProgressHistory_returnsEntriesForUser() {
         progressDAO.addUserProgress(
@@ -79,6 +112,10 @@ class UserProgressDAOTest {
         assertEquals(2, progressDAO.getUserProgressHistory(USER_ID).size());
     }
 
+
+    /**
+     * Verifies getLaUserProgress: returns Latest On Or Before Date.
+     */
     @Test
     void getLatestUserProgress_returnsLatestOnOrBeforeDate() {
         progressDAO.addUserProgress(
@@ -90,6 +127,10 @@ class UserProgressDAOTest {
         assertEquals(LocalDate.of(2024, 6, 1), latest.getEffectiveFrom());
     }
 
+
+    /**
+     * Verifies deleteAllForUser: removes History.
+     */
     @Test
     void deleteAllForUser_removesHistory() {
         progressDAO.addUserProgress(
@@ -98,6 +139,10 @@ class UserProgressDAOTest {
         assertTrue(progressDAO.getUserProgressHistory(USER_ID).isEmpty());
     }
 
+
+    /**
+     * Verifies getDailyWeightForRange: forward Fills Between Entries.
+     */
     @Test
     void getDailyWeightForRange_forwardFillsBetweenEntries() {
         progressDAO.addUserProgress(

@@ -28,7 +28,9 @@
 
         <!-- Week navigation -->
         <HBox alignment="CENTER_LEFT" spacing="8">
-            <VBox.margin><Insets top="6"/></VBox.margin>
+            <VBox.margin>
+                <Insets top="6"/>
+            </VBox.margin>
             <Button text="‹"
                     styleClass="header-btn"
                     onAction="#handlePrevWeek"

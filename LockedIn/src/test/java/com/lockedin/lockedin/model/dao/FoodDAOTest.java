@@ -15,8 +15,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 /**
- * Unit tests for FoodDAO using an in‑memory SQLite database. Verifies CRUD operations and daily
- * nutritional totals.
+ * Unit tests for FoodDAO using an in-memory SQLite database.
+ *
+ * @author LockedIn Team
+ * @version 1.0
  */
 public class FoodDAOTest {
     private static final String IN_MEMORY_DB = "jdbc:sqlite::memory:";
@@ -24,6 +26,9 @@ public class FoodDAOTest {
     private FoodDAO foodDAO;
     private LocalDate today;
 
+    /**
+     * Prepares fixtures before each test method runs.
+     */
     @BeforeEach
     void setUp() throws Exception {
         Connection conn = DriverManager.getConnection(IN_MEMORY_DB);
@@ -31,10 +36,17 @@ public class FoodDAOTest {
         today = LocalDate.now();
     }
 
+    /**
+     * Creates a food entity with the given macros for test insertion.
+     */
     private Food makeFood(String name, int calories, int protein, int carbs, int fats) {
         return new Food(0, USER_ID, name, calories, protein, carbs, fats);
     }
 
+
+    /**
+     * Verifies addFood: assigns Generated Id.
+     */
     @Test
     void addFood_assignsGeneratedId() {
         Food food = makeFood("Apple", 95, 0, 25, 0);
@@ -42,6 +54,10 @@ public class FoodDAOTest {
         assertTrue(food.getId() > 0);
     }
 
+
+    /**
+     * Verifies getFoodsByDate: returns Added Food.
+     */
     @Test
     void getFoodsByDate_returnsAddedFood() {
         foodDAO.addFood(makeFood("Banana", 105, 1, 27, 0), today);
@@ -50,6 +66,10 @@ public class FoodDAOTest {
         assertEquals("Banana", foods.get(0).getName());
     }
 
+
+    /**
+     * Verifies getFoodsByDate: returns Empty for Different Date.
+     */
     @Test
     void getFoodsByDate_returnsEmpty_forDifferentDate() {
         foodDAO.addFood(makeFood("Banana", 105, 1, 27, 0), today);
@@ -58,6 +78,10 @@ public class FoodDAOTest {
         assertTrue(foods.isEmpty());
     }
 
+
+    /**
+     * Verifies getFoodsByDate: filters By user Id.
+     */
     @Test
     void getFoodsByDate_filtersBy_userId() {
         foodDAO.addFood(makeFood("Chicken", 200, 40, 0, 5), today);
@@ -68,6 +92,10 @@ public class FoodDAOTest {
         assertEquals("Chicken", foods.get(0).getName());
     }
 
+
+    /**
+     * Verifies removeFood: removes Entry.
+     */
     @Test
     void removeFood_removesEntry() {
         Food food = makeFood("Egg", 78, 6, 1, 5);
@@ -76,6 +104,10 @@ public class FoodDAOTest {
         assertTrue(foodDAO.getFoodsByDate(today, USER_ID).isEmpty());
     }
 
+
+    /**
+     * Verifies getDailyTotalByAttribute: sum Calories.
+     */
     @Test
     void getDailyTotalByAttribute_sumCalories() {
         foodDAO.addFood(makeFood("A", 100, 0, 0, 0), today);
@@ -83,11 +115,19 @@ public class FoodDAOTest {
         assertEquals(300, foodDAO.getDailyTotalByAttribute(today, "calories", USER_ID));
     }
 
+
+    /**
+     * Verifies getDailyTotalByAttribute: returns Zero when No Food.
+     */
     @Test
     void getDailyTotalByAttribute_returnsZero_whenNoFood() {
         assertEquals(0, foodDAO.getDailyTotalByAttribute(today, "calories", USER_ID));
     }
 
+
+    /**
+     * Verifies getDailyTotalByAttribute: sum Protein.
+     */
     @Test
     void getDailyTotalByAttribute_sumProtein() {
         foodDAO.addFood(makeFood("Tuna", 120, 28, 0, 1), today);
@@ -95,6 +135,10 @@ public class FoodDAOTest {
         assertEquals(40, foodDAO.getDailyTotalByAttribute(today, "protein", USER_ID));
     }
 
+
+    /**
+     * Verifies getDailyTotalByAttribute: sum Multiple Foods carbs.
+     */
     @Test
     void getDailyTotalByAttribute_sumMultipleFoods_carbs() {
         foodDAO.addFood(makeFood("Rice", 200, 4, 44, 1), today);
@@ -102,6 +146,10 @@ public class FoodDAOTest {
         assertEquals(59, foodDAO.getDailyTotalByAttribute(today, "carbs", USER_ID));
     }
 
+
+    /**
+     * Verifies getFoodsByDate: returned Food Has Correct Nutrients.
+     */
     @Test
     void getFoodsByDate_returnedFoodHasCorrectNutrients() {
         foodDAO.addFood(makeFood("Oats", 300, 10, 54, 6), today);
@@ -112,6 +160,10 @@ public class FoodDAOTest {
         assertEquals(6, food.getFats());
     }
 
+
+    /**
+     * Verifies updateFood: persists New Values.
+     */
     @Test
     void updateFood_persistsNewValues() {
         Food food = makeFood("Chicken", 200, 30, 0, 5);
@@ -127,6 +179,10 @@ public class FoodDAOTest {
         assertEquals(4, updated.getFats());
     }
 
+
+    /**
+     * Verifies getDailyTotalsForRange: returns Only Dates In Range.
+     */
     @Test
     void getDailyTotalsForRange_returnsOnlyDatesInRange() {
         LocalDate yesterday = today.minusDays(1);

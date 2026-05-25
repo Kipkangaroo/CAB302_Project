@@ -32,17 +32,17 @@ public class AIModelService {
     private final HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
 
-    /**
-     * Creates a new AIModelService.
+        /**
+     * Constructs a AIModelService using default application dependencies.
      * @param userId The user id.
      */
     public AIModelService(int userId) {
         this.userId = userId;
     }
 
-    /**
+            /**
      * Returns the api key.
-     * @return The api key.
+     * @return api key
      * @throws IOException If the operation fails.
      */
     private String getApiKey() throws IOException {
@@ -57,10 +57,10 @@ public class AIModelService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
-    /**
-     * Performs analyze image with prompt.
+        /**
+     * Analyze image with prompt.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      */
     public Food analyzeImageWithPrompt(Path imagePath, LocalDate date) {
         try {
@@ -90,10 +90,10 @@ public class AIModelService {
         return null;
     }
 
-    /**
-     * Performs send image with prompt.
+        /**
+     * Send image with prompt.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      */
     public Food sendImageWithPrompt(Path imagePath, LocalDate date) {
         Food food = analyzeImageWithPrompt(imagePath, date);
@@ -103,10 +103,10 @@ public class AIModelService {
         return food;
     }
 
-    /**
-     * Performs create analyze image task.
+        /**
+     * Create analyze image task.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      * @return A JavaFX task that performs the work on a background thread.
      */
     public Task<Food> createAnalyzeImageTask(Path imagePath, LocalDate date) {
@@ -121,10 +121,10 @@ public class AIModelService {
         };
     }
 
-    /**
-     * Performs build body.
-     * @param messages The messages.
-     * @return The resulting text.
+        /**
+     * Build body.
+     * @param messages messages
+     * @return resulting text
      */
     private Map<String, Object> buildBody(List<Map<String, Object>> messages) {
         final String model = "meta/llama-4-maverick-17b-128e-instruct";
@@ -138,10 +138,10 @@ public class AIModelService {
                 "presence_penalty", 0.00);
     }
 
-    /**
-     * Performs build request.
-     * @param key The key.
-     * @param body The body.
+        /**
+     * Build request.
+     * @param key key
+     * @param body body
      */
     private HttpRequest buildRequest(String key, Map<String, Object> body) {
         final String apiUrl = "https://integrate.api.nvidia.com/v1/chat/completions";
@@ -154,11 +154,11 @@ public class AIModelService {
                 .build();
     }
 
-    /**
-     * Performs post and parse.
-     * @param key The key.
-     * @param body The body.
-     * @return The resulting text.
+        /**
+     * Post and parse.
+     * @param key key
+     * @param body body
+     * @return resulting text
      */
     private String postAndParse(String key, Map<String, Object> body) {
         try {
@@ -179,10 +179,10 @@ public class AIModelService {
         }
     }
 
-    /**
-     * Performs build data uri.
+        /**
+     * Build data uri.
      * @param imagePath The image path.
-     * @return The resulting text.
+     * @return resulting text
      * @throws Exception If the operation fails.
      */
     private String buildDataUri(Path imagePath) throws Exception {
@@ -194,9 +194,9 @@ public class AIModelService {
         return "data:" + mediaType + ";base64," + base64;
     }
 
-    /**
-     * Performs read food image prompt.
-     * @return The resulting text.
+        /**
+     * Read food image prompt.
+     * @return resulting text
      * @throws IOException If the operation fails.
      */
     private String readFoodImagePrompt() throws IOException {

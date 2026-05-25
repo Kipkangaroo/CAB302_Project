@@ -35,15 +35,15 @@ public class LoginController {
     private Image eyeIcon;
     private Image eyeOffIcon;
 
-    /**
+            /**
      * Returns the logged in user.
-     * @return The logged in user.
+     * @return logged in user
      */
     public static User getLoggedInUser() {
         return loggedInUser;
     }
-    /**
-     * Performs handle log in.
+        /**
+     * Handle log in.
      * @throws IOException If the operation fails.
      */
 
@@ -60,6 +60,10 @@ public class LoginController {
         }
         authenticate(email, getPasswordText().trim());
     }
+
+    /**
+     * Initializes FXML-bound components after the login view loads.
+     */
     @FXML
     private void initialize() {
         loginButton.setDefaultButton(true);
@@ -71,6 +75,9 @@ public class LoginController {
                 "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
     }
 
+    /**
+     * Toggles visibility between the password field and plain-text field.
+     */
     @FXML
     private void handleTogglePassword() {
         if (passwordVisible) {
@@ -92,12 +99,17 @@ public class LoginController {
         (passwordVisible ? visiblePasswordField : passwordField).requestFocus();
     }
 
+    /**
+     * Returns the password text from whichever input field is currently visible.
+     *
+     * @return the entered password
+     */
     private String getPasswordText() {
         return passwordVisible ? visiblePasswordField.getText() : passwordField.getText();
     }
 
-    /**
-     * Performs successful login.
+        /**
+     * Successful login.
      * @throws IOException If the operation fails.
      */
     private void successfulLogin() throws IOException {
@@ -105,10 +117,10 @@ public class LoginController {
         authentication.switchScene(loginButton, mainView);
     }
 
-    /**
-     * Performs authenticate.
-     * @param email The email.
-     * @param password The password.
+        /**
+     * Authenticate.
+     * @param email email
+     * @param password password
      */
     private void authenticate(String email, String password) {
         Optional<User> user = authentication.authenticate(email, password);
@@ -126,15 +138,15 @@ public class LoginController {
         }
     }
 
-    /**
-     * Performs failed login.
+        /**
+     * Failed login.
      */
     private void failedLogin() {
         authentication.showError(
                 "Invalid email or password", "Please enter a valid email and password.");
     }
-    /**
-     * Performs handle forgot password.
+        /**
+     * Handle forgot password.
      * @throws IOException If the operation fails.
      */
 
@@ -143,8 +155,8 @@ public class LoginController {
         final String forgotPasswordView = "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
         authentication.switchScene(loginButton, forgotPasswordView);
     }
-    /**
-     * Performs handle signup.
+        /**
+     * Handle signup.
      * @throws IOException If the operation fails.
      */
 

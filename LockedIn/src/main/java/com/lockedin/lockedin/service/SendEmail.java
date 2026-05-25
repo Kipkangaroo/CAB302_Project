@@ -13,13 +13,13 @@ import org.simplejavamail.mailer.MailerBuilder;
  */
 public class SendEmail {
 
-    /**
-     * Creates a new SendEmail.
+        /**
+     * Constructs a SendEmail using default application dependencies.
      */
     public SendEmail() {}
 
-    /**
-     * Performs send otp email.
+        /**
+     * Send otp email.
      * @param toEmail The to email.
      * @param otpCode The otp code.
      */
@@ -27,8 +27,8 @@ public class SendEmail {
         send(toEmail, otpCode);
     }
 
-    /**
-     * Performs send.
+        /**
+     * Send.
      * @param toEmail The to email.
      * @param otpCode The otp code.
      */
@@ -55,6 +55,12 @@ public class SendEmail {
                         .buildEmail());
     }
 
+    /**
+     * Loads the SMTP application password from the bundled config resource.
+     *
+     * @return trimmed app password property
+     * @throws IOException if the config resource is missing or unreadable
+     */
     private String loadAppPassword() throws IOException {
         final String emailPasswordDir = "/com/lockedin/lockedin/service/config.file";
         Properties props = new Properties();

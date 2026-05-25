@@ -21,21 +21,21 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class LockedIn extends Application {
-        /**
-         * Application entry point that launches the JavaFX runtime.
-         * 
-         * @param args The args.
-         */
+            /**
+     * Application entry point that launches the JavaFX runtime.
+     * 
+     * @param args args
+     */
         public static void main(String[] args) {
                 Application.launch(LockedIn.class, args);
         }
 
         /**
-         * Performs start.
-         * 
-         * @param stage The stage.
-         * @throws IOException If the operation fails.
-         */
+ * Start.
+ * 
+ * @param stage stage
+ * @throws IOException If the operation fails.
+ */
 
         @Override
         public void start(Stage stage) throws IOException {

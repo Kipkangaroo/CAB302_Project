@@ -74,110 +74,110 @@
         <VBox spacing="8.0"
               maxWidth="Infinity">
             <Label text="First Name"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="firstNameField"
-                   promptText="Enter your first name"
-                   styleClass="diet-input"/>
-        <Label text="Last Name"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="lastNameField"
-                   promptText="Enter your last name"
-                   styleClass="diet-input"/>
-        <Label text="Email"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="emailField"
-                   promptText="Enter your email"
-                   styleClass="diet-input"/>
-        <Label text="Password"
-               styleClass="profile-detail-label"/>
-        <StackPane styleClass="password-field-stack" maxWidth="Infinity">
-            <PasswordField fx:id="passwordField"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="firstNameField"
+                       promptText="Enter your first name"
+                       styleClass="diet-input"/>
+            <Label text="Last Name"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="lastNameField"
+                       promptText="Enter your last name"
+                       styleClass="diet-input"/>
+            <Label text="Email"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="emailField"
+                       promptText="Enter your email"
+                       styleClass="diet-input"/>
+            <Label text="Password"
+                   styleClass="profile-detail-label"/>
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="passwordField"
+                               promptText="Enter your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visiblePasswordField"
                            promptText="Enter your password"
                            styleClass="diet-input"
-                           maxWidth="Infinity"/>
-            <TextField fx:id="visiblePasswordField"
-                       promptText="Enter your password"
-                       styleClass="diet-input"
-                       maxWidth="Infinity"
-                       visible="false"
-                       managed="false"/>
-            <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
-                <ImageView fx:id="togglePasswordIcon"
-                           fitWidth="20"
-                           fitHeight="20"
-                           preserveRatio="true"
-                           pickOnBounds="true"
-                           styleClass="password-toggle-icon"
-                           onMouseClicked="#handleTogglePassword">
-                    <HBox.margin>
-                        <Insets right="12"/>
-                    </HBox.margin>
-                    <Image url="@../../graphics/icons/eye-icon.png"/>
-                </ImageView>
-            </HBox>
-        </StackPane>
-        <Label text="Confirm Password"
-               styleClass="profile-detail-label"/>
-        <StackPane styleClass="password-field-stack" maxWidth="Infinity">
-            <PasswordField fx:id="confirmPasswordField"
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="togglePasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleTogglePassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <Label text="Confirm Password"
+                   styleClass="profile-detail-label"/>
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="confirmPasswordField"
+                               promptText="Confirm your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visibleConfirmPasswordField"
                            promptText="Confirm your password"
                            styleClass="diet-input"
-                           maxWidth="Infinity"/>
-            <TextField fx:id="visibleConfirmPasswordField"
-                       promptText="Confirm your password"
-                       styleClass="diet-input"
-                       maxWidth="Infinity"
-                       visible="false"
-                       managed="false"/>
-            <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
-                <ImageView fx:id="toggleConfirmPasswordIcon"
-                           fitWidth="20"
-                           fitHeight="20"
-                           preserveRatio="true"
-                           pickOnBounds="true"
-                           styleClass="password-toggle-icon"
-                           onMouseClicked="#handleToggleConfirmPassword">
-                    <HBox.margin>
-                        <Insets right="12"/>
-                    </HBox.margin>
-                    <Image url="@../../graphics/icons/eye-icon.png"/>
-                </ImageView>
-            </HBox>
-        </StackPane>
-        <Label text="Date of Birth"
-               styleClass="profile-detail-label"/>
-        <DatePicker fx:id="dobPicker"
-                    promptText="Select your date of birth"
-                    styleClass="diet-input"
-                    maxWidth="Infinity"/>
-        <Label text="Height (cm)"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="heightField"
-                   promptText="Enter your height in cm"
-                   styleClass="diet-input"/>
-        <Label text="Weight (kg)"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="weightField"
-                   promptText="Enter your weight in kg"
-                   styleClass="diet-input"/>
-        <Label text="Sex"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="sexCombo"
-                  promptText="Select your sex"
-                  styleClass="profile-goal-combo"
-                  maxWidth="Infinity"/>
-        <Label text="Activity Level"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="activityLevelCombo"
-                  promptText="Select your activity level"
-                  styleClass="profile-goal-combo"
-                  maxWidth="Infinity"/>
-        <Label text="Fitness Goal"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="fitnessGoalCombo"
-                  promptText="Select your fitness goal"
-                  styleClass="profile-goal-combo"
-                  maxWidth="Infinity"/>
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="toggleConfirmPasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleToggleConfirmPassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <Label text="Date of Birth"
+                   styleClass="profile-detail-label"/>
+            <DatePicker fx:id="dobPicker"
+                        promptText="Select your date of birth"
+                        styleClass="diet-input"
+                        maxWidth="Infinity"/>
+            <Label text="Height (cm)"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="heightField"
+                       promptText="Enter your height in cm"
+                       styleClass="diet-input"/>
+            <Label text="Weight (kg)"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="weightField"
+                       promptText="Enter your weight in kg"
+                       styleClass="diet-input"/>
+            <Label text="Sex"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="sexCombo"
+                      promptText="Select your sex"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
+            <Label text="Activity Level"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="activityLevelCombo"
+                      promptText="Select your activity level"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
+            <Label text="Fitness Goal"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="fitnessGoalCombo"
+                      promptText="Select your fitness goal"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
             <HBox alignment="CENTER_RIGHT"
                   maxWidth="Infinity">
                 <Button fx:id="signUpButton"

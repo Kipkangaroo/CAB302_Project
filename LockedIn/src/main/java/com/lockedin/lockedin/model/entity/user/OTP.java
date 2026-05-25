@@ -24,24 +24,24 @@ public class Otp {
         generateOtpCode();
     }
 
-    /**
+            /**
      * Returns the email.
-     * @return The email.
+     * @return email
      */
     public String getEmail() {
         return email;
     }
 
-    /**
+            /**
      * Returns the otp code.
-     * @return The otp code.
+     * @return otp code
      */
     public int getOtpCode() {
         return otpCode;
     }
 
-    /**
-     * Performs generate otp code.
+        /**
+     * Generate otp code.
      */
     private void generateOtpCode() {
         Random random = new Random();
@@ -49,18 +49,18 @@ public class Otp {
         otpDAO.saveOrReplaceOtp(email, otpCode);
     }
 
-    /**
-     * Performs verify email exists.
-     * @param email The email.
+        /**
+     * Verify email exists.
+     * @param email email
      * @return true if the operation succeeds; otherwise false.
      */
     boolean verifyEmailExists(String email) {
         return userDAO.getUserByEmail(email).isPresent();
     }
 
-    /**
-     * Performs verify otp code.
-     * @param email The email.
+        /**
+     * Verify otp code.
+     * @param email email
      * @param otpCode The otp code.
      * @return true if the operation succeeds; otherwise false.
      */

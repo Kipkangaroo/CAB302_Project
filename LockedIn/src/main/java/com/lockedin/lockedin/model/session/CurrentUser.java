@@ -10,8 +10,8 @@ import com.lockedin.lockedin.model.entity.user.User;
 public class CurrentUser {
     private static User activeUser;
 
-    /**
-     * Creates a new CurrentUser.
+        /**
+     * Constructs a CurrentUser using default application dependencies.
      */
     private CurrentUser() {
     }
@@ -25,18 +25,18 @@ public class CurrentUser {
         activeUser = user;
     }
 
-    /**
+            /**
      * Returns the active session user.
-     *
+     * 
      * @return the current session user, or null if none is set
      */
     public static User get() {
         return activeUser;
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public static int getId() {
         return activeUser.getId();
@@ -49,9 +49,9 @@ public class CurrentUser {
         activeUser = null;
     }
 
-    /**
+            /**
      * Returns the user.
-     * @return The user.
+     * @return user
      */
     public static User getActiveUser() {
         return activeUser;

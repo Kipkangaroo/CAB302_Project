@@ -17,24 +17,24 @@ public class OtpDAO {
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;
 
-    /**
-     * Creates a new OtpDAO.
+        /**
+     * Constructs a OtpDAO using default application dependencies.
      */
     public OtpDAO() {
         this(SqliteConnection.getInstance(USERS_DB_FILE));
     }
 
-    /**
-     * Creates a new OtpDAO.
-     * @param connection The connection.
+        /**
+     * Constructs a OtpDAO using default application dependencies.
+     * @param connection connection
      */
     public OtpDAO(Connection connection) {
         this.connection = connection;
         createOtpTable();
     }
 
-    /**
-     * Performs create otp table.
+        /**
+     * Create otp table.
      */
     private void createOtpTable() {
         String sql = "CREATE TABLE IF NOT EXISTS user_otps ("
@@ -49,9 +49,9 @@ public class OtpDAO {
         }
     }
 
-    /**
-     * Performs save or replace otp.
-     * @param email The email.
+        /**
+     * Save or replace otp.
+     * @param email email
      * @param otpCode The otp code.
      */
     public void saveOrReplaceOtp(String email, int otpCode) {
@@ -65,10 +65,10 @@ public class OtpDAO {
         }
     }
 
-    /**
+            /**
      * Returns the otp code.
-     * @param email The email.
-     * @return The otp code.
+     * @param email email
+     * @return otp code
      */
     public Optional<Integer> getOtpCode(String email) {
         String sql = "SELECT otp_code FROM user_otps WHERE email = ?";
@@ -85,9 +85,9 @@ public class OtpDAO {
         }
     }
 
-    /**
-     * Performs verify otp.
-     * @param email The email.
+        /**
+     * Verify otp.
+     * @param email email
      * @param otpCode The otp code.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -96,9 +96,9 @@ public class OtpDAO {
         return storedOtpCode.isPresent() && storedOtpCode.get() == otpCode;
     }
 
-    /**
-     * Performs delete otp.
-     * @param email The email.
+        /**
+     * Delete otp.
+     * @param email email
      */
     public void deleteOtp(String email) {
         String sql = "DELETE FROM user_otps WHERE email = ?";

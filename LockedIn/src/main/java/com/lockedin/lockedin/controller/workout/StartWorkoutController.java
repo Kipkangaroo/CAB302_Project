@@ -126,8 +126,8 @@ public class StartWorkoutController {
         advanceSet();
         showCurrentSet();
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML
@@ -136,8 +136,8 @@ public class StartWorkoutController {
                 "Leave workout? Progress from this workout will not be saved.", this::navigateBack);
     }
 
-    /**
-     * Performs show current set.
+        /**
+     * Show current set.
      */
     private void showCurrentSet() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -164,9 +164,9 @@ public class StartWorkoutController {
         upNextBox.setManaged(upNext != null);
     }
 
-    /**
-     * Performs update exercise image.
-     * @param entry The entry.
+        /**
+     * Update exercise image.
+     * @param entry entry
      */
     private void updateExerciseImage(WorkoutExerciseEntry entry) {
         Exercise exercise = exerciseCache.computeIfAbsent(
@@ -180,8 +180,8 @@ public class StartWorkoutController {
         exerciseImageView.setImage(new Image(exercise.getExerciseImageUrl(0), true));
     }
 
-    /**
-     * Performs current exercise.
+        /**
+     * Current exercise.
      */
     private WorkoutExerciseEntry currentExercise() {
         return routine.exercises.get(exerciseIndex);
@@ -196,8 +196,8 @@ public class StartWorkoutController {
         return exerciseIndex == routine.exercises.size() - 1 && setIndex == exercise.getSets() - 1;
     }
 
-    /**
-     * Performs advance set.
+        /**
+     * Advance set.
      */
     private void advanceSet() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -209,9 +209,9 @@ public class StartWorkoutController {
         }
     }
 
-    /**
+            /**
      * Returns the up next text.
-     * @return The up next text.
+     * @return up next text
      */
     private String getUpNextText() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -224,8 +224,8 @@ public class StartWorkoutController {
         return null;
     }
 
-    /**
-     * Performs finish workout.
+        /**
+     * Finish workout.
      */
     private void finishWorkout() {
         workoutProgressBar.setProgress(1);
@@ -242,8 +242,8 @@ public class StartWorkoutController {
         navigateBack();
     }
 
-    /**
-     * Performs navigate back.
+        /**
+     * Navigate back.
      */
     private void navigateBack() {
         final String workoutDetailView = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";

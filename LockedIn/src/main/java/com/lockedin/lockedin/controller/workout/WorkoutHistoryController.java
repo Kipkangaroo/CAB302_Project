@@ -52,8 +52,8 @@ public class WorkoutHistoryController {
         loadHistory();
     }
 
-    /**
-     * Performs load history.
+        /**
+     * Load history.
      */
     private void loadHistory() {
         List<WorkoutRoutineDAO.CompletedWorkoutData> workouts = routineDAO
@@ -127,9 +127,9 @@ public class WorkoutHistoryController {
         loadHistory();
     }
 
-    /**
-     * Performs build history card.
-     * @param workout The workout.
+        /**
+     * Build history card.
+     * @param workout workout
      */
     private VBox buildHistoryCard(WorkoutRoutineDAO.CompletedWorkoutData workout) {
         Label nameLabel = new Label(workout.routineName);
@@ -160,10 +160,10 @@ public class WorkoutHistoryController {
         return card;
     }
 
-    /**
-     * Performs build exercise summary row.
+        /**
+     * Build exercise summary row.
      * @param exerciseName The exercise name.
-     * @param total The total.
+     * @param total total
      */
     private HBox buildExerciseSummaryRow(String exerciseName, ExerciseTotals total) {
         Label exerciseLabel = new Label(exerciseName);
@@ -186,10 +186,10 @@ public class WorkoutHistoryController {
         return row;
     }
 
-    /**
-     * Performs summarize exercises.
-     * @param sets The sets.
-     * @return The resulting text.
+        /**
+     * Summarize exercises.
+     * @param sets sets
+     * @return resulting text
      */
     private Map<String, ExerciseTotals> summarizeExercises(
             List<WorkoutRoutineDAO.CompletedSetData> sets) {
@@ -203,10 +203,10 @@ public class WorkoutHistoryController {
         return totals;
     }
 
-    /**
-     * Performs format completed at.
+        /**
+     * Format completed at.
      * @param completedAt The completed at.
-     * @return The resulting text.
+     * @return resulting text
      */
     private String formatCompletedAt(String completedAt) {
         final DateTimeFormatter displayDate = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
@@ -247,8 +247,8 @@ public class WorkoutHistoryController {
 
         repsChart.getData().add(series);
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML

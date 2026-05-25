@@ -70,8 +70,8 @@ public class AIWorkoutController {
         resultCard.setManaged(false);
         saveButton.setDisable(true);
     }
-    /**
-     * Performs handle generate.
+        /**
+     * Handle generate.
      */
 
     @FXML
@@ -112,8 +112,8 @@ public class AIWorkoutController {
         worker.setDaemon(true);
         worker.start();
     }
-    /**
-     * Performs handle save.
+        /**
+     * Handle save.
      */
 
     @FXML
@@ -128,8 +128,8 @@ public class AIWorkoutController {
                 generatedResult.exercises);
         navigateBack();
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML
@@ -137,9 +137,9 @@ public class AIWorkoutController {
         navigateBack();
     }
 
-    /**
-     * Performs display result.
-     * @param result The result.
+        /**
+     * Display result.
+     * @param result result
      */
     private void displayResult(WorkoutResult result) {
         routineNameLabel.setText(result.routineName);
@@ -155,9 +155,9 @@ public class AIWorkoutController {
         statusLabel.setText("");
     }
 
-    /**
-     * Performs build exercise row.
-     * @param entry The entry.
+        /**
+     * Build exercise row.
+     * @param entry entry
      */
     private HBox buildExerciseRow(WorkoutExerciseEntry entry) {
         Label nameLabel = new Label(entry.getExerciseName());
@@ -180,9 +180,9 @@ public class AIWorkoutController {
         return row;
     }
 
-    /**
+        /**
      * Sets the generating state.
-     * @param generating The generating.
+     * @param generating generating
      */
     private void setGeneratingState(boolean generating) {
         loadingIndicator.setVisible(generating);
@@ -196,9 +196,9 @@ public class AIWorkoutController {
         }
     }
 
-    /**
-     * Performs show status.
-     * @param message The message.
+        /**
+     * Show status.
+     * @param message message
      * @param isError The is error.
      */
     private void showStatus(String message, boolean isError) {
@@ -206,8 +206,8 @@ public class AIWorkoutController {
         statusLabel.setStyle(isError ? "-fx-text-fill: #e53935;" : "-fx-text-fill: #1565C0;");
     }
 
-    /**
-     * Performs navigate back.
+        /**
+     * Navigate back.
      */
     private void navigateBack() {
         PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);

@@ -67,6 +67,9 @@ public class CaloriesMacrosTrendsController {
         loadCharts();
     }
 
+    /**
+     * Reloads calorie and macro line charts for the selected date range.
+     */
     private void loadCharts() {
         int userId = CurrentUser.getId();
         User user = CurrentUser.get();
@@ -98,6 +101,9 @@ public class CaloriesMacrosTrendsController {
                 date -> macroGoal(user, fitnessGoal, userId, date, User::getTargetFats));
     }
 
+    /**
+     * Computes the macro goal for a day using the user's targets and progress history.
+     */
     private double macroGoal(
             User user,
             FitnessGoal fitnessGoal,
@@ -111,6 +117,9 @@ public class CaloriesMacrosTrendsController {
         return targetFn.apply(user, targetCalories, fitnessGoal);
     }
 
+    /**
+     * Populates a chart with actual and goal series across the current range.
+     */
     private void populateDualSeriesChart(
             LineChart<String, Number> chart,
             LocalDate end,
@@ -156,6 +165,12 @@ public class CaloriesMacrosTrendsController {
         return "\u200B".repeat(daysAgo);
     }
 
+    /**
+     * Highlights the active range button and demotes the inactive one.
+     *
+     * @param active   the selected button
+     * @param inactive the other range button
+     */
     private void setActive(Button active, Button inactive) {
         active.getStyleClass().remove("diet-secondary-btn");
         if (!active.getStyleClass().contains("primary-btn")) {

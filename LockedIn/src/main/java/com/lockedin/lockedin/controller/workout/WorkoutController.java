@@ -40,8 +40,8 @@ public class WorkoutController {
         loadWorkouts();
     }
 
-    /**
-     * Performs load workouts.
+        /**
+     * Load workouts.
      */
     private void loadWorkouts() {
         List<WorkoutRoutineDAO.RoutineData> routines = routineDAO.getRoutinesByUser(CurrentUser.getId());
@@ -126,8 +126,8 @@ public class WorkoutController {
         return card;
     }
 
-    /**
-     * Performs open detail.
+        /**
+     * Open detail.
      * @param routineId The routine id.
      */
     private void openDetail(int routineId) {
@@ -135,8 +135,8 @@ public class WorkoutController {
         WorkoutDetailController.setCurrentRoutineId(routineId);
         PageNavigator.loadPage(workoutsContainer, detailView);
     }
-    /**
-     * Performs handle create workout.
+        /**
+     * Handle create workout.
      */
 
     @FXML
@@ -144,8 +144,8 @@ public class WorkoutController {
         final String createView = "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
         PageNavigator.loadPage(workoutsContainer, createView);
     }
-    /**
-     * Performs handle history.
+        /**
+     * Handle history.
      */
 
     @FXML
@@ -153,8 +153,8 @@ public class WorkoutController {
         final String historyView = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
         PageNavigator.loadPage(workoutsContainer, historyView);
     }
-    /**
-     * Performs handle weekly summary.
+        /**
+     * Handle weekly summary.
      */
 
     @FXML

@@ -44,17 +44,17 @@ public enum ActivityLevel {
         return null;
     }
 
-    /**
+            /**
      * Returns the display name.
-     * @return The display name.
+     * @return display name
      */
     public String getDisplayName() {
         return displayName;
     }
 
-    /**
+            /**
      * Returns the tdee multiplier.
-     * @return The tdee multiplier.
+     * @return tdee multiplier
      */
     public double getTdeeMultiplier() {
         return tdeeMultiplier;

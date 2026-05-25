@@ -77,9 +77,9 @@ public class ProfileController {
     private Image editImage;
     private Image saveImage;
 
-    /**
-     * Performs handle logout.
-     *
+        /**
+     * Handle logout.
+     * 
      * @throws IOException If the operation fails.
      */
 
@@ -89,8 +89,8 @@ public class ProfileController {
         authentication.switchScene(logoutButton, LOGIN_VIEW);
     }
 
-    /**
-     * Performs handle edit details.
+        /**
+     * Handle edit details.
      */
 
     @FXML
@@ -102,8 +102,8 @@ public class ProfileController {
         }
     }
 
-    /**
-     * Performs enter edit mode.
+        /**
+     * Enter edit mode.
      */
     private void enterEditMode() {
         editingDetails = true;
@@ -116,8 +116,8 @@ public class ProfileController {
         weightField.selectAll();
     }
 
-    /**
-     * Performs exit edit mode.
+        /**
+     * Exit edit mode.
      */
     private void exitEditMode() {
         Double weight = SignUpController.parseValidDouble(weightField.getText());
@@ -142,8 +142,8 @@ public class ProfileController {
         loadWeightChart();
     }
 
-    /**
-     * Performs refresh detail fields.
+        /**
+     * Refresh detail fields.
      */
     private void refreshDetailFields() {
         weightField.setText("Weight: " + user.getWeight() + " kg");
@@ -165,8 +165,8 @@ public class ProfileController {
         fitnessGoalCombo.setDisable(!editing);
     }
 
-    /**
-     * Performs update edit icon.
+        /**
+     * Update edit icon.
      */
     private void updateEditIcon() {
         final double iconSize = 46;
@@ -178,11 +178,11 @@ public class ProfileController {
         }
     }
 
-    /**
+        /**
      * Sets the field editing.
-     *
+     * 
      * @param field   The field.
-     * @param editing The editing.
+     * @param editing editing
      */
     private void setFieldEditing(TextField field, boolean editing) {
         field.setEditable(editing);
@@ -196,6 +196,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Applies a circular clip to the profile photo pane.
+     */
     private void applyCircularProfileClip() {
         double width = profilePhotoPane.getPrefWidth();
         double height = profilePhotoPane.getPrefHeight();
@@ -232,6 +235,10 @@ public class ProfileController {
         setFitnessGoalEditing(false);
         loadProfileImage();
     }
+
+    /**
+     * Loads the user's profile image from storage or the default placeholder.
+     */
     private void loadProfileImage() {
         UserImageDAO imageDAO = new UserImageDAO();
         Optional<byte[]> imageData = imageDAO.getImageByUserId(user.getId());
@@ -289,8 +296,8 @@ public class ProfileController {
         return "";
     }
 
-    /**
-     * Performs update tracking streaks.
+        /**
+     * Update tracking streaks.
      */
     private void updateTrackingStreaks() {
         FoodDAO foodDAO = new FoodDAO();
@@ -299,11 +306,11 @@ public class ProfileController {
         updateStreak(workoutStreakRow, workoutDAO.getWeeklyWorkoutTracking(user.getId()));
     }
 
-    /**
-     * Performs update streak.
-     *
+        /**
+     * Update streak.
+     * 
      * @param row       The row.
-     * @param completed The completed.
+     * @param completed completed
      */
     private void updateStreak(HBox row, boolean[] completed) {
         final DateTimeFormatter dayLabelFormat = DateTimeFormatter.ofPattern("dd/MM");
@@ -321,6 +328,12 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Confirms and deletes the current user's account, then returns to login.
+     *
+     * @param event the mouse click event
+     * @throws IOException if navigation to the login view fails
+     */
     @FXML
     public void handleDeleteAccount(javafx.scene.input.MouseEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,

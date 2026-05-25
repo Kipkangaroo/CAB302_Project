@@ -34,8 +34,8 @@ public final class JohnDemoSeeder {
     private static final double START_WEIGHT_KG = 60.0;
     private static final double END_WEIGHT_KG = 65.0;
 
-    /**
-     * Creates a new JohnDemoSeeder.
+        /**
+     * Constructs a JohnDemoSeeder using default application dependencies.
      */
     private JohnDemoSeeder() {
     }
@@ -92,8 +92,8 @@ public final class JohnDemoSeeder {
         userDAO.updateFitnessGoal(userId, FitnessGoal.MAINTAIN_FITNESS);
     }
 
-    /**
-     * Performs build john user.
+        /**
+     * Build john user.
      */
     private static User buildJohnUser() {
         final String johnPassword = "Password1!";
@@ -111,8 +111,8 @@ public final class JohnDemoSeeder {
         return user;
     }
 
-    /**
-     * Performs create workout routines.
+        /**
+     * Create workout routines.
      * 
      * @param userId       The user id.
      * @param exercisesDAO The exercises dao.
@@ -190,8 +190,8 @@ public final class JohnDemoSeeder {
         return saved;
     }
 
-    /**
-     * Performs entry.
+        /**
+     * Entry.
      * 
      * @param exercisesDAO The exercises dao.
      * @param name         The name.
@@ -208,8 +208,8 @@ public final class JohnDemoSeeder {
         return new WorkoutExerciseEntry(0, exerciseId, name, sets, reps, restSeconds);
     }
 
-    /**
-     * Performs seed february data.
+        /**
+     * Seed february data.
      * 
      * @param john        The john.
      * @param userId      The user id.
@@ -259,10 +259,10 @@ public final class JohnDemoSeeder {
         }
     }
 
-    /**
+        /**
      * Returns whether gym day.
      * 
-     * @param date The date.
+     * @param date date
      * @return true if the condition holds; otherwise false.
      */
     private static boolean isGymDay(LocalDate date) {
@@ -270,11 +270,11 @@ public final class JohnDemoSeeder {
         return day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
     }
 
-    /**
-     * Performs weight for day.
+        /**
+     * Weight for day.
      * 
      * @param dayNumber The day number.
-     * @return The computed value.
+     * @return computed value
      */
     private static double weightForDay(int dayNumber) {
         if (dayNumber >= 20) {
@@ -283,13 +283,13 @@ public final class JohnDemoSeeder {
         return START_WEIGHT_KG + (END_WEIGHT_KG - START_WEIGHT_KG) * (dayNumber - 1) / 19.0;
     }
 
-    /**
-     * Performs target calories for.
+        /**
+     * Target calories for.
      * 
      * @param base   The base.
-     * @param weight The weight.
+     * @param weight weight
      * @param goal   The goal.
-     * @return The computed value.
+     * @return computed value
      */
     private static double targetCaloriesFor(User base, double weight, FitnessGoal goal) {
         User snapshot = new User();
@@ -302,10 +302,10 @@ public final class JohnDemoSeeder {
         return snapshot.getTargetCalories();
     }
 
-    /**
-     * Performs build completed sets.
+        /**
+     * Build completed sets.
      * 
-     * @param routine The routine.
+     * @param routine routine
      * @return A list of matching records.
      */
     private static List<WorkoutRoutineDAO.CompletedSetData> buildCompletedSets(
@@ -330,8 +330,8 @@ public final class JohnDemoSeeder {
         return completedSets;
     }
 
-    /**
-     * Performs meals for day.
+        /**
+     * Meals for day.
      * 
      * @param dayNumber The day number.
      * @return A list of matching records.
@@ -381,11 +381,11 @@ public final class JohnDemoSeeder {
         return selected;
     }
 
-    /**
-     * Performs meal.
+        /**
+     * Meal.
      * 
      * @param name     The name.
-     * @param calories The calories.
+     * @param calories calories
      * @param protein  The protein.
      * @param carbs    The carbs.
      * @param fats     The fats.
@@ -394,21 +394,21 @@ public final class JohnDemoSeeder {
         return new Meal(name, calories, protein, carbs, fats);
     }
 
-    /**
-     * Performs routine template.
+        /**
+     * Routine template.
      * 
      * @param name      The name.
      * @param notes     The notes.
-     * @param exercises The exercises.
+     * @param exercises exercises
      */
     private record RoutineTemplate(String name, String notes, List<WorkoutExerciseEntry> exercises) {
     }
 
-    /**
-     * Performs meal.
+        /**
+     * Meal.
      * 
      * @param name     The name.
-     * @param calories The calories.
+     * @param calories calories
      * @param protein  The protein.
      * @param carbs    The carbs.
      * @param fats     The fats.

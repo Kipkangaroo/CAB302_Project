@@ -19,25 +19,25 @@ public class FoodDAO {
     private static final String FOOD_DB_FILE = "food.db";
     private final Connection connection;
 
-    /**
-     * Creates a new FoodDAO.
+        /**
+     * Constructs a FoodDAO using default application dependencies.
      */
     public FoodDAO() {
         this.connection = SqliteConnection.getInstance(FOOD_DB_FILE);
         createFoodTable();
     }
 
-    /**
-     * Creates a new FoodDAO.
-     * @param connection The connection.
+        /**
+     * Constructs a FoodDAO using default application dependencies.
+     * @param connection connection
      */
     public FoodDAO(Connection connection) {
         this.connection = connection;
         createFoodTable();
     }
 
-    /**
-     * Performs create food table.
+        /**
+     * Create food table.
      */
     private void createFoodTable() {
         String sql = "CREATE TABLE IF NOT EXISTS foods ("
@@ -58,10 +58,10 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs add food.
-     * @param food The food.
-     * @param date The date.
+        /**
+     * Add food.
+     * @param food food
+     * @param date date
      */
     public void addFood(Food food, LocalDate date) {
         String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
@@ -85,11 +85,11 @@ public class FoodDAO {
         }
     }
 
-    /**
+            /**
      * Returns the foods by date.
      * @param targetDate The target date.
      * @param userId The user id.
-     * @return The foods by date.
+     * @return foods by date
      */
     public List<Food> getFoodsByDate(LocalDate targetDate, int userId) {
         String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
@@ -109,14 +109,14 @@ public class FoodDAO {
         }
     }
 
-    /**
+        /**
      * Updates an existing food entry's name and nutritional values.
      * @param id The food id.
-     * @param name The name.
-     * @param calories The calories.
-     * @param protein The protein.
-     * @param carbs The carbs.
-     * @param fats The fats.
+     * @param name name
+     * @param calories calories
+     * @param protein protein
+     * @param carbs carbs
+     * @param fats fats
      */
     public void updateFood(int id, String name, double calories, double protein,
                            double carbs, double fats) {
@@ -135,9 +135,9 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs remove food.
-     * @param id The id.
+        /**
+     * Remove food.
+     * @param id id
      */
     public void removeFood(int id) {
         String sql = "DELETE FROM foods WHERE id = ?";
@@ -149,8 +149,8 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs delete all for user.
+        /**
+     * Delete all for user.
      * @param userId The user id.
      */
     public void deleteAllForUser(int userId) {
@@ -163,10 +163,10 @@ public class FoodDAO {
         }
     }
 
-    /**
+            /**
      * Returns the weekly calorie tracking.
      * @param userId The user id.
-     * @return The weekly calorie tracking.
+     * @return weekly calorie tracking
      */
     public boolean[] getWeeklyCalorieTracking(int userId) {
         boolean[] streakDays = new boolean[7];
@@ -178,12 +178,12 @@ public class FoodDAO {
         return streakDays;
     }
 
-    /**
+            /**
      * Returns the daily total by attribute.
      * @param targetDate The target date.
-     * @param attribute The attribute.
+     * @param attribute attribute
      * @param userId The user id.
-     * @return The daily total by attribute.
+     * @return daily total by attribute
      */
     public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userId) {
         String sql = "SELECT COALESCE(SUM("
@@ -236,9 +236,9 @@ public class FoodDAO {
         return totals;
     }
 
-    /**
-     * Performs map row to food.
-     * @param rs The rs.
+        /**
+     * Map row to food.
+     * @param rs rs
      * @throws SQLException If the operation fails.
      */
     private Food mapRowToFood(ResultSet rs) throws SQLException {

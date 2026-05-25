@@ -67,6 +67,9 @@ public class WeeklySummaryController {
         }
     }
 
+    /**
+     * Loads completed workouts and summary stats for the week indicated by {@code weekOffset}.
+     */
     private void loadWeek() {
         final DateTimeFormatter rangeFmt = DateTimeFormatter.ofPattern("d MMM");
         final DateTimeFormatter rangeFmtYear = DateTimeFormatter.ofPattern("d MMM yyyy");
@@ -100,6 +103,12 @@ public class WeeklySummaryController {
         }
     }
 
+    /**
+     * Extracts the local date portion from a completed-at timestamp string.
+     *
+     * @param completedAt ISO or legacy timestamp text
+     * @return date as yyyy-MM-dd when parseable
+     */
     private String parseDate(String completedAt) {
         try {
             return LocalDateTime.parse(completedAt).toLocalDate().toString();
@@ -108,6 +117,12 @@ public class WeeklySummaryController {
         }
     }
 
+    /**
+     * Builds a summary card UI node for one completed workout.
+     *
+     * @param workout completed workout data
+     * @return styled card container
+     */
     private VBox buildCard(WorkoutRoutineDAO.CompletedWorkoutData workout) {
         final DateTimeFormatter cardFmt = DateTimeFormatter.ofPattern("EEE d MMM, h:mm a");
         Label nameLabel = new Label(workout.routineName);

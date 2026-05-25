@@ -34,8 +34,8 @@ public class LayoutController {
     public void initialize() {
         showWorkoutPage();
     }
-    /**
-     * Performs show workout page.
+        /**
+     * Show workout page.
      */
 
     @FXML
@@ -43,8 +43,8 @@ public class LayoutController {
         loadPage(WORKOUT_VIEW);
         setActive(workoutNavButton);
     }
-    /**
-     * Performs show diet page.
+        /**
+     * Show diet page.
      */
 
     @FXML
@@ -52,8 +52,8 @@ public class LayoutController {
         loadPage(DIET_VIEW);
         setActive(dietNavButton);
     }
-    /**
-     * Performs show profile page.
+        /**
+     * Show profile page.
      */
 
     @FXML
@@ -62,17 +62,17 @@ public class LayoutController {
         setActive(profileNavButton);
     }
 
-    /**
-     * Performs load page.
-     * @param page The page.
+        /**
+     * Load page.
+     * @param page page
      */
     private void loadPage(String page) {
         PageNavigator.loadInto(pageContainer, getClass(), page);
     }
 
-    /**
+        /**
      * Sets the active.
-     * @param active The active.
+     * @param active active
      */
     private void setActive(Button active) {
         final String inactive = "-fx-scale-x: 1; -fx-scale-y: 1; -fx-opacity: 1;";

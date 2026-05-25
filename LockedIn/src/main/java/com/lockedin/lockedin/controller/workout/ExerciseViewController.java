@@ -75,8 +75,8 @@ public class ExerciseViewController {
                             }
                         });
     }
-    /**
-     * Performs handle back button.
+        /**
+     * Handle back button.
      */
 
     @FXML
@@ -84,17 +84,17 @@ public class ExerciseViewController {
         PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
     }
 
-    /**
+            /**
      * Returns the selected exercise id.
-     * @return The selected exercise id.
+     * @return selected exercise id
      */
     public Integer getSelectedExerciseId() {
         return selectedExerciseId;
     }
 
-    /**
-     * Performs update exercise details.
-     * @param exercise The exercise.
+        /**
+     * Update exercise details.
+     * @param exercise exercise
      */
     private void updateExerciseDetails(Exercise exercise) {
         selectedExerciseId = exercise.getId();

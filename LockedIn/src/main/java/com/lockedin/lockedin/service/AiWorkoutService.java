@@ -25,9 +25,9 @@ import java.util.Properties;
  */
 public class AIWorkoutService {
 
-    /**
+            /**
      * Returns the api key.
-     * @return The api key.
+     * @return api key
      * @throws IOException If the operation fails.
      */
     private String getApiKey() throws IOException {
@@ -41,13 +41,13 @@ public class AIWorkoutService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
-    /**
-     * Performs build prompt.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Build prompt.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
-     * @return The resulting text.
+     * @param goal goal
+     * @return resulting text
      * @throws IOException If the operation fails.
      */
     private String buildPrompt(String experience, String time, String muscleGroup, String goal) throws IOException {
@@ -64,12 +64,12 @@ public class AIWorkoutService {
         }
     }
 
-    /**
-     * Performs generate workout.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Generate workout.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
+     * @param goal goal
      */
     public WorkoutResult generateWorkout(String experience, String time, String muscleGroup, String goal) {
         final String apiUrl = "https://integrate.api.nvidia.com/v1/chat/completions";
@@ -144,12 +144,12 @@ public class AIWorkoutService {
         }
     }
 
-    /**
-     * Performs create generate workout task.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Create generate workout task.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
+     * @param goal goal
      * @return A JavaFX task that performs the work on a background thread.
      */
     public Task<WorkoutResult> createGenerateWorkoutTask(
@@ -174,11 +174,11 @@ public class AIWorkoutService {
         public final String routineName;
         public final List<WorkoutExerciseEntry> exercises;
 
-        /**
-         * Creates a new WorkoutResult.
-         * @param routineName The routine name.
-         * @param exercises The exercises.
-         */
+            /**
+     * Constructs a WorkoutResult using default application dependencies.
+     * @param routineName The routine name.
+     * @param exercises exercises
+     */
         public WorkoutResult(String routineName, List<WorkoutExerciseEntry> exercises) {
             this.routineName = routineName;
             this.exercises = exercises;

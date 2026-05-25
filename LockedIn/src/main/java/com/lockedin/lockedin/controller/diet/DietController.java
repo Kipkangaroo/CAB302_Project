@@ -125,6 +125,11 @@ public class DietController {
         setAddFoodExpanded(!addFoodExpanded);
     }
 
+    /**
+     * Shows or hides the add-food form and updates the chevron indicator.
+     *
+     * @param expanded true to expand the form
+     */
     private void setAddFoodExpanded(boolean expanded) {
         addFoodExpanded = expanded;
         addFoodBody.setVisible(expanded);
@@ -134,8 +139,8 @@ public class DietController {
             foodField.requestFocus();
         }
     }
-    /**
-     * Performs handle add food.
+        /**
+     * Handle add food.
      */
 
     @FXML
@@ -180,9 +185,9 @@ public class DietController {
         clearInputs();
     }
 
-    /**
+        /**
      * Sets the foods on list.
-     * @param date The date.
+     * @param date date
      */
     private void setFoodsOnList(LocalDate date) {
         List<Food> currentFood = foodDAO.getFoodsByDate(date, currentUserId);
@@ -202,9 +207,9 @@ public class DietController {
         };
     }
 
-    /**
-     * Performs update gui.
-     * @param date The date.
+        /**
+     * Update gui.
+     * @param date date
      */
     private void updateGUI(LocalDate date) {
         User user = CurrentUser.get();
@@ -220,9 +225,9 @@ public class DietController {
         updateProgressBars();
     }
 
-    /**
-     * Performs show input error.
-     * @param message The message.
+        /**
+     * Show input error.
+     * @param message message
      */
     private void showInputError(String message) {
         setAddFoodExpanded(true);
@@ -230,8 +235,8 @@ public class DietController {
         inputErrorLabel.setVisible(true);
         inputErrorLabel.setManaged(true);
     }
-    /**
-     * Performs handle reset.
+        /**
+     * Handle reset.
      * @param actionEvent The action event.
      */
 
@@ -287,8 +292,8 @@ public class DietController {
                 });
     }
 
-    /**
-     * Performs handle remove food.
+        /**
+     * Handle remove food.
      * @param actionEvent The action event.
      */
 
@@ -342,9 +347,9 @@ public class DietController {
         }
     }
 
-    /**
-     * Performs update totals.
-     * @param date The date.
+        /**
+     * Update totals.
+     * @param date date
      */
     private void updateTotals(LocalDate date) {
         if (date == null) {
@@ -356,8 +361,8 @@ public class DietController {
         totalFats = foodDAO.getDailyTotalByAttribute(date, "fats", currentUserId);
     }
 
-    /**
-     * Performs refresh totals labels.
+        /**
+     * Refresh totals labels.
      */
     private void refreshTotalsLabels() {
         caloriesProgressLabel.setText(
@@ -368,8 +373,8 @@ public class DietController {
         fatsProgressLabel.setText(String.format("%.0f/%.0fg fats", totalFats, targetFats));
     }
 
-    /**
-     * Performs update progress bars.
+        /**
+     * Update progress bars.
      */
     private void updateProgressBars() {
         caloriesProgressBar.setProgress(clamp(totalCalories / targetCalories));
@@ -378,10 +383,10 @@ public class DietController {
         fatProgressBar.setProgress(clamp(totalFats / targetFats));
     }
 
-    /**
-     * Performs clamp.
-     * @param value The value.
-     * @return The computed value.
+        /**
+     * Clamp.
+     * @param value value
+     * @return computed value
      */
     private double clamp(double value) {
         if (Double.isNaN(value) || Double.isInfinite(value)) {
@@ -400,8 +405,8 @@ public class DietController {
         PageNavigator.loadPage(foodList, caloriesMacrosTrendsView);
     }
 
-    /**
-     * Performs clear inputs.
+        /**
+     * Clear inputs.
      */
     private void clearInputs() {
         foodField.clear();

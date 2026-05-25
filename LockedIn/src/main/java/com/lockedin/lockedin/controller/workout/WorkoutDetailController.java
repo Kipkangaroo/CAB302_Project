@@ -39,9 +39,9 @@ public class WorkoutDetailController {
     private ExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData currentRoutine;
 
-    /**
+        /**
      * Sets the current routine id.
-     * @param id The id.
+     * @param id id
      */
     public static void setCurrentRoutineId(int id) {
         currentRoutineId = id;
@@ -57,8 +57,8 @@ public class WorkoutDetailController {
         loadRoutine();
     }
 
-    /**
-     * Performs load routine.
+        /**
+     * Load routine.
      */
     private void loadRoutine() {
         currentRoutine = routineDAO.getRoutineById(currentRoutineId);
@@ -75,9 +75,9 @@ public class WorkoutDetailController {
         buildExerciseCards(currentRoutine.exercises);
     }
 
-    /**
-     * Performs build exercise cards.
-     * @param exercises The exercises.
+        /**
+     * Build exercise cards.
+     * @param exercises exercises
      */
     private void buildExerciseCards(List<WorkoutExerciseEntry> exercises) {
         exercisesContainer.getChildren().clear();
@@ -94,10 +94,10 @@ public class WorkoutDetailController {
         }
     }
 
-    /**
-     * Performs build exercise card.
-     * @param entry The entry.
-     * @param index The index.
+        /**
+     * Build exercise card.
+     * @param entry entry
+     * @param index index
      */
     private HBox buildExerciseCard(WorkoutExerciseEntry entry, int index) {
         // Numbered circle
@@ -147,9 +147,9 @@ public class WorkoutDetailController {
 
     // ── Edit exercise dialog ─────────────────────────────────────────────────
 
-    /**
-     * Performs show edit dialog.
-     * @param entry The entry.
+        /**
+     * Show edit dialog.
+     * @param entry entry
      */
     private void showEditDialog(WorkoutExerciseEntry entry) {
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -190,8 +190,8 @@ public class WorkoutDetailController {
     }
 
     // ── Add exercise dialog ──────────────────────────────────────────────────
-    /**
-     * Performs handle add exercise.
+        /**
+     * Handle add exercise.
      */
 
     @FXML
@@ -250,8 +250,8 @@ public class WorkoutDetailController {
     }
 
     // ── Edit workout name/notes dialog ───────────────────────────────────────
-    /**
-     * Performs handle edit workout name.
+        /**
+     * Handle edit workout name.
      */
 
     @FXML
@@ -261,8 +261,8 @@ public class WorkoutDetailController {
         a.setContentText("Editing the workout name will be available in a future update.");
         a.showAndWait();
     }
-    /**
-     * Performs handle start workout.
+        /**
+     * Handle start workout.
      */
 
     @FXML
@@ -277,8 +277,8 @@ public class WorkoutDetailController {
         StartWorkoutController.setCurrentRoutineId(currentRoutineId);
         PageNavigator.loadPage(backButton, startWorkoutView);
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML
@@ -286,8 +286,8 @@ public class WorkoutDetailController {
         navigateBack();
     }
 
-    /**
-     * Performs navigate back.
+        /**
+     * Navigate back.
      */
     private void navigateBack() {
         PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);

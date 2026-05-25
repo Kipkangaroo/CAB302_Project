@@ -8,6 +8,12 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+/**
+ * Data access object for exercise catalogue.
+ *
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class ExercisesDAO {
 
     /** Shared database connection for all exercise operations. */
@@ -53,6 +59,9 @@ public class ExercisesDAO {
         }
     }
 
+    /**
+     * Seeds the exercise catalogue when the table is empty.
+     */
     public void seedExercises() {
         String countSql = "SELECT COUNT(*) FROM exercises";
         try (Statement st = connection.createStatement();
@@ -3999,6 +4008,11 @@ public class ExercisesDAO {
         }
     }
 
+    /**
+     * Persists a new exercise and assigns its generated id on the entity.
+     *
+     * @param exercise exercise to insert (name, instruction, category, muscle, image id)
+     */
     public void addExercise(Exercise exercise) {
         String sql = "INSERT INTO exercises (name, instruction, category, primary_muscle,"
                 + " exercise_image_url) VALUES (?, ?, ?, ?, ?)";
@@ -4019,6 +4033,12 @@ public class ExercisesDAO {
         }
     }
 
+    /**
+     * Loads a single exercise by primary key.
+     *
+     * @param id exercise id
+     * @return matching exercise or {@code null} when not found
+     */
     public Exercise getExerciseById(int id) {
         String sql = "SELECT id, name, instruction, category, primary_muscle, exercise_image_url FROM"
                 + " exercises WHERE id = ?";
@@ -4037,6 +4057,11 @@ public class ExercisesDAO {
         }
     }
 
+    /**
+     * Returns every exercise ordered alphabetically by name for UI pickers.
+     *
+     * @return observable list of all exercises in the database
+     */
     public ObservableList<Exercise> getAllExercises() {
         String sql = "SELECT id, name, instruction, category, primary_muscle, exercise_image_url FROM"
                 + " exercises ORDER BY name";
@@ -4059,7 +4084,7 @@ public class ExercisesDAO {
         }
     }
 
-    /**
+            /**
      * Returns the DB id of an exercise whose name matches (case-insensitive), or 0
      * if not found.
      */
@@ -4076,6 +4101,13 @@ public class ExercisesDAO {
         return 0;
     }
 
+    /**
+     * Maps a result-set row to an {@link Exercise} entity.
+     *
+     * @param rs the query result set positioned on a row
+     * @return populated exercise
+     * @throws SQLException if a column cannot be read
+     */
     private Exercise mapRowToExercise(ResultSet rs) throws SQLException {
         return new Exercise(
                 rs.getInt("id"),

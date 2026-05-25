@@ -13,20 +13,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Data access object for user progress snapshots.
+ *
+ * @author LockedIn Team
+ * @version 1.0
+ */
 public class UserProgressDAO {
   private static final String USER_DB = "users.db";
   private final Connection connection;
 
+  /**
+   * Opens the default users database and ensures the user_progress table exists.
+   */
   public UserProgressDAO() {
     this.connection = SqliteConnection.getInstance(USER_DB);
     createUserProgressTable();
   }
 
+  /**
+   * Uses the supplied connection (for example an in-memory database in tests).
+   *
+   * @param connection active SQLite connection
+   */
   public UserProgressDAO(Connection connection) {
     this.connection = connection;
     createUserProgressTable();
   }
 
+  /** Creates the user_progress table when missing. */
   private void createUserProgressTable() {
     String sql = "CREATE TABLE IF NOT EXISTS user_progress ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -44,6 +59,12 @@ public class UserProgressDAO {
     }
   }
 
+  /**
+   * Inserts or updates a progress snapshot for the user's effective date.
+   *
+   * @param userProgress progress row to save (user id, goal, weight, calories, date)
+   * @return {@code true} when a row was inserted or updated
+   */
   public boolean addUserProgress(UserProgress userProgress) {
     Optional<UserProgress> existingProgress = getUserProgressByDate(userProgress.getUserId(),
         userProgress.getEffectiveFrom());
@@ -86,6 +107,13 @@ public class UserProgressDAO {
     }
   }
 
+  /**
+ * Returns the progress entry effective on the given calendar day, if any.
+ * 
+ * @param userId owner of the progress history
+ * @param date day to look up (effective_from)
+ * @return matching snapshot or empty when none exists
+ */
   public Optional<UserProgress> getUserProgressByDate(int userId, LocalDate date) {
     String sql = "SELECT * FROM user_progress WHERE user_id = ? AND effective_from = ? "
         + "ORDER BY id DESC LIMIT 1";
@@ -103,6 +131,12 @@ public class UserProgressDAO {
     }
   }
 
+  /**
+   * Returns all progress snapshots for a user, newest effective date first.
+   *
+   * @param userId owner of the progress history
+   * @return list of progress rows (may be empty)
+   */
   public List<UserProgress> getUserProgressHistory(int userId) {
     String sql = "SELECT * FROM user_progress WHERE user_id = ? ORDER BY effective_from DESC, id DESC";
     try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -119,6 +153,13 @@ public class UserProgressDAO {
     }
   }
 
+  /**
+ * Returns the most recent progress on or before the given date.
+ * 
+ * @param userId owner of the progress history
+ * @param date upper bound (inclusive) for effective_from
+ * @return latest applicable snapshot or empty when history is empty
+ */
   public Optional<UserProgress> getLatestUserProgress(int userId, LocalDate date) {
     return getUserProgressHistory(userId).stream()
         .filter(progress -> !progress.getEffectiveFrom().isAfter(date))
@@ -127,6 +168,11 @@ public class UserProgressDAO {
                 .thenComparing(UserProgress::getId));
   }
 
+  /**
+   * Removes every progress row for the given user (used when resetting demo data).
+   *
+   * @param userId user whose history should be cleared
+   */
   public void deleteAllForUser(int userId) {
     String sql = "DELETE FROM user_progress WHERE user_id = ?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -138,9 +184,14 @@ public class UserProgressDAO {
   }
 
   /**
-   * Returns the effective weight for each day in the range, using the latest
-   * recorded progress on or before that date (forward-filled between entries).
-   */
+ * Returns the effective weight for each day in the range, using the latest
+ * recorded progress on or before that date (forward-filled between entries).
+ * 
+ * @param userId owner of the progress history
+ * @param start first day in the range (inclusive)
+ * @param end last day in the range (inclusive)
+ * @return map of date to weight in kilograms
+ */
   public Map<LocalDate, Double> getDailyWeightForRange(int userId, LocalDate start, LocalDate end) {
     List<UserProgress> history = new ArrayList<>(getUserProgressHistory(userId));
     history.sort(
@@ -166,6 +217,13 @@ public class UserProgressDAO {
     return weights;
   }
 
+  /**
+   * Resolves the calorie target for a day from progress history, falling back to the user profile.
+   *
+   * @param userId owner of the progress history
+   * @param date day to resolve
+   * @return target calories for that day (0 when unknown)
+   */
   public double getDailyTargetCalories(int userId, LocalDate date) {
     Optional<UserProgress> progress = getLatestUserProgress(userId, date);
     if (progress.isPresent()) {
@@ -174,6 +232,7 @@ public class UserProgressDAO {
     return new UserDAO().getUserById(userId).map(User::getTargetCalories).orElse(0.0);
   }
 
+  /** Maps a JDBC row to a {@link UserProgress} entity. */
   private UserProgress mapUserProgress(ResultSet resultSet) throws SQLException {
     return new UserProgress(
         resultSet.getInt("id"),

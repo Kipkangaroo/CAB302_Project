@@ -51,10 +51,10 @@ public class ForgotPasswordController {
         setPasswordEntryVisible(false);
     }
 
-    /**
-     * Performs handle back button.
+        /**
+     * Handle back button.
      * 
-     * @param event The event.
+     * @param event event
      * @throws IOException If the operation fails.
      */
 
@@ -63,8 +63,8 @@ public class ForgotPasswordController {
         authentication.switchScene(backImageView, LOGIN_VIEW);
     }
 
-    /**
-     * Performs handle get otp.
+        /**
+     * Handle get otp.
      */
 
     @FXML
@@ -91,8 +91,8 @@ public class ForgotPasswordController {
         switchToOtpEntryMode();
     }
 
-    /**
-     * Performs switch to otp entry mode.
+        /**
+     * Switch to otp entry mode.
      */
     private void switchToOtpEntryMode() {
         awaitingOtp = true;
@@ -106,8 +106,8 @@ public class ForgotPasswordController {
         getOtpButton.setText("Verify OTP");
     }
 
-    /**
-     * Performs handle verify otp.
+        /**
+     * Handle verify otp.
      */
     private void handleVerifyOtp() {
         OtpDAO otpDAO = new OtpDAO();
@@ -130,8 +130,8 @@ public class ForgotPasswordController {
         switchToPasswordResetMode();
     }
 
-    /**
-     * Performs switch to password reset mode.
+        /**
+     * Switch to password reset mode.
      */
     private void switchToPasswordResetMode() {
         awaitingOtp = false;
@@ -143,8 +143,8 @@ public class ForgotPasswordController {
         getOtpButton.setText("Reset Password");
     }
 
-    /**
-     * Performs handle reset password.
+        /**
+     * Handle reset password.
      */
     private void handleResetPassword() {
         UserDAO userDAO = new UserDAO();
@@ -179,10 +179,10 @@ public class ForgotPasswordController {
         }
     }
 
-    /**
+        /**
      * Sets the password entry visible.
      * 
-     * @param visible The visible.
+     * @param visible visible
      */
     private void setPasswordEntryVisible(boolean visible) {
         emailField.setVisible(!visible);

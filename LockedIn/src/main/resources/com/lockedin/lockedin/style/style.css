@@ -386,7 +386,7 @@
     -fx-background-color: white;
     -fx-padding: 15;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 2);
 }
 
 .workout-chart {
@@ -832,6 +832,7 @@
     -fx-stroke: #1E2A38;
     -fx-stroke-width: 1;
 }
+
 .delete-measurement-btn {
     -fx-background-color: #d9534f;
     -fx-text-fill: white;
