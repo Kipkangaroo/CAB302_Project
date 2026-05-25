@@ -39,8 +39,8 @@ import java.util.Objects;
  */
 public class DietController {
 
-    private static final String CALORIE_TRENDS_VIEW =
-            "/com/lockedin/lockedin/pages/diet/calorie-trends-view.fxml";
+    private static final String CALORIES_MACROS_TRENDS_VIEW =
+            "/com/lockedin/lockedin/pages/diet/calories-macros-trends-view.fxml";
     private final DietLogic dietLogic = new DietLogic();
     private final FoodDAO foodDAO = new FoodDAO();
     private final int currentUserID = CurrentUser.getId();
@@ -327,11 +327,11 @@ public class DietController {
                         });
     }
     /**
-     * Performs handle ai logo click.
+     * Opens a meal photo picker and sends the image to AI for macro estimation.
      */
 
     @FXML
-    private void handleAiLogoClick() {
+    private void handleUploadFoodToAi() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose your meal photo");
         fileChooser.getExtensionFilters().add(
@@ -411,18 +411,18 @@ public class DietController {
     }
 
     /**
-     * Navigates to the calorie trends screen.
+     * Navigates to the calories and macros trends screen.
      */
     @FXML
-    public void handleCalorieTrends() {
+    public void handleCaloriesMacrosTrends() {
         try {
-            Pane page = FXMLLoader.load(getClass().getResource(CALORIE_TRENDS_VIEW));
+            Pane page = FXMLLoader.load(getClass().getResource(CALORIES_MACROS_TRENDS_VIEW));
             StackPane pc = (StackPane) foodList.getScene().lookup("#pageContainer");
             if (pc != null) {
                 pc.getChildren().setAll(page);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Failed to open calorie trends", e);
+            throw new RuntimeException("Failed to open calories and macros trends", e);
         }
     }
 

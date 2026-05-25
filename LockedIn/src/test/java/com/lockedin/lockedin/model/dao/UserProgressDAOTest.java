@@ -24,29 +24,13 @@ class UserProgressDAOTest {
         progressDAO = new UserProgressDAO(conn);
     }
 
-    private void insertRow() {
+    @Test
+    void getDailyTargetCalories_returnsRecordedValue() {
+        LocalDate date = LocalDate.of(2024, 1, 15);
         UserProgress up = new UserProgress(
-                0, USER_ID, FitnessGoal.MAINTAIN_FITNESS, 70.0, 2000.0,
-                LocalDate.of(2024, 1, 1));
+                0, USER_ID, FitnessGoal.MAINTAIN_FITNESS, 70.0, 2200.0, date);
         progressDAO.addUserProgress(up);
-    }
 
-    @Test
-    void getSessionTarget_returnsThree_whenNotSet() {
-        assertEquals(3, progressDAO.getSessionTarget(USER_ID));
-    }
-
-    @Test
-    void updateSessionTarget_persistsValue() {
-        insertRow();
-        progressDAO.updateSessionTarget(USER_ID, 5);
-        assertEquals(5, progressDAO.getSessionTarget(USER_ID));
-    }
-
-    @Test
-    void getSessionTarget_returnsUpdatedValue_afterSave() {
-        insertRow();
-        progressDAO.updateSessionTarget(USER_ID, 7);
-        assertEquals(7, progressDAO.getSessionTarget(USER_ID));
+        assertEquals(2200.0, progressDAO.getDailyTargetCalories(USER_ID, date));
     }
 }

@@ -10,14 +10,12 @@ import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.geometry.Pos;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -29,7 +27,6 @@ import java.util.Optional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * JavaFX controller for the profile screen.
@@ -40,7 +37,6 @@ public class ProfileController {
     private static final String BLUE_FILL = "#028ee1";
     private static final String WHITE_FILL = "#FFFFFF";
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
-    private static final String PROGRESS_VIEW = "/com/lockedin/lockedin/pages/profile/progress-view.fxml";
     private static final String EDIT_ICON = "/com/lockedin/lockedin/graphics/icons/edit-icon.png";
     private static final String SAVE_ICON = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
     private static final double ICON_SIZE = 46;
@@ -97,22 +93,6 @@ public class ProfileController {
     private LineChart<String, Number> weightChart;
     private Image editImage;
     private Image saveImage;
-
-    /**
-     * Navigates to the goals progress screen.
-     */
-    @FXML
-    private void handleGoalsProgress() {
-        try {
-            Pane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PROGRESS_VIEW)));
-            StackPane pc = (StackPane) logoutBtn.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open goals progress", e);
-        }
-    }
 
     /**
      * Performs handle logout.

@@ -11,14 +11,7 @@
       xmlns="http://javafx.com/javafx" fx:controller="com.lockedin.lockedin.controller.profile.ProfileController"
       maxWidth="Infinity" maxHeight="Infinity">
     <VBox styleClass="profile-header">
-        <HBox alignment="CENTER_LEFT" spacing="8">
-            <Label text="My Profile" styleClass="profile-header-title"
-                   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-            <Button text="📊"
-                    onAction="#handleGoalsProgress"
-                    styleClass="header-btn"
-                    style="-fx-font-size: 16px;"/>
-        </HBox>
+        <Label text="My Profile" styleClass="profile-header-title"/>
         <Label text="Your personal details and weekly streak" styleClass="profile-header-subtitle">
             <VBox.margin>
                 <Insets top="4"/>

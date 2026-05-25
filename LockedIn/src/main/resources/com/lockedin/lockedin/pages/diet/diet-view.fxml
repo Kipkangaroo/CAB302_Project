@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
@@ -16,7 +14,7 @@
                    HBox.hgrow="ALWAYS"
                    maxWidth="Infinity"/>
             <Button text="📈"
-                    onAction="#handleCalorieTrends"
+                    onAction="#handleCaloriesMacrosTrends"
                     styleClass="header-btn"
                     style="-fx-font-size: 16px;"/>
         </HBox>
@@ -42,6 +40,31 @@
                             styleClass="diet-date-picker"
                             maxWidth="Infinity"/>
             </VBox>
+            <!-- AI Meal Scanner card (same pattern as workout AI generator) -->
+            <HBox styleClass="ai-card"
+                  spacing="14"
+                  alignment="CENTER_LEFT"
+                  onMouseClicked="#handleUploadFoodToAi">
+                <VBox styleClass="ai-card-icon-bg"
+                      alignment="CENTER">
+                    <Label text="📷"
+                           style="-fx-font-size: 20px;"/>
+                </VBox>
+                <VBox spacing="5"
+                      HBox.hgrow="ALWAYS">
+                    <Label text="AI Meal Scanner"
+                           textFill="white"
+                           style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Upload a photo of your meal and let AI estimate calories and macros."
+                           textFill="white"
+                           wrapText="true"
+                           style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>
+                    <Button text="✨ Powered by AI"
+                            styleClass="ai-powered-pill"
+                            onAction="#handleUploadFoodToAi"
+                            style="-fx-cursor: hand;"/>
+                </VBox>
+            </HBox>
             <VBox styleClass="diet-card" spacing="0">
                 <HBox fx:id="addFoodHeader"
                       styleClass="diet-expand-header"
@@ -86,13 +109,6 @@
                                 styleClass="primary-btn"
                                 HBox.hgrow="ALWAYS"
                                 maxWidth="Infinity"/>
-                        <ImageView fitWidth="54"
-                                   fitHeight="54"
-                                   styleClass="diet-ai-upload-icon"
-                                   onMouseClicked="#handleAiLogoClick"
-                                   preserveRatio="true">
-                            <Image url="@../../graphics/icons/ai-upload-icon.png"/>
-                        </ImageView>
                         <Button text="Reset"
                                 onAction="#handleReset"
                                 styleClass="diet-secondary-btn"/>
