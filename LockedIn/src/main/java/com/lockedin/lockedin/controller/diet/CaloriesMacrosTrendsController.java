@@ -1,5 +1,7 @@
 package com.lockedin.lockedin.controller.diet;
 
+import com.lockedin.lockedin.controller.layout.LayoutController;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
@@ -8,15 +10,10 @@ import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,14 +27,9 @@ import java.util.function.ToDoubleFunction;
  */
 public class CaloriesMacrosTrendsController {
 
-    private static final String DIET_VIEW =
-            "/com/lockedin/lockedin/pages/diet/diet-view.fxml";
-    private static final DateTimeFormatter CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
-    private static final int CHART_LABEL_INTERVAL = 5;
-
     @FXML private Button backButton;
-    @FXML private Button btn7Days;
-    @FXML private Button btn30Days;
+    @FXML private Button last7DaysButton;
+    @FXML private Button last30DaysButton;
     @FXML private LineChart<String, Number> calorieChart;
     @FXML private LineChart<String, Number> proteinChart;
     @FXML private LineChart<String, Number> carbsChart;
@@ -61,7 +53,7 @@ public class CaloriesMacrosTrendsController {
     @FXML
     public void handle7Days() {
         rangeDays = 7;
-        setActive(btn7Days, btn30Days);
+        setActive(last7DaysButton, last30DaysButton);
         loadCharts();
     }
 
@@ -71,7 +63,7 @@ public class CaloriesMacrosTrendsController {
     @FXML
     public void handle30Days() {
         rangeDays = 30;
-        setActive(btn30Days, btn7Days);
+        setActive(last30DaysButton, last7DaysButton);
         loadCharts();
     }
 
@@ -153,11 +145,13 @@ public class CaloriesMacrosTrendsController {
      * zero-width padding on unlabeled days so ticks do not collapse or reorder.
      */
     private String chartCategory(LocalDate date, int daysAgo) {
+        final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
+        final int chartLabelInterval = 5;
         if (daysAgo == 0) {
             return "Today";
         }
-        if (rangeDays <= 7 || daysAgo == rangeDays - 1 || daysAgo % CHART_LABEL_INTERVAL == 0) {
-            return date.format(CHART_DATE_FORMAT);
+        if (rangeDays <= 7 || daysAgo == rangeDays - 1 || daysAgo % chartLabelInterval == 0) {
+            return date.format(chartDateFormat);
         }
         return "\u200B".repeat(daysAgo);
     }
@@ -178,15 +172,7 @@ public class CaloriesMacrosTrendsController {
      */
     @FXML
     public void handleBack() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(DIET_VIEW));
-            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to navigate back to diet", e);
-        }
+        PageNavigator.loadPage(backButton, LayoutController.DIET_VIEW);
     }
 
     @FunctionalInterface

@@ -44,7 +44,7 @@
             <HBox styleClass="ai-card"
                   spacing="14"
                   alignment="CENTER_LEFT"
-                  onMouseClicked="#handleUploadFoodToAi">
+                  onMouseClicked="#handleUploadFoodToAI">
                 <VBox styleClass="ai-card-icon-bg"
                       alignment="CENTER">
                     <Label text="📷"
@@ -61,7 +61,7 @@
                            style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>
                     <Button text="✨ Powered by AI"
                             styleClass="ai-powered-pill"
-                            onAction="#handleUploadFoodToAi"
+                            onAction="#handleUploadFoodToAI"
                             style="-fx-cursor: hand;"/>
                 </VBox>
             </HBox>

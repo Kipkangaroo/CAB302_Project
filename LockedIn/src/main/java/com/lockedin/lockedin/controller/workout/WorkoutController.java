@@ -1,20 +1,17 @@
 package com.lockedin.lockedin.controller.workout;
 
+import com.lockedin.lockedin.controller.auth.Authentication;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,11 +21,8 @@ import java.util.List;
  */
 public class WorkoutController {
 
-    private static final String CREATE_VIEW = "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
-    private static final String DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
-    private static final String HISTORY_VIEW = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
-    private static final String AI_WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
-    private static final String WEEKLY_SUMMARY_VIEW = "/com/lockedin/lockedin/pages/workout/weekly-summary-view.fxml";
+    private static final String AI_WORKOUT_VIEW =
+            "/com/lockedin/lockedin/pages/workout/ai-workout-view.fxml";
 
     @FXML
     private Label workoutCountLabel;
@@ -52,9 +46,11 @@ public class WorkoutController {
     private void loadWorkouts() {
         List<WorkoutRoutineDAO.RoutineData> routines = routineDAO.getRoutinesByUser(CurrentUser.getId());
 
-        int n = routines.size();
+        int routineCount = routines.size();
         workoutCountLabel.setText(
-                n == 0 ? "No workouts yet" : n == 1 ? "1 workout ready" : n + " workouts ready");
+                routineCount == 0
+                        ? "No workouts yet"
+                        : routineCount == 1 ? "1 workout ready" : routineCount + " workouts ready");
 
         workoutsContainer.getChildren().clear();
 
@@ -64,8 +60,8 @@ public class WorkoutController {
             empty.setWrapText(true);
             workoutsContainer.getChildren().add(empty);
         } else {
-            for (WorkoutRoutineDAO.RoutineData r : routines) {
-                workoutsContainer.getChildren().add(buildWorkoutCard(r));
+            for (WorkoutRoutineDAO.RoutineData routine : routines) {
+                workoutsContainer.getChildren().add(buildWorkoutCard(routine));
             }
         }
     }
@@ -76,6 +72,7 @@ public class WorkoutController {
      * and edit/delete actions.
      */
     private VBox buildWorkoutCard(WorkoutRoutineDAO.RoutineData routine) {
+        Authentication authentication = new Authentication();
         // ── Name + subtitle ──
         Label nameLabel = new Label(routine.name);
         nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1a1a1a;");
@@ -91,13 +88,13 @@ public class WorkoutController {
         HBox.setHgrow(textCol, Priority.ALWAYS);
 
         // ── Edit / Delete icon buttons ──
-        Button editBtn = new Button("\u270F");
-        Button deleteBtn = new Button("\uD83D\uDDD1");
-        editBtn.getStyleClass().add("icon-btn");
-        deleteBtn.getStyleClass().add("icon-btn");
-        deleteBtn.setStyle("-fx-text-fill: #e53935; -fx-font-size: 14px;");
+        Button editButton = new Button("\u270F");
+        Button deleteButton = new Button("\uD83D\uDDD1");
+        editButton.getStyleClass().add("icon-btn");
+        deleteButton.getStyleClass().add("icon-btn");
+        deleteButton.setStyle("-fx-text-fill: #e53935; -fx-font-size: 14px;");
 
-        HBox topRow = new HBox(4, textCol, editBtn, deleteBtn);
+        HBox topRow = new HBox(4, textCol, editButton, deleteButton);
         topRow.setAlignment(Pos.TOP_LEFT);
 
         // ── Exercise count badge ──
@@ -112,28 +109,18 @@ public class WorkoutController {
 
         // ── Click actions ──
         card.setOnMouseClicked(e -> openDetail(routine.id));
-        editBtn.setOnAction(
+        editButton.setOnAction(
                 e -> {
                     e.consume();
                     openDetail(routine.id);
                 });
-        deleteBtn.setOnAction(
+        deleteButton.setOnAction(
                 e -> {
                     e.consume();
-                    Alert confirm = new Alert(
-                            Alert.AlertType.CONFIRMATION,
-                            "Delete \"" + routine.name + "\"?",
-                            ButtonType.YES,
-                            ButtonType.NO);
-                    confirm.setHeaderText(null);
-                    confirm.showAndWait()
-                            .ifPresent(
-                                    bt -> {
-                                        if (bt == ButtonType.YES) {
-                                            routineDAO.deleteRoutine(routine.id);
-                                            loadWorkouts();
-                                        }
-                                    });
+                    if (authentication.confirmYesNo("Delete \"" + routine.name + "\"?")) {
+                        routineDAO.deleteRoutine(routine.id);
+                        loadWorkouts();
+                    }
                 });
 
         return card;
@@ -144,13 +131,9 @@ public class WorkoutController {
      * @param routineId The routine id.
      */
     private void openDetail(int routineId) {
-        try {
-            WorkoutDetailController.setCurrentRoutineId(routineId);
-            Pane page = FXMLLoader.load(getClass().getResource(DETAIL_VIEW));
-            stackPane().getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open workout detail", e);
-        }
+        final String detailView = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+        WorkoutDetailController.setCurrentRoutineId(routineId);
+        PageNavigator.loadPage(workoutsContainer, detailView);
     }
     /**
      * Performs handle create workout.
@@ -158,12 +141,8 @@ public class WorkoutController {
 
     @FXML
     public void handleCreateWorkout() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(CREATE_VIEW));
-            stackPane().getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open create workout page", e);
-        }
+        final String createView = "/com/lockedin/lockedin/pages/workout/create-workout-view.fxml";
+        PageNavigator.loadPage(workoutsContainer, createView);
     }
     /**
      * Performs handle history.
@@ -171,12 +150,8 @@ public class WorkoutController {
 
     @FXML
     public void handleHistory() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(HISTORY_VIEW));
-            stackPane().getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open workout history", e);
-        }
+        final String historyView = "/com/lockedin/lockedin/pages/workout/workout-history-view.fxml";
+        PageNavigator.loadPage(workoutsContainer, historyView);
     }
     /**
      * Performs handle weekly summary.
@@ -184,32 +159,16 @@ public class WorkoutController {
 
     @FXML
     public void handleWeeklySummary() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(WEEKLY_SUMMARY_VIEW));
-            stackPane().getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open weekly summary", e);
-        }
+        final String weeklySummaryView = "/com/lockedin/lockedin/pages/workout/weekly-summary-view.fxml";
+        PageNavigator.loadPage(workoutsContainer, weeklySummaryView);
     }
 
     /**
-     * Performs handle ai generator.
+     * Opens the AI workout generator screen.
      */
 
     @FXML
-    public void handleAiGenerator() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(AI_WORKOUT_VIEW));
-            stackPane().getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open AI workout generator", e);
-        }
-    }
-
-    /**
-     * Performs stack pane.
-     */
-    private StackPane stackPane() {
-        return (StackPane) workoutsContainer.getScene().lookup("#pageContainer");
+    public void handleAIGenerator() {
+        PageNavigator.loadPage(workoutsContainer, AI_WORKOUT_VIEW);
     }
 }

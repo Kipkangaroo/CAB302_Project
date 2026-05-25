@@ -30,7 +30,6 @@ import java.util.Optional;
  * @version 1.0
  */
 public class SignUpController {
-    private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private final Authentication authentication = new Authentication();
     private Image selectedProfileImage;
     private File selectedProfileImageFile;
@@ -63,7 +62,7 @@ public class SignUpController {
     private Image eyeIcon;
     private Image eyeOffIcon;
     @FXML
-    private Button signupBtn;
+    private Button signUpButton;
     @FXML
     private DatePicker dobPicker;
     @FXML
@@ -107,7 +106,7 @@ public class SignUpController {
                 "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
         eyeOffIcon = new Image(getClass().getResourceAsStream(
                 "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
-        signupBtn.setDefaultButton(true);
+        signUpButton.setDefaultButton(true);
     }
 
     private void applyCircularProfileClip() {
@@ -187,8 +186,8 @@ public class SignUpController {
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
-        authentication.switchScene(
-                logoImageView, LOGIN_VIEW);
+        final String loginView = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+        authentication.switchScene(logoImageView, loginView);
     }
 
     /**
@@ -312,7 +311,7 @@ public class SignUpController {
             authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
                 authentication.switchScene(
-                        signupBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+                        signUpButton, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

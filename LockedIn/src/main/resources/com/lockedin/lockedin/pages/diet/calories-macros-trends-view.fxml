@@ -37,13 +37,13 @@
             <!-- Range toggle -->
             <VBox styleClass="diet-card" spacing="0">
                 <HBox spacing="10">
-                    <Button fx:id="btn7Days"
+                    <Button fx:id="last7DaysButton"
                             text="7 Days"
                             onAction="#handle7Days"
                             styleClass="primary-btn"
                             HBox.hgrow="ALWAYS"
                             maxWidth="Infinity"/>
-                    <Button fx:id="btn30Days"
+                    <Button fx:id="last30DaysButton"
                             text="30 Days"
                             onAction="#handle30Days"
                             styleClass="diet-secondary-btn"

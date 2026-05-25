@@ -104,4 +104,21 @@ class MeasurementDAOTest {
     void deleteMeasurement_returnsFalse_whenIdMissing() {
         assertFalse(measurementDAO.deleteMeasurement(99999));
     }
+
+    @Test
+    void getMeasurements_filtersByType() {
+        measurementDAO.addMeasurement(makeMeasurement(70.0, "Weight", LocalDate.of(2024, 4, 1)));
+        measurementDAO.addMeasurement(makeMeasurement(15.0, "BodyFat", LocalDate.of(2024, 4, 2)));
+        assertEquals(1, measurementDAO.getMeasurements("Weight").size());
+        assertEquals(1, measurementDAO.getMeasurements("BodyFat").size());
+    }
+
+    @Test
+    void addMeasurement_preservesDateAndValue() {
+        LocalDate date = LocalDate.of(2024, 6, 15);
+        measurementDAO.addMeasurement(makeMeasurement(82.3, "Weight", date));
+        Measurement stored = measurementDAO.getMeasurements("Weight").get(0);
+        assertEquals(82.3, stored.getValue());
+        assertEquals(date, stored.getDate());
+    }
 }

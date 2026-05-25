@@ -1,6 +1,14 @@
 package com.lockedin.lockedin.app;
 
-import com.lockedin.lockedin.model.dao.DBExercisesDAO;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.lockedin.lockedin.model.dao.ExercisesDAO;
 import com.lockedin.lockedin.model.dao.FoodDAO;
 import com.lockedin.lockedin.model.dao.OtpDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
@@ -13,16 +21,9 @@ import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 /**
- * Seeds a demo user "John" with sample diet, workout, and progress data for demonstrations.
+ * Seeds a demo user "John" with sample diet, workout, and progress data for
+ * demonstrations.
  *
  * @author LockedIn Team
  * @version 1.0
@@ -30,11 +31,6 @@ import java.util.Optional;
 public final class JohnDemoSeeder {
 
     private static final String JOHN_EMAIL = "john.demo@lockedin.app";
-    private static final String JOHN_PASSWORD = "Password1!";
-    private static final LocalDate PERIOD_END = LocalDate.of(2026, 5, 20);
-    private static final LocalDate PERIOD_START = PERIOD_END.minusDays(27);
-    /** Day 20 of the period: weight reaches target and goal switches to maintain. */
-    private static final LocalDate GOAL_SWITCH_DATE = PERIOD_START.plusDays(19);
     private static final double START_WEIGHT_KG = 60.0;
     private static final double END_WEIGHT_KG = 65.0;
 
@@ -45,7 +41,8 @@ public final class JohnDemoSeeder {
     }
 
     /**
-     * Removes the demo user and all related data created by {@link #seedIfAbsent()}.
+     * Removes the demo user and all related data created by
+     * {@link #seedIfAbsent()}.
      * No-op if John does not exist.
      */
     public static void removeAll() {
@@ -83,7 +80,7 @@ public final class JohnDemoSeeder {
         john = saved.get();
         int userId = john.getId();
 
-        DBExercisesDAO exercisesDAO = new DBExercisesDAO();
+        ExercisesDAO exercisesDAO = new ExercisesDAO();
         WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
         FoodDAO foodDAO = new FoodDAO();
         UserProgressDAO progressDAO = new UserProgressDAO();
@@ -99,6 +96,7 @@ public final class JohnDemoSeeder {
      * Performs build john user.
      */
     private static User buildJohnUser() {
+        final String johnPassword = "Password1!";
         User user = new User();
         user.setFirstName("John");
         user.setLastName("Mitchell");
@@ -109,19 +107,20 @@ public final class JohnDemoSeeder {
         user.setSex("Male");
         user.setActivityLevel(ActivityLevel.VERY_ACTIVE);
         user.setFitnessGoal(FitnessGoal.BUILD_MUSCLE);
-        user.setPasswordHash(User.getHash(JOHN_PASSWORD));
+        user.setPasswordHash(User.getHash(johnPassword));
         return user;
     }
 
     /**
      * Performs create workout routines.
-     * @param userId The user id.
+     * 
+     * @param userId       The user id.
      * @param exercisesDAO The exercises dao.
-     * @param workoutDAO The workout dao.
+     * @param workoutDAO   The workout dao.
      * @return A list of matching records.
      */
     private static List<WorkoutRoutineDAO.RoutineData> createWorkoutRoutines(
-            int userId, DBExercisesDAO exercisesDAO, WorkoutRoutineDAO workoutDAO) {
+            int userId, ExercisesDAO exercisesDAO, WorkoutRoutineDAO workoutDAO) {
         List<RoutineTemplate> templates = List.of(
                 new RoutineTemplate(
                         "Push Day",
@@ -193,14 +192,15 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs entry.
+     * 
      * @param exercisesDAO The exercises dao.
-     * @param name The name.
-     * @param sets The sets.
-     * @param reps The reps.
-     * @param restSeconds The rest seconds.
+     * @param name         The name.
+     * @param sets         The sets.
+     * @param reps         The reps.
+     * @param restSeconds  The rest seconds.
      */
     private static WorkoutExerciseEntry entry(
-            DBExercisesDAO exercisesDAO, String name, int sets, int reps, int restSeconds) {
+            ExercisesDAO exercisesDAO, String name, int sets, int reps, int restSeconds) {
         int exerciseId = exercisesDAO.findExerciseIdByName(name);
         if (exerciseId == 0) {
             exerciseId = 1;
@@ -210,12 +210,13 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs seed february data.
-     * @param john The john.
-     * @param userId The user id.
-     * @param routines The routines.
-     * @param foodDAO The food dao.
+     * 
+     * @param john        The john.
+     * @param userId      The user id.
+     * @param routines    The routines.
+     * @param foodDAO     The food dao.
      * @param progressDAO The progress dao.
-     * @param workoutDAO The workout dao.
+     * @param workoutDAO  The workout dao.
      */
     private static void seedFebruaryData(
             User john,
@@ -224,12 +225,14 @@ public final class JohnDemoSeeder {
             FoodDAO foodDAO,
             UserProgressDAO progressDAO,
             WorkoutRoutineDAO workoutDAO) {
+        final LocalDate periodEnd = LocalDate.of(2026, 5, 20);
+        final LocalDate periodStart = periodEnd.minusDays(27);
+        final LocalDate goalSwitchDate = periodStart.plusDays(19);
         int gymDayIndex = 0;
-        for (LocalDate date = PERIOD_START; !date.isAfter(PERIOD_END); date = date.plusDays(1)) {
-            int dayNumber = (int) ChronoUnit.DAYS.between(PERIOD_START, date) + 1;
+        for (LocalDate date = periodStart; !date.isAfter(periodEnd); date = date.plusDays(1)) {
+            int dayNumber = (int) ChronoUnit.DAYS.between(periodStart, date) + 1;
             double weight = weightForDay(dayNumber);
-            FitnessGoal goal =
-                    date.isBefore(GOAL_SWITCH_DATE) ? FitnessGoal.BUILD_MUSCLE : FitnessGoal.MAINTAIN_FITNESS;
+            FitnessGoal goal = date.isBefore(goalSwitchDate) ? FitnessGoal.BUILD_MUSCLE : FitnessGoal.MAINTAIN_FITNESS;
             double targetCalories = targetCaloriesFor(john, weight, goal);
 
             progressDAO.addUserProgress(
@@ -237,7 +240,7 @@ public final class JohnDemoSeeder {
 
             for (Meal meal : mealsForDay(dayNumber)) {
                 Food food = new Food();
-                food.setUserID(userId);
+                food.setUserId(userId);
                 food.setName(meal.name);
                 food.setCalories(meal.calories);
                 food.setProtein(meal.protein);
@@ -258,6 +261,7 @@ public final class JohnDemoSeeder {
 
     /**
      * Returns whether gym day.
+     * 
      * @param date The date.
      * @return true if the condition holds; otherwise false.
      */
@@ -268,6 +272,7 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs weight for day.
+     * 
      * @param dayNumber The day number.
      * @return The computed value.
      */
@@ -280,9 +285,10 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs target calories for.
-     * @param base The base.
+     * 
+     * @param base   The base.
      * @param weight The weight.
-     * @param goal The goal.
+     * @param goal   The goal.
      * @return The computed value.
      */
     private static double targetCaloriesFor(User base, double weight, FitnessGoal goal) {
@@ -298,6 +304,7 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs build completed sets.
+     * 
      * @param routine The routine.
      * @return A list of matching records.
      */
@@ -325,44 +332,45 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs meals for day.
+     * 
      * @param dayNumber The day number.
      * @return A list of matching records.
      */
     private static List<Meal> mealsForDay(int dayNumber) {
         Meal[][] weeklyRotation = {
-            {
-                meal("Greek yoghurt & berries", 220, 18, 28, 4),
-                meal("Scrambled eggs on toast", 380, 24, 32, 16),
-                meal("Chicken rice bowl", 620, 48, 72, 12),
-                meal("Protein shake", 280, 40, 18, 4),
-                meal("Salmon & sweet potato", 540, 42, 48, 18),
-                meal("Mixed nuts snack", 180, 6, 8, 14)
-            },
-            {
-                meal("Oatmeal with banana", 350, 12, 58, 8),
-                meal("Turkey wrap", 420, 32, 38, 14),
-                meal("Beef stir-fry & rice", 680, 46, 70, 22),
-                meal("Apple & peanut butter", 210, 6, 22, 12),
-                meal("Tuna salad", 390, 38, 18, 16),
-                meal("Cottage cheese snack", 160, 18, 8, 4),
-                meal("Dark chocolate square", 90, 2, 10, 5)
-            },
-            {
-                meal("Smoothie bowl", 310, 14, 52, 6),
-                meal("Ham & cheese sandwich", 450, 28, 42, 18),
-                meal("Pasta bolognese", 720, 36, 88, 20),
-                meal("Rice cakes & hummus", 190, 6, 28, 6),
-                meal("Grilled chicken salad", 410, 44, 16, 14),
-                meal("Trail mix", 200, 5, 18, 12)
-            },
-            {
-                meal("Pancakes & maple syrup", 480, 12, 72, 14),
-                meal("Egg white omelette", 260, 28, 6, 10),
-                meal("Burrito bowl", 640, 38, 78, 20),
-                meal("Protein bar", 220, 20, 24, 8),
-                meal("Pork chops & veggies", 520, 40, 24, 26),
-                meal("Yoghurt honey snack", 150, 10, 22, 3)
-            }
+                {
+                        meal("Greek yoghurt & berries", 220, 18, 28, 4),
+                        meal("Scrambled eggs on toast", 380, 24, 32, 16),
+                        meal("Chicken rice bowl", 620, 48, 72, 12),
+                        meal("Protein shake", 280, 40, 18, 4),
+                        meal("Salmon & sweet potato", 540, 42, 48, 18),
+                        meal("Mixed nuts snack", 180, 6, 8, 14)
+                },
+                {
+                        meal("Oatmeal with banana", 350, 12, 58, 8),
+                        meal("Turkey wrap", 420, 32, 38, 14),
+                        meal("Beef stir-fry & rice", 680, 46, 70, 22),
+                        meal("Apple & peanut butter", 210, 6, 22, 12),
+                        meal("Tuna salad", 390, 38, 18, 16),
+                        meal("Cottage cheese snack", 160, 18, 8, 4),
+                        meal("Dark chocolate square", 90, 2, 10, 5)
+                },
+                {
+                        meal("Smoothie bowl", 310, 14, 52, 6),
+                        meal("Ham & cheese sandwich", 450, 28, 42, 18),
+                        meal("Pasta bolognese", 720, 36, 88, 20),
+                        meal("Rice cakes & hummus", 190, 6, 28, 6),
+                        meal("Grilled chicken salad", 410, 44, 16, 14),
+                        meal("Trail mix", 200, 5, 18, 12)
+                },
+                {
+                        meal("Pancakes & maple syrup", 480, 12, 72, 14),
+                        meal("Egg white omelette", 260, 28, 6, 10),
+                        meal("Burrito bowl", 640, 38, 78, 20),
+                        meal("Protein bar", 220, 20, 24, 8),
+                        meal("Pork chops & veggies", 520, 40, 24, 26),
+                        meal("Yoghurt honey snack", 150, 10, 22, 3)
+                }
         };
         Meal[] dayMeals = weeklyRotation[(dayNumber - 1) % weeklyRotation.length];
         int mealCount = 5 + (dayNumber % 3);
@@ -375,11 +383,12 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs meal.
-     * @param name The name.
+     * 
+     * @param name     The name.
      * @param calories The calories.
-     * @param protein The protein.
-     * @param carbs The carbs.
-     * @param fats The fats.
+     * @param protein  The protein.
+     * @param carbs    The carbs.
+     * @param fats     The fats.
      */
     private static Meal meal(String name, int calories, int protein, int carbs, int fats) {
         return new Meal(name, calories, protein, carbs, fats);
@@ -387,8 +396,9 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs routine template.
-     * @param name The name.
-     * @param notes The notes.
+     * 
+     * @param name      The name.
+     * @param notes     The notes.
      * @param exercises The exercises.
      */
     private record RoutineTemplate(String name, String notes, List<WorkoutExerciseEntry> exercises) {
@@ -396,11 +406,12 @@ public final class JohnDemoSeeder {
 
     /**
      * Performs meal.
-     * @param name The name.
+     * 
+     * @param name     The name.
      * @param calories The calories.
-     * @param protein The protein.
-     * @param carbs The carbs.
-     * @param fats The fats.
+     * @param protein  The protein.
+     * @param carbs    The carbs.
+     * @param fats     The fats.
      */
     private record Meal(String name, int calories, int protein, int carbs, int fats) {
     }

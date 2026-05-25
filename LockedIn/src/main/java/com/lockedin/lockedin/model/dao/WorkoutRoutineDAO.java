@@ -195,13 +195,13 @@ public class WorkoutRoutineDAO {
                     VALUES (?,?,?,?,?,?)
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            for (WorkoutExerciseEntry e : entries) {
+            for (WorkoutExerciseEntry entry : entries) {
                 ps.setInt(1, routineId);
-                ps.setInt(2, e.getExerciseId());
-                ps.setString(3, e.getExerciseName());
-                ps.setInt(4, e.getSets());
-                ps.setInt(5, e.getReps());
-                ps.setInt(6, e.getRestSeconds());
+                ps.setInt(2, entry.getExerciseId());
+                ps.setString(3, entry.getExerciseName());
+                ps.setInt(4, entry.getSets());
+                ps.setInt(5, entry.getReps());
+                ps.setInt(6, entry.getRestSeconds());
                 ps.addBatch();
             }
             ps.executeBatch();
@@ -579,14 +579,14 @@ public class WorkoutRoutineDAO {
 
     /**
      * Returns the weekly workout tracking.
-     * @param userID The user id.
+     * @param userId The user id.
      * @return The weekly workout tracking.
      */
-    public boolean[] getWeeklyWorkoutTracking(int userID) {
+    public boolean[] getWeeklyWorkoutTracking(int userId) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {
             LocalDate date = LocalDate.now().minusDays(i);
-            List<CompletedWorkoutData> workouts = getCompletedWorkoutsByUser(userID, date);
+            List<CompletedWorkoutData> workouts = getCompletedWorkoutsByUser(userId, date);
             streakDays[i] = workouts.size() > 0;
         }
         return streakDays;

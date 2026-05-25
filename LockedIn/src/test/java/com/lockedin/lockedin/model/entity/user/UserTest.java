@@ -1,6 +1,8 @@
 package com.lockedin.lockedin.model.entity.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,5 +44,46 @@ public class UserTest {
     void getAge_birthdayIsToday_returnsFullAge() {
         LocalDate dob = LocalDate.now().minusYears(30);
         assertEquals(30, makeUserWithDob(dob).getAge());
+    }
+
+    @Test
+    void getBMR_male_usesMaleFormula() {
+        User user = makeUserWithDob(LocalDate.of(1990, 1, 1));
+        user.setSex("Male");
+        user.setWeight(80);
+        user.setHeight(180);
+        double expected = (10 * 80) + (6.25 * 180) - (5 * user.getAge()) + 5;
+        assertEquals(expected, user.getBMR(), 0.01);
+    }
+
+    @Test
+    void getTDEE_appliesActivityMultiplier() {
+        User user = makeUserWithDob(LocalDate.of(1990, 1, 1));
+        user.setActivityLevel(ActivityLevel.MODERATELY_ACTIVE);
+        assertEquals(user.getBMR() * 1.55, user.getTDEE(), 0.01);
+    }
+
+    @Test
+    void getTargetCalories_addsGoalAdjustment() {
+        User user = makeUserWithDob(LocalDate.of(1990, 1, 1));
+        user.setFitnessGoal(FitnessGoal.BUILD_MUSCLE);
+        assertEquals(user.getTDEE() + 500, user.getTargetCalories(), 0.01);
+    }
+
+    @Test
+    void getTargetProtein_usesGoalRatio() {
+        User user = makeUserWithDob(LocalDate.of(1990, 1, 1));
+        double calories = 2000;
+        double expected = (calories * FitnessGoal.BUILD_MUSCLE.getProteinRatio()) / 4.0;
+        assertEquals(expected, user.getTargetProtein(calories, FitnessGoal.BUILD_MUSCLE), 0.01);
+    }
+
+    @Test
+    void getHash_returnsDeterministicSha256Hex() {
+        String hash = User.getHash("Password1!");
+        assertEquals(hash, User.getHash("Password1!"));
+        assertEquals(64, hash.length());
+        assertFalse(hash.isBlank());
+        assertFalse(hash.equals("Password1!"));
     }
 }

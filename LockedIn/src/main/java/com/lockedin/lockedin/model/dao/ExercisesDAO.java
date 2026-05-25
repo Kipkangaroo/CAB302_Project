@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class DBExercisesDAO {
-
-    /** SQLite database file containing all exercise definitions. */
-    private static final String EXERCISES_DB_FILE = "exercises.db";
+public class ExercisesDAO {
 
     /** Shared database connection for all exercise operations. */
     private final Connection connection;
@@ -21,10 +18,17 @@ public class DBExercisesDAO {
      * table if needed,
      * and seeding default exercises.
      */
-    public DBExercisesDAO() {
-        this.connection = SqliteConnection.getInstance(EXERCISES_DB_FILE);
+    public ExercisesDAO() {
+        final String exercisesDbFile = "exercises.db";
+        this.connection = SqliteConnection.getInstance(exercisesDbFile);
         createExercisesTable();
         seedExercises();
+    }
+
+    /** For unit tests with an in-memory database (table only, no seed). */
+    public ExercisesDAO(Connection connection) {
+        this.connection = connection;
+        createExercisesTable();
     }
 
     /**

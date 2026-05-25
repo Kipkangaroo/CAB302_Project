@@ -156,7 +156,7 @@
         </VBox>
     </ScrollPane>
     <HBox style="-fx-padding: 10 16 14 16;">
-        <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogout" text="Log Out"
+        <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" text="Log Out"
                 styleClass="primary-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-padding: 14 0 14 0;"/>
         <ImageView fx:id="deleteAccountIcon" fitWidth="32" fitHeight="32" preserveRatio="true"
                    pickOnBounds="true" styleClass="profile-delete-icon" onMouseClicked="#handleDeleteAccount">

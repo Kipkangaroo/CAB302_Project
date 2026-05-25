@@ -180,7 +180,7 @@
                   maxWidth="Infinity"/>
             <HBox alignment="CENTER_RIGHT"
                   maxWidth="Infinity">
-                <Button fx:id="signupBtn"
+                <Button fx:id="signUpButton"
                         text="Sign Up"
                         onAction="#handleSignup"
                         styleClass="primary-btn"/>

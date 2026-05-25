@@ -1,24 +1,20 @@
 package com.lockedin.lockedin.controller.workout;
 
-import com.lockedin.lockedin.model.dao.DBExercisesDAO;
+import com.lockedin.lockedin.controller.layout.LayoutController;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
+import com.lockedin.lockedin.model.dao.ExercisesDAO;
 import com.lockedin.lockedin.model.entity.workout.Exercise;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 import org.controlsfx.control.SearchableComboBox;
-
-import java.io.IOException;
-import java.util.Objects;
 
 /**
  * JavaFX controller for the exercise view screen.
@@ -26,7 +22,6 @@ import java.util.Objects;
  * @version 1.0
  */
 public class ExerciseViewController {
-    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     private Integer selectedExerciseId;
     @FXML
     private ScrollPane exerciseDetails;
@@ -56,7 +51,7 @@ public class ExerciseViewController {
         ObservableList<Exercise> exercises;
         try {
             // load exercises from database
-            exercises = new DBExercisesDAO().getAllExercises();
+            exercises = new ExercisesDAO().getAllExercises();
         } catch (RuntimeException exception) {
             exercises = FXCollections.observableArrayList();
             System.err.println("Failed to load exercises from database: " + exception.getMessage());
@@ -82,16 +77,11 @@ public class ExerciseViewController {
     }
     /**
      * Performs handle back button.
-     * @throws IOException If the operation fails.
      */
 
     @FXML
-    public void handleBackButton() throws IOException {
-        Pane workoutPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(WORKOUT_VIEW)));
-        StackPane pageContainer = (StackPane) backButton.getScene().lookup("#pageContainer");
-        if (pageContainer != null) {
-            pageContainer.getChildren().setAll(workoutPage);
-        }
+    public void handleBackButton() {
+        PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
     }
 
     /**

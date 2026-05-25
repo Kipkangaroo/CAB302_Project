@@ -7,7 +7,6 @@ package com.lockedin.lockedin.model.entity.workout;
  * @version 1.0
  */
 public class Exercise {
-    private static final String baseImageUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
     private int id;
     private String name;
     private String instruction;
@@ -141,6 +140,8 @@ public class Exercise {
      * @return The exercise image url.
      */
     public String getExerciseImageUrl(int option) {
+        final String baseImageUrl =
+                "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
         return baseImageUrl + exerciseImageId + "/" + option + ".jpg";
     }
     /**

@@ -10,14 +10,10 @@ import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.geometry.Pos;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -34,24 +30,11 @@ import java.util.Map;
  * @version 1.0
  */
 public class ProfileController {
-    private static final String BLUE_FILL = "#028ee1";
-    private static final String WHITE_FILL = "#FFFFFF";
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
-    private static final String EDIT_ICON = "/com/lockedin/lockedin/graphics/icons/edit-icon.png";
-    private static final String SAVE_ICON = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
-    private static final double ICON_SIZE = 46;
-    private static final DateTimeFormatter DAY_LABEL_FORMAT = DateTimeFormatter.ofPattern("dd/MM");
-    private static final DateTimeFormatter CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
     private static final int WEIGHT_CHART_DAYS = 30;
-    private static final int CHART_LABEL_INTERVAL = 5;
-    private static final Paint COMPLETED_FILL = Paint.valueOf(BLUE_FILL);
-    private static final Paint MISSED_FILL = Paint.valueOf(WHITE_FILL);
     private final Authentication authentication = new Authentication();
     private final UserDAO userDAO = new UserDAO();
-    private final FoodDAO foodDAO = new FoodDAO();
-    private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
-    private final UserImageDAO imageDAO = new UserImageDAO();
     @FXML
     private ImageView imageView;
     @FXML
@@ -70,7 +53,7 @@ public class ProfileController {
     );
 
     @FXML
-    private Button logoutBtn;
+    private Button logoutButton;
     @FXML
     private Label ageLabel;
     @FXML
@@ -103,7 +86,7 @@ public class ProfileController {
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();
-        authentication.switchScene(logoutBtn, LOGIN_VIEW);
+        authentication.switchScene(logoutButton, LOGIN_VIEW);
     }
 
     /**
@@ -186,8 +169,9 @@ public class ProfileController {
      * Performs update edit icon.
      */
     private void updateEditIcon() {
-        editActionIcon.setFitWidth(ICON_SIZE);
-        editActionIcon.setFitHeight(ICON_SIZE);
+        final double iconSize = 46;
+        editActionIcon.setFitWidth(iconSize);
+        editActionIcon.setFitHeight(iconSize);
         Image icon = editingDetails ? saveImage : editImage;
         if (icon != null) {
             editActionIcon.setImage(icon);
@@ -225,8 +209,10 @@ public class ProfileController {
 
     @FXML
     private void initialize() {
-        var editIconUrl = getClass().getResource(EDIT_ICON);
-        var saveIconUrl = getClass().getResource(SAVE_ICON);
+        final String editIcon = "/com/lockedin/lockedin/graphics/icons/edit-icon.png";
+        final String saveIcon = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
+        var editIconUrl = getClass().getResource(editIcon);
+        var saveIconUrl = getClass().getResource(saveIcon);
         if (editIconUrl != null) {
             editImage = new Image(editIconUrl.toExternalForm());
         }
@@ -247,6 +233,7 @@ public class ProfileController {
         loadProfileImage();
     }
     private void loadProfileImage() {
+        UserImageDAO imageDAO = new UserImageDAO();
         Optional<byte[]> imageData = imageDAO.getImageByUserId(user.getId());
         Image image = imageData.isPresent()
                 ? new Image(new ByteArrayInputStream(imageData.get()))
@@ -291,11 +278,13 @@ public class ProfileController {
      * Returns a visible x-axis label only on selected days so the chart stays readable.
      */
     private String chartAxisLabel(LocalDate date, int daysAgo) {
+        final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
+        final int chartLabelInterval = 5;
         if (daysAgo == 0) {
             return "Today";
         }
-        if (daysAgo == WEIGHT_CHART_DAYS - 1 || daysAgo % CHART_LABEL_INTERVAL == 0) {
-            return date.format(CHART_DATE_FORMAT);
+        if (daysAgo == WEIGHT_CHART_DAYS - 1 || daysAgo % chartLabelInterval == 0) {
+            return date.format(chartDateFormat);
         }
         return "";
     }
@@ -304,6 +293,8 @@ public class ProfileController {
      * Performs update tracking streaks.
      */
     private void updateTrackingStreaks() {
+        FoodDAO foodDAO = new FoodDAO();
+        WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
         updateStreak(calorieStreakRow, foodDAO.getWeeklyCalorieTracking(user.getId()));
         updateStreak(workoutStreakRow, workoutDAO.getWeeklyWorkoutTracking(user.getId()));
     }
@@ -315,6 +306,9 @@ public class ProfileController {
      * @param completed The completed.
      */
     private void updateStreak(HBox row, boolean[] completed) {
+        final DateTimeFormatter dayLabelFormat = DateTimeFormatter.ofPattern("dd/MM");
+        final Paint completedFill = Paint.valueOf("#028ee1");
+        final Paint missedFill = Paint.valueOf("#FFFFFF");
         LocalDate today = LocalDate.now();
         for (int j = 0; j < row.getChildren().size(); j++) {
             VBox day = (VBox) row.getChildren().get(j);
@@ -322,8 +316,8 @@ public class ProfileController {
             Label label = (Label) day.getChildren().get(1);
 
             int daysAgo = 6 - j;
-            label.setText(daysAgo == 0 ? "Today" : today.minusDays(daysAgo).format(DAY_LABEL_FORMAT));
-            circle.setFill(completed[daysAgo] ? COMPLETED_FILL : MISSED_FILL);
+            label.setText(daysAgo == 0 ? "Today" : today.minusDays(daysAgo).format(dayLabelFormat));
+            circle.setFill(completed[daysAgo] ? completedFill : missedFill);
         }
     }
 

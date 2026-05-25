@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class Food {
     private int id;
-    private int userID;
+    private int userId;
     private String name;
     private int calories;
     private int protein;
@@ -28,16 +28,16 @@ public class Food {
     /**
      * Creates a new Food.
      * @param id The id.
-     * @param userID The user id.
+     * @param userId The user id.
      * @param name The name.
      * @param calories The calories.
      * @param protein The protein.
      * @param carbs The carbs.
      * @param fats The fats.
      */
-    public Food(int id, int userID, String name, int calories, int protein, int carbs, int fats) {
+    public Food(int id, int userId, String name, int calories, int protein, int carbs, int fats) {
         this.id = id;
-        this.userID = userID;
+        this.userId = userId;
         this.name = name;
         this.calories = calories;
         this.date = LocalDate.now();
@@ -146,16 +146,16 @@ public class Food {
      * Returns the user id.
      * @return The user id.
      */
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
     /**
      * Sets the user id.
-     * @param userID The user id.
+     * @param userId The user id.
      */
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     /**

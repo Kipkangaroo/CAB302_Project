@@ -4,14 +4,11 @@ import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -21,13 +18,11 @@ import java.util.Optional;
  * @author LockedIn Team
  * @version 1.0
  */
-public class LogInController {
-    private static final String MAIN_VIEW = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
-    private static final String FORGOT_PASSWORD_VIEW = "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
+public class LoginController {
     private static User loggedInUser;
     private final Authentication authentication = new Authentication();
     @FXML
-    private Button loginBtn;
+    private Button loginButton;
     @FXML
     private TextField emailField;
     @FXML
@@ -53,7 +48,7 @@ public class LogInController {
      */
 
     @FXML
-    protected void handleLogIn() throws IOException {
+    protected void handleLogin() throws IOException {
         String email = emailField.getText().trim();
         if (!authentication.isValidEmail(email)) {
             authentication.showError("Invalid email", "Please enter a valid email format.");
@@ -67,7 +62,7 @@ public class LogInController {
     }
     @FXML
     private void initialize() {
-        loginBtn.setDefaultButton(true);
+        loginButton.setDefaultButton(true);
         emailField.setText("john.demo@lockedin.app");
         passwordField.setText("Password1!");
         eyeIcon = new Image(getClass().getResourceAsStream(
@@ -106,10 +101,8 @@ public class LogInController {
      * @throws IOException If the operation fails.
      */
     private void successfulLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
-        Scene scene = new Scene(loader.load(), 410, 750);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
+        final String mainView = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
+        authentication.switchScene(loginButton, mainView);
     }
 
     /**
@@ -147,7 +140,8 @@ public class LogInController {
 
     @FXML
     private void handleForgotPassword() throws IOException {
-        authentication.switchScene(loginBtn, FORGOT_PASSWORD_VIEW);
+        final String forgotPasswordView = "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
+        authentication.switchScene(loginButton, forgotPasswordView);
     }
     /**
      * Performs handle signup.
@@ -156,11 +150,7 @@ public class LogInController {
 
     @FXML
     private void handleSignup() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass()
-                        .getResource("/com/lockedin/lockedin/pages/auth/signup-view.fxml"));
-        Scene scene = new Scene(loader.load(), 410, 750);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
+        authentication.switchScene(
+                loginButton, "/com/lockedin/lockedin/pages/auth/signup-view.fxml");
     }
 }

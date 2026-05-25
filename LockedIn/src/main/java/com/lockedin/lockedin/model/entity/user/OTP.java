@@ -4,7 +4,6 @@ import com.lockedin.lockedin.model.dao.OtpDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.service.SendEmail;
 
-import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -12,13 +11,13 @@ import java.util.Random;
  * @author LockedIn Team
  * @version 1.0
  */
-public class OTP {
+public class Otp {
     private String email;
     private int otpCode;
     private UserDAO userDAO;
     private OtpDAO otpDAO;
 
-    public OTP(String email) {
+    public Otp(String email) {
         this.email = email;
         this.userDAO = new UserDAO();
         this.otpDAO = new OtpDAO();
@@ -76,7 +75,7 @@ public class OTP {
         new Thread(() -> {
             try {
                 new SendEmail().sendOtpEmail(email, otpCode);
-            } catch (IOException ignored) {
+            } catch (RuntimeException ignored) {
             }
         }).start();
     }

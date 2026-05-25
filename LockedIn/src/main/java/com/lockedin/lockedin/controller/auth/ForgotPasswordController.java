@@ -1,5 +1,11 @@
 package com.lockedin.lockedin.controller.auth;
 
+import java.io.IOException;
+
+import com.lockedin.lockedin.model.dao.OtpDAO;
+import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.entity.user.Otp;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,26 +14,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import com.lockedin.lockedin.model.dao.UserDAO;
-import com.lockedin.lockedin.model.dao.OtpDAO;
-import com.lockedin.lockedin.model.entity.user.OTP;
-
-import java.io.IOException;
-
 /**
  * JavaFX controller for the forgot password screen.
+ * 
  * @author LockedIn Team
  * @version 1.0
  */
 public class ForgotPasswordController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
-    private final UserDAO userDAO = new UserDAO();
-    private final OtpDAO otpDAO = new OtpDAO();
     private final Authentication authentication = new Authentication();
     private boolean awaitingOtp;
     private boolean resettingPassword;
     private String email;
-    private OTP userOtp;
     @FXML
     private ImageView backImageView;
     @FXML
@@ -41,18 +39,21 @@ public class ForgotPasswordController {
     @FXML
     private PasswordField confirmPasswordField;
     @FXML
-    private Button getOtpBtn;
+    private Button getOtpButton;
+
     /**
      * Initializes FXML-bound UI components after the view loads.
      */
 
     @FXML
     private void initialize() {
-        getOtpBtn.setDefaultButton(true);
+        getOtpButton.setDefaultButton(true);
         setPasswordEntryVisible(false);
     }
+
     /**
      * Performs handle back button.
+     * 
      * @param event The event.
      * @throws IOException If the operation fails.
      */
@@ -61,6 +62,7 @@ public class ForgotPasswordController {
     private void handleBackButton(MouseEvent event) throws IOException {
         authentication.switchScene(backImageView, LOGIN_VIEW);
     }
+
     /**
      * Performs handle get otp.
      */
@@ -81,7 +83,7 @@ public class ForgotPasswordController {
             return;
         }
         this.email = email;
-        this.userOtp = new OTP(email);
+        Otp userOtp = new Otp(email);
         userOtp.sendOtpToEmail();
         authentication.showInfo(
                 "OTP sent",
@@ -101,13 +103,14 @@ public class ForgotPasswordController {
         confirmPasswordField.clear();
         emailLabel.setText("OTP:");
         emailField.setPromptText("Enter your OTP here");
-        getOtpBtn.setText("Verify OTP");
+        getOtpButton.setText("Verify OTP");
     }
 
     /**
      * Performs handle verify otp.
      */
     private void handleVerifyOtp() {
+        OtpDAO otpDAO = new OtpDAO();
         String otpText = emailField.getText().trim();
         if (otpText.isEmpty()) {
             authentication.showError("Invalid OTP", "Please enter your OTP.");
@@ -137,13 +140,14 @@ public class ForgotPasswordController {
         confirmPasswordField.clear();
         emailLabel.setText("New Password:");
         setPasswordEntryVisible(true);
-        getOtpBtn.setText("Reset Password");
+        getOtpButton.setText("Reset Password");
     }
 
     /**
      * Performs handle reset password.
      */
     private void handleResetPassword() {
+        UserDAO userDAO = new UserDAO();
         String password = passwordField.getText().trim();
         String confirmPassword = confirmPasswordField.getText().trim();
         if (password.isEmpty() || confirmPassword.isEmpty()) {
@@ -169,7 +173,7 @@ public class ForgotPasswordController {
         }
         authentication.showInfo("Password reset", "Your password has been updated. You can now log in.");
         try {
-            authentication.switchScene(getOtpBtn, LOGIN_VIEW);
+            authentication.switchScene(getOtpButton, LOGIN_VIEW);
         } catch (IOException e) {
             throw new RuntimeException("Failed to navigate to login", e);
         }
@@ -177,6 +181,7 @@ public class ForgotPasswordController {
 
     /**
      * Sets the password entry visible.
+     * 
      * @param visible The visible.
      */
     private void setPasswordEntryVisible(boolean visible) {

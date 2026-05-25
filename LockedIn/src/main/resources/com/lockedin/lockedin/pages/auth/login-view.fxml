@@ -7,7 +7,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       alignment="TOP_CENTER"
       spacing="16.0"
-      fx:controller="com.lockedin.lockedin.controller.auth.LogInController"
+      fx:controller="com.lockedin.lockedin.controller.auth.LoginController"
       stylesheets="@../../style/style.css"
       prefWidth="400.0"
       prefHeight="650.0"
@@ -70,9 +70,9 @@
                            text="Forgot your password?"
                            onAction="#handleForgotPassword"/>
             </HBox>
-            <Button fx:id="loginBtn"
+            <Button fx:id="loginButton"
                     text="Log In"
-                    onAction="#handleLogIn"
+                    onAction="#handleLogin"
                     styleClass="primary-btn"
                     maxWidth="Infinity"/>
         </VBox>

@@ -799,7 +799,7 @@
 
 .profile-weight-chart .default-color0.chart-series-line {
     -fx-stroke: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
-    -fx-stroke-width: 2.5px;
+    -fx-stroke-width: 3.0px;
 }
 
 .profile-weight-chart .default-color0.chart-line-symbol {

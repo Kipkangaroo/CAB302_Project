@@ -1,13 +1,10 @@
 package com.lockedin.lockedin.controller.layout;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 
-import java.io.IOException;
-import java.util.Objects;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 
 /**
  * JavaFX controller for the layout screen.
@@ -21,17 +18,14 @@ public class LayoutController {
     public static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
     public static final String DIET_VIEW = "/com/lockedin/lockedin/pages/diet/diet-view.fxml";
     public static final String PROFILE_VIEW = "/com/lockedin/lockedin/pages/profile/profile-view.fxml";
-    private static final String INACTIVE = "-fx-scale-x: 1; -fx-scale-y: 1; -fx-opacity: 1;";
-    private static final String ACTIVE = "-fx-scale-x: 0.95; -fx-scale-y: 0.95; -fx-opacity: 0.8; -fx-border-color: transparent"
-            + " transparent #378ADD transparent;-fx-border-width: 0 0 2 0;";
     @FXML
     public StackPane pageContainer;
     @FXML
-    public Button btnWorkout;
+    public Button workoutNavButton;
     @FXML
-    public Button btnDiet;
+    public Button dietNavButton;
     @FXML
-    public Button btnProfile;
+    public Button profileNavButton;
     /**
      * Initializes FXML-bound UI components after the view loads.
      */
@@ -47,7 +41,7 @@ public class LayoutController {
     @FXML
     private void showWorkoutPage() {
         loadPage(WORKOUT_VIEW);
-        setActive(btnWorkout);
+        setActive(workoutNavButton);
     }
     /**
      * Performs show diet page.
@@ -56,7 +50,7 @@ public class LayoutController {
     @FXML
     private void showDietPage() {
         loadPage(DIET_VIEW);
-        setActive(btnDiet);
+        setActive(dietNavButton);
     }
     /**
      * Performs show profile page.
@@ -65,7 +59,7 @@ public class LayoutController {
     @FXML
     private void showProfilePage() {
         loadPage(PROFILE_VIEW);
-        setActive(btnProfile);
+        setActive(profileNavButton);
     }
 
     /**
@@ -73,12 +67,7 @@ public class LayoutController {
      * @param page The page.
      */
     private void loadPage(String page) {
-        try {
-            Pane appPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
-            pageContainer.getChildren().setAll(appPage);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load page: " + page, e);
-        }
+        PageNavigator.loadInto(pageContainer, getClass(), page);
     }
 
     /**
@@ -86,9 +75,12 @@ public class LayoutController {
      * @param active The active.
      */
     private void setActive(Button active) {
-        btnWorkout.setStyle(INACTIVE);
-        btnDiet.setStyle(INACTIVE);
-        btnProfile.setStyle(INACTIVE);
-        active.setStyle(ACTIVE);
+        final String inactive = "-fx-scale-x: 1; -fx-scale-y: 1; -fx-opacity: 1;";
+        final String activeStyle = "-fx-scale-x: 0.95; -fx-scale-y: 0.95; -fx-opacity: 0.8; -fx-border-color: transparent"
+                + " transparent #378ADD transparent;-fx-border-width: 0 0 2 0;";
+        workoutNavButton.setStyle(inactive);
+        dietNavButton.setStyle(inactive);
+        profileNavButton.setStyle(inactive);
+        active.setStyle(activeStyle);
     }
 }

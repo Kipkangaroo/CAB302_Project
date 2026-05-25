@@ -13,9 +13,6 @@ import java.time.temporal.ChronoUnit;
  * @version 1.0
  */
 public class User {
-    private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
-    private static final double CALORIES_PER_GRAM_CARBS = 4.0;
-    private static final double CALORIES_PER_GRAM_FATS = 9.0;
     private int id;
     private String firstName;
     private String lastName;
@@ -347,7 +344,8 @@ public class User {
      * @return The target protein.
      */
     public double getTargetProtein(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getProteinRatio(fitnessGoal)) / CALORIES_PER_GRAM_PROTEIN;
+        final double caloriesPerGramProtein = 4.0;
+        return (totalCalories * getProteinRatio(fitnessGoal)) / caloriesPerGramProtein;
     }
 
     /**
@@ -357,7 +355,8 @@ public class User {
      * @return The target carbs.
      */
     public double getTargetCarbs(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getCarbsRatio(fitnessGoal)) / CALORIES_PER_GRAM_CARBS;
+        final double caloriesPerGramCarbs = 4.0;
+        return (totalCalories * getCarbsRatio(fitnessGoal)) / caloriesPerGramCarbs;
     }
 
     /**
@@ -367,7 +366,8 @@ public class User {
      * @return The target fats.
      */
     public double getTargetFats(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getFatsRatio(fitnessGoal)) / CALORIES_PER_GRAM_FATS;
+        final double caloriesPerGramFats = 9.0;
+        return (totalCalories * getFatsRatio(fitnessGoal)) / caloriesPerGramFats;
     }
 
 }

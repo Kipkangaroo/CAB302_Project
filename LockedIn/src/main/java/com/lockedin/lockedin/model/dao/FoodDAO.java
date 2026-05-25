@@ -67,7 +67,7 @@ public class FoodDAO {
         String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
                 + " ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, food.getUserID());
+            statement.setInt(1, food.getUserId());
             statement.setString(2, food.getName());
             statement.setInt(3, food.getCalories());
             statement.setInt(4, food.getProtein());
@@ -88,16 +88,16 @@ public class FoodDAO {
     /**
      * Returns the foods by date.
      * @param targetDate The target date.
-     * @param userID The user id.
+     * @param userId The user id.
      * @return The foods by date.
      */
-    public List<Food> getFoodsByDate(LocalDate targetDate, int userID) {
+    public List<Food> getFoodsByDate(LocalDate targetDate, int userId) {
         String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
                 + " date = ? AND user_id = ? ORDER BY name";
         List<Food> foods = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, targetDate.toString());
-            statement.setInt(2, userID);
+            statement.setInt(2, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
                     foods.add(mapRowToFood(rs));
@@ -165,14 +165,14 @@ public class FoodDAO {
 
     /**
      * Returns the weekly calorie tracking.
-     * @param userID The user id.
+     * @param userId The user id.
      * @return The weekly calorie tracking.
      */
-    public boolean[] getWeeklyCalorieTracking(int userID) {
+    public boolean[] getWeeklyCalorieTracking(int userId) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {
             LocalDate date = LocalDate.now().minusDays(i);
-            List<Food> foods = getFoodsByDate(date, userID);
+            List<Food> foods = getFoodsByDate(date, userId);
             streakDays[i] = !foods.isEmpty();
         }
         return streakDays;
@@ -182,16 +182,16 @@ public class FoodDAO {
      * Returns the daily total by attribute.
      * @param targetDate The target date.
      * @param attribute The attribute.
-     * @param userID The user id.
+     * @param userId The user id.
      * @return The daily total by attribute.
      */
-    public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userID) {
+    public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userId) {
         String sql = "SELECT COALESCE(SUM("
                 + attribute
                 + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, targetDate.toString());
-            statement.setInt(2, userID);
+            statement.setInt(2, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("total");
@@ -244,7 +244,7 @@ public class FoodDAO {
     private Food mapRowToFood(ResultSet rs) throws SQLException {
         Food food = new Food();
         food.setId(rs.getInt("id"));
-        food.setUserID(rs.getInt("user_id"));
+        food.setUserId(rs.getInt("user_id"));
         food.setName(rs.getString("name"));
         food.setCalories(rs.getInt("calories"));
         food.setProtein(rs.getInt("protein"));

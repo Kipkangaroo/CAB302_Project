@@ -1,18 +1,16 @@
 package com.lockedin.lockedin.controller.workout;
 
+import com.lockedin.lockedin.controller.layout.LayoutController;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.chart.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,10 +25,6 @@ import java.util.Map;
  * @version 1.0
  */
 public class WorkoutHistoryController {
-    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
-    private static final DateTimeFormatter CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
-    private static final int REPS_CHART_DAYS = 7;
 
     @FXML
     private Button backButton;
@@ -215,8 +209,9 @@ public class WorkoutHistoryController {
      * @return The resulting text.
      */
     private String formatCompletedAt(String completedAt) {
+        final DateTimeFormatter displayDate = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
         try {
-            return LocalDateTime.parse(completedAt).format(DISPLAY_DATE);
+            return LocalDateTime.parse(completedAt).format(displayDate);
         } catch (DateTimeParseException exception) {
             return completedAt;
         }
@@ -236,15 +231,17 @@ public class WorkoutHistoryController {
      * Populates the reps line chart (oldest date left, today right).
      */
     private void loadRepsChart(Map<LocalDate, Integer> data) {
+        final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
+        final int repsChartDays = 7;
         repsChart.getData().clear();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Reps");
 
         LocalDate today = LocalDate.now();
-        for (int daysAgo = REPS_CHART_DAYS - 1; daysAgo >= 0; daysAgo--) {
+        for (int daysAgo = repsChartDays - 1; daysAgo >= 0; daysAgo--) {
             LocalDate date = today.minusDays(daysAgo);
-            String label = daysAgo == 0 ? "Today" : date.format(CHART_DATE_FORMAT);
+            String label = daysAgo == 0 ? "Today" : date.format(chartDateFormat);
             series.getData().add(new XYChart.Data<>(label, data.getOrDefault(date, 0)));
         }
 
@@ -256,15 +253,7 @@ public class WorkoutHistoryController {
 
     @FXML
     public void handleBack() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
-            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to navigate back to workouts", e);
-        }
+        PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
     }
 
     /**

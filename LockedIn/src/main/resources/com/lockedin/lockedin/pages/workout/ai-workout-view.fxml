@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="com.lockedin.lockedin.controller.workout.AiWorkoutController"
+      fx:controller="com.lockedin.lockedin.controller.workout.AIWorkoutController"
       fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">

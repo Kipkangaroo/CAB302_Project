@@ -66,4 +66,20 @@ class MeasurementTest {
         mFull.setDate(newDate);
         assertEquals(newDate, mFull.getDate());
     }
+
+    @Test
+    void getUserId_returnsConstructorValue() {
+        assertEquals(999, mFull.getUserId());
+    }
+
+    @Test
+    void getId_returnsConstructorValue() {
+        assertEquals(10, mFull.getId());
+    }
+
+    @Test
+    void setValue_acceptsZero() {
+        mNoId.setValue(0.0);
+        assertEquals(0.0, mNoId.getValue());
+    }
 }

@@ -1,31 +1,27 @@
 package com.lockedin.lockedin.controller.workout;
 
+import com.lockedin.lockedin.controller.layout.LayoutController;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
-import com.lockedin.lockedin.service.AiWorkoutService;
-import com.lockedin.lockedin.service.AiWorkoutService.WorkoutResult;
+import com.lockedin.lockedin.service.AIWorkoutService;
+import com.lockedin.lockedin.service.AIWorkoutService.WorkoutResult;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
-
 /**
- * JavaFX controller for the ai workout screen.
+ * JavaFX controller for the AI workout screen.
  * @author LockedIn Team
  * @version 1.0
  */
-public class AiWorkoutController {
+public class AIWorkoutController {
 
-    private static final String WORKOUT_VIEW = "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private final WorkoutRoutineDAO routineDAO = new WorkoutRoutineDAO();
-    private final AiWorkoutService aiService = new AiWorkoutService();
     @FXML
     private Button backButton;
     @FXML
@@ -80,6 +76,7 @@ public class AiWorkoutController {
 
     @FXML
     public void handleGenerate() {
+        AIWorkoutService aiWorkoutService = new AIWorkoutService();
         String experience = experienceCombo.getValue();
         String time = timeCombo.getValue();
         String muscleGroup = muscleGroupCombo.getValue();
@@ -92,7 +89,7 @@ public class AiWorkoutController {
 
         setGeneratingState(true);
 
-        var task = aiService.createGenerateWorkoutTask(experience, time, muscleGroup, goal);
+        var task = aiWorkoutService.createGenerateWorkoutTask(experience, time, muscleGroup, goal);
 
         task.setOnSucceeded(e -> Platform.runLater(() -> {
             setGeneratingState(false);
@@ -111,7 +108,7 @@ public class AiWorkoutController {
             showStatus("An error occurred. Please check your connection and try again.", true);
         }));
 
-        Thread worker = new Thread(task, "ai-workout-generator");
+        Thread worker = new Thread(task, "AI-workout-generator");
         worker.setDaemon(true);
         worker.start();
     }
@@ -123,6 +120,7 @@ public class AiWorkoutController {
     public void handleSave() {
         if (generatedResult == null)
             return;
+        WorkoutRoutineDAO routineDAO = new WorkoutRoutineDAO();
         routineDAO.saveRoutine(
                 CurrentUser.getId(),
                 generatedResult.routineName,
@@ -212,13 +210,6 @@ public class AiWorkoutController {
      * Performs navigate back.
      */
     private void navigateBack() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
-            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null)
-                pc.getChildren().setAll(page);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to navigate back", e);
-        }
+        PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
     }
 }
