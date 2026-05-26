@@ -12,10 +12,10 @@ import java.util.Random;
  * @version 1.0
  */
 public class Otp {
-    private String email;
+    private final String email;
     private int otpCode;
-    private UserDAO userDAO;
-    private OtpDAO otpDAO;
+    private final UserDAO userDAO;
+    private final OtpDAO otpDAO;
 
     public Otp(String email) {
         this.email = email;

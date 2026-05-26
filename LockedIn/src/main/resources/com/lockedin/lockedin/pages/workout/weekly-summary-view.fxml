@@ -7,12 +7,11 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="com.lockedin.lockedin.controller.workout.WeeklySummaryController"
-      fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
 
     <!-- ── Gradient header ── -->
-    <VBox styleClass="workout-header" fillWidth="true">
+    <VBox styleClass="workout-header">
         <HBox alignment="CENTER_LEFT" spacing="8">
             <Button fx:id="backButton"
                     text="←"
@@ -52,10 +51,10 @@
                 fitToWidth="true"
                 hbarPolicy="NEVER"
                 styleClass="workout-scroll">
-        <VBox styleClass="workout-page-bg" spacing="14" fillWidth="true">
+        <VBox styleClass="workout-page-bg" spacing="14">
 
             <!-- Stats row -->
-            <HBox spacing="10" fillHeight="true">
+            <HBox spacing="10">
                 <VBox styleClass="workout-card"
                       alignment="CENTER"
                       HBox.hgrow="ALWAYS"
@@ -89,7 +88,7 @@
             </HBox>
 
             <!-- Individual workout cards for this week -->
-            <VBox fx:id="workoutsContainer" spacing="10" fillWidth="true"/>
+            <VBox fx:id="workoutsContainer" spacing="10"/>
 
         </VBox>
     </ScrollPane>

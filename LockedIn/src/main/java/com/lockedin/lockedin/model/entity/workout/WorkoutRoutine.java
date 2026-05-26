@@ -17,7 +17,7 @@ public class WorkoutRoutine {
     private String duration;
     private String intensity;
     private String notes;
-    private HashMap<Exercise, ArrayList<ExerciseSet>> exerciseTracking;
+    private HashMap<Exercise, ArrayList<ExerciseSet>>  exerciseTracking;
 
         /**
      * Constructs a WorkoutRoutine using default application dependencies.

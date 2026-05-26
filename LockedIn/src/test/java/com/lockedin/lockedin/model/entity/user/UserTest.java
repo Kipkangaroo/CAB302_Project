@@ -1,12 +1,10 @@
 package com.lockedin.lockedin.model.entity.user;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for User, covering expected behaviour and edge cases using isolated or in-memory dependencies where appropriate.
@@ -128,6 +126,6 @@ public class UserTest {
         assertEquals(hash, User.getHash("Password1!"));
         assertEquals(64, hash.length());
         assertFalse(hash.isBlank());
-        assertFalse(hash.equals("Password1!"));
+        assertNotEquals("Password1!", hash);
     }
 }

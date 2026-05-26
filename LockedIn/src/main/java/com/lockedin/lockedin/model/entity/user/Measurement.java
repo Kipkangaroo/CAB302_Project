@@ -9,8 +9,8 @@ import java.time.LocalDate;
  * @version 1.0
  */
 public class Measurement {
-    private int id;
-    private int userId;
+    private final int id;
+    private final int userId;
     private double value;
     private String type;
     private LocalDate date;
