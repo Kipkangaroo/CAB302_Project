@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="com.lockedin.lockedin.controller.diet.CaloriesMacrosTrendsController"
+      fillWidth="true"
+      maxWidth="Infinity"
+      maxHeight="Infinity">
+
+    <!-- ── Header ── -->
+    <VBox styleClass="diet-header" fillWidth="true">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button fx:id="backButton"
+                    text="←"
+                    onAction="#handleBack"
+                    styleClass="header-btn"
+                    style="-fx-font-size: 16px;"/>
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Calories &amp; Macros Trends"
+                       styleClass="diet-header-title"/>
+                <Label text="Daily calories and macros vs. your goals"
+                       styleClass="diet-header-subtitle"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- ── Scrollable content ── -->
+    <ScrollPane VBox.vgrow="ALWAYS"
+                fitToWidth="true"
+                styleClass="diet-scroll"
+                hbarPolicy="NEVER">
+        <VBox styleClass="diet-page-bg" spacing="12" fillWidth="true">
+
+            <!-- Range toggle -->
+            <VBox styleClass="diet-card" spacing="0">
+                <HBox spacing="10">
+                    <Button fx:id="last7DaysButton"
+                            text="7 Days"
+                            onAction="#handle7Days"
+                            styleClass="primary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button fx:id="last30DaysButton"
+                            text="30 Days"
+                            onAction="#handle30Days"
+                            styleClass="diet-secondary-btn"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                </HBox>
+            </VBox>
+
+            <!-- Calories -->
+            <VBox styleClass="diet-card" spacing="10">
+                <Label text="Calories" styleClass="diet-section-title"/>
+                <LineChart fx:id="calorieChart"
+                           styleClass="profile-weight-chart"
+                           prefHeight="260"
+                           animated="false"
+                           legendVisible="true"
+                           createSymbols="false">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Calories (kcal)"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="true"
+                                    autoRanging="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Protein -->
+            <VBox styleClass="diet-card" spacing="10">
+                <Label text="Proteins" styleClass="diet-section-title"/>
+                <LineChart fx:id="proteinChart"
+                           styleClass="profile-weight-chart"
+                           prefHeight="260"
+                           animated="false"
+                           legendVisible="true"
+                           createSymbols="false">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Protein (g)"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="true"
+                                    autoRanging="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Carbohydrates -->
+            <VBox styleClass="diet-card" spacing="10">
+                <Label text="Carbohydrates" styleClass="diet-section-title"/>
+                <LineChart fx:id="carbsChart"
+                           styleClass="profile-weight-chart"
+                           prefHeight="260"
+                           animated="false"
+                           legendVisible="true"
+                           createSymbols="false">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Carbohydrates (g)"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="true"
+                                    autoRanging="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Fats -->
+            <VBox styleClass="diet-card" spacing="10">
+                <Label text="Fats" styleClass="diet-section-title"/>
+                <LineChart fx:id="fatsChart"
+                           styleClass="profile-weight-chart"
+                           prefHeight="260"
+                           animated="false"
+                           legendVisible="true"
+                           createSymbols="false">
+                    <xAxis>
+                        <CategoryAxis label="Date" side="BOTTOM"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Fats (g)"
+                                    side="LEFT"
+                                    minorTickVisible="false"
+                                    forceZeroInRange="true"
+                                    autoRanging="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>

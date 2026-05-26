@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fitToWidth="true"
@@ -10,91 +12,179 @@
             stylesheets="@../../style/style.css"
             styleClass="diet-scroll">
     <VBox xmlns:fx="http://javafx.com/fxml"
-          alignment="TOP_LEFT"
-          spacing="12.0"
+          spacing="0"
           prefWidth="400.0"
-          prefHeight="700.0"
-          style="-fx-padding: 30; -fx-background-color: #F0F2F5;">
-        <HBox alignment="CENTER_LEFT"
+          styleClass="signup-form"
+          style="-fx-padding: 0 30 30 30; -fx-background-color: #F0F2F5;">
+        <VBox spacing="4.0"
               maxWidth="Infinity">
-            <ImageView fx:id="logoImageView"
-                       preserveRatio="true"
-                       fitHeight="50"
-                       pickOnBounds="true"
-                       style="-fx-cursor: hand;"
-                       onMouseClicked="#handleBackButton">
-                <image>
-                    <Image url="@../../images/back_arrow.png"/>
-                </image>
-            </ImageView>
-        </HBox>
-        <Label text="Sign Up"
-               styleClass="diet-section-title"/>
-        <Label text="First Name"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="firstNameField"
-                   promptText="Enter your first name"
-                   styleClass="diet-input"/>
-        <Label text="Last Name"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="lastNameField"
-                   promptText="Enter your last name"
-                   styleClass="diet-input"/>
-        <Label text="Email"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="emailField"
-                   promptText="Enter your email"
-                   styleClass="diet-input"/>
-        <Label text="Password"
-               styleClass="profile-detail-label"/>
-        <PasswordField fx:id="passwordField"
-                       promptText="Enter your password"
-                       styleClass="diet-input"/>
-        <Label text="Confirm Password"
-               styleClass="profile-detail-label"/>
-        <PasswordField fx:id="confirmPasswordField"
-                       promptText="Confirm your password"
-                       styleClass="diet-input"/>
-        <Label text="Date of Birth"
-               styleClass="profile-detail-label"/>
-        <DatePicker fx:id="dobPicker"
-                    promptText="Select your date of birth"
-                    styleClass="diet-input"
-                    maxWidth="Infinity"/>
-        <Label text="Height (cm)"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="heightField"
-                   promptText="Enter your height in cm"
-                   styleClass="diet-input"/>
-        <Label text="Weight (kg)"
-               styleClass="profile-detail-label"/>
-        <TextField fx:id="weightField"
-                   promptText="Enter your weight in kg"
-                   styleClass="diet-input"/>
-        <Label text="Sex"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="sexCombo"
-                  promptText="Select your sex"
-                  styleClass="diet-input"
-                  maxWidth="Infinity"/>
-        <Label text="Activity Level"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="activityLevelCombo"
-                  promptText="Select your activity level"
-                  styleClass="diet-input"
-                  maxWidth="Infinity"/>
-        <Label text="Fitness Goal"
-               styleClass="profile-detail-label"/>
-        <ComboBox fx:id="fitnessGoalCombo"
-                  promptText="Select your fitness goal"
-                  styleClass="diet-input"
-                  maxWidth="Infinity"/>
-        <HBox alignment="CENTER_RIGHT"
+            <StackPane maxWidth="Infinity"
+                       prefHeight="50"
+                       minHeight="50"
+                       maxHeight="50">
+                <VBox.margin>
+                    <Insets top="30"/>
+                </VBox.margin>
+                <Label text="Sign Up"
+                       styleClass="diet-section-title"
+                       alignment="CENTER"
+                       maxWidth="Infinity"
+                       mouseTransparent="true"
+                       StackPane.alignment="CENTER"/>
+                <HBox alignment="CENTER_LEFT"
+                      pickOnBounds="false"
+                      StackPane.alignment="CENTER_LEFT">
+                    <ImageView fx:id="logoImageView"
+                               preserveRatio="true"
+                               fitHeight="50"
+                               pickOnBounds="true"
+                               style="-fx-cursor: hand;"
+                               onMouseClicked="#handleBackButton">
+                        <HBox.margin>
+                            <Insets left="-11"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/back-arrow-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <HBox alignment="CENTER"
+                  maxWidth="Infinity">
+                <StackPane fx:id="profilePhotoPane"
+                           prefWidth="200"
+                           prefHeight="120"
+                           minWidth="200"
+                           minHeight="120"
+                           maxWidth="200"
+                           maxHeight="120"
+                           onMouseClicked="#handleProfilePlaceholderClick"
+                           styleClass="signup-profile-placeholder">
+                    <ImageView fx:id="profilePlaceholderImageView"
+                               preserveRatio="true"
+                               smooth="true"
+                               fitHeight="120"
+                               fitWidth="200"
+                               pickOnBounds="true">
+                        <image>
+                            <Image url="@../../graphics/images/profile-upload-placeholder.png"/>
+                        </image>
+                    </ImageView>
+                </StackPane>
+            </HBox>
+        </VBox>
+        <VBox spacing="8.0"
               maxWidth="Infinity">
-            <Button fx:id="signupBtn"
-                    text="Sign Up"
-                    onAction="#handleSignup"
-                    styleClass="primary-btn"/>
-        </HBox>
+            <Label text="First Name"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="firstNameField"
+                       promptText="Enter your first name"
+                       styleClass="diet-input"/>
+            <Label text="Last Name"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="lastNameField"
+                       promptText="Enter your last name"
+                       styleClass="diet-input"/>
+            <Label text="Email"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="emailField"
+                       promptText="Enter your email"
+                       styleClass="diet-input"/>
+            <Label text="Password"
+                   styleClass="profile-detail-label"/>
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="passwordField"
+                               promptText="Enter your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visiblePasswordField"
+                           promptText="Enter your password"
+                           styleClass="diet-input"
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="togglePasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleTogglePassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <Label text="Confirm Password"
+                   styleClass="profile-detail-label"/>
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="confirmPasswordField"
+                               promptText="Confirm your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visibleConfirmPasswordField"
+                           promptText="Confirm your password"
+                           styleClass="diet-input"
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="toggleConfirmPasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleToggleConfirmPassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
+            <Label text="Date of Birth"
+                   styleClass="profile-detail-label"/>
+            <DatePicker fx:id="dobPicker"
+                        promptText="Select your date of birth"
+                        styleClass="diet-input"
+                        maxWidth="Infinity"/>
+            <Label text="Height (cm)"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="heightField"
+                       promptText="Enter your height in cm"
+                       styleClass="diet-input"/>
+            <Label text="Weight (kg)"
+                   styleClass="profile-detail-label"/>
+            <TextField fx:id="weightField"
+                       promptText="Enter your weight in kg"
+                       styleClass="diet-input"/>
+            <Label text="Sex"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="sexCombo"
+                      promptText="Select your sex"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
+            <Label text="Activity Level"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="activityLevelCombo"
+                      promptText="Select your activity level"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
+            <Label text="Fitness Goal"
+                   styleClass="profile-detail-label"/>
+            <ComboBox fx:id="fitnessGoalCombo"
+                      promptText="Select your fitness goal"
+                      styleClass="profile-goal-combo"
+                      maxWidth="Infinity"/>
+            <HBox alignment="CENTER_RIGHT"
+                  maxWidth="Infinity">
+                <Button fx:id="signUpButton"
+                        text="Sign Up"
+                        onAction="#handleSignup"
+                        styleClass="primary-btn"/>
+            </HBox>
+        </VBox>
     </VBox>
 </ScrollPane>

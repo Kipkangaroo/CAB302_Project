@@ -1,39 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lockedin.lockedin.controller.diet.DietController"
       fillWidth="true"
       maxWidth="Infinity"
       maxHeight="Infinity">
-    <VBox styleClass="diet-header"
-          fillWidth="true">
+    <VBox styleClass="diet-header">
         <HBox alignment="CENTER_LEFT" spacing="8">
             <Label text="Nutrition Tracker"
                    styleClass="diet-header-title"
                    HBox.hgrow="ALWAYS"
                    maxWidth="Infinity"/>
             <Button text="📈"
-                    onAction="#handleCalorieTrends"
+                    onAction="#handleCaloriesMacrosTrends"
                     styleClass="header-btn"
                     style="-fx-font-size: 16px;"/>
-            <Button onAction="#handleAiLogoClick"
-                    styleClass="header-btn"
-                    style="-fx-font-size: 16px;">
-                <graphic>
-                    <ImageView fitWidth="18"
-                               fitHeight="18"
-                               preserveRatio="true"
-                               smooth="true">
-                        <image>
-                            <Image url="@../../images/ai-upload-photo-icon.png"/>
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
         </HBox>
         <Label text="Track your meals and stay aligned with your goals"
                styleClass="diet-header-subtitle">
@@ -47,54 +30,97 @@
                 styleClass="diet-scroll"
                 hbarPolicy="NEVER">
         <VBox styleClass="diet-page-bg"
-              spacing="12"
-              fillWidth="true">
+              spacing="12">
             <VBox styleClass="diet-card"
-                  spacing="10"
-                  fillWidth="true">
+                  spacing="10">
                 <Label text="Meal date"
                        styleClass="diet-section-title"/>
                 <DatePicker fx:id="foodDatePicker"
                             promptText="Select a date"
-                            styleClass="diet-input"
+                            styleClass="diet-date-picker"
                             maxWidth="Infinity"/>
             </VBox>
-            <VBox styleClass="diet-card"
-                  spacing="10">
-                <Label text="Add Food"
-                       styleClass="diet-section-title"/>
-                <TextField fx:id="foodField"
-                           promptText="Food Name"
-                           styleClass="diet-input"/>
-                <TextField fx:id="caloriesField"
-                           promptText="Calories"
-                           styleClass="diet-input"/>
-                <TextField fx:id="proteinField"
-                           promptText="Protein"
-                           styleClass="diet-input"/>
-                <TextField fx:id="carbsField"
-                           promptText="Carbs"
-                           styleClass="diet-input"/>
-                <TextField fx:id="fatsField"
-                           promptText="Fats"
-                           styleClass="diet-input"/>
-                <HBox spacing="10">
-                    <Button text="Add Food"
-                            onAction="#handleAddFood"
-                            styleClass="primary-btn"
-                            HBox.hgrow="ALWAYS"
-                            maxWidth="Infinity"/>
-                    <Button text="Reset"
-                            onAction="#handleReset"
-                            styleClass="diet-secondary-btn"/>
-                    <Button text="Remove Food"
-                            onAction="#handleRemoveFood"
-                            styleClass="diet-secondary-btn"/>
+            <!-- AI Meal Scanner card (same pattern as workout AI generator) -->
+            <HBox styleClass="ai-card"
+                  spacing="14"
+                  alignment="CENTER_LEFT"
+                  onMouseClicked="#handleUploadFoodToAI">
+                <VBox styleClass="ai-card-icon-bg"
+                      alignment="CENTER">
+                    <Label text="📷"
+                           style="-fx-font-size: 20px;"/>
+                </VBox>
+                <VBox spacing="5"
+                      HBox.hgrow="ALWAYS">
+                    <Label text="AI Meal Scanner"
+                           textFill="white"
+                           style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Upload a photo of your meal and let AI estimate calories and macros."
+                           textFill="white"
+                           wrapText="true"
+                           style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>
+                    <Button text="✨ Powered by AI"
+                            styleClass="ai-powered-pill"
+                            onAction="#handleUploadFoodToAI"
+                            style="-fx-cursor: hand;"/>
+                </VBox>
+            </HBox>
+            <VBox styleClass="diet-card" spacing="0">
+                <HBox fx:id="addFoodHeader"
+                      styleClass="diet-expand-header"
+                      alignment="CENTER_LEFT"
+                      spacing="8"
+                      onMouseClicked="#handleToggleAddFood"
+                      maxWidth="Infinity">
+                    <Label text="Add Food"
+                           styleClass="diet-section-title"
+                           HBox.hgrow="ALWAYS"
+                           maxWidth="Infinity"/>
+                    <Label fx:id="addFoodChevron"
+                           text="▼"
+                           styleClass="diet-expand-chevron"/>
                 </HBox>
-                <Label fx:id="inputErrorLabel"
-                       styleClass="diet-error-label"
-                       visible="false"
-                       managed="false"/>
+                <VBox fx:id="addFoodBody"
+                      spacing="10"
+                      visible="false"
+                      managed="false">
+                    <VBox.margin>
+                        <Insets top="10"/>
+                    </VBox.margin>
+                    <TextField fx:id="foodField"
+                               promptText="Food Name"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="caloriesField"
+                               promptText="Calories"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="proteinField"
+                               promptText="Protein"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="carbsField"
+                               promptText="Carbs"
+                               styleClass="diet-input"/>
+                    <TextField fx:id="fatsField"
+                               promptText="Fats"
+                               styleClass="diet-input"/>
+                    <HBox spacing="10"
+                          alignment="CENTER_LEFT">
+                        <Button text="Add Food"
+                                onAction="#handleAddFood"
+                                styleClass="primary-btn"
+                                HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                        <Button text="Reset"
+                                onAction="#handleReset"
+                                styleClass="diet-secondary-btn"/>
+                        <Button text="Remove Food"
+                                onAction="#handleRemoveFood"
+                                styleClass="diet-secondary-btn"/>
+                    </HBox>
+                    <Label fx:id="inputErrorLabel"
+                           styleClass="diet-error-label"
+                           visible="false"
+                           managed="false"/>
+                </VBox>
             </VBox>
             <VBox styleClass="diet-card"
                   spacing="10">
@@ -150,6 +176,8 @@
                 </Label>
                 <ListView fx:id="foodList"
                           prefHeight="300"
+                          maxHeight="300"
+                          minHeight="300"
                           styleClass="diet-food-list"/>
             </VBox>
         </VBox>

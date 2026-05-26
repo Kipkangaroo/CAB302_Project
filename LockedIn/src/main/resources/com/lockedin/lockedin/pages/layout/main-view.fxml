@@ -14,7 +14,7 @@
         <HBox alignment="CENTER"
               spacing="100"
               styleClass="nav-bar">
-            <Button fx:id="btnWorkout"
+            <Button fx:id="workoutNavButton"
                     onAction="#showWorkoutPage"
                     styleClass="nav-btn"
                     HBox.hgrow="ALWAYS"
@@ -23,13 +23,12 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
-                        <Image url="@../../graphics/workout-icon.png"/>
+                               preserveRatio="true">
+                        <Image url="@../../graphics/icons/workout-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="btnDiet"
+            <Button fx:id="dietNavButton"
                     onAction="#showDietPage"
                     styleClass="nav-btn"
                     HBox.hgrow="ALWAYS"
@@ -38,13 +37,12 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
-                        <Image url="@../../graphics/diet-icon.png"/>
+                               preserveRatio="true">
+                        <Image url="@../../graphics/icons/diet-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="btnProfile"
+            <Button fx:id="profileNavButton"
                     onAction="#showProfilePage"
                     styleClass="nav-btn"
                     HBox.hgrow="ALWAYS"
@@ -53,9 +51,8 @@
                 <graphic>
                     <ImageView fitWidth="42"
                                fitHeight="42"
-                               preserveRatio="true"
-                               styleClass="nav-icon">
-                        <Image url="@../../graphics/profile-icon.png"/>
+                               preserveRatio="true">
+                        <Image url="@../../graphics/icons/profile-icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>

@@ -15,20 +15,20 @@ public class UserProgress {
     private double targetCalories;
     private LocalDate effectiveFrom;
 
-    /**
-     * Creates a new UserProgress.
+        /**
+     * Constructs a UserProgress using default application dependencies.
      * @param userId The user id.
      */
     public UserProgress(int userId) {
         this.userId = userId;
     }
 
-    /**
-     * Creates a new UserProgress.
-     * @param id The id.
+        /**
+     * Constructs a UserProgress using default application dependencies.
+     * @param id id
      * @param userId The user id.
      * @param fitnessGoal The fitness goal.
-     * @param weight The weight.
+     * @param weight weight
      * @param targetCalories The target calories.
      * @param effectiveFrom The effective from.
      */
@@ -47,33 +47,33 @@ public class UserProgress {
         this.effectiveFrom = effectiveFrom;
     }
 
-    /**
+            /**
      * Returns the user id.
-     * @return The user id.
+     * @return user id
      */
     public int getUserId() {
         return userId;
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
+        /**
      * Sets the id.
-     * @param id The id.
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
+            /**
      * Returns the fitness goal.
-     * @return The fitness goal.
+     * @return fitness goal
      */
     public FitnessGoal getFitnessGoal() {
         return fitnessGoal;
@@ -87,25 +87,25 @@ public class UserProgress {
         this.fitnessGoal = fitnessGoal;
     }
 
-    /**
+            /**
      * Returns the weight.
-     * @return The weight.
+     * @return weight
      */
     public double getWeight() {
         return weight;
     }
 
-    /**
+        /**
      * Sets the weight.
-     * @param weight The weight.
+     * @param weight weight
      */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    /**
+            /**
      * Returns the target calories.
-     * @return The target calories.
+     * @return target calories
      */
     public double getTargetCalories() {
         return targetCalories;
@@ -119,9 +119,9 @@ public class UserProgress {
         this.targetCalories = targetCalories;
     }
 
-    /**
+            /**
      * Returns the effective from.
-     * @return The effective from.
+     * @return effective from
      */
     public LocalDate getEffectiveFrom() {
         return effectiveFrom;

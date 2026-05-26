@@ -1,25 +1,18 @@
 package com.lockedin.lockedin.controller.workout;
 
-import com.lockedin.lockedin.model.dao.DBExercisesDAO;
+import com.lockedin.lockedin.controller.auth.Authentication;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
+import com.lockedin.lockedin.model.dao.ExercisesDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.workout.Exercise;
 import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import java.util.*;
 
 /**
  * JavaFX controller for the start workout screen.
@@ -27,9 +20,9 @@ import java.util.Map;
  * @version 1.0
  */
 public class StartWorkoutController {
-    private static final String WORKOUT_DETAIL_VIEW = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
 
     private static int currentRoutineId = -1;
+    private final Authentication authentication = new Authentication();
     private final Map<Integer, Exercise> exerciseCache = new HashMap<>();
     private final List<WorkoutRoutineDAO.CompletedSetData> completedSets = new ArrayList<>();
     @FXML
@@ -63,7 +56,7 @@ public class StartWorkoutController {
     @FXML
     private ImageView exerciseImageView;
     private WorkoutRoutineDAO routineDAO;
-    private DBExercisesDAO exercisesDAO;
+    private ExercisesDAO exercisesDAO;
     private WorkoutRoutineDAO.RoutineData routine;
     private int exerciseIndex;
     private int setIndex;
@@ -83,10 +76,10 @@ public class StartWorkoutController {
     @FXML
     public void initialize() {
         routineDAO = new WorkoutRoutineDAO();
-        exercisesDAO = new DBExercisesDAO();
+        exercisesDAO = new ExercisesDAO();
         routine = routineDAO.getRoutineById(currentRoutineId);
         if (routine == null || routine.exercises.isEmpty()) {
-            showError("This workout has no exercises to start.");
+            authentication.showError("This workout has no exercises to start.");
             navigateBack();
             return;
         }
@@ -112,7 +105,7 @@ public class StartWorkoutController {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException exception) {
-            showError("Reps completed must be a whole number.");
+            authentication.showError("Reps completed must be a whole number.");
             return;
         }
 
@@ -133,26 +126,18 @@ public class StartWorkoutController {
         advanceSet();
         showCurrentSet();
     }
-    /**
-     * Performs handle back.
+        /**
+     * Handle back.
      */
 
     @FXML
     public void handleBack() {
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setHeaderText("Leave workout?");
-        confirm.setContentText("Progress from this workout will not be saved.");
-        confirm.showAndWait()
-                .ifPresent(
-                        buttonType -> {
-                            if (buttonType == javafx.scene.control.ButtonType.OK) {
-                                navigateBack();
-                            }
-                        });
+        authentication.confirm(
+                "Leave workout? Progress from this workout will not be saved.", this::navigateBack);
     }
 
-    /**
-     * Performs show current set.
+        /**
+     * Show current set.
      */
     private void showCurrentSet() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -179,9 +164,9 @@ public class StartWorkoutController {
         upNextBox.setManaged(upNext != null);
     }
 
-    /**
-     * Performs update exercise image.
-     * @param entry The entry.
+        /**
+     * Update exercise image.
+     * @param entry entry
      */
     private void updateExerciseImage(WorkoutExerciseEntry entry) {
         Exercise exercise = exerciseCache.computeIfAbsent(
@@ -195,8 +180,8 @@ public class StartWorkoutController {
         exerciseImageView.setImage(new Image(exercise.getExerciseImageUrl(0), true));
     }
 
-    /**
-     * Performs current exercise.
+        /**
+     * Current exercise.
      */
     private WorkoutExerciseEntry currentExercise() {
         return routine.exercises.get(exerciseIndex);
@@ -211,8 +196,8 @@ public class StartWorkoutController {
         return exerciseIndex == routine.exercises.size() - 1 && setIndex == exercise.getSets() - 1;
     }
 
-    /**
-     * Performs advance set.
+        /**
+     * Advance set.
      */
     private void advanceSet() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -224,9 +209,9 @@ public class StartWorkoutController {
         }
     }
 
-    /**
+            /**
      * Returns the up next text.
-     * @return The up next text.
+     * @return up next text
      */
     private String getUpNextText() {
         WorkoutExerciseEntry exercise = currentExercise();
@@ -239,14 +224,14 @@ public class StartWorkoutController {
         return null;
     }
 
-    /**
-     * Performs finish workout.
+        /**
+     * Finish workout.
      */
     private void finishWorkout() {
         workoutProgressBar.setProgress(1);
         int historyId = routineDAO.saveCompletedWorkout(CurrentUser.getId(), routine, completedSets);
         if (historyId < 0) {
-            showError("Workout completed, but it could not be saved to history.");
+            authentication.showError("Workout completed, but it could not be saved to history.");
             return;
         }
 
@@ -257,30 +242,12 @@ public class StartWorkoutController {
         navigateBack();
     }
 
-    /**
-     * Performs navigate back.
+        /**
+     * Navigate back.
      */
     private void navigateBack() {
-        try {
-            WorkoutDetailController.setCurrentRoutineId(currentRoutineId);
-            Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_DETAIL_VIEW));
-            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to navigate back to workout details", e);
-        }
-    }
-
-    /**
-     * Performs show error.
-     * @param message The message.
-     */
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        final String workoutDetailView = "/com/lockedin/lockedin/pages/workout/workout-detail-view.fxml";
+        WorkoutDetailController.setCurrentRoutineId(currentRoutineId);
+        PageNavigator.loadPage(backButton, workoutDetailView);
     }
 }

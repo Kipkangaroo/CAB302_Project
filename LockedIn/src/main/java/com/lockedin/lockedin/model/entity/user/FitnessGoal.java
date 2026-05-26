@@ -56,41 +56,41 @@ public enum FitnessGoal {
         return null;
     }
 
-    /**
+            /**
      * Returns the display name.
-     * @return The display name.
+     * @return display name
      */
     public String getDisplayName() {
         return displayName;
     }
 
-    /**
+            /**
      * Returns the calorie adjustment.
-     * @return The calorie adjustment.
+     * @return calorie adjustment
      */
     public double getCalorieAdjustment() {
         return calorieAdjustment;
     }
 
-    /**
+            /**
      * Returns the protein ratio.
-     * @return The protein ratio.
+     * @return protein ratio
      */
     public double getProteinRatio() {
         return proteinRatio;
     }
 
-    /**
+            /**
      * Returns the carbs ratio.
-     * @return The carbs ratio.
+     * @return carbs ratio
      */
     public double getCarbsRatio() {
         return carbsRatio;
     }
 
-    /**
+            /**
      * Returns the fats ratio.
-     * @return The fats ratio.
+     * @return fats ratio
      */
     public double getFatsRatio() {
         return fatsRatio;

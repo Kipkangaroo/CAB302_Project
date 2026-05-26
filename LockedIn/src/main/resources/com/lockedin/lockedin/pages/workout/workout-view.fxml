@@ -51,7 +51,7 @@
             <HBox styleClass="ai-card"
                   spacing="14"
                   alignment="CENTER_LEFT"
-                  onMouseClicked="#handleAiGenerator">
+                  onMouseClicked="#handleAIGenerator">
                 <VBox styleClass="ai-card-icon-bg"
                       alignment="CENTER">
                     <Label text="✨"
@@ -62,13 +62,13 @@
                     <Label text="AI Workout Generator"
                            textFill="white"
                            style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                    <Label text="Let AI create a personalized workout plan based on your goals"
+                    <Label text="Let AI create a personalized workout plan based on your goals."
                            textFill="white"
                            wrapText="true"
                            style="-fx-font-size: 11px; -fx-opacity: 0.88;"/>
                     <Button text="✨ Powered by AI"
                             styleClass="ai-powered-pill"
-                            onAction="#handleAiGenerator"
+                            onAction="#handleAIGenerator"
                             style="-fx-cursor: hand;"/>
                 </VBox>
             </HBox>

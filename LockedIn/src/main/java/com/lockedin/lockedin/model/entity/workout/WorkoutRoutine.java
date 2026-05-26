@@ -17,22 +17,22 @@ public class WorkoutRoutine {
     private String duration;
     private String intensity;
     private String notes;
-    private HashMap<Exercise, ArrayList<ExerciseSet>> exerciseTracking;
+    private HashMap<Exercise, ArrayList<ExerciseSet>>  exerciseTracking;
 
-    /**
-     * Creates a new WorkoutRoutine.
+        /**
+     * Constructs a WorkoutRoutine using default application dependencies.
      */
     public WorkoutRoutine() {
         this.exerciseTracking = new HashMap<>();
     }
 
-    /**
-     * Creates a new WorkoutRoutine.
-     * @param id The id.
-     * @param name The name.
-     * @param duration The duration.
-     * @param intensity The intensity.
-     * @param notes The notes.
+        /**
+     * Constructs a WorkoutRoutine using default application dependencies.
+     * @param id id
+     * @param name name
+     * @param duration duration
+     * @param intensity intensity
+     * @param notes notes
      * @param exerciseTracking The exercise tracking.
      */
     public WorkoutRoutine(
@@ -50,133 +50,133 @@ public class WorkoutRoutine {
         this.exerciseTracking = new HashMap<>();
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
+        /**
      * Sets the id.
-     * @param id The id.
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
+            /**
      * Returns the name.
-     * @return The name.
+     * @return name
      */
     public String getName() {
         return name;
     }
 
-    /**
+        /**
      * Sets the name.
-     * @param name The name.
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
+            /**
      * Returns the duration.
-     * @return The duration.
+     * @return duration
      */
     public String getDuration() {
         return duration;
     }
 
-    /**
+        /**
      * Sets the duration.
-     * @param duration The duration.
+     * @param duration duration
      */
     public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    /**
+            /**
      * Returns the intensity.
-     * @return The intensity.
+     * @return intensity
      */
     public String getIntensity() {
         return intensity;
     }
 
-    /**
+        /**
      * Sets the intensity.
-     * @param intensity The intensity.
+     * @param intensity intensity
      */
     public void setIntensity(String intensity) {
         this.intensity = intensity;
     }
 
-    /**
+            /**
      * Returns the notes.
-     * @return The notes.
+     * @return notes
      */
     public String getNotes() {
         return notes;
     }
 
-    /**
+        /**
      * Sets the notes.
-     * @param notes The notes.
+     * @param notes notes
      */
     public void setNotes(String notes) {
         this.notes = notes;
     }
 
-    /**
+            /**
      * Returns the exercises.
-     * @return The exercises.
+     * @return exercises
      */
     public List<Exercise> getExercises() {
         return new ArrayList<>(exerciseTracking.keySet());
     }
 
-    /**
+            /**
      * Returns the exercise sets.
-     * @param exercise The exercise.
-     * @return The exercise sets.
+     * @param exercise exercise
+     * @return exercise sets
      */
     public ArrayList<ExerciseSet> getExerciseSets(Exercise exercise) {
         return exerciseTracking.get(exercise);
     }
 
-    /**
-     * Performs add exercise set.
-     * @param exercise The exercise.
+        /**
+     * Add exercise set.
+     * @param exercise exercise
      * @param exerciseSet The exercise set.
      */
     public void addExerciseSet(Exercise exercise, ExerciseSet exerciseSet) {
         exerciseTracking.get(exercise).add(exerciseSet);
     }
 
-    /**
-     * Performs remove exercise set.
-     * @param exercise The exercise.
+        /**
+     * Remove exercise set.
+     * @param exercise exercise
      * @param exerciseSet The exercise set.
      */
     public void removeExerciseSet(Exercise exercise, ExerciseSet exerciseSet) {
         exerciseTracking.get(exercise).remove(exerciseSet);
     }
 
-    /**
+            /**
      * Returns the total sets.
-     * @param exercise The exercise.
-     * @return The total sets.
+     * @param exercise exercise
+     * @return total sets
      */
     public int getTotalSets(Exercise exercise) {
         return exerciseTracking.get(exercise).size();
     }
 
-    /**
+            /**
      * Returns the total volume.
-     * @return The total volume.
+     * @return total volume
      */
     public double getTotalVolume() {
         int totalVolume = 0;

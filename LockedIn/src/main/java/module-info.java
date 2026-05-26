@@ -8,6 +8,7 @@ module com.lockedin.lockedin {
         requires com.google.gson;
         requires org.simplejavamail;
         requires org.simplejavamail.core;
+        requires jakarta.mail;
 
         exports com.lockedin.lockedin.app;
 

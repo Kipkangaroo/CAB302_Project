@@ -30,49 +30,49 @@ public class WorkoutExerciseEntry {
         this.restSeconds = restSeconds;
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
+            /**
      * Returns the exercise id.
-     * @return The exercise id.
+     * @return exercise id
      */
     public int getExerciseId() {
         return exerciseId;
     }
 
-    /**
+            /**
      * Returns the exercise name.
-     * @return The exercise name.
+     * @return exercise name
      */
     public String getExerciseName() {
         return exerciseName;
     }
 
-    /**
+            /**
      * Returns the sets.
-     * @return The sets.
+     * @return sets
      */
     public int getSets() {
         return sets;
     }
 
-    /**
+            /**
      * Returns the reps.
-     * @return The reps.
+     * @return reps
      */
     public int getReps() {
         return reps;
     }
 
-    /**
+            /**
      * Returns the rest seconds.
-     * @return The rest seconds.
+     * @return rest seconds
      */
     public int getRestSeconds() {
         return restSeconds;

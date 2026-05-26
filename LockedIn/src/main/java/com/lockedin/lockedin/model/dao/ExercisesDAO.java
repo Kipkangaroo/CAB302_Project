@@ -8,10 +8,13 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class DBExercisesDAO {
-
-    /** SQLite database file containing all exercise definitions. */
-    private static final String EXERCISES_DB_FILE = "exercises.db";
+/**
+ * Data access object for exercise catalogue.
+ *
+ * @author LockedIn Team
+ * @version 1.0
+ */
+public class ExercisesDAO {
 
     /** Shared database connection for all exercise operations. */
     private final Connection connection;
@@ -21,10 +24,17 @@ public class DBExercisesDAO {
      * table if needed,
      * and seeding default exercises.
      */
-    public DBExercisesDAO() {
-        this.connection = SqliteConnection.getInstance(EXERCISES_DB_FILE);
+    public ExercisesDAO() {
+        final String exercisesDbFile = "exercises.db";
+        this.connection = SqliteConnection.getInstance(exercisesDbFile);
         createExercisesTable();
         seedExercises();
+    }
+
+    /** For unit tests with an in-memory database (table only, no seed). */
+    public ExercisesDAO(Connection connection) {
+        this.connection = connection;
+        createExercisesTable();
     }
 
     /**
@@ -49,6 +59,9 @@ public class DBExercisesDAO {
         }
     }
 
+    /**
+     * Seeds the exercise catalogue when the table is empty.
+     */
     public void seedExercises() {
         String countSql = "SELECT COUNT(*) FROM exercises";
         try (Statement st = connection.createStatement();
@@ -3995,6 +4008,11 @@ public class DBExercisesDAO {
         }
     }
 
+    /**
+     * Persists a new exercise and assigns its generated id on the entity.
+     *
+     * @param exercise exercise to insert (name, instruction, category, muscle, image id)
+     */
     public void addExercise(Exercise exercise) {
         String sql = "INSERT INTO exercises (name, instruction, category, primary_muscle,"
                 + " exercise_image_url) VALUES (?, ?, ?, ?, ?)";
@@ -4015,6 +4033,12 @@ public class DBExercisesDAO {
         }
     }
 
+    /**
+     * Loads a single exercise by primary key.
+     *
+     * @param id exercise id
+     * @return matching exercise or {@code null} when not found
+     */
     public Exercise getExerciseById(int id) {
         String sql = "SELECT id, name, instruction, category, primary_muscle, exercise_image_url FROM"
                 + " exercises WHERE id = ?";
@@ -4033,6 +4057,11 @@ public class DBExercisesDAO {
         }
     }
 
+    /**
+     * Returns every exercise ordered alphabetically by name for UI pickers.
+     *
+     * @return observable list of all exercises in the database
+     */
     public ObservableList<Exercise> getAllExercises() {
         String sql = "SELECT id, name, instruction, category, primary_muscle, exercise_image_url FROM"
                 + " exercises ORDER BY name";
@@ -4055,7 +4084,7 @@ public class DBExercisesDAO {
         }
     }
 
-    /**
+            /**
      * Returns the DB id of an exercise whose name matches (case-insensitive), or 0
      * if not found.
      */
@@ -4072,6 +4101,13 @@ public class DBExercisesDAO {
         return 0;
     }
 
+    /**
+     * Maps a result-set row to an {@link Exercise} entity.
+     *
+     * @param rs the query result set positioned on a row
+     * @return populated exercise
+     * @throws SQLException if a column cannot be read
+     */
     private Exercise mapRowToExercise(ResultSet rs) throws SQLException {
         return new Exercise(
                 rs.getInt("id"),

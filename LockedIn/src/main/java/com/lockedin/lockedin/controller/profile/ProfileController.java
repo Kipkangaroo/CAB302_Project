@@ -4,28 +4,22 @@ import com.lockedin.lockedin.controller.auth.Authentication;
 import com.lockedin.lockedin.controller.auth.SignUpController;
 import com.lockedin.lockedin.model.dao.*;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
-import com.lockedin.lockedin.model.entity.user.Measurement;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
-import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
-import java.sql.SQLXML;
+import java.io.ByteArrayInputStream;
+import java.util.Optional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -36,23 +30,15 @@ import java.util.Map;
  * @version 1.0
  */
 public class ProfileController {
-    private static final String BLUE_FILL = "#028ee1";
-    private static final String WHITE_FILL = "#FFFFFF";
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
-    private static final String PROGRESS_VIEW = "/com/lockedin/lockedin/pages/profile/progress-view.fxml";
-    private static final String EDIT_ICON = "/com/lockedin/lockedin/images/edit-icon.png";
-    private static final String SAVE_ICON = "/com/lockedin/lockedin/images/save-icon.png";
-    private static final double ICON_SIZE = 46;
-    private static final DateTimeFormatter DAY_LABEL_FORMAT = DateTimeFormatter.ofPattern("dd/MM");
-    private static final Paint COMPLETED_FILL = Paint.valueOf(BLUE_FILL);
-    private static final Paint MISSED_FILL = Paint.valueOf(WHITE_FILL);
+    private static final int WEIGHT_CHART_DAYS = 30;
     private final Authentication authentication = new Authentication();
     private final UserDAO userDAO = new UserDAO();
-    private final FoodDAO foodDAO = new FoodDAO();
-    private final WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
-    private final MeasurementDAO measurementDAO = new MeasurementDAO();
-    private String selectedRange = "ALL"; // ALL, 7, 30
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private StackPane profilePhotoPane;
     private User user;
     private boolean editingDetails;
     private static final Map<String, FitnessGoal> GOAL_MAP = Map.of(
@@ -67,13 +53,15 @@ public class ProfileController {
     );
 
     @FXML
-    private Button logoutBtn;
+    private Button logoutButton;
     @FXML
     private Label ageLabel;
     @FXML
     private Label heightLabel;
     @FXML
     private TextField weightField;
+    @FXML
+    private Label fitnessGoalLabel;
     @FXML
     private ComboBox<String> fitnessGoalCombo;
     @FXML
@@ -84,64 +72,25 @@ public class ProfileController {
     private HBox workoutStreakRow;
     @FXML
     private ImageView editActionIcon;
+    @FXML
+    private LineChart<String, Number> weightChart;
     private Image editImage;
     private Image saveImage;
-    @FXML
-    private Button deleteAccountBtn;
-    @FXML
-    private ComboBox<String> measurementTypeCombo;
-    @FXML
-    private TextField newMeasurementField;
-    @FXML
-    private VBox measurementHistoryBox;
-    @FXML
-    private LineChart<String, Number> measurementTrendChart;
-    @FXML
-    private void handleRange7Days() {
-        selectedRange = "7";
-        loadMeasurementTrend();
-    }
-    @FXML
-    private void handleRange30Days() {
-        selectedRange = "30";
-        loadMeasurementTrend();
-    }
-    @FXML
-    private void handleRangeAllTime() {
-        selectedRange = "ALL";
-        loadMeasurementTrend();
-    }
 
-    /**
-     * Navigates to the goals progress screen.
-     */
-    @FXML
-    private void handleGoalsProgress() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(PROGRESS_VIEW));
-            StackPane pc = (StackPane) logoutBtn.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to open goals progress", e);
-        }
-    }
-
-    /**
-     * Performs handle logout.
-     *
+        /**
+     * Handle logout.
+     * 
      * @throws IOException If the operation fails.
      */
 
     @FXML
     private void handleLogout() throws IOException {
         CurrentUser.clear();
-        authentication.switchScene(logoutBtn, LOGIN_VIEW);
+        authentication.switchScene(logoutButton, LOGIN_VIEW);
     }
 
-    /**
-     * Performs handle edit details.
+        /**
+     * Handle edit details.
      */
 
     @FXML
@@ -153,8 +102,8 @@ public class ProfileController {
         }
     }
 
-    /**
-     * Performs enter edit mode.
+        /**
+     * Enter edit mode.
      */
     private void enterEditMode() {
         editingDetails = true;
@@ -162,13 +111,13 @@ public class ProfileController {
         double weight = user.getWeight();
         weightField.setText(weight == (long) weight ? String.valueOf((long) weight) : String.valueOf(weight));
         setFieldEditing(weightField, true);
-        fitnessGoalCombo.setDisable(false);
+        setFitnessGoalEditing(true);
         weightField.requestFocus();
         weightField.selectAll();
     }
 
-    /**
-     * Performs exit edit mode.
+        /**
+     * Exit edit mode.
      */
     private void exitEditMode() {
         Double weight = SignUpController.parseValidDouble(weightField.getText());
@@ -188,35 +137,52 @@ public class ProfileController {
         progressDAO.addUserProgress(new UserProgress(0, user.getId(), user.getFitnessGoal(), weight,
                 user.getTargetCalories(), LocalDate.now()));
         setFieldEditing(weightField, false);
-        fitnessGoalCombo.setDisable(true);
         refreshDetailFields();
+        setFitnessGoalEditing(false);
+        loadWeightChart();
     }
 
-    /**
-     * Performs refresh detail fields.
+        /**
+     * Refresh detail fields.
      */
     private void refreshDetailFields() {
         weightField.setText("Weight: " + user.getWeight() + " kg");
-        fitnessGoalCombo.setValue(user.getFitnessGoal().toString());
+        String goalLabel = GOAL_LABELS.get(user.getFitnessGoal());
+        fitnessGoalLabel.setText("Fitness Goal: " + goalLabel);
+        fitnessGoalCombo.setValue(goalLabel);
     }
 
     /**
-     * Performs update edit icon.
+     * Toggles fitness goal between read-only label and editable combobox.
+     *
+     * @param editing true when the personal-info card is in edit mode
+     */
+    private void setFitnessGoalEditing(boolean editing) {
+        fitnessGoalLabel.setVisible(!editing);
+        fitnessGoalLabel.setManaged(!editing);
+        fitnessGoalCombo.setVisible(editing);
+        fitnessGoalCombo.setManaged(editing);
+        fitnessGoalCombo.setDisable(!editing);
+    }
+
+        /**
+     * Update edit icon.
      */
     private void updateEditIcon() {
-        editActionIcon.setFitWidth(ICON_SIZE);
-        editActionIcon.setFitHeight(ICON_SIZE);
+        final double iconSize = 46;
+        editActionIcon.setFitWidth(iconSize);
+        editActionIcon.setFitHeight(iconSize);
         Image icon = editingDetails ? saveImage : editImage;
         if (icon != null) {
             editActionIcon.setImage(icon);
         }
     }
 
-    /**
+        /**
      * Sets the field editing.
-     *
+     * 
      * @param field   The field.
-     * @param editing The editing.
+     * @param editing editing
      */
     private void setFieldEditing(TextField field, boolean editing) {
         field.setEditable(editing);
@@ -231,13 +197,25 @@ public class ProfileController {
     }
 
     /**
+     * Applies a circular clip to the profile photo pane.
+     */
+    private void applyCircularProfileClip() {
+        double width = profilePhotoPane.getPrefWidth();
+        double height = profilePhotoPane.getPrefHeight();
+        double radius = Math.min(width, height) / 2.0;
+        profilePhotoPane.setClip(new Circle(width / 2.0, height / 2.0, radius));
+    }
+
+    /**
      * Initializes FXML-bound UI components after the view loads.
      */
 
     @FXML
     private void initialize() {
-        var editIconUrl = getClass().getResource(EDIT_ICON);
-        var saveIconUrl = getClass().getResource(SAVE_ICON);
+        final String editIcon = "/com/lockedin/lockedin/graphics/icons/edit-icon.png";
+        final String saveIcon = "/com/lockedin/lockedin/graphics/icons/save-icon.png";
+        var editIconUrl = getClass().getResource(editIcon);
+        var saveIconUrl = getClass().getResource(saveIcon);
         if (editIconUrl != null) {
             editImage = new Image(editIconUrl.toExternalForm());
         }
@@ -251,35 +229,93 @@ public class ProfileController {
         firstNameLabel.setText("Hello " + user.getFirstName() + "!");
         updateEditIcon();
         updateTrackingStreaks();
-        measurementTypeCombo.getSelectionModel().select("Weight");
-        measurementTypeCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
-            loadMeasurements();
-            loadMeasurementTrend();
-        });
-
-        loadMeasurements();
-        loadMeasurementTrend();
+        loadWeightChart();
         fitnessGoalCombo.getItems().setAll(GOAL_MAP.keySet());
         fitnessGoalCombo.setValue(GOAL_LABELS.get(user.getFitnessGoal()));
-
-
+        setFitnessGoalEditing(false);
+        loadProfileImage();
     }
 
     /**
-     * Performs update tracking streaks.
+     * Loads the user's profile image from storage or the default placeholder.
+     */
+    private void loadProfileImage() {
+        UserImageDAO imageDAO = new UserImageDAO();
+        Optional<byte[]> imageData = imageDAO.getImageByUserId(user.getId());
+        Image image = imageData.isPresent()
+                ? new Image(new ByteArrayInputStream(imageData.get()))
+                : new Image(getClass().getResourceAsStream("/com/lockedin/lockedin/graphics/images/profileimage.png"));
+        imageView.setImage(image);
+        StackPane.setAlignment(imageView, Pos.CENTER);
+        if (image.getProgress() < 1 && !image.isError()) {
+            image.progressProperty().addListener((obs, oldProgress, newProgress) -> {
+                if (newProgress.doubleValue() >= 1.0) {
+                    StackPane.setAlignment(imageView, Pos.CENTER);
+                    applyCircularProfileClip();
+                }
+            });
+        }
+        applyCircularProfileClip();
+    }
+
+    /**
+     * Loads the 30-day weight progress line chart from user_progress history.
+     */
+    private void loadWeightChart() {
+        weightChart.getData().clear();
+
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusDays(WEIGHT_CHART_DAYS - 1);
+        Map<LocalDate, Double> dailyWeights =
+                progressDAO.getDailyWeightForRange(user.getId(), start, end);
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Weight");
+
+        for (int daysAgo = WEIGHT_CHART_DAYS - 1; daysAgo >= 0; daysAgo--) {
+            LocalDate date = end.minusDays(daysAgo);
+            String label = chartAxisLabel(date, daysAgo);
+            series.getData().add(new XYChart.Data<>(label, dailyWeights.getOrDefault(date, user.getWeight())));
+        }
+
+        weightChart.getData().add(series);
+    }
+
+    /**
+     * Returns a visible x-axis label only on selected days so the chart stays readable.
+     */
+    private String chartAxisLabel(LocalDate date, int daysAgo) {
+        final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
+        final int chartLabelInterval = 5;
+        if (daysAgo == 0) {
+            return "Today";
+        }
+        if (daysAgo == WEIGHT_CHART_DAYS - 1 || daysAgo % chartLabelInterval == 0) {
+            return date.format(chartDateFormat);
+        }
+        return "";
+    }
+
+        /**
+     * Update tracking streaks.
      */
     private void updateTrackingStreaks() {
+        FoodDAO foodDAO = new FoodDAO();
+        WorkoutRoutineDAO workoutDAO = new WorkoutRoutineDAO();
         updateStreak(calorieStreakRow, foodDAO.getWeeklyCalorieTracking(user.getId()));
         updateStreak(workoutStreakRow, workoutDAO.getWeeklyWorkoutTracking(user.getId()));
     }
 
-    /**
-     * Performs update streak.
-     *
+        /**
+     * Update streak.
+     * 
      * @param row       The row.
-     * @param completed The completed.
+     * @param completed completed
      */
     private void updateStreak(HBox row, boolean[] completed) {
+        final DateTimeFormatter dayLabelFormat = DateTimeFormatter.ofPattern("dd/MM");
+        final Paint completedFill = Paint.valueOf("#028ee1");
+        final Paint missedFill = Paint.valueOf("#FFFFFF");
         LocalDate today = LocalDate.now();
         for (int j = 0; j < row.getChildren().size(); j++) {
             VBox day = (VBox) row.getChildren().get(j);
@@ -287,108 +323,17 @@ public class ProfileController {
             Label label = (Label) day.getChildren().get(1);
 
             int daysAgo = 6 - j;
-            label.setText(daysAgo == 0 ? "Today" : today.minusDays(daysAgo).format(DAY_LABEL_FORMAT));
-            circle.setFill(completed[daysAgo] ? COMPLETED_FILL : MISSED_FILL);
+            label.setText(daysAgo == 0 ? "Today" : today.minusDays(daysAgo).format(dayLabelFormat));
+            circle.setFill(completed[daysAgo] ? completedFill : missedFill);
         }
     }
+
     /**
-     * Loads and displays the measurement history for the selected type.
+     * Confirms and deletes the current user's account, then returns to login.
+     *
+     * @param event the mouse click event
+     * @throws IOException if navigation to the login view fails
      */
-    private void loadMeasurements() {
-        measurementHistoryBox.getChildren().clear();
-
-        String type = measurementTypeCombo.getValue();
-        var list = measurementDAO.getMeasurements(type);
-
-        for (Measurement m : list) {
-            HBox row = new HBox(10);
-
-            Label entry = new Label(m.getDate() + " — " + m.getValue() + " (" + m.getType() + ")");
-            entry.getStyleClass().add("measurement-entry");
-
-            Button deleteBtn = new Button("X");
-            deleteBtn.getStyleClass().add("delete-measurement-btn");
-
-            deleteBtn.setOnAction(e -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Delete this measurement?");
-                alert.setHeaderText("Confirm Deletion");
-
-                var result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    measurementDAO.deleteMeasurement(m.getId());
-                    loadMeasurements();
-                    loadMeasurementTrend();
-                }
-            });
-
-            row.getChildren().addAll(entry, deleteBtn);
-            measurementHistoryBox.getChildren().add(row);
-        }
-    }
-    /**
-     * Updates the line chart to show the trend for the selected measurement type and time range.
-     */
-    private void loadMeasurementTrend() {
-        measurementTrendChart.getData().clear();
-
-        String type = measurementTypeCombo.getValue();
-        var list = measurementDAO.getMeasurements(type);
-
-        LocalDate now = LocalDate.now();
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName(type + " Trend");
-
-        for (Measurement m : list) {
-
-            boolean include = switch (selectedRange) {
-                case "7" -> !m.getDate().isBefore(now.minusDays(7));
-                case "30" -> !m.getDate().isBefore(now.minusDays(30));
-                default -> true; // ALL
-            };
-
-            if (include) {
-                series.getData().add(new XYChart.Data<>(m.getDate().toString(), m.getValue()));
-            }
-        }
-
-        measurementTrendChart.getData().add(series);
-    }
-    /**
-     * Adds a new measurement entry for the selected type and refreshes the history and trend.
-     */
-    @FXML
-    private void handleAddMeasurement() {
-        String type = measurementTypeCombo.getValue();
-        String input = newMeasurementField.getText();
-
-        if (input.isBlank()) {
-            authentication.showError("Invalid Input", "Please enter a measurement value.");
-            return;
-        }
-
-        double value;
-        try {
-            value = Double.parseDouble(input);
-        } catch (NumberFormatException e) {
-            authentication.showError("Invalid Number", "Please enter a valid numeric value.");
-            return;
-        }
-
-        Measurement m = new Measurement(
-                CurrentUser.get().getId(),
-                value,
-                type,
-                LocalDate.now()
-        );
-
-        measurementDAO.addMeasurement(m);
-        newMeasurementField.clear();
-        loadMeasurements();
-    }
-
-
     @FXML
     public void handleDeleteAccount(javafx.scene.input.MouseEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,

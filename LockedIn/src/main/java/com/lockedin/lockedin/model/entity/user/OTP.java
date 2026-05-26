@@ -4,7 +4,6 @@ import com.lockedin.lockedin.model.dao.OtpDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.service.SendEmail;
 
-import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -12,37 +11,37 @@ import java.util.Random;
  * @author LockedIn Team
  * @version 1.0
  */
-public class OTP {
-    private String email;
+public class Otp {
+    private final String email;
     private int otpCode;
-    private UserDAO userDAO;
-    private OtpDAO otpDAO;
+    private final UserDAO userDAO;
+    private final OtpDAO otpDAO;
 
-    public OTP(String email) {
+    public Otp(String email) {
         this.email = email;
         this.userDAO = new UserDAO();
         this.otpDAO = new OtpDAO();
         generateOtpCode();
     }
 
-    /**
+            /**
      * Returns the email.
-     * @return The email.
+     * @return email
      */
     public String getEmail() {
         return email;
     }
 
-    /**
+            /**
      * Returns the otp code.
-     * @return The otp code.
+     * @return otp code
      */
     public int getOtpCode() {
         return otpCode;
     }
 
-    /**
-     * Performs generate otp code.
+        /**
+     * Generate otp code.
      */
     private void generateOtpCode() {
         Random random = new Random();
@@ -50,18 +49,18 @@ public class OTP {
         otpDAO.saveOrReplaceOtp(email, otpCode);
     }
 
-    /**
-     * Performs verify email exists.
-     * @param email The email.
+        /**
+     * Verify email exists.
+     * @param email email
      * @return true if the operation succeeds; otherwise false.
      */
     boolean verifyEmailExists(String email) {
         return userDAO.getUserByEmail(email).isPresent();
     }
 
-    /**
-     * Performs verify otp code.
-     * @param email The email.
+        /**
+     * Verify otp code.
+     * @param email email
      * @param otpCode The otp code.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -70,11 +69,14 @@ public class OTP {
     }
 
     /**
-     * Performs send otp to email.
-     * @throws IOException If the operation fails.
+     * Sends the OTP email on a background thread.
      */
-    public void sendOtpToEmail() throws IOException {
-        SendEmail sendEmail = new SendEmail();
-        sendEmail.sendOtpEmail(email, otpCode);
+    public void sendOtpToEmail() {
+        new Thread(() -> {
+            try {
+                new SendEmail().sendOtpEmail(email, otpCode);
+            } catch (RuntimeException ignored) {
+            }
+        }).start();
     }
 }

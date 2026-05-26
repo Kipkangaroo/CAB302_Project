@@ -1,20 +1,17 @@
 package com.lockedin.lockedin.controller.workout;
 
+import com.lockedin.lockedin.controller.layout.LayoutController;
+import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,12 +27,6 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 public class WeeklySummaryController {
-
-    private static final String WORKOUT_VIEW =
-            "/com/lockedin/lockedin/pages/workout/workout-view.fxml";
-    private static final DateTimeFormatter RANGE_FMT = DateTimeFormatter.ofPattern("d MMM");
-    private static final DateTimeFormatter RANGE_FMT_YEAR = DateTimeFormatter.ofPattern("d MMM yyyy");
-    private static final DateTimeFormatter CARD_FMT = DateTimeFormatter.ofPattern("EEE d MMM, h:mm a");
 
     @FXML private Button backButton;
     @FXML private Label weekRangeLabel;
@@ -76,11 +67,16 @@ public class WeeklySummaryController {
         }
     }
 
+    /**
+     * Loads completed workouts and summary stats for the week indicated by {@code weekOffset}.
+     */
     private void loadWeek() {
+        final DateTimeFormatter rangeFmt = DateTimeFormatter.ofPattern("d MMM");
+        final DateTimeFormatter rangeFmtYear = DateTimeFormatter.ofPattern("d MMM yyyy");
         LocalDate monday = LocalDate.now().with(DayOfWeek.MONDAY).plusWeeks(weekOffset);
         LocalDate sunday = monday.plusDays(6);
 
-        weekRangeLabel.setText(monday.format(RANGE_FMT) + " – " + sunday.format(RANGE_FMT_YEAR));
+        weekRangeLabel.setText(monday.format(rangeFmt) + " – " + sunday.format(rangeFmtYear));
 
         List<WorkoutRoutineDAO.CompletedWorkoutData> workouts =
                 routineDAO.getCompletedWorkoutsByUserBetween(CurrentUser.getId(), monday, sunday);
@@ -101,12 +97,18 @@ public class WeeklySummaryController {
             empty.setStyle("-fx-text-fill: #757575; -fx-font-size: 13px;");
             workoutsContainer.getChildren().add(empty);
         } else {
-            for (WorkoutRoutineDAO.CompletedWorkoutData w : workouts) {
-                workoutsContainer.getChildren().add(buildCard(w));
+            for (WorkoutRoutineDAO.CompletedWorkoutData completedWorkout : workouts) {
+                workoutsContainer.getChildren().add(buildCard(completedWorkout));
             }
         }
     }
 
+    /**
+     * Extracts the local date portion from a completed-at timestamp string.
+     *
+     * @param completedAt ISO or legacy timestamp text
+     * @return date as yyyy-MM-dd when parseable
+     */
     private String parseDate(String completedAt) {
         try {
             return LocalDateTime.parse(completedAt).toLocalDate().toString();
@@ -115,7 +117,14 @@ public class WeeklySummaryController {
         }
     }
 
+    /**
+     * Builds a summary card UI node for one completed workout.
+     *
+     * @param workout completed workout data
+     * @return styled card container
+     */
     private VBox buildCard(WorkoutRoutineDAO.CompletedWorkoutData workout) {
+        final DateTimeFormatter cardFmt = DateTimeFormatter.ofPattern("EEE d MMM, h:mm a");
         Label nameLabel = new Label(workout.routineName);
         nameLabel.setStyle(
                 "-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #061424;");
@@ -123,7 +132,7 @@ public class WeeklySummaryController {
 
         String formattedDate;
         try {
-            formattedDate = LocalDateTime.parse(workout.completedAt).format(CARD_FMT);
+            formattedDate = LocalDateTime.parse(workout.completedAt).format(cardFmt);
         } catch (DateTimeParseException e) {
             formattedDate = workout.completedAt;
         }
@@ -151,14 +160,6 @@ public class WeeklySummaryController {
      */
     @FXML
     public void handleBack() {
-        try {
-            Pane page = FXMLLoader.load(getClass().getResource(WORKOUT_VIEW));
-            StackPane pc = (StackPane) backButton.getScene().lookup("#pageContainer");
-            if (pc != null) {
-                pc.getChildren().setAll(page);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to navigate back to workouts", e);
-        }
+        PageNavigator.loadPage(backButton, LayoutController.WORKOUT_VIEW);
     }
 }

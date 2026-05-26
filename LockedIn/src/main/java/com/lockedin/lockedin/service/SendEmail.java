@@ -12,28 +12,14 @@ import org.simplejavamail.mailer.MailerBuilder;
  * @version 1.0
  */
 public class SendEmail {
-    private static final String EMAIL_PASSWORD_DIR = "/com/lockedin/lockedin/service/config.file";
-    private static final String FROM_EMAIL = "tusarifb@gmail.com";
-    private static final String FROM_NAME = "LockedIn";
-    private String APP_PASSWORD;
 
-    /**
-     * Creates a new SendEmail.
-     * @throws IOException If the operation fails.
+        /**
+     * Constructs a SendEmail using default application dependencies.
      */
-    public SendEmail() throws IOException {
-        Properties props = new Properties();
-        try (InputStream input = getClass().getResourceAsStream(EMAIL_PASSWORD_DIR)) {
-            if (input == null) {
-                throw new IOException("Missing resource file: config.file");
-            }
-            props.load(input);
-        }
-        APP_PASSWORD = props.getProperty("app.password").trim();
-    }
+    public SendEmail() {}
 
-    /**
-     * Performs send otp email.
+        /**
+     * Send otp email.
      * @param toEmail The to email.
      * @param otpCode The otp code.
      */
@@ -41,17 +27,25 @@ public class SendEmail {
         send(toEmail, otpCode);
     }
 
-    /**
-     * Performs send.
+        /**
+     * Send.
      * @param toEmail The to email.
      * @param otpCode The otp code.
      */
     private void send(String toEmail, int otpCode) {
+        final String fromEmail = "tusarifb@gmail.com";
+        final String fromName = "LockedIn";
+        String appPassword;
+        try {
+            appPassword = loadAppPassword();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load email credentials", e);
+        }
         MailerBuilder
-                .withSMTPServer("smtp.gmail.com", 587, FROM_EMAIL, APP_PASSWORD)
+                .withSMTPServer("smtp.gmail.com", 587, fromEmail, appPassword)
                 .buildMailer()
                 .sendMail(EmailBuilder.startingBlank()
-                        .from(FROM_NAME + " <" + FROM_EMAIL + ">")
+                        .from(fromName + " <" + fromEmail + ">")
                         .to(toEmail)
                         .withSubject("LockedIn OTP: " + otpCode)
                         .withPlainText(
@@ -59,6 +53,24 @@ public class SendEmail {
                                         + otpCode
                                         + "\n\n Please enter this code to reset your password. \n\n Thank you for using LockedIn!")
                         .buildEmail());
+    }
+
+    /**
+     * Loads the SMTP application password from the bundled config resource.
+     *
+     * @return trimmed app password property
+     * @throws IOException if the config resource is missing or unreadable
+     */
+    private String loadAppPassword() throws IOException {
+        final String emailPasswordDir = "/com/lockedin/lockedin/service/config.file";
+        Properties props = new Properties();
+        try (InputStream input = getClass().getResourceAsStream(emailPasswordDir)) {
+            if (input == null) {
+                throw new IOException("Missing resource file: config.file");
+            }
+            props.load(input);
+        }
+        return props.getProperty("app.password").trim();
     }
 
 }

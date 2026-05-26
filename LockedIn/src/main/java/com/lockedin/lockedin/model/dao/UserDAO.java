@@ -18,25 +18,25 @@ public class UserDAO {
     private static final String USERS_DB_FILE = "users.db";
     private final Connection connection;
 
-    /**
-     * Creates a new UserDAO.
+        /**
+     * Constructs a UserDAO using default application dependencies.
      */
     public UserDAO() {
         this.connection = SqliteConnection.getInstance(USERS_DB_FILE);
         createUsersTable();
     }
 
-    /**
-     * Creates a new UserDAO.
-     * @param connection The connection.
+        /**
+     * Constructs a UserDAO using default application dependencies.
+     * @param connection connection
      */
     public UserDAO(Connection connection) {
         this.connection = connection;
         createUsersTable();
     }
 
-    /**
-     * Performs create users table.
+        /**
+     * Create users table.
      */
     private void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users ("
@@ -60,9 +60,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs create user.
-     * @param user The user.
+        /**
+     * Create user.
+     * @param user user
      * @return true if the operation succeeds; otherwise false.
      */
     public boolean createUser(User user) {
@@ -97,10 +97,10 @@ public class UserDAO {
         }
     }
 
-    /**
+            /**
      * Returns the user by id.
-     * @param id The id.
-     * @return The user by id.
+     * @param id id
+     * @return user by id
      */
     public Optional<User> getUserById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
@@ -117,9 +117,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs update first name.
-     * @param id The id.
+        /**
+     * Update first name.
+     * @param id id
      * @param firstName The first name.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -134,9 +134,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs update fitness goal.
-     * @param id The id.
+        /**
+     * Update fitness goal.
+     * @param id id
      * @param fitnessGoal The fitness goal.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -151,10 +151,10 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs update weight.
-     * @param id The id.
-     * @param weight The weight.
+        /**
+     * Update weight.
+     * @param id id
+     * @param weight weight
      * @return true if the operation succeeds; otherwise false.
      */
     public boolean updateWeight(int id, double weight) {
@@ -168,10 +168,10 @@ public class UserDAO {
         }
     }
 
-    /**
+            /**
      * Returns the user by email.
-     * @param email The email.
-     * @return The user by email.
+     * @param email email
+     * @return user by email
      */
     public Optional<User> getUserByEmail(String email) {
         String sql = "SELECT * FROM users WHERE email = ?";
@@ -188,9 +188,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs authenticate.
-     * @param email The email.
+        /**
+     * Authenticate.
+     * @param email email
      * @param plainPassword The plain password.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -203,9 +203,9 @@ public class UserDAO {
         return providedHash.equals(user.get().getPasswordHash());
     }
 
-    /**
-     * Performs delete user.
-     * @param id The id.
+        /**
+     * Delete user.
+     * @param id id
      * @return true if the operation succeeds; otherwise false.
      */
     public boolean deleteUser(int id) {
@@ -218,9 +218,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs update password.
-     * @param email The email.
+        /**
+     * Update password.
+     * @param email email
      * @param plainPassword The plain password.
      * @return true if the operation succeeds; otherwise false.
      */
@@ -235,8 +235,8 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Performs map user.
+        /**
+     * Map user.
      * @param resultSet The result set.
      * @throws SQLException If the operation fails.
      */

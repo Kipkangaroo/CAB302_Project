@@ -3,7 +3,7 @@ package com.lockedin.lockedin.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.lockedin.lockedin.model.dao.DBExercisesDAO;
+import com.lockedin.lockedin.model.dao.ExercisesDAO;
 import com.lockedin.lockedin.model.entity.workout.WorkoutExerciseEntry;
 import javafx.concurrent.Task;
 
@@ -19,29 +19,21 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Service for ai workout service operations.
+ * Service for AI workout generation operations.
  * @author LockedIn Team
  * @version 1.0
  */
-public class AiWorkoutService {
+public class AIWorkoutService {
 
-    private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
-    private static final String PROMPT_DIR = "/com/lockedin/lockedin/service/workout_generation_prompt.txt";
-    private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
-
-    private final HttpClient client = HttpClient.newHttpClient();
-    private final Gson gson = new Gson();
-    private final DBExercisesDAO exercisesDAO = new DBExercisesDAO();
-
-    /**
+            /**
      * Returns the api key.
-     * @return The api key.
+     * @return api key
      * @throws IOException If the operation fails.
      */
     private String getApiKey() throws IOException {
+        final String apiKeyDir = "/com/lockedin/lockedin/service/config.file";
         Properties props = new Properties();
-        try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
+        try (InputStream input = getClass().getResourceAsStream(apiKeyDir)) {
             if (input == null)
                 throw new IOException("Missing resource file: config.file");
             props.load(input);
@@ -49,17 +41,18 @@ public class AiWorkoutService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
-    /**
-     * Performs build prompt.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Build prompt.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
-     * @return The resulting text.
+     * @param goal goal
+     * @return resulting text
      * @throws IOException If the operation fails.
      */
     private String buildPrompt(String experience, String time, String muscleGroup, String goal) throws IOException {
-        try (InputStream input = getClass().getResourceAsStream(PROMPT_DIR)) {
+        final String promptDir = "/com/lockedin/lockedin/service/workout_generation_prompt.txt";
+        try (InputStream input = getClass().getResourceAsStream(promptDir)) {
             if (input == null)
                 throw new IOException("Missing resource file: workout_generation_prompt.txt");
             String template = new String(input.readAllBytes());
@@ -71,14 +64,19 @@ public class AiWorkoutService {
         }
     }
 
-    /**
-     * Performs generate workout.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Generate workout.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
+     * @param goal goal
      */
     public WorkoutResult generateWorkout(String experience, String time, String muscleGroup, String goal) {
+        final String apiUrl = "https://integrate.api.nvidia.com/v1/chat/completions";
+        final String model = "meta/llama-4-maverick-17b-128e-instruct";
+        HttpClient client = HttpClient.newHttpClient();
+        Gson gson = new Gson();
+        ExercisesDAO exercisesDAO = new ExercisesDAO();
         try {
             String key = getApiKey();
             String prompt = buildPrompt(experience, time, muscleGroup, goal);
@@ -87,7 +85,7 @@ public class AiWorkoutService {
                     Map.of("role", "user", "content", prompt));
 
             Map<String, Object> body = Map.of(
-                    "model", MODEL,
+                    "model", model,
                     "messages", messages,
                     "max_tokens", 1024,
                     "temperature", 0.7,
@@ -96,7 +94,7 @@ public class AiWorkoutService {
                     "presence_penalty", 0.00);
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_URL))
+                    .uri(URI.create(apiUrl))
                     .header("Content-Type", "application/json")
                     .header("Authorization", "Bearer " + key)
                     .header("Accept", "application/json")
@@ -146,12 +144,12 @@ public class AiWorkoutService {
         }
     }
 
-    /**
-     * Performs create generate workout task.
-     * @param experience The experience.
-     * @param time The time.
+        /**
+     * Create generate workout task.
+     * @param experience experience
+     * @param time time
      * @param muscleGroup The muscle group.
-     * @param goal The goal.
+     * @param goal goal
      * @return A JavaFX task that performs the work on a background thread.
      */
     public Task<WorkoutResult> createGenerateWorkoutTask(
@@ -176,11 +174,11 @@ public class AiWorkoutService {
         public final String routineName;
         public final List<WorkoutExerciseEntry> exercises;
 
-        /**
-         * Creates a new WorkoutResult.
-         * @param routineName The routine name.
-         * @param exercises The exercises.
-         */
+            /**
+     * Constructs a WorkoutResult using default application dependencies.
+     * @param routineName The routine name.
+     * @param exercises exercises
+     */
         public WorkoutResult(String routineName, List<WorkoutExerciseEntry> exercises) {
             this.routineName = routineName;
             this.exercises = exercises;

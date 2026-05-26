@@ -4,12 +4,11 @@ import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -19,63 +18,109 @@ import java.util.Optional;
  * @author LockedIn Team
  * @version 1.0
  */
-public class LogInController {
-    private static final String MAIN_VIEW = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
-    private static final String FORGOT_PASSWORD_VIEW = "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
+public class LoginController {
     private static User loggedInUser;
     private final Authentication authentication = new Authentication();
     @FXML
-    private Button loginBtn;
+    private Button loginButton;
     @FXML
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private TextField visiblePasswordField;
+    @FXML
+    private ImageView togglePasswordIcon;
+    private boolean passwordVisible;
+    private Image eyeIcon;
+    private Image eyeOffIcon;
 
-    /**
+            /**
      * Returns the logged in user.
-     * @return The logged in user.
+     * @return logged in user
      */
     public static User getLoggedInUser() {
         return loggedInUser;
     }
-    /**
-     * Performs handle log in.
+        /**
+     * Handle log in.
      * @throws IOException If the operation fails.
      */
 
     @FXML
-    protected void handleLogIn() throws IOException {
+    protected void handleLogin() throws IOException {
         String email = emailField.getText().trim();
         if (!authentication.isValidEmail(email)) {
             authentication.showError("Invalid email", "Please enter a valid email format.");
             return;
         }
-        if (passwordField.getText().trim().isEmpty()) {
+        if (getPasswordText().trim().isEmpty()) {
             authentication.showError("Invalid password", "Password field is empty!");
             return;
         }
-        authenticate(email, passwordField.getText().trim());
-    }
-    @FXML
-    private void initialize() {
-        loginBtn.setDefaultButton(true);
+        authenticate(email, getPasswordText().trim());
     }
 
     /**
-     * Performs successful login.
+     * Initializes FXML-bound components after the login view loads.
+     */
+    @FXML
+    private void initialize() {
+        loginButton.setDefaultButton(true);
+        emailField.setText("john.demo@lockedin.app");
+        passwordField.setText("Password1!");
+        eyeIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
+        eyeOffIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
+    }
+
+    /**
+     * Toggles visibility between the password field and plain-text field.
+     */
+    @FXML
+    private void handleTogglePassword() {
+        if (passwordVisible) {
+            passwordField.setText(visiblePasswordField.getText());
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            togglePasswordIcon.setImage(eyeIcon);
+        } else {
+            visiblePasswordField.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            visiblePasswordField.setVisible(true);
+            visiblePasswordField.setManaged(true);
+            togglePasswordIcon.setImage(eyeOffIcon);
+        }
+        passwordVisible = !passwordVisible;
+        (passwordVisible ? visiblePasswordField : passwordField).requestFocus();
+    }
+
+    /**
+     * Returns the password text from whichever input field is currently visible.
+     *
+     * @return the entered password
+     */
+    private String getPasswordText() {
+        return passwordVisible ? visiblePasswordField.getText() : passwordField.getText();
+    }
+
+        /**
+     * Successful login.
      * @throws IOException If the operation fails.
      */
     private void successfulLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
-        Scene scene = new Scene(loader.load(), 410, 750);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
+        final String mainView = "/com/lockedin/lockedin/pages/layout/main-view.fxml";
+        authentication.switchScene(loginButton, mainView);
     }
 
-    /**
-     * Performs authenticate.
-     * @param email The email.
-     * @param password The password.
+        /**
+     * Authenticate.
+     * @param email email
+     * @param password password
      */
     private void authenticate(String email, String password) {
         Optional<User> user = authentication.authenticate(email, password);
@@ -93,34 +138,31 @@ public class LogInController {
         }
     }
 
-    /**
-     * Performs failed login.
+        /**
+     * Failed login.
      */
     private void failedLogin() {
         authentication.showError(
                 "Invalid email or password", "Please enter a valid email and password.");
     }
-    /**
-     * Performs handle forgot password.
+        /**
+     * Handle forgot password.
      * @throws IOException If the operation fails.
      */
 
     @FXML
     private void handleForgotPassword() throws IOException {
-        authentication.switchScene(loginBtn, FORGOT_PASSWORD_VIEW);
+        final String forgotPasswordView = "/com/lockedin/lockedin/pages/auth/forgot-password-view.fxml";
+        authentication.switchScene(loginButton, forgotPasswordView);
     }
-    /**
-     * Performs handle signup.
+        /**
+     * Handle signup.
      * @throws IOException If the operation fails.
      */
 
     @FXML
     private void handleSignup() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass()
-                        .getResource("/com/lockedin/lockedin/pages/auth/signup-view.fxml"));
-        Scene scene = new Scene(loader.load(), 410, 750);
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(scene);
+        authentication.switchScene(
+                loginButton, "/com/lockedin/lockedin/pages/auth/signup-view.fxml");
     }
 }

@@ -13,9 +13,6 @@ import java.time.temporal.ChronoUnit;
  * @version 1.0
  */
 public class User {
-    private static final double CALORIES_PER_GRAM_PROTEIN = 4.0;
-    private static final double CALORIES_PER_GRAM_CARBS = 4.0;
-    private static final double CALORIES_PER_GRAM_FATS = 9.0;
     private int id;
     private String firstName;
     private String lastName;
@@ -28,25 +25,25 @@ public class User {
     private ActivityLevel activityLevel;
     private String passwordHash;
 
-    /**
-     * Creates a new User.
+        /**
+     * Constructs a User using default application dependencies.
      */
     public User() {
     }
 
-    /**
-     * Creates a new User.
-     * @param id The id.
+        /**
+     * Constructs a User using default application dependencies.
+     * @param id id
      * @param firstName The first name.
      * @param lastName The last name.
-     * @param email The email.
+     * @param email email
      * @param dateOfBirth The date of birth.
-     * @param height The height.
-     * @param weight The weight.
-     * @param sex The sex.
+     * @param height height
+     * @param weight weight
+     * @param sex sex
      * @param activityLevel The activity level.
      * @param fitnessGoal The fitness goal.
-     * @param password The password.
+     * @param password password
      */
     public User(
             int id,
@@ -73,10 +70,10 @@ public class User {
         this.passwordHash = getHash(password);
     }
 
-    /**
+            /**
      * Returns the hash.
-     * @param password The password.
-     * @return The hash.
+     * @param password password
+     * @return hash
      */
     public static String getHash(String password) {
         try {
@@ -92,52 +89,52 @@ public class User {
         }
     }
 
-    /**
+            /**
      * Returns the protein ratio.
      * @param fitnessGoal The fitness goal.
-     * @return The protein ratio.
+     * @return protein ratio
      */
     private static double getProteinRatio(FitnessGoal fitnessGoal) {
         return fitnessGoal == null ? 0.25 : fitnessGoal.getProteinRatio();
     }
 
-    /**
+            /**
      * Returns the carbs ratio.
      * @param fitnessGoal The fitness goal.
-     * @return The carbs ratio.
+     * @return carbs ratio
      */
     private static double getCarbsRatio(FitnessGoal fitnessGoal) {
         return fitnessGoal == null ? 0.45 : fitnessGoal.getCarbsRatio();
     }
 
-    /**
+            /**
      * Returns the fats ratio.
      * @param fitnessGoal The fitness goal.
-     * @return The fats ratio.
+     * @return fats ratio
      */
     private static double getFatsRatio(FitnessGoal fitnessGoal) {
         return fitnessGoal == null ? 0.30 : fitnessGoal.getFatsRatio();
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
+        /**
      * Sets the id.
-     * @param id The id.
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
+            /**
      * Returns the first name.
-     * @return The first name.
+     * @return first name
      */
     public String getFirstName() {
         return firstName;
@@ -151,9 +148,9 @@ public class User {
         this.firstName = firstName;
     }
 
-    /**
+            /**
      * Returns the last name.
-     * @return The last name.
+     * @return last name
      */
     public String getLastName() {
         return lastName;
@@ -167,25 +164,25 @@ public class User {
         this.lastName = lastName;
     }
 
-    /**
+            /**
      * Returns the email.
-     * @return The email.
+     * @return email
      */
     public String getEmail() {
         return email;
     }
 
-    /**
+        /**
      * Sets the email.
-     * @param email The email.
+     * @param email email
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
+            /**
      * Returns the date of birth.
-     * @return The date of birth.
+     * @return date of birth
      */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
@@ -199,9 +196,9 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    /**
+            /**
      * Returns the fitness goal.
-     * @return The fitness goal.
+     * @return fitness goal
      */
     public FitnessGoal getFitnessGoal() {
         return this.fitnessGoal;
@@ -215,9 +212,9 @@ public class User {
         this.fitnessGoal = fitnessGoal;
     }
 
-    /**
+            /**
      * Returns the password hash.
-     * @return The password hash.
+     * @return password hash
      */
     public String getPasswordHash() {
         return passwordHash;
@@ -231,57 +228,57 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    /**
+            /**
      * Returns the height.
-     * @return The height.
+     * @return height
      */
     public double getHeight() {
         return height;
     }
 
-    /**
+        /**
      * Sets the height.
-     * @param height The height.
+     * @param height height
      */
     public void setHeight(double height) {
         this.height = height;
     }
 
-    /**
+            /**
      * Returns the weight.
-     * @return The weight.
+     * @return weight
      */
     public double getWeight() {
         return this.weight;
     }
 
-    /**
+        /**
      * Sets the weight.
-     * @param weight The weight.
+     * @param weight weight
      */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    /**
+            /**
      * Returns the sex.
-     * @return The sex.
+     * @return sex
      */
     public String getSex() {
         return sex;
     }
 
-    /**
+        /**
      * Sets the sex.
-     * @param sex The sex.
+     * @param sex sex
      */
     public void setSex(String sex) {
         this.sex = sex;
     }
 
-    /**
+            /**
      * Returns the activity level.
-     * @return The activity level.
+     * @return activity level
      */
     public ActivityLevel getActivityLevel() {
         return activityLevel;
@@ -295,17 +292,17 @@ public class User {
         this.activityLevel = activityLevel;
     }
 
-    /**
+            /**
      * Returns the age.
-     * @return The age.
+     * @return age
      */
     public int getAge() {
         return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 
-    /**
+            /**
      * Returns the bmr.
-     * @return The bmr.
+     * @return bmr
      */
     public double getBMR() {
         return switch (this.sex) {
@@ -315,9 +312,9 @@ public class User {
         };
     }
 
-    /**
+            /**
      * Returns the tdee.
-     * @return The tdee.
+     * @return tdee
      */
     public double getTDEE() {
         double bmr = getBMR();
@@ -327,9 +324,9 @@ public class User {
         return bmr * activityLevel.getTdeeMultiplier();
     }
 
-    /**
+            /**
      * Returns the target calories.
-     * @return The target calories.
+     * @return target calories
      */
     public double getTargetCalories() {
         double tdee = getTDEE();
@@ -340,34 +337,37 @@ public class User {
         return tdee + goal.getCalorieAdjustment();
     }
 
-    /**
+            /**
      * Returns the target protein.
      * @param totalCalories The total calories.
      * @param fitnessGoal The fitness goal.
-     * @return The target protein.
+     * @return target protein
      */
     public double getTargetProtein(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getProteinRatio(fitnessGoal)) / CALORIES_PER_GRAM_PROTEIN;
+        final double caloriesPerGramProtein = 4.0;
+        return (totalCalories * getProteinRatio(fitnessGoal)) / caloriesPerGramProtein;
     }
 
-    /**
+            /**
      * Returns the target carbs.
      * @param totalCalories The total calories.
      * @param fitnessGoal The fitness goal.
-     * @return The target carbs.
+     * @return target carbs
      */
     public double getTargetCarbs(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getCarbsRatio(fitnessGoal)) / CALORIES_PER_GRAM_CARBS;
+        final double caloriesPerGramCarbs = 4.0;
+        return (totalCalories * getCarbsRatio(fitnessGoal)) / caloriesPerGramCarbs;
     }
 
-    /**
+            /**
      * Returns the target fats.
      * @param totalCalories The total calories.
      * @param fitnessGoal The fitness goal.
-     * @return The target fats.
+     * @return target fats
      */
     public double getTargetFats(double totalCalories, FitnessGoal fitnessGoal) {
-        return (totalCalories * getFatsRatio(fitnessGoal)) / CALORIES_PER_GRAM_FATS;
+        final double caloriesPerGramFats = 9.0;
+        return (totalCalories * getFatsRatio(fitnessGoal)) / caloriesPerGramFats;
     }
 
 }

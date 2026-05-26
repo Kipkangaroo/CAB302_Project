@@ -3,6 +3,11 @@ package com.lockedin.lockedin.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.lockedin.lockedin.model.dao.FoodDAO;
+import com.lockedin.lockedin.model.entity.diet.Food;
+
+import javafx.concurrent.Task;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -11,47 +16,39 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import javafx.concurrent.Task;
-import java.time.LocalDate;
-
-import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.entity.diet.Food;
 
 /**
- * Service for ai model service operations.
+ * Service for AI model operations.
  * @author LockedIn Team
  * @version 1.0
  */
-public class AiModelService {
-    private static final String API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private static final String MODEL = "meta/llama-4-maverick-17b-128e-instruct";
-    private static final String FOOD_IMAGE_PROMPT_DIR = "/com/lockedin/lockedin/service/food_image_prompt.txt";
-    private static final String API_KEY_DIR = "/com/lockedin/lockedin/service/config.file";
-    private final int userID;
+public class AIModelService {
+    private final int userId;
     private final HttpClient client = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
-    private final FoodDAO foodDAO = new FoodDAO();
 
-    /**
-     * Creates a new AiModelService.
-     * @param userID The user id.
+        /**
+     * Constructs a AIModelService using default application dependencies.
+     * @param userId The user id.
      */
-    public AiModelService(int userID) {
-        this.userID = userID;
+    public AIModelService(int userId) {
+        this.userId = userId;
     }
 
-    /**
+            /**
      * Returns the api key.
-     * @return The api key.
+     * @return api key
      * @throws IOException If the operation fails.
      */
     private String getApiKey() throws IOException {
+        final String apiKeyDir = "/com/lockedin/lockedin/service/config.file";
         Properties props = new Properties();
-        try (InputStream input = getClass().getResourceAsStream(API_KEY_DIR)) {
+        try (InputStream input = getClass().getResourceAsStream(apiKeyDir)) {
             if (input == null) {
                 throw new IOException("Missing resource file: config.file");
             }
@@ -60,10 +57,10 @@ public class AiModelService {
         return props.getProperty("nvidia.api.key").trim();
     }
 
-    /**
-     * Performs analyze image with prompt.
+        /**
+     * Analyze image with prompt.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      */
     public Food analyzeImageWithPrompt(Path imagePath, LocalDate date) {
         try {
@@ -77,7 +74,7 @@ public class AiModelService {
                 JsonObject jsonOutput = gson.fromJson(output, JsonObject.class);
                 Food food = new Food();
                 food.setId(0);
-                food.setUserID(this.userID);
+                food.setUserId(this.userId);
                 food.setName(jsonOutput.get("name").getAsString());
                 food.setProtein(jsonOutput.get("protein").getAsInt());
                 food.setCarbs(jsonOutput.get("carb").getAsInt());
@@ -93,23 +90,23 @@ public class AiModelService {
         return null;
     }
 
-    /**
-     * Performs send image with prompt.
+        /**
+     * Send image with prompt.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      */
     public Food sendImageWithPrompt(Path imagePath, LocalDate date) {
         Food food = analyzeImageWithPrompt(imagePath, date);
         if (food != null) {
-            foodDAO.addFood(food, date);
+            new FoodDAO().addFood(food, date);
         }
         return food;
     }
 
-    /**
-     * Performs create analyze image task.
+        /**
+     * Create analyze image task.
      * @param imagePath The image path.
-     * @param date The date.
+     * @param date date
      * @return A JavaFX task that performs the work on a background thread.
      */
     public Task<Food> createAnalyzeImageTask(Path imagePath, LocalDate date) {
@@ -124,14 +121,15 @@ public class AiModelService {
         };
     }
 
-    /**
-     * Performs build body.
-     * @param messages The messages.
-     * @return The resulting text.
+        /**
+     * Build body.
+     * @param messages messages
+     * @return resulting text
      */
     private Map<String, Object> buildBody(List<Map<String, Object>> messages) {
+        final String model = "meta/llama-4-maverick-17b-128e-instruct";
         return Map.of(
-                "model", MODEL,
+                "model", model,
                 "messages", messages,
                 "max_tokens", 512,
                 "temperature", 1.00,
@@ -140,14 +138,15 @@ public class AiModelService {
                 "presence_penalty", 0.00);
     }
 
-    /**
-     * Performs build request.
-     * @param key The key.
-     * @param body The body.
+        /**
+     * Build request.
+     * @param key key
+     * @param body body
      */
     private HttpRequest buildRequest(String key, Map<String, Object> body) {
+        final String apiUrl = "https://integrate.api.nvidia.com/v1/chat/completions";
         return HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
+                .uri(URI.create(apiUrl))
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + key)
                 .header("Accept", "application/json")
@@ -155,11 +154,11 @@ public class AiModelService {
                 .build();
     }
 
-    /**
-     * Performs post and parse.
-     * @param key The key.
-     * @param body The body.
-     * @return The resulting text.
+        /**
+     * Post and parse.
+     * @param key key
+     * @param body body
+     * @return resulting text
      */
     private String postAndParse(String key, Map<String, Object> body) {
         try {
@@ -180,10 +179,10 @@ public class AiModelService {
         }
     }
 
-    /**
-     * Performs build data uri.
+        /**
+     * Build data uri.
      * @param imagePath The image path.
-     * @return The resulting text.
+     * @return resulting text
      * @throws Exception If the operation fails.
      */
     private String buildDataUri(Path imagePath) throws Exception {
@@ -195,15 +194,16 @@ public class AiModelService {
         return "data:" + mediaType + ";base64," + base64;
     }
 
-    /**
-     * Performs read food image prompt.
-     * @return The resulting text.
+        /**
+     * Read food image prompt.
+     * @return resulting text
      * @throws IOException If the operation fails.
      */
     private String readFoodImagePrompt() throws IOException {
-        try (InputStream input = getClass().getResourceAsStream(FOOD_IMAGE_PROMPT_DIR)) {
+        final String foodImagePromptDir = "/com/lockedin/lockedin/service/food_image_prompt.txt";
+        try (InputStream input = getClass().getResourceAsStream(foodImagePromptDir)) {
             if (input == null) {
-                throw new IOException("Missing resource file: " + FOOD_IMAGE_PROMPT_DIR);
+                throw new IOException("Missing resource file: " + foodImagePromptDir);
             }
             return new String(input.readAllBytes());
         }

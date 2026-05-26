@@ -86,6 +86,21 @@
     -fx-font-weight: bold;
 }
 
+.diet-expand-header {
+    -fx-cursor: hand;
+    -fx-padding: 2 0 2 0;
+}
+
+.diet-expand-header:hover .diet-expand-chevron {
+    -fx-text-fill: #1565C0;
+}
+
+.diet-expand-chevron {
+    -fx-font-size: 12px;
+    -fx-text-fill: #757575;
+    -fx-padding: 0 2 0 0;
+}
+
 .diet-input {
     -fx-background-color: white;
     -fx-background-radius: 10;
@@ -93,6 +108,29 @@
     -fx-border-radius: 10;
     -fx-border-width: 1.2;
     -fx-padding: 10 12 10 12;
+}
+
+/* Auth password field – room for visibility toggle icon */
+.password-field-stack > .password-field,
+.password-field-stack > .text-field {
+    -fx-padding: 10 40 10 12;
+}
+
+.password-toggle-icon {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.password-toggle-icon:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.password-toggle-icon:pressed {
+    -fx-opacity: 0.85;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 /* DatePicker / ComboBox – same look as .diet-input (auth & other forms) */
@@ -128,8 +166,77 @@
     -fx-background-radius: 0 10 10 0;
 }
 
+/* Diet page date picker – compact, matches profile-goal-combo sizing */
+.date-picker.diet-date-picker {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-height: 32;
+    -fx-min-height: 32;
+    -fx-max-height: 32;
+}
+
+.date-picker.diet-date-picker > .text-field {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6 0 0 6;
+    -fx-border-width: 0;
+    -fx-padding: 6 8 6 8;
+    -fx-font-size: 13px;
+}
+
+.date-picker.diet-date-picker > .arrow-button {
+    -fx-background-color: #E9EEF5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 6 6 0;
+    -fx-padding: 0 8 0 8;
+}
+
+.date-picker.diet-date-picker > .arrow-button:hover {
+    -fx-background-color: #DDE6F2;
+}
+
 .date-picker.diet-input > .arrow-button:hover {
     -fx-background-color: #DDE6F2;
+}
+
+/* Signup: slightly less vertical padding only — same .diet-input look as other fields */
+.signup-form .combo-box-base.diet-input > .list-cell {
+    -fx-padding: 6 12 6 12;
+}
+
+.signup-form .combo-box-base.diet-input > .arrow-button {
+    -fx-background-color: #E9EEF5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.signup-form .combo-box-base.diet-input > .arrow-button:hover {
+    -fx-background-color: #DDE6F2;
+}
+
+.signup-profile-placeholder {
+    -fx-cursor: hand;
+    -fx-opacity: 0.92;
+}
+
+.signup-profile-placeholder:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.signup-profile-placeholder:pressed {
+    -fx-opacity: 0.88;
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+.signup-form .date-picker.diet-input > .text-field {
+    -fx-padding: 8 12 8 12;
 }
 
 /* Calendar popup – same palette as diet / auth forms */
@@ -279,7 +386,7 @@
     -fx-background-color: white;
     -fx-padding: 15;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 2);
 }
 
 .workout-chart {
@@ -367,6 +474,24 @@
 .icon-btn:hover {
     -fx-background-color: #f0f0f0;
     -fx-background-radius: 6;
+}
+
+/* Diet AI upload – camera icon only, no button chrome */
+.diet-ai-upload-icon {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.diet-ai-upload-icon:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.diet-ai-upload-icon:pressed {
+    -fx-opacity: 0.85;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 /* ===== Numbered circle (exercise order in detail view) ===== */
@@ -567,6 +692,24 @@
     -fx-scale-y: 0.86;
 }
 
+.profile-delete-icon {
+    -fx-cursor: hand;
+    -fx-opacity: 0.95;
+}
+
+.profile-delete-icon:hover {
+    -fx-opacity: 1;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, rgba(217, 83, 79, 0.35), 8, 0.2, 0, 1);
+}
+
+.profile-delete-icon:pressed {
+    -fx-opacity: 0.9;
+    -fx-scale-x: 0.86;
+    -fx-scale-y: 0.86;
+}
+
 .profile-name-label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -579,6 +722,28 @@
 
 .profile-detail-label {
     -fx-font-size: 14px;
+}
+
+/* Profile fitness goal – compact combobox, same palette as diet-input */
+.combo-box-base.profile-goal-combo {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #D0D7E2;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-height: 28;
+    -fx-min-height: 28;
+    -fx-max-height: 28;
+}
+
+.combo-box-base.profile-goal-combo > .list-cell {
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+}
+
+.combo-box-base.profile-goal-combo .arrow-button {
+    -fx-padding: 0 6 0 6;
 }
 
 .text-field.profile-detail-field {
@@ -618,6 +783,47 @@
     -fx-effect: dropshadow(gaussian, rgba(2, 142, 225, 0.28), 10, 0.25, 0, 1);
 }
 
+.profile-weight-chart {
+    -fx-padding: 4 0 0 0;
+    -fx-background-color: transparent;
+}
+
+.profile-weight-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.profile-weight-chart .chart-vertical-grid-lines,
+.profile-weight-chart .chart-horizontal-grid-lines {
+    -fx-stroke: #E8EEF2;
+}
+
+.profile-weight-chart .default-color0.chart-series-line {
+    -fx-stroke: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);
+    -fx-stroke-width: 3.0px;
+}
+
+.profile-weight-chart .default-color0.chart-line-symbol {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047), white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+}
+
+.profile-weight-chart .default-color1.chart-series-line {
+    -fx-stroke: #90A4AE;
+    -fx-stroke-width: 2px;
+    -fx-stroke-dash-array: 8 6;
+}
+
+.profile-weight-chart .default-color1.chart-line-symbol {
+    -fx-background-color: #90A4AE, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+}
+
 .profile-day-label {
     -fx-font-size: 12px;
 }
@@ -626,6 +832,7 @@
     -fx-stroke: #1E2A38;
     -fx-stroke-width: 1;
 }
+
 .delete-measurement-btn {
     -fx-background-color: #d9534f;
     -fx-text-fill: white;

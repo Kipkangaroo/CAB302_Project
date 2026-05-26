@@ -1,33 +1,44 @@
 package com.lockedin.lockedin.controller.auth;
 
 import com.lockedin.lockedin.model.dao.UserDAO;
-//import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.dao.UserImageDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.entity.user.ActivityLevel;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
-//import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.Optional;
 
 /**
  * JavaFX controller for the sign up screen.
+ * 
  * @author LockedIn Team
  * @version 1.0
  */
 public class SignUpController {
-    private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private final Authentication authentication = new Authentication();
+    private Image selectedProfileImage;
+    private File selectedProfileImageFile;
     @FXML
     private ImageView logoImageView;
+    @FXML
+    private StackPane profilePhotoPane;
+    @FXML
+    private ImageView profilePlaceholderImageView;
     @FXML
     private TextField firstNameField;
     @FXML
@@ -37,9 +48,21 @@ public class SignUpController {
     @FXML
     private PasswordField passwordField;
     @FXML
+    private TextField visiblePasswordField;
+    @FXML
+    private ImageView togglePasswordIcon;
+    @FXML
     private PasswordField confirmPasswordField;
     @FXML
-    private Button signupBtn;
+    private TextField visibleConfirmPasswordField;
+    @FXML
+    private ImageView toggleConfirmPasswordIcon;
+    private boolean passwordVisible;
+    private boolean confirmPasswordVisible;
+    private Image eyeIcon;
+    private Image eyeOffIcon;
+    @FXML
+    private Button signUpButton;
     @FXML
     private DatePicker dobPicker;
     @FXML
@@ -53,9 +76,10 @@ public class SignUpController {
     @FXML
     private ComboBox<FitnessGoal> fitnessGoalCombo;
 
-    /**
-     * Performs parse valid double.
-     * @param text The text.
+        /**
+     * Parse valid double.
+     * 
+     * @param text text
      */
     public static Double parseValidDouble(String text) {
         if (text == null || text.trim().isEmpty()) {
@@ -78,22 +102,123 @@ public class SignUpController {
         sexCombo.setItems(FXCollections.observableArrayList("Male", "Female"));
         activityLevelCombo.setItems(FXCollections.observableArrayList(ActivityLevel.values()));
         fitnessGoalCombo.setItems(FXCollections.observableArrayList(FitnessGoal.values()));
-        // Trigger signup when pressing Enter
-        signupBtn.setDefaultButton(true);
+        eyeIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
+        eyeOffIcon = new Image(getClass().getResourceAsStream(
+                "/com/lockedin/lockedin/graphics/icons/eye-off-icon.png"));
+        signUpButton.setDefaultButton(true);
     }
+
     /**
-     * Performs handle back button.
-     * @param event The event.
+     * Applies a circular clip to the profile photo pane so images render round.
+     */
+    private void applyCircularProfileClip() {
+        double width = profilePhotoPane.getPrefWidth();
+        double height = profilePhotoPane.getPrefHeight();
+        double radius = Math.min(width, height) / 2.0;
+        profilePhotoPane.setClip(new Circle(width / 2.0, height / 2.0, radius));
+    }
+
+    /**
+     * Opens a file chooser so the user can select a profile photo.
+     *
+     * @param event the mouse click event
+     */
+    @FXML
+    private void handleProfilePlaceholderClick(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile photo");
+        fileChooser
+                .getExtensionFilters()
+                .add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(profilePlaceholderImageView.getScene().getWindow());
+        if (selectedFile != null) {
+            selectedProfileImageFile = selectedFile;
+            selectedProfileImage = new Image(selectedFile.toURI().toString(), true);
+            profilePlaceholderImageView.setImage(selectedProfileImage);
+            applyCircularProfileClip();
+        }
+    }
+
+    /**
+     * Toggles visibility of the primary password field.
+     */
+    @FXML
+    private void handleTogglePassword() {
+        passwordVisible = togglePasswordVisibility(
+                passwordField, visiblePasswordField, togglePasswordIcon, passwordVisible);
+    }
+
+    /**
+     * Toggles visibility of the confirm-password field.
+     */
+    @FXML
+    private void handleToggleConfirmPassword() {
+        confirmPasswordVisible = togglePasswordVisibility(
+                confirmPasswordField,
+                visibleConfirmPasswordField,
+                toggleConfirmPasswordIcon,
+                confirmPasswordVisible);
+    }
+
+    /**
+     * Swaps visibility between a password field and its plain-text counterpart.
+     *
+     * @return whether the plain-text field is now visible
+     */
+    private boolean togglePasswordVisibility(
+            PasswordField passwordField,
+            TextField visiblePasswordField,
+            ImageView toggleIcon,
+            boolean currentlyVisible) {
+        if (currentlyVisible) {
+            passwordField.setText(visiblePasswordField.getText());
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            toggleIcon.setImage(eyeIcon);
+        } else {
+            visiblePasswordField.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            visiblePasswordField.setVisible(true);
+            visiblePasswordField.setManaged(true);
+            toggleIcon.setImage(eyeOffIcon);
+        }
+        boolean nowVisible = !currentlyVisible;
+        (nowVisible ? visiblePasswordField : passwordField).requestFocus();
+        return nowVisible;
+    }
+
+    /**
+     * Returns password text from the visible field pair.
+     *
+     * @param passwordField        the masked field
+     * @param visiblePasswordField the plain-text field
+     * @param isVisible            whether the plain-text field is shown
+     * @return the current password text
+     */
+    private String getPasswordText(
+            PasswordField passwordField, TextField visiblePasswordField, boolean isVisible) {
+        return isVisible ? visiblePasswordField.getText() : passwordField.getText();
+    }
+
+        /**
+     * Handle back button.
+     * 
+     * @param event event
      * @throws IOException If the operation fails.
      */
 
     @FXML
     private void handleBackButton(MouseEvent event) throws IOException {
-        authentication.switchScene(
-                logoImageView, LOGIN_VIEW);
+        final String loginView = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
+        authentication.switchScene(logoImageView, loginView);
     }
-    /**
-     * Performs handle signup.
+
+        /**
+     * Handle signup.
      */
 
     @FXML
@@ -101,8 +226,10 @@ public class SignUpController {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
         String email = emailField.getText().trim();
-        String password = passwordField.getText().trim();
-        String confirmPassword = confirmPasswordField.getText().trim();
+        String password = getPasswordText(passwordField, visiblePasswordField, passwordVisible).trim();
+        String confirmPassword = getPasswordText(
+                confirmPasswordField, visibleConfirmPasswordField, confirmPasswordVisible)
+                .trim();
         String heightText = heightField.getText().trim();
         String weightText = weightField.getText().trim();
         FitnessGoal fitnessGoal = fitnessGoalCombo.getValue();
@@ -128,6 +255,12 @@ public class SignUpController {
                 || activityLevel == null
                 || fitnessGoal == null) {
             authentication.showError("All fields are required", "Please fill in all fields.");
+            return;
+        }
+        if (selectedProfileImage == null) {
+            authentication.showError(
+                    "Profile photo required",
+                    "Please upload a profile photo above your name.");
             return;
         }
         if (!firstName.matches("^[A-Za-z]+$") || !lastName.matches("^[A-Za-z]+$")) {
@@ -182,6 +315,15 @@ public class SignUpController {
             Optional<User> addedUser = new UserDAO().getUserByEmail(email);
             if (addedUser.isPresent()) {
                 User u = addedUser.get();
+                try {
+                    new UserImageDAO()
+                            .saveOrReplaceImage(
+                                    u.getId(), Files.readAllBytes(selectedProfileImageFile.toPath()));
+                } catch (IOException e) {
+                    authentication.showError(
+                            "Profile photo failed to save",
+                            "Your account was created, but the profile photo could not be stored.");
+                }
                 // Add initial user progress
                 new UserProgressDAO()
                         .addUserProgress(
@@ -196,7 +338,7 @@ public class SignUpController {
             authentication.showInfo("Signup successful", "You can now log in to your account.");
             try {
                 authentication.switchScene(
-                        signupBtn, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
+                        signUpButton, "/com/lockedin/lockedin/pages/auth/login-view.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -205,10 +347,11 @@ public class SignUpController {
         }
     }
 
-    /**
-     * Performs capitalize.
-     * @param string The string.
-     * @return The resulting text.
+        /**
+     * Capitalize.
+     * 
+     * @param string string
+     * @return resulting text
      */
     private String capitalize(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();

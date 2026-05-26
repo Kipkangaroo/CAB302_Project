@@ -19,25 +19,25 @@ public class FoodDAO {
     private static final String FOOD_DB_FILE = "food.db";
     private final Connection connection;
 
-    /**
-     * Creates a new FoodDAO.
+        /**
+     * Constructs a FoodDAO using default application dependencies.
      */
     public FoodDAO() {
         this.connection = SqliteConnection.getInstance(FOOD_DB_FILE);
         createFoodTable();
     }
 
-    /**
-     * Creates a new FoodDAO.
-     * @param connection The connection.
+        /**
+     * Constructs a FoodDAO using default application dependencies.
+     * @param connection connection
      */
     public FoodDAO(Connection connection) {
         this.connection = connection;
         createFoodTable();
     }
 
-    /**
-     * Performs create food table.
+        /**
+     * Create food table.
      */
     private void createFoodTable() {
         String sql = "CREATE TABLE IF NOT EXISTS foods ("
@@ -58,16 +58,16 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs add food.
-     * @param food The food.
-     * @param date The date.
+        /**
+     * Add food.
+     * @param food food
+     * @param date date
      */
     public void addFood(Food food, LocalDate date) {
         String sql = "INSERT INTO foods (user_id, name, calories, protein, carbs, fats, date) VALUES (?,"
                 + " ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, food.getUserID());
+            statement.setInt(1, food.getUserId());
             statement.setString(2, food.getName());
             statement.setInt(3, food.getCalories());
             statement.setInt(4, food.getProtein());
@@ -85,19 +85,19 @@ public class FoodDAO {
         }
     }
 
-    /**
+            /**
      * Returns the foods by date.
      * @param targetDate The target date.
-     * @param userID The user id.
-     * @return The foods by date.
+     * @param userId The user id.
+     * @return foods by date
      */
-    public List<Food> getFoodsByDate(LocalDate targetDate, int userID) {
+    public List<Food> getFoodsByDate(LocalDate targetDate, int userId) {
         String sql = "SELECT id, user_id, name, calories, protein, carbs, fats, date FROM foods WHERE"
                 + " date = ? AND user_id = ? ORDER BY name";
         List<Food> foods = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, targetDate.toString());
-            statement.setInt(2, userID);
+            statement.setInt(2, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
                     foods.add(mapRowToFood(rs));
@@ -109,14 +109,14 @@ public class FoodDAO {
         }
     }
 
-    /**
+        /**
      * Updates an existing food entry's name and nutritional values.
      * @param id The food id.
-     * @param name The name.
-     * @param calories The calories.
-     * @param protein The protein.
-     * @param carbs The carbs.
-     * @param fats The fats.
+     * @param name name
+     * @param calories calories
+     * @param protein protein
+     * @param carbs carbs
+     * @param fats fats
      */
     public void updateFood(int id, String name, double calories, double protein,
                            double carbs, double fats) {
@@ -135,9 +135,9 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs remove food.
-     * @param id The id.
+        /**
+     * Remove food.
+     * @param id id
      */
     public void removeFood(int id) {
         String sql = "DELETE FROM foods WHERE id = ?";
@@ -149,8 +149,8 @@ public class FoodDAO {
         }
     }
 
-    /**
-     * Performs delete all for user.
+        /**
+     * Delete all for user.
      * @param userId The user id.
      */
     public void deleteAllForUser(int userId) {
@@ -163,35 +163,35 @@ public class FoodDAO {
         }
     }
 
-    /**
+            /**
      * Returns the weekly calorie tracking.
-     * @param userID The user id.
-     * @return The weekly calorie tracking.
+     * @param userId The user id.
+     * @return weekly calorie tracking
      */
-    public boolean[] getWeeklyCalorieTracking(int userID) {
+    public boolean[] getWeeklyCalorieTracking(int userId) {
         boolean[] streakDays = new boolean[7];
         for (int i = 0; i < 7; i++) {
             LocalDate date = LocalDate.now().minusDays(i);
-            List<Food> foods = getFoodsByDate(date, userID);
+            List<Food> foods = getFoodsByDate(date, userId);
             streakDays[i] = !foods.isEmpty();
         }
         return streakDays;
     }
 
-    /**
+            /**
      * Returns the daily total by attribute.
      * @param targetDate The target date.
-     * @param attribute The attribute.
-     * @param userID The user id.
-     * @return The daily total by attribute.
+     * @param attribute attribute
+     * @param userId The user id.
+     * @return daily total by attribute
      */
-    public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userID) {
+    public int getDailyTotalByAttribute(LocalDate targetDate, String attribute, int userId) {
         String sql = "SELECT COALESCE(SUM("
                 + attribute
                 + "), 0) AS total FROM foods WHERE date = ? AND user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, targetDate.toString());
-            statement.setInt(2, userID);
+            statement.setInt(2, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("total");
@@ -236,15 +236,15 @@ public class FoodDAO {
         return totals;
     }
 
-    /**
-     * Performs map row to food.
-     * @param rs The rs.
+        /**
+     * Map row to food.
+     * @param rs rs
      * @throws SQLException If the operation fails.
      */
     private Food mapRowToFood(ResultSet rs) throws SQLException {
         Food food = new Food();
         food.setId(rs.getInt("id"));
-        food.setUserID(rs.getInt("user_id"));
+        food.setUserId(rs.getInt("user_id"));
         food.setName(rs.getString("name"));
         food.setCalories(rs.getInt("calories"));
         food.setProtein(rs.getInt("protein"));

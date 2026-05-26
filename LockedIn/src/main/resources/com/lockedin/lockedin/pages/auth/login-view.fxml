@@ -7,16 +7,14 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       alignment="TOP_CENTER"
       spacing="16.0"
-      fx:controller="com.lockedin.lockedin.controller.auth.LogInController"
+      fx:controller="com.lockedin.lockedin.controller.auth.LoginController"
       stylesheets="@../../style/style.css"
       prefWidth="400.0"
       prefHeight="650.0"
       style="-fx-padding: 28 34 28 34; -fx-background-color: #F0F2F5;">
     <ImageView preserveRatio="true"
                fitHeight="100">
-        <image>
-            <Image url="@../../images/logo.png"/>
-        </image>
+        <Image url="@../../graphics/images/logo.png"/>
     </ImageView>
     <Label text="Train hard. Stay focused. Unlock your best self."
            styleClass="auth-form-tagline">
@@ -29,8 +27,7 @@
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>
-        <VBox alignment="TOP_LEFT"
-              spacing="11.0"
+        <VBox spacing="11.0"
               prefWidth="260.0"
               maxWidth="260.0">
             <Label text="Email"
@@ -41,19 +38,41 @@
                        maxWidth="Infinity"/>
             <Label text="Password"
                    styleClass="profile-detail-label"/>
-            <PasswordField fx:id="passwordField"
+            <StackPane styleClass="password-field-stack" maxWidth="Infinity">
+                <PasswordField fx:id="passwordField"
+                               promptText="Enter your password"
+                               styleClass="diet-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="visiblePasswordField"
                            promptText="Enter your password"
                            styleClass="diet-input"
-                           maxWidth="Infinity"/>
+                           maxWidth="Infinity"
+                           visible="false"
+                           managed="false"/>
+                <HBox alignment="CENTER_RIGHT" pickOnBounds="false" maxWidth="Infinity">
+                    <ImageView fx:id="togglePasswordIcon"
+                               fitWidth="20"
+                               fitHeight="20"
+                               preserveRatio="true"
+                               pickOnBounds="true"
+                               styleClass="password-toggle-icon"
+                               onMouseClicked="#handleTogglePassword">
+                        <HBox.margin>
+                            <Insets right="12"/>
+                        </HBox.margin>
+                        <Image url="@../../graphics/icons/eye-icon.png"/>
+                    </ImageView>
+                </HBox>
+            </StackPane>
             <HBox alignment="CENTER_RIGHT"
                   maxWidth="Infinity">
                 <Hyperlink fx:id="forgotPasswordLink"
                            text="Forgot your password?"
                            onAction="#handleForgotPassword"/>
             </HBox>
-            <Button fx:id="loginBtn"
+            <Button fx:id="loginButton"
                     text="Log In"
-                    onAction="#handleLogIn"
+                    onAction="#handleLogin"
                     styleClass="primary-btn"
                     maxWidth="Infinity"/>
         </VBox>
@@ -62,12 +81,10 @@
             minHeight="24.0"/>
     <ImageView preserveRatio="true"
                fitHeight="220">
-        <image>
-            <Image url="@../../images/app_features.png"/>
-        </image>
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>
+        <Image url="@../../graphics/images/app-features.png"/>
     </ImageView>
     <HBox alignment="CENTER"
           spacing="8.0">

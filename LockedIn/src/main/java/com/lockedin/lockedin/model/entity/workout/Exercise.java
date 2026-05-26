@@ -7,7 +7,6 @@ package com.lockedin.lockedin.model.entity.workout;
  * @version 1.0
  */
 public class Exercise {
-    private static final String baseImageUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
     private int id;
     private String name;
     private String instruction;
@@ -15,12 +14,12 @@ public class Exercise {
     private String primaryMuscle;
     private String exerciseImageId;
 
-    /**
-     * Creates a new Exercise.
-     * @param id The id.
-     * @param name The name.
-     * @param instruction The instruction.
-     * @param category The category.
+        /**
+     * Constructs a Exercise using default application dependencies.
+     * @param id id
+     * @param name name
+     * @param instruction instruction
+     * @param category category
      * @param primaryMuscle The primary muscle.
      * @param exerciseImageId The exercise image id.
      */
@@ -39,73 +38,73 @@ public class Exercise {
         this.exerciseImageId = exerciseImageId;
     }
 
-    /**
+            /**
      * Returns the id.
-     * @return The id.
+     * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
+        /**
      * Sets the id.
-     * @param id The id.
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
+            /**
      * Returns the name.
-     * @return The name.
+     * @return name
      */
     public String getName() {
         return name;
     }
 
-    /**
+        /**
      * Sets the name.
-     * @param name The name.
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
+            /**
      * Returns the instruction.
-     * @return The instruction.
+     * @return instruction
      */
     public String getInstruction() {
         return instruction;
     }
 
-    /**
+        /**
      * Sets the instruction.
-     * @param instruction The instruction.
+     * @param instruction instruction
      */
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
 
-    /**
+            /**
      * Returns the category.
-     * @return The category.
+     * @return category
      */
     public String getCategory() {
         return category;
     }
 
-    /**
+        /**
      * Sets the category.
-     * @param category The category.
+     * @param category category
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
-    /**
+            /**
      * Returns the primary muscle.
-     * @return The primary muscle.
+     * @return primary muscle
      */
     public String getPrimaryMuscle() {
         return primaryMuscle;
@@ -119,9 +118,9 @@ public class Exercise {
         this.primaryMuscle = primaryMuscle;
     }
 
-    /**
+            /**
      * Returns the exercise image id.
-     * @return The exercise image id.
+     * @return exercise image id
      */
     public String getExerciseImageId() {
         return exerciseImageId;
@@ -135,12 +134,14 @@ public class Exercise {
         this.exerciseImageId = exerciseImageId;
     }
 
-    /**
+            /**
      * Returns the exercise image url.
-     * @param option The option.
-     * @return The exercise image url.
+     * @param option option
+     * @return exercise image url
      */
     public String getExerciseImageUrl(int option) {
+        final String baseImageUrl =
+                "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
         return baseImageUrl + exerciseImageId + "/" + option + ".jpg";
     }
     /**
