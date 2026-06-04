@@ -345,6 +345,7 @@ public class ProfileController {
             return;
         }
 
+        deleteAllUserData(user.getId(), user.getEmail());
         boolean success = userDAO.deleteUser(user.getId());
 
         if (success) {
@@ -353,6 +354,20 @@ public class ProfileController {
         } else {
             authentication.showError("Error", "Failed to delete user.");
         }
+    }
+
+    /**
+     * Removes all application data associated with the given user before the
+     * account row is deleted.
+     *
+     * @param userId the user id
+     * @param email  the user's email (for OTP cleanup)
+     */
+    private void deleteAllUserData(int userId, String email) {
+        new FoodDAO().deleteAllForUser(userId);
+        progressDAO.deleteAllForUser(userId);
+        new WorkoutRoutineDAO().deleteAllForUser(userId);
+        new OtpDAO().deleteOtp(email);
     }
 
 }

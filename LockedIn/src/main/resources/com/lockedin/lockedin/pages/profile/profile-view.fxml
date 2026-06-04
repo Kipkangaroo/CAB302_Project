@@ -132,7 +132,7 @@
                     </VBox>
                 </HBox>
             </VBox>
-            <!-- Measurement Tracking Section -->
+            <!-- Weight progress chart -->
             <VBox styleClass="profile-card" spacing="12">
                 <Label text="Weight Progress (Last 30 Days)" styleClass="profile-section-title"/>
                 <LineChart fx:id="weightChart"

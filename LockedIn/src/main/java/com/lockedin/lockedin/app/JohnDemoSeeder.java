@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import com.lockedin.lockedin.model.dao.ExercisesDAO;
 import com.lockedin.lockedin.model.dao.FoodDAO;
-import com.lockedin.lockedin.model.dao.OtpDAO;
 import com.lockedin.lockedin.model.dao.UserDAO;
 import com.lockedin.lockedin.model.dao.UserProgressDAO;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
@@ -38,25 +37,6 @@ public final class JohnDemoSeeder {
      * Constructs a JohnDemoSeeder using default application dependencies.
      */
     private JohnDemoSeeder() {
-    }
-
-    /**
-     * Removes the demo user and all related data created by
-     * {@link #seedIfAbsent()}.
-     * No-op if John does not exist.
-     */
-    public static void removeAll() {
-        UserDAO userDAO = new UserDAO();
-        Optional<User> john = userDAO.getUserByEmail(JOHN_EMAIL);
-        if (john.isEmpty()) {
-            return;
-        }
-        int userId = john.get().getId();
-        new FoodDAO().deleteAllForUser(userId);
-        new UserProgressDAO().deleteAllForUser(userId);
-        new WorkoutRoutineDAO().deleteAllForUser(userId);
-        new OtpDAO().deleteOtp(JOHN_EMAIL);
-        userDAO.deleteUser(userId);
     }
 
     /**
