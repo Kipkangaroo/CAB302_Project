@@ -5,8 +5,11 @@ import com.lockedin.lockedin.controller.navigation.PageNavigator;
 import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -15,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +30,12 @@ import java.util.Map;
  */
 public class WorkoutHistoryController {
 
+    private static final String REPS_BAR_STYLE =
+            "-fx-bar-fill: #1565C0;"
+                    + "-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1565C0, #43A047);"
+                    + "-fx-background-insets: 0;"
+                    + "-fx-background-radius: 4 4 0 0;";
+
     @FXML
     private Button backButton;
     @FXML
@@ -33,7 +43,7 @@ public class WorkoutHistoryController {
     @FXML
     private VBox chartSection;
     @FXML
-    private LineChart<String, Number> repsChart;
+    private BarChart<String, Number> repsChart;
     @FXML
     private VBox historyContainer;
     @FXML
@@ -228,13 +238,14 @@ public class WorkoutHistoryController {
     }
 
     /**
-     * Populates the reps line chart (oldest date left, today right).
+     * Populates the reps bar chart (oldest date left, today right).
      */
     private void loadRepsChart(Map<LocalDate, Integer> data) {
         final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
         final int repsChartDays = 7;
         repsChart.getData().clear();
 
+        List<String> categoryLabels = new ArrayList<>();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Reps");
 
@@ -242,11 +253,39 @@ public class WorkoutHistoryController {
         for (int daysAgo = repsChartDays - 1; daysAgo >= 0; daysAgo--) {
             LocalDate date = today.minusDays(daysAgo);
             String label = daysAgo == 0 ? "Today" : date.format(chartDateFormat);
+            categoryLabels.add(label);
             series.getData().add(new XYChart.Data<>(label, data.getOrDefault(date, 0)));
         }
 
+        configureRepsChartAxis(categoryLabels);
         repsChart.getData().add(series);
+        Platform.runLater(this::applyRepsBarGradient);
     }
+
+    /**
+     * Locks category order to chronological labels and centres bars in each date slot.
+     */
+    private void configureRepsChartAxis(List<String> categoryLabels) {
+        CategoryAxis xAxis = (CategoryAxis) repsChart.getXAxis();
+        xAxis.setCategories(FXCollections.observableArrayList(categoryLabels));
+        xAxis.setGapStartAndEnd(false);
+        xAxis.setStartMargin(0);
+        xAxis.setEndMargin(0);
+        repsChart.setCategoryGap(8);
+        repsChart.setBarGap(0);
+    }
+
+    /**
+     * Applies the blue→green bar gradient after layout (overrides Modena default orange).
+     */
+    private void applyRepsBarGradient() {
+        repsChart.applyCss();
+        repsChart.layout();
+        for (Node bar : repsChart.lookupAll(".chart-bar")) {
+            bar.setStyle(REPS_BAR_STYLE);
+        }
+    }
+
         /**
      * Handle back.
      */

@@ -1,37 +1,59 @@
 package com.lockedin.lockedin.controller.profile;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Optional;
+
 import com.lockedin.lockedin.controller.auth.Authentication;
 import com.lockedin.lockedin.controller.auth.SignUpController;
-import com.lockedin.lockedin.model.dao.*;
+import com.lockedin.lockedin.model.dao.FoodDAO;
+import com.lockedin.lockedin.model.dao.OtpDAO;
+import com.lockedin.lockedin.model.dao.UserDAO;
+import com.lockedin.lockedin.model.dao.UserImageDAO;
+import com.lockedin.lockedin.model.dao.UserProgressDAO;
+import com.lockedin.lockedin.model.dao.WorkoutRoutineDAO;
 import com.lockedin.lockedin.model.entity.user.FitnessGoal;
 import com.lockedin.lockedin.model.entity.user.User;
 import com.lockedin.lockedin.model.entity.user.UserProgress;
 import com.lockedin.lockedin.model.session.CurrentUser;
 
-import javafx.geometry.Pos;
 import javafx.fxml.FXML;
-import javafx.scene.chart.*;
-import javafx.scene.control.*;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
+import javafx.geometry.Pos;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.util.StringConverter;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-import java.io.IOException;
-import java.io.ByteArrayInputStream;
-import java.util.Optional;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
-
 /**
  * JavaFX controller for the profile screen.
+ * 
  * @author LockedIn Team
  * @version 1.0
  */
 public class ProfileController {
     private static final String LOGIN_VIEW = "/com/lockedin/lockedin/pages/auth/login-view.fxml";
     private static final int WEIGHT_CHART_DAYS = 30;
+    /** Inclusive day span on the chart x-axis (0 = oldest, 29 = today). */
+    private static final int WEIGHT_CHART_DAY_SPAN = WEIGHT_CHART_DAYS - 1;
+    /** Seven tick marks: start, every 5 days, and today (29 / 6 ≈ 4.83). */
+    private static final double WEIGHT_CHART_TICK_UNIT = WEIGHT_CHART_DAY_SPAN / 6.0;
+    private static final DateTimeFormatter WEIGHT_CHART_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M");
     private final Authentication authentication = new Authentication();
     private final UserDAO userDAO = new UserDAO();
     private final UserProgressDAO progressDAO = new UserProgressDAO();
@@ -44,13 +66,11 @@ public class ProfileController {
     private static final Map<String, FitnessGoal> GOAL_MAP = Map.of(
             "Lose Weight", FitnessGoal.LOSE_WEIGHT,
             "Build Muscle", FitnessGoal.BUILD_MUSCLE,
-            "Maintain Fitness", FitnessGoal.MAINTAIN_FITNESS
-    );
+            "Maintain Fitness", FitnessGoal.MAINTAIN_FITNESS);
     private static final Map<FitnessGoal, String> GOAL_LABELS = Map.of(
             FitnessGoal.LOSE_WEIGHT, "Lose Weight",
             FitnessGoal.BUILD_MUSCLE, "Build Muscle",
-            FitnessGoal.MAINTAIN_FITNESS, "Maintain Fitness"
-    );
+            FitnessGoal.MAINTAIN_FITNESS, "Maintain Fitness");
 
     @FXML
     private Button logoutButton;
@@ -73,11 +93,11 @@ public class ProfileController {
     @FXML
     private ImageView editActionIcon;
     @FXML
-    private LineChart<String, Number> weightChart;
+    private LineChart<Number, Number> weightChart;
     private Image editImage;
     private Image saveImage;
 
-        /**
+    /**
      * Handle logout.
      * 
      * @throws IOException If the operation fails.
@@ -89,7 +109,7 @@ public class ProfileController {
         authentication.switchScene(logoutButton, LOGIN_VIEW);
     }
 
-        /**
+    /**
      * Handle edit details.
      */
 
@@ -102,7 +122,7 @@ public class ProfileController {
         }
     }
 
-        /**
+    /**
      * Enter edit mode.
      */
     private void enterEditMode() {
@@ -116,7 +136,7 @@ public class ProfileController {
         weightField.selectAll();
     }
 
-        /**
+    /**
      * Exit edit mode.
      */
     private void exitEditMode() {
@@ -142,7 +162,7 @@ public class ProfileController {
         loadWeightChart();
     }
 
-        /**
+    /**
      * Refresh detail fields.
      */
     private void refreshDetailFields() {
@@ -165,7 +185,7 @@ public class ProfileController {
         fitnessGoalCombo.setDisable(!editing);
     }
 
-        /**
+    /**
      * Update edit icon.
      */
     private void updateEditIcon() {
@@ -178,7 +198,7 @@ public class ProfileController {
         }
     }
 
-        /**
+    /**
      * Sets the field editing.
      * 
      * @param field   The field.
@@ -266,37 +286,55 @@ public class ProfileController {
 
         LocalDate end = LocalDate.now();
         LocalDate start = end.minusDays(WEIGHT_CHART_DAYS - 1);
-        Map<LocalDate, Double> dailyWeights =
-                progressDAO.getDailyWeightForRange(user.getId(), start, end);
+        Map<LocalDate, Double> dailyWeights = progressDAO.getDailyWeightForRange(user.getId(), start, end);
 
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        configureWeightChartAxis(end);
+
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.setName("Weight");
 
         for (int daysAgo = WEIGHT_CHART_DAYS - 1; daysAgo >= 0; daysAgo--) {
             LocalDate date = end.minusDays(daysAgo);
-            String label = chartAxisLabel(date, daysAgo);
-            series.getData().add(new XYChart.Data<>(label, dailyWeights.getOrDefault(date, user.getWeight())));
+            double weight = dailyWeights.getOrDefault(date, user.getWeight());
+            int x = WEIGHT_CHART_DAY_SPAN - daysAgo;
+            series.getData().add(new XYChart.Data<>((double) x, weight));
         }
 
         weightChart.getData().add(series);
     }
 
     /**
-     * Returns a visible x-axis label only on selected days so the chart stays readable.
+     * Numeric x-axis with one point per day; tick marks every 5 calendar days plus today.
      */
-    private String chartAxisLabel(LocalDate date, int daysAgo) {
-        final DateTimeFormatter chartDateFormat = DateTimeFormatter.ofPattern("d/M");
-        final int chartLabelInterval = 5;
-        if (daysAgo == 0) {
-            return "Today";
-        }
-        if (daysAgo == WEIGHT_CHART_DAYS - 1 || daysAgo % chartLabelInterval == 0) {
-            return date.format(chartDateFormat);
-        }
-        return "";
+    private void configureWeightChartAxis(LocalDate end) {
+        NumberAxis xAxis = (NumberAxis) weightChart.getXAxis();
+        xAxis.setAutoRanging(false);
+        xAxis.setLowerBound(0);
+        xAxis.setUpperBound(WEIGHT_CHART_DAY_SPAN);
+        xAxis.setTickUnit(WEIGHT_CHART_TICK_UNIT);
+        xAxis.setMinorTickVisible(false);
+        xAxis.setTickLabelFormatter(new StringConverter<>() {
+            @Override
+            public String toString(Number xValue) {
+                int x = (int) Math.round(xValue.doubleValue());
+                if (x < 0 || x > WEIGHT_CHART_DAY_SPAN) {
+                    return "";
+                }
+                int daysAgo = WEIGHT_CHART_DAY_SPAN - x;
+                if (daysAgo == 0) {
+                    return "Today";
+                }
+                return end.minusDays(daysAgo).format(WEIGHT_CHART_DATE_FORMAT);
+            }
+
+            @Override
+            public Number fromString(String string) {
+                return 0;
+            }
+        });
     }
 
-        /**
+    /**
      * Update tracking streaks.
      */
     private void updateTrackingStreaks() {
@@ -306,7 +344,7 @@ public class ProfileController {
         updateStreak(workoutStreakRow, workoutDAO.getWeeklyWorkoutTracking(user.getId()));
     }
 
-        /**
+    /**
      * Update streak.
      * 
      * @param row       The row.
@@ -372,4 +410,3 @@ public class ProfileController {
     }
 
 }
-

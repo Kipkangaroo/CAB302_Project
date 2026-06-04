@@ -42,7 +42,6 @@ public class LockedIn extends Application {
                 new ExercisesDAO();
                 new UserDAO();
                 new WorkoutRoutineDAO();
-                JohnDemoSeeder.seedIfAbsent();
                 FXMLLoader fxmlLoader = new FXMLLoader(
                                 LockedIn.class.getResource(
                                                 "/com/lockedin/lockedin/pages/auth/login-view.fxml"));

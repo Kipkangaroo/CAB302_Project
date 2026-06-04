@@ -41,12 +41,13 @@
               fillWidth="true">
             <VBox fx:id="chartSection" spacing="10" styleClass="chart-card" managed="false" visible="false">
                 <Label text="Reps Completed (Last 7 Days)" styleClass="workout-card-title"/>
-                <LineChart fx:id="repsChart"
-                           styleClass="profile-weight-chart"
-                           prefHeight="260"
-                           animated="false"
-                           legendVisible="false"
-                           createSymbols="true">
+                <BarChart fx:id="repsChart"
+                          styleClass="profile-weight-chart workout-reps-bar-chart"
+                          prefHeight="260"
+                          animated="false"
+                          legendVisible="false"
+                          categoryGap="8"
+                          barGap="0">
                     <xAxis>
                         <CategoryAxis label="Date" side="BOTTOM"/>
                     </xAxis>
@@ -54,10 +55,10 @@
                         <NumberAxis label="Total Reps"
                                     side="LEFT"
                                     minorTickVisible="false"
-                                    forceZeroInRange="false"
+                                    forceZeroInRange="true"
                                     autoRanging="true"/>
                     </yAxis>
-                </LineChart>
+                </BarChart>
             </VBox>
             <!-- Date range filter -->
             <VBox styleClass="workout-card" spacing="10">

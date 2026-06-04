@@ -67,8 +67,6 @@ public class LoginController {
     @FXML
     private void initialize() {
         loginButton.setDefaultButton(true);
-        emailField.setText("john.demo@lockedin.app");
-        passwordField.setText("Password1!");
         eyeIcon = new Image(getClass().getResourceAsStream(
                 "/com/lockedin/lockedin/graphics/icons/eye-icon.png"));
         eyeOffIcon = new Image(getClass().getResourceAsStream(

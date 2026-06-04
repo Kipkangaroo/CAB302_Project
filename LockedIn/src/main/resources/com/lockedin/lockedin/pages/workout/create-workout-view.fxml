@@ -50,6 +50,7 @@
                        style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
                 <SearchableComboBox fx:id="exerciseCombo"
                                     promptText="Search exercises..."
+                                    styleClass="profile-goal-combo"
                                     maxWidth="Infinity"/>
                 <HBox spacing="10"
                       alignment="CENTER_LEFT">
