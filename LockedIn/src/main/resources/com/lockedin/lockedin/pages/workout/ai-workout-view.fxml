@@ -44,6 +44,7 @@
                 <Label text="How long have you been training?"
                        style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
                 <ComboBox fx:id="experienceCombo"
+                          styleClass="profile-goal-combo"
                           maxWidth="Infinity"
                           promptText="Select experience level"/>
             </VBox>
@@ -56,6 +57,7 @@
                        style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
                 <HBox spacing="8" alignment="CENTER_LEFT">
                     <ComboBox fx:id="timeCombo"
+                              styleClass="profile-goal-combo"
                               maxWidth="Infinity"
                               HBox.hgrow="ALWAYS"
                               promptText="Select duration"/>
@@ -71,6 +73,7 @@
                 <Label text="Which area would you like to focus on?"
                        style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
                 <ComboBox fx:id="muscleGroupCombo"
+                          styleClass="profile-goal-combo"
                           maxWidth="Infinity"
                           promptText="Select muscle group"/>
             </VBox>
@@ -82,6 +85,7 @@
                 <Label text="What are you training for?"
                        style="-fx-text-fill: #757575; -fx-font-size: 12px;"/>
                 <ComboBox fx:id="goalCombo"
+                          styleClass="profile-goal-combo"
                           maxWidth="Infinity"
                           promptText="Select your goal"/>
             </VBox>
