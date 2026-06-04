@@ -367,6 +367,7 @@ public class ProfileController {
         new FoodDAO().deleteAllForUser(userId);
         progressDAO.deleteAllForUser(userId);
         new WorkoutRoutineDAO().deleteAllForUser(userId);
+        new UserImageDAO().deleteImage(userId);
         new OtpDAO().deleteOtp(email);
     }
 
