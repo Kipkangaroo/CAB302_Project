@@ -1,0 +1,229 @@
+61b0a50 was Tusar Paudel (n12834041@qut.edu.au), 1780731394, 26 hours ago, message: Add UI screenshots for before/after comparison
+1b06987 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1780649018, 2 days ago, message: User Testing Results
+07e2d29 was Tusar Paudel (n12834041@qut.edu.au), 1780585279, 3 days ago, message: Minor combo boxes style change
+6d2b682 was Tusar Paudel (n12834041@qut.edu.au), 1780584628, 3 days ago, message: Finalised demo account and removed the seeder class; updated few charting elements.
+be05360 was Tusar Paudel (n12834041@qut.edu.au), 1780579956, 3 days ago, message: Removal of duplicate .db files
+bef70a1 was Tusar Paudel (n12834041@qut.edu.au), 1780579352, 3 days ago, message: Removal of Measurement instances (duplicate of UserProgress).
+abf34df was Tusar Paudel (n12834041@qut.edu.au), 1780578524, 3 days ago, message: Demo data
+ddd3ce1 was Tusar Paudel (n12834041@qut.edu.au), 1779803362, 12 days ago, message: Fixed Class files naming.
+c759a6b was Tusar Paudel (n12834041@qut.edu.au), 1779803061, 12 days ago, message: removing DS_Store
+196a11e was Tusar Paudel (n12834041@qut.edu.au), 1779802794, 12 days ago, message: Tusar finalising project code (#41)
+5b73b40 was Tusar Paudel (n12834041@qut.edu.au), 1779599200, 2 weeks ago, message: Stop tracking build artifacts and IDE files via updated .gitignore
+11d7b8f was BrandonFindlay (n11406518@qut.edu.au), 1779420098, 2 weeks ago, message: Delete .ai/mcp directory
+2aae38f was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779412575, 2 weeks ago, message: Merge pull request #40 from Kipkangaroo/Akhilesh2
+722a4a8 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779412133, 2 weeks ago, message: Quick Commit
+a605528 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779411982, 2 weeks ago, message: Fixed issue with changing fitness goals
+9ba4a1e was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779409093, 2 weeks ago, message: Merge pull request #39 from Kipkangaroo/Akhilesh2
+e850258 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779408895, 2 weeks ago, message: Fixes and styles added to workout history
+efb06fa was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779405189, 2 weeks ago, message: Merged changes
+8829c17 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1779404869, 2 weeks ago, message: Fixes to workout history graphs
+752e626 was Kipkangaroo (kipkangaroo03@hotmail.com), 1779403918, 2 weeks ago, message: User Testing
+6d1bbfd was Mimi (miminguyen322@gmail.com), 1779372945, 2 weeks ago, message: Merge pull request #38 from Kipkangaroo/Mimi
+b66484e was mimikkyyu (miminguyen322@gmail.com), 1779372808, 2 weeks ago, message: build: add run.sh and run.bat one-command build and launch scripts
+3f41e61 was Mimi (miminguyen322@gmail.com), 1779372487, 2 weeks ago, message: docs: added MoSCoW user stories document with story points
+012cd7b was Mimi (miminguyen322@gmail.com), 1779372432, 2 weeks ago, message: Delete Resources/User Stories/MoSCoW_Story_Points_Week12_Checkpoint.docx
+3140ca2 was Mimi (miminguyen322@gmail.com), 1779371973, 2 weeks ago, message: docs: added MoSCoW user stories document with story points
+ab24f7c was Mimi (miminguyen322@gmail.com), 1779370950, 2 weeks ago, message: Merge pull request #37 from Kipkangaroo/Mimi
+e836966 was mimikkyyu (miminguyen322@gmail.com), 1779370810, 2 weeks ago, message: feat(US18): add date range filter UI to workout history screen
+4916b04 was Mimi (miminguyen322@gmail.com), 1779370524, 2 weeks ago, message: Merge pull request #36 from Kipkangaroo/Mimi
+1f0205a was mimikkyyu (miminguyen322@gmail.com), 1779370436, 2 weeks ago, message: feat(US12): add edit functionality for calorie entries
+eeea64d was Mimi (miminguyen322@gmail.com), 1779370149, 2 weeks ago, message: Merge pull request #35 from Kipkangaroo/Mimi
+f249c0b was mimikkyyu (miminguyen322@gmail.com), 1779370032, 2 weeks ago, message: feat(US09): make weekly session goal user-editable
+a14e491 was Mimi (miminguyen322@gmail.com), 1779367151, 2 weeks ago, message: Merge pull request #34 from Kipkangaroo/Mimi
+34842c3 was mimikkyyu (miminguyen322@gmail.com), 1779367003, 2 weeks ago, message: style: standardise header icon buttons across all screens
+400c917 was Mimi (miminguyen322@gmail.com), 1779364431, 2 weeks ago, message: Merge pull request #33 from Kipkangaroo/Mimi
+e33f05b was mimikkyyu (miminguyen322@gmail.com), 1779364252, 2 weeks ago, message: feat(US10): progress toward goals screen with workout, calorie and weight bars
+91f949e was Mimi (miminguyen322@gmail.com), 1779362994, 2 weeks ago, message: Merge pull request #32 from Kipkangaroo/Mimi
+b28e7de was mimikkyyu (miminguyen322@gmail.com), 1779362889, 2 weeks ago, message: feat(US11): calorie trends chart with actual vs goal line series
+0db4700 was Mimi (miminguyen322@gmail.com), 1779360927, 2 weeks ago, message: Merge pull request #31 from Kipkangaroo/Mimi
+26568ef was mimikkyyu (miminguyen322@gmail.com), 1779360753, 2 weeks ago, message: feat(US06): weekly workout summary screen with prev/next week navigation
+1ed1e67 was mimikkyyu (miminguyen322@gmail.com), 1779349032, 2 weeks ago, message: feat: add all project source files, controllers, models, FXML views and tests
+d100ef4 was mimikkyyu (miminguyen322@gmail.com), 1779348774, 2 weeks ago, message: Added maven-shade-plugin to produce executable fat JAR
+b7c73fb was Sherab Zangmo (zsherab436@gmail.com), 1779321199, 2 weeks ago, message: Merge pull request #30 from Kipkangaroo/Sherab
+83b368d was Sherab (zsherab436@gmail.com), 1779321117, 2 weeks ago, message: Add full JUnit test suite for MeasurementDAO
+39c0d7c was Sherab Zangmo (zsherab436@gmail.com), 1779285969, 3 weeks ago, message: Merge pull request #29 from Kipkangaroo/Sherab
+9d53d4f was Sherab (zsherab436@gmail.com), 1779284852, 3 weeks ago, message: Add measurement tracking, trend ranges, and delete account feature
+109e60b was Sherab (zsherab436@gmail.com), 1779249669, 3 weeks ago, message: Merge remote-tracking branch 'origin/main' into Sherab
+b02f438 was Tusar Paudel (n12834041@qut.edu.au), 1779247635, 3 weeks ago, message: Resubmission for javadoc deployment
+eb77a66 was Tusar Paudel (n12834041@qut.edu.au), 1779247412, 3 weeks ago, message: Publish JavaDoc to GitHub Pages via Actions workflow
+1851b11 was Tusar Paudel (n12834041@qut.edu.au), 1779246284, 3 weeks ago, message: Added javadoc and comments through the codebase + GitHub Workflow setup
+8798fe6 was Tusar Paudel (n12834041@qut.edu.au), 1779244094, 3 weeks ago, message: Reformatted code, added UserProgress.java and UserProgressDAO.java back, added a seeder class for User John and made some icon changes.
+01d7bc3 was Tusar Paudel (n12834041@qut.edu.au), 1779236556, 3 weeks ago, message: Adding *.file back on .gitignore
+1af91c7 was Tusar Paudel (n12834041@qut.edu.au), 1779236111, 3 weeks ago, message: Uploaded API_KEY_FILE template - add API keys here
+0a747db was Sherab (zsherab436@gmail.com), 1779232431, 3 weeks ago, message: Merge branch 'main' into Sherab
+8db930f was BrandonFindlay (n11406518@qut.edu.au), 1779159864, 3 weeks ago, message: Merge pull request #28 from Kipkangaroo/Brandon---AI-Workout-Feature
+192fe60 was BrandonFindlay (n11406518@qut.edu.au), 1779159699, 3 weeks ago, message: Added AI Workout Creation Feature
+80316e6 was Tusar Paudel (n12834041@qut.edu.au), 1778929305, 3 weeks ago, message: Merge branch 'Tusar-EmailOTP-PasswordReset'
+85a07d8 was Tusar Paudel (n12834041@qut.edu.au), 1778926585, 3 weeks ago, message: Implemented EMAIL-OTP Forgot Password reset option
+c1b0c32 was Tusar Paudel (n12834041@qut.edu.au), 1778928337, 3 weeks ago, message: Tusar making fitness goal and weight modifiable (#26)
+0c3cf50 was Tusar Paudel (n12834041@qut.edu.au), 1778926585, 3 weeks ago, message: Implemented EMAIL-OTP Forgot Password reset option
+1057ae8 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1778806924, 3 weeks ago, message: Check
+0eb6b0d was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1778806755, 3 weeks ago, message: Check for updated files
+e279d43 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1778806709, 3 weeks ago, message: Check
+196a913 was Tusar Paudel (n12834041@qut.edu.au), 1778767125, 3 weeks ago, message: Tusar ai food values + profile changes (#25)
+07e88cc was Tusar Paudel (n12834041@qut.edu.au), 1778575300, 4 weeks ago, message: Updated Icon
+e0489bd was Tusar Paudel (n12834041@qut.edu.au), 1778421624, 4 weeks ago, message: Added upload meal image icon and file explorer window after clicked
+3f4b2d5 was Tusar Paudel (n12834041@qut.edu.au), 1777813760, 5 weeks ago, message: Adding Git Commit Report and Team Jira Export
+bd4b667 was Tusar Paudel (n12834041@qut.edu.au), 1777812564, 5 weeks ago, message: Adding screenshots from Discord (used as team communication platform)
+dd0dad6 was Tusar Paudel (n12834041@qut.edu.au), 1777811877, 5 weeks ago, message: Adding resources
+35a2c5c was Kipkangaroo (kipkangaroo03@hotmail.com), 1777811212, 5 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+b8ea456 was Kipkangaroo (kipkangaroo03@hotmail.com), 1777811202, 5 weeks ago, message: Final Video
+993005e was Tusar Paudel (n12834041@qut.edu.au), 1777810455, 5 weeks ago, message: Deleting temp files
+86b98b2 was Tusar Paudel (n12834041@qut.edu.au), 1777810190, 5 weeks ago, message: Pushing Local
+a3d45f5 was Tusar Paudel (n12834041@qut.edu.au), 1777809963, 5 weeks ago, message: Deleting second copy of Food, User and Exercise databases
+ff48356 was BrandonFindlay (n11406518@qut.edu.au), 1777809783, 5 weeks ago, message: Update Week 9 Video Presentation.pptx
+890b9e4 was Kipkangaroo (kipkangaroo03@hotmail.com), 1777806689, 5 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+41839de was Kipkangaroo (kipkangaroo03@hotmail.com), 1777806486, 5 weeks ago, message: Video update
+5eb5ba7 was BrandonFindlay (n11406518@qut.edu.au), 1777805915, 5 weeks ago, message: Upload Merge/Pull Request History
+b971649 was BrandonFindlay (n11406518@qut.edu.au), 1777805511, 5 weeks ago, message: Sprint/ PM Use Evidence
+dd0c8c4 was BrandonFindlay (n11406518@qut.edu.au), 1777804696, 5 weeks ago, message: Uploaded Evidence of Commits and Branch usage
+05673c4 was Tusar Paudel (n12834041@qut.edu.au), 1777801100, 5 weeks ago, message: Updating Meeting Minutes
+d69f96f was BrandonFindlay (n11406518@qut.edu.au), 1777793911, 5 weeks ago, message: Added JUnit Tests, and linked workout visualization to exercise database
+d31ea45 was BrandonFindlay (n11406518@qut.edu.au), 1777793815, 5 weeks ago, message: Added JUnit Tests, and linked workout visualization to exercise database
+0865bb1 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777775063, 5 weeks ago, message: Merge pull request #23 from Kipkangaroo/Akhilesh2
+9f78051 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777774838, 5 weeks ago, message: Merging
+072dcc2 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777774626, 5 weeks ago, message: Changes
+082a29b was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777774044, 5 weeks ago, message: Added Daily Workouts Completed and Daily Reps Completed Charts to Workout History
+42c62ab was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777766236, 5 weeks ago, message: Check
+1eb3fb8 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777728201, 5 weeks ago, message: Complete Check
+5c25a1a was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777728116, 5 weeks ago, message: Check
+5d0bd97 was Kipkangaroo (kipkangaroo03@hotmail.com), 1777609244, 5 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+162da4e was Kipkangaroo (kipkangaroo03@hotmail.com), 1777609228, 5 weeks ago, message: Rewording and Video Prep
+8857711 was Mimi (miminguyen322@gmail.com), 1777609091, 5 weeks ago, message: TDD Red Green Refactor cycle for testing suites
+e1a38d0 was Mimi (miminguyen322@gmail.com), 1777608790, 5 weeks ago, message: Swapped MoSCoW User Stories to docx version
+89fbc3d was Mimi (miminguyen322@gmail.com), 1777608451, 5 weeks ago, message: Delete Resources/User Stories/MoSCoW_User_Stories_Full.pdf
+f10649b was Mimi (miminguyen322@gmail.com), 1777608386, 5 weeks ago, message: Delete Resources/MoSCoW_User_Stories_Full.docx
+1b8b371 was Mimi (miminguyen322@gmail.com), 1777608334, 5 weeks ago, message: Swapped MoSCoW to docx version
+1f75e1c was Kipkangaroo (kipkangaroo03@hotmail.com), 1777607729, 5 weeks ago, message: Updating Video PPT
+5756180 was Tusar Paudel (n12834041@qut.edu.au), 1777603809, 5 weeks ago, message: Mass FXML reformat
+bb90879 was Tusar Paudel (n12834041@qut.edu.au), 1777602688, 5 weeks ago, message: Mass code reformat (following google-java-format) + import optimisation
+75e24e3 was Tusar Paudel (n12834041@qut.edu.au), 1777600335, 5 weeks ago, message: Merge remote-tracking branch 'origin/main'
+6563b3c was Kipkangaroo (kipkangaroo03@hotmail.com), 1777599117, 5 weeks ago, message: Files for Video
+be47892 was Tusar Paudel (n12834041@qut.edu.au), 1777595763, 5 weeks ago, message: Updated the profile image placeholder to an animated face
+d872949 was Tusar Paudel (n12834041@qut.edu.au), 1777595455, 5 weeks ago, message: Edited the logo and added it as the window icon as well.
+db4585f was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777595002, 5 weeks ago, message: Commit of changes from pulling from main
+81a07de was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777593540, 5 weeks ago, message: Initial implement of Activity Summary in Profile Page
+b2ed276 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777550430, 5 weeks ago, message: Added scrollbar to signup page
+cb1afc5 was Tusar Paudel (n12834041@qut.edu.au), 1777594524, 5 weeks ago, message: Adjust colour and font scheme of elements within log-in and sign-up to match that of diet and workout page.
+91303c7 was Tusar Paudel (n12834041@qut.edu.au), 1777594194, 5 weeks ago, message: Added back icon onto sign up page and left aligned the text labels.
+568d15e was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777593540, 5 weeks ago, message: Initial implement of Activity Summary in Profile Page
+9dd6a81 was Tusar Paudel (n12834041@qut.edu.au), 1777592822, 5 weeks ago, message: Updated the colour scheme of the Diet page to match the workout page + added logo and features image onto the login page
+0645181 was Mimi (miminguyen322@gmail.com), 1777568356, 5 weeks ago, message: docs: added MoSCoW user stories document with story points
+95c50a9 was mimikkyyu (miminguyen322@gmail.com), 1777568273, 5 weeks ago, message: docs: added MoSCoW user stories document with story points
+2e334e3 was Mimi (miminguyen322@gmail.com), 1777562854, 5 weeks ago, message: Merge pull request #21 from Kipkangaroo/Mimi
+95e547f was mimikkyyu (miminguyen322@gmail.com), 1777562681, 5 weeks ago, message: feat: add logout button to profile page
+156a6c6 was Mimi (miminguyen322@gmail.com), 1777562138, 5 weeks ago, message: Merge pull request #20 from Kipkangaroo/Mimi
+e2f75b6 was mimikkyyu (miminguyen322@gmail.com), 1777561951, 5 weeks ago, message: fix: restore three authenticate() tests lost in merge overwrite
+6b06d4f was Mimi (miminguyen322@gmail.com), 1777560809, 5 weeks ago, message: Merge pull request #19 from Kipkangaroo/Mimi
+a4b1596 was mimikkyyu (miminguyen322@gmail.com), 1777560548, 5 weeks ago, message: fix: remove duplicate getAge() method, keep correct ChronoUnit implementation
+6efff5f was Sherab (zsherab436@gmail.com), 1777559981, 5 weeks ago, message: Resolve merge conflicts and finalize documentation updates
+0731c1d was Sherab (zsherab436@gmail.com), 1777559537, 5 weeks ago, message: Improve documentation throughout entities, DAOs, and tests
+2a74af5 was Mimi (miminguyen322@gmail.com), 1777559503, 5 weeks ago, message: Merge pull request #18 from Kipkangaroo/Mimi
+d685a47 was mimikkyyu (miminguyen322@gmail.com), 1777558921, 5 weeks ago, message: refactor: add comments to getAge() and authenticate() overload, update ProfileController to use getAge()
+65dd157 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777556192, 5 weeks ago, message: Revert to previous commit + save changes
+de43e9c was mimikkyyu (miminguyen322@gmail.com), 1777555224, 5 weeks ago, message: feat: add getAge() to User and Authentication.authenticate() overload to pass tests
+b8466cd was Sherab (zsherab436@gmail.com), 1777554841, 5 weeks ago, message: Corrected SignUp.fxml namespace and added ScrollPane to restore Sign Up button visibility.
+917c440 was Sherab (zsherab436@gmail.com), 1777554789, 5 weeks ago, message: Corrected SignUp.fxml namespace and added ScrollPane to restore Sign Up button visibility.
+3af6dc3 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777554670, 5 weeks ago, message: Initial commit for new branch
+ffb904e was mimikkyyu (miminguyen322@gmail.com), 1777554649, 5 weeks ago, message: test: writing failing tests for age calculation and Authentication.authenticate()
+3b4171f was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777554350, 5 weeks ago, message: signup page scroll bar second update
+839802a was Tusar Paudel (n12834041@qut.edu.au), 1777554248, 5 weeks ago, message: Added Age method to User, implemented methods from Authentication for email and password validity and introduced checks for Name and Age being > 18
+4bccafe was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777554027, 5 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project into Akhilesh
+7dc7ab3 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777553952, 5 weeks ago, message: check
+1e51bbe was Tusar Paudel (n12834041@qut.edu.au), 1777552713, 5 weeks ago, message: Updated placeholders - User details e.g. Name, age updated to be on the profile page
+ae0db90 was Tusar Paudel (n12834041@qut.edu.au), 1777551687, 5 weeks ago, message: Implemented daily calorie, proteins, carbs and fat goal based on the User's fitness goal - daily calorie intake calculated through Mifflin-St Jeor BMR formula.
+6016d39 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777550430, 5 weeks ago, message: Added scrollbar to signup page
+f6d03dc was Tusar Paudel (n12834041@qut.edu.au), 1777549886, 5 weeks ago, message: Merge remote-tracking branch 'origin/main'
+663da6d was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777548830, 5 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project into Akhilesh
+84541e5 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1777548537, 5 weeks ago, message: Check
+d7f762c was Mimi (miminguyen322@gmail.com), 1777547190, 5 weeks ago, message: Merge pull request #17 from Kipkangaroo/Mimi
+7b89752 was mimikkyyu (miminguyen322@gmail.com), 1777546451, 5 weeks ago, message: refactor: clean up DAO constructors and test setup code
+0be0f0b was mimikkyyu (miminguyen322@gmail.com), 1777545378, 5 weeks ago, message: feat: add dependency injection constructors to DAOs to make tests pass
+dff6542 was mimikkyyu (miminguyen322@gmail.com), 1777543815, 5 weeks ago, message: feat: add dependency injection constructors to DAOs to make tests pass
+4eb94ad was mimikkyyu (miminguyen322@gmail.com), 1777542483, 5 weeks ago, message: test: write failing tests for UserDAO, FoodDAO, WorkoutRoutineDAO, Authentication and DietController
+b02476d was Mimi (miminguyen322@gmail.com), 1777493117, 6 weeks ago, message: Merge pull request #16 from Kipkangaroo/Mimi
+42dc497 was Mimi (miminguyen322@gmail.com), 1777492807, 6 weeks ago, message: Add 49 JUnit 5 tests for UserDAO, FoodDAO, WorkoutRoutineDAO, Authentication and DietController
+6cb8ce6 was Mimi (miminguyen322@gmail.com), 1777491624, 6 weeks ago, message: Merge pull request #15 from Kipkangaroo/Mimi
+420b398 was Mimi (miminguyen322@gmail.com), 1777491407, 6 weeks ago, message: Add DOB, height, weight and goal fields to signup form
+f95f9d3 was Mimi (miminguyen322@gmail.com), 1777491049, 6 weeks ago, message: Merge pull request #14 from Kipkangaroo/Mimi
+a100542 was Mimi (miminguyen322@gmail.com), 1777490707, 6 weeks ago, message: Implement Profile page with editable nutrition targets
+e1a14dd was Mimi (miminguyen322@gmail.com), 1777490020, 6 weeks ago, message: Merge pull request #13 from Kipkangaroo/Mimi
+de1fa13 was Mimi (miminguyen322@gmail.com), 1777488149, 6 weeks ago, message: fix the crash to an error message when non numeric input (letters, space, decimals) are entered in calorie fields
+0c5b296 was BrandonFindlay (n11406518@qut.edu.au), 1777468037, 6 weeks ago, message: Update FXML controller reference in profile-view
+e297073 was Kipkangaroo (104754618+Kipkangaroo@users.noreply.github.com), 1777467326, 6 weeks ago, message: Merge pull request #12 from Kipkangaroo/Kasper-2
+e085839 was Kipkangaroo (kipkangaroo03@hotmail.com), 1777467166, 6 weeks ago, message: Fixing file paths
+a51198c was Kipkangaroo (kipkangaroo03@hotmail.com), 1777466553, 6 weeks ago, message: .Idea recovered
+a5c639a was Kipkangaroo (kipkangaroo03@hotmail.com), 1777466330, 6 weeks ago, message: Copying Branch to main structure
+c7625bd was Tusar Paudel (n12834041@qut.edu.au), 1777456935, 6 weeks ago, message: Tusar2 (#9) - Note: Diet Logic temporarily removed to allow the merge; it will be re-added after!
+3a3e2dc was Tusar Paudel (n12834041@qut.edu.au), 1777437269, 6 weeks ago, message: Minor log in FXML changes
+b06f0ee was Tusar Paudel (n12834041@qut.edu.au), 1777435888, 6 weeks ago, message: Simplified auth codes on sign in/sign up controllers
+5db2afd was BrandonFindlay (n11406518@qut.edu.au), 1777424968, 6 weeks ago, message: Added Start Workout Feature with Workout History Databasing
+c3c62c7 was BrandonFindlay (n11406518@qut.edu.au), 1777373141, 6 weeks ago, message: Added Start Workout Feature with Workout History Databasing
+734eb05 was BrandonFindlay (n11406518@qut.edu.au), 1777369067, 6 weeks ago, message: Added Functionality of Workout Page + Workout Database
+ea818f7 was BrandonFindlay (n11406518@qut.edu.au), 1777368936, 6 weeks ago, message: Merge branch 'main' into Brandon
+7fe5381 was Tusar Paudel (n12834041@qut.edu.au), 1777366701, 6 weeks ago, message: Merge branch 'Tusar'
+a950169 was BrandonFindlay (n11406518@qut.edu.au), 1777365442, 6 weeks ago, message: Fixed missing Diet Components
+fb4420d was Tusar Paudel (n12834041@qut.edu.au), 1777363448, 6 weeks ago, message: Updated login and added signup a rough signin page (with data validation checking)
+d420588 was BrandonFindlay (n11406518@qut.edu.au), 1777363401, 6 weeks ago, message: Added Workout List, WorkoutDB, Editing Workouts, Custom Workouts, and Styling
+2e2bd6b was Sherab (zsherab436@gmail.com), 1777341326, 6 weeks ago, message: Added comments and updated DietLogicTest + diet-view.fxml
+0e159f0 was Sherab (zsherab436@gmail.com), 1777340929, 6 weeks ago, message: Added comments and updated DietLogicTest + diet-view.fxml
+daf91f1 was Sherab (zsherab436@gmail.com), 1777339514, 6 weeks ago, message: Added comments and updated DietLogicTest + diet-view.fxml
+d0972d2 was Sherab (zsherab436@gmail.com), 1777337531, 6 weeks ago, message: Merge branch 'main' into Sherab
+4ff8bc9 was Tusar Paudel (n12834041@qut.edu.au), 1777283929, 6 weeks ago, message: Tusar (#5)
+c4af00a was Tusar Paudel (n12834041@qut.edu.au), 1777283060, 6 weeks ago, message: Modified SqliteConnection for both exercise and user db, implemented log-in implementation (existing user authentication), created UserDAO and its database.
+9ddd4a5 was Tusar Paudel (n12834041@qut.edu.au), 1777214288, 6 weeks ago, message: Added more exercises and impleted exercise form images (sourced through existing GitHub hosting)
+6b7deda was Tusar Paudel (n12834041@qut.edu.au), 1777211501, 6 weeks ago, message: Added "View Exercises" view on Workout page - able to select between all stored exercises to see their name, instructions and primary muscle being targeted.
+9b2994e was Tusar Paudel (n12834041@qut.edu.au), 1777206034, 6 weeks ago, message: Rearranging files into respective directories and renaming to make them more clear
+209e3a3 was Tusar Paudel (n12834041@qut.edu.au), 1777203888, 6 weeks ago, message: Added SqliteConnection class and DBExcercisesDAO for handling and storing excercies within a DB; seed method also implemented to fill the database if its empty.
+7547ccd was Sherab (zsherab436@gmail.com), 1777162026, 6 weeks ago, message: Add DietLogic, update DietController, update FXML, add TDD tests
+04b966d was Tusar Paudel (n12834041@qut.edu.au), 1777041402, 6 weeks ago, message: Added height and weight attributes to User class
+0e8f5f7 was Tusar Paudel (n12834041@qut.edu.au), 1777041043, 6 weeks ago, message: Implemented WorkoutRoutine and ExerciseSet Models
+f4eb117 was Tusar Paudel (n12834041@qut.edu.au), 1777037410, 6 weeks ago, message: Created exercise, workout routine and user models (SHA-256 hashing implemented for password)
+5c1bb88 was Tusar Paudel (n12834041@qut.edu.au), 1777032636, 6 weeks ago, message: Rearranging files to follow MVC
+4ca096a was Tusar Paudel (n12834041@qut.edu.au), 1777012326, 6 weeks ago, message: Merging updated nav bar to main (#4)
+bfe74d9 was Sherab (zsherab436@gmail.com), 1776730335, 7 weeks ago, message: Add macro totals (protein, carbs, fats) to calorie tracker
+0362438 was Sherab (zsherab436@gmail.com), 1776729335, 7 weeks ago, message: Add basic calorie tracker UI and controller
+f90f9b6 was Tusar Paudel (n12834041@qut.edu.au), 1776686315, 7 weeks ago, message: Base code for the app
+17074c1 was Tusar Paudel (n12834041@qut.edu.au), 1776686153, 7 weeks ago, message: Adding base code
+6759ea5 was Tusar Paudel (n12834041@qut.edu.au), 1776682826, 7 weeks ago, message: dr changes and clean up
+17d6823 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1776397207, 7 weeks ago, message: Add files via upload
+9a46926 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1776392900, 7 weeks ago, message: Add files via upload
+50d41ab was Sherab Zangmo (n11772301@qut.edu.au), 1776392842, 7 weeks ago, message: Added medium fidelity UI design
+fe3195d was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1776392760, 7 weeks ago, message: Add files via upload
+8716730 was BrandonFindlay (n11406518@qut.edu.au), 1776389977, 7 weeks ago, message: UI Designs (Low/Medium Fidelity)
+eb95311 was BrandonFindlay (n11406518@qut.edu.au), 1776389484, 7 weeks ago, message: UI Designs (low/medium Fidelity)
+909cc43 was Mimi (miminguyen322@gmail.com), 1775883297, 8 weeks ago, message: Update user stories and meeting minutes
+9f60073 was Mimi (miminguyen322@gmail.com), 1775883273, 8 weeks ago, message: Delete Resources/User Stories/Draft user stories (Mimi).docx
+4140332 was Mimi (miminguyen322@gmail.com), 1775883084, 8 weeks ago, message: Add files via upload
+d7d4618 was BrandonFindlay (n11406518@qut.edu.au), 1775799927, 8 weeks ago, message: Delete Resources/Draft User Stories.pdf
+6e68eb1 was Kipkangaroo (kipkangaroo03@hotmail.com), 1775799717, 8 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+c348b8e was Kipkangaroo (kipkangaroo03@hotmail.com), 1775799513, 8 weeks ago, message: Update user stories and meeting minutes
+fd0b043 was BrandonFindlay (n11406518@qut.edu.au), 1775799454, 8 weeks ago, message: Move User Stories to Resources Folder
+6317c7d was Kipkangaroo (kipkangaroo03@hotmail.com), 1775799231, 8 weeks ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+a656243 was Kipkangaroo (kipkangaroo03@hotmail.com), 1775799175, 8 weeks ago, message: Update meeting minutes
+297b13c was BrandonFindlay (n11406518@qut.edu.au), 1775797734, 8 weeks ago, message: Draft User Stories to be Finalized
+fb1d1ce was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1775796295, 8 weeks ago, message: README.md
+1af5bb4 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774584929, 2 months ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+feaa598 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774584924, 2 months ago, message: Updated meeting minutes
+e9a20d9 was Kipkangaroo (104754618+Kipkangaroo@users.noreply.github.com), 1774583919, 2 months ago, message: Update README.md
+e2bef1c was Mimi (miminguyen322@gmail.com), 1774581404, 2 months ago, message: Update README with functional and non-functional requirements
+3f83d93 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1774581196, 2 months ago, message: README.md
+317070f was Mimi (miminguyen322@gmail.com), 1774581079, 2 months ago, message: Merge pull request #1 from Kipkangaroo/mimikkyyu-patch-1
+5f9e49b was Mimi (miminguyen322@gmail.com), 1774581057, 2 months ago, message: Revise README with project details and features
+571f2f5 was Ak-Pras (akhilesh.prasad@connect.qut.edu.au), 1774579362, 2 months ago, message: Work log
+c336ac0 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774575940, 2 months ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+5c28c20 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774575926, 2 months ago, message: Add Project Brief Doc
+23ca39b was Kipkangaroo (104754618+Kipkangaroo@users.noreply.github.com), 1774541846, 2 months ago, message: Update README.md
+eac0309 was Kipkangaroo (104754618+Kipkangaroo@users.noreply.github.com), 1774540960, 2 months ago, message: Update README.md
+804d714 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774540714, 2 months ago, message: Rearranging repository
+a27976d was BrandonFindlay (n11406518@qut.edu.au), 1774535949, 2 months ago, message: Feature Breakdown and Feasibility Assessment
+33d0a67 was BrandonFindlay (n11406518@qut.edu.au), 1774535766, 2 months ago, message: Delete AI_Workout_Planner_Feature_Breakdown.pdf
+5b54f7e was BrandonFindlay (n11406518@qut.edu.au), 1774535599, 2 months ago, message: Add files via upload
+5e23f26 was Tusar Paudel (n12834041@qut.edu.au), 1774528508, 2 months ago, message: Adding experimental files for SpringBoot
+7a6d199 was Tusar Paudel (n12834041@qut.edu.au), 1774527794, 2 months ago, message: Committing research on current AI implementations
+d02fb63 was Sherab Zangmo (n11772301@qut.edu.au), 1774511467, 2 months ago, message: Initial project upload with research and evidence
+24bd28b was Kipkangaroo (kipkangaroo03@hotmail.com), 1774507534, 2 months ago, message: Added the meeting minutes
+27c6140 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774506595, 2 months ago, message: Merge branch 'main' of https://github.com/Kipkangaroo/CAB302_Project
+f992c4b was Kipkangaroo (kipkangaroo03@hotmail.com), 1774506554, 2 months ago, message: Creating Initial Java Project
+56dc38e was Kipkangaroo (104754618+Kipkangaroo@users.noreply.github.com), 1774506365, 2 months ago, message: Update README.md
+e7cb250 was Kipkangaroo (kipkangaroo03@hotmail.com), 1774506188, 2 months ago, message: Initial commit
